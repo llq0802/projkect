@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-08-09 11:56:17
+ * @LastEditTime: 2021-08-10 10:53:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\components\Base.vue
@@ -15,7 +15,10 @@
     <button @click="changePageTitle('新的标题')">修改标题</button>
     <br />
     <div>
-      <slot name="main" :list="list"> 这是默认插槽的信息</slot>
+      <slot name="top"> 这是默认插槽头部的信息</slot>
+    </div>
+    <div>
+      <slot name="main" :list="list"> 这是默认插槽主体的信息</slot>
     </div>
   </div>
 </template>
