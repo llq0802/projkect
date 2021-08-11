@@ -1,0 +1,129 @@
+// 变量
+$h-50: 50px;
+$blue: #1875e7;
+$side: left;
+$round: 5px;
+// 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。
+.radius {
+  border-radius: #{$round};
+}
+
+@for $i from 2 through 50 {
+  .round-#{$i} {
+    border-radius: #{$i}px;
+  }
+}
+// 继承 用@extend
+.class1 {
+  border: 1px solid #ddd;
+}
+.class2 {
+  @extend .class1;
+  font-size: 100%;
+}
+
+// @mixin命令，定义一个代码块。
+@mixin public {
+  font-size: 16px;
+}
+div {
+  @include left;
+}
+
+// 循环 (to 不能取到最后,through能取到最后)
+@for $i from 5 to 10 {
+  .b-#{$i} {
+    border: #{$i}px solid rgba(204, 204, 204, 0.788);
+  }
+}
+
+@for $i from 1 through 100 {
+  .w-#{$i} {
+    width: #{$i}px;
+  }
+}
+@for $i from 1 through 100 {
+  .h-#{$i} {
+    height: #{$i}px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .ml-#{$i} {
+    margin-left: #{$i}px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .mr-#{$i} {
+    margin-right: #{$i}px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .mt-#{$i} {
+    margin-top: #{$i}px;
+  }
+}
+@for $i from 1 through 100 {
+  .mb-#{$i} {
+    margin-bottom: #{$i}px;
+  }
+}
+@for $i from 1 through 100 {
+  .pl-#{$i} {
+    padding-left: #{$i}px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .pr-#{$i} {
+    padding-right: #{$i}px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .pt-#{$i} {
+    padding-top: #{$i}px;
+  }
+}
+@for $i from 1 through 100 {
+  .pb-#{$i} {
+    padding-bottom: #{$i}px;
+  }
+}
+.elli {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+i {
+  font-style: normal;
+}
+
+img {
+  border-style: none;
+  vertical-align: middle;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+.cursor {
+  cursor: pointer;
+}
+/* 上下标 */
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
