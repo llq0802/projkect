@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 11:52:26
- * @LastEditTime: 2021-08-10 14:23:51
+ * @LastEditTime: 2021-08-12 09:30:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\store\index.ts
@@ -31,14 +31,20 @@ const options = {
     },
   },
   actions: {
-    yibuAdd(
-      context: { commit: (arg0: string, arg1: obj) => void; state: any },
-      payload: obj
-    ) {
+    yibuAdd(context: { commit: (arg0: string, arg1: obj) => void; state: any }, payload: obj) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve("成功了");
           console.log(context.state);
+          context.commit("add", payload);
+        }, 1000);
+      });
+    },
+
+    async asyncAdd(context: { commit: (arg0: string, arg1: obj) => void }, payload: obj) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("async成功");
           context.commit("add", payload);
         }, 1000);
       });

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-08-10 16:06:50
+ * @LastEditTime: 2021-08-12 10:56:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\main.ts
@@ -10,10 +10,15 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/index";
 import store from "./store/index";
+import ElementPlus from "element-plus";
+import "./assets/css/global.scss";
+import "element-plus/lib/theme-chalk/index.css";
+import "./assets/css/element-variables.scss";
 
 let app = createApp(App);
 app.use(router);
 app.use(store);
+app.use(ElementPlus);
 
 // 插件先引入,最后在调用挂载app
 app.mount("#app");

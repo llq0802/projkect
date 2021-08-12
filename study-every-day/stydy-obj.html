@@ -1,0 +1,45 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-12 16:21:10
+ * @LastEditTime: 2021-08-12 16:56:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
+      // console.log(Reflect.__proto__ === Object.prototype);
+      // console.log(window.Reflect);
+      // console.log(window.Proxy);
+
+      const obj = {
+        name: "浏览器",
+        age: 20,
+        id: 15,
+      };
+
+      let reslut = Reflect.get(obj, "name"); //获取属性
+      Reflect.set(obj, "desc", "这是谷歌"); //设置属性
+
+      // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
+      // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
+
+      Reflect.deleteProperty(obj, "name"); //删除属性
+      console.log(obj);
+      console.log(Reflect);
+
+      // script标签中写js代码，或者使用src引入js文件时，默认不能使用module形式，即不能使用import导入文件，但是我们可以再script标签上加上type=module属性来改变方式。
+      // 方法 1 ： 引入module.js，然后在script标签里面调用
+    </script>
+  </body>
+</html>

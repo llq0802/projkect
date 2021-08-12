@@ -1,23 +1,21 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:27:50
- * @LastEditTime: 2021-08-10 15:01:02
+ * @LastEditTime: 2021-08-12 11:44:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\router\index.ts
  */
 
-import {
-  createRouter,
-  createWebHistory,
-  createWebHashHistory,
-} from "vue-router";
+import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
 const Home = () => import("../views/Home.vue");
 const About = () => import("../views/About.vue");
 const User = () => import("../views/User.vue");
 const Login = () => import("../views/Login.vue");
-const Dynamic = () => import("../views/Dynamic .vue");
-const Transition = () => import("../views/Transition .vue");
+const Dynamic = () => import("../views/Dynamic.vue");
+const Transition = () => import("../views/Transition.vue");
+const ElementUiPlus = () => import("../views/ElementUiPlus.vue");
+const Echarts = () => import("../views/Echarts.vue");
 
 const News = () => import("../components/News.vue");
 const News2 = () => import("../components/News2.vue");
@@ -93,6 +91,22 @@ const routes: any[] = [
     component: Transition,
     meta: {
       title: "过渡",
+    },
+  },
+  {
+    path: "/elementUiplus",
+    name: "elementUiplus",
+    component: ElementUiPlus,
+    meta: {
+      title: "ui",
+    },
+  },
+  {
+    path: "/echarts",
+    name: "echarts",
+    component: Echarts,
+    meta: {
+      title: "ke",
     },
   },
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-10 09:30:41
- * @LastEditTime: 2021-08-10 15:28:23
+ * @LastEditTime: 2021-08-12 09:31:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\dynamic .vue
@@ -17,9 +17,11 @@
         <component :is="item"></component>
       </keep-alive>
     </template> -->
+
     <transition name="component-fade" mode="out-in">
       <component :is="isShowComponent"></component>
     </transition>
+
     <template v-for="(item, index) in tabs" :key="index">
       <button @click="handleChangeComponent(item)">{{ item }}</button>
     </template>
@@ -30,6 +32,7 @@
     <br />
     <button @click="jia">+commit</button>
     <button @click="jiao">+dispath</button>
+    <button @click="yibu">+dispath(async)</button>
   </div>
 </template>
 <script lang="ts">
@@ -48,6 +51,7 @@ import Buttom from "../components/Buttom.vue";
 import Main from "../components/Main.vue";
 
 export default defineComponent({
+  name: "async",
   components: {
     Top,
     Main,
@@ -77,6 +81,11 @@ export default defineComponent({
         console.log(i);
       });
     };
+
+    const yibu = async () => {
+      let reslut = await store.dispatch("asyncAdd", { value: 200 });
+      console.log(reslut);
+    };
     onMounted(() => {});
     onDeactivated(() => {});
     return {
@@ -87,6 +96,7 @@ export default defineComponent({
       // state,
       jia,
       jiao,
+      yibu,
     };
   },
 
@@ -110,7 +120,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .component-fade-enter-active,
 .component-fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .component-fade-enter-from,

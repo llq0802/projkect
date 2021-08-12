@@ -1,16 +1,24 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-08-10 14:43:25
+ * @LastEditTime: 2021-08-12 11:01:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\App.vue
 -->
 <template>
   <div>
-    <!-- <router-link to="/">go首页</router-link>
-    <router-link to="about">go关于</router-link>
-    <router-link to="user">go用户</router-link> -->
+    <div class="head" style="margin-top:20px;text-align: center;">
+      <el-button type="primary" @click="$router.push({ name: 'home' })">首页</el-button>
+      <el-button type="danger" size="medium" @click="handleJumpPage1">关于</el-button>
+      <el-button size="small" @click="handleJumpPage2">用户</el-button>
+      <el-button size="mini" @click="handleJumpPage3">setup</el-button>
+      <el-button @click="handleJumpPage4">异步</el-button>
+      <el-button @click="handleJumpPage5">过渡</el-button>
+      <el-button @click="handleJumpPage6">UI</el-button>
+      <el-button @click="handleJumpPage7">echarts</el-button>
+    </div>
+    <hr />
 
     <!-- 一个页面对应多个组件 -->
     <!-- <router-view name="Top"></router-view> -->
@@ -19,6 +27,7 @@
     <!-- <keep-alive>
       <router-view :key="$route.fullPath"> </router-view>
     </keep-alive> -->
+    <!-- 独占插槽 -->
     <router-view v-slot="{ Component }" :key="$route.fullPath">
       <keep-alive>
         <component :is="Component" />
@@ -26,13 +35,6 @@
     </router-view>
 
     <!-- <router-view name="Buttom"></router-view> -->
-    <hr />
-    <button @click="$router.push({ name: 'home' })">首页</button>
-    <button @click="handleJumpPage1">关于</button>
-    <button @click="handleJumpPage2">用户</button>
-    <button @click="handleJumpPage3">setup</button>
-    <button @click="handleJumpPage4">异步</button>
-    <button @click="handleJumpPage5">过渡</button>
   </div>
 </template>
 <script lang="ts">
@@ -59,6 +61,12 @@ class App extends Vue {
   handleJumpPage5() {
     this.$router.push({ path: "/transition" });
   }
+  handleJumpPage6() {
+    this.$router.push({ path: "/elementuiplus" });
+  }
+  handleJumpPage7() {
+    this.$router.push({ path: "/echarts" });
+  }
 }
 export default App;
 </script>
@@ -66,9 +74,5 @@ export default App;
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 </style>

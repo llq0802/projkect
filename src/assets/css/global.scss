@@ -27,7 +27,7 @@ $round: 5px;
   font-size: 16px;
 }
 div {
-  @include left;
+  @include public;
 }
 
 // 循环 (to 不能取到最后,through能取到最后)
