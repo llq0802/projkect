@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Title</title>
+</head>
+
+<body>
+  <style>
+    @media screen and(min-width: 800px)and(max-width: 1200xp) {
+      body {
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-decoration: none;
+        list-style: none;
+      }
+    }
+
+    @keyframes identifier {
+      0% {}
+
+      25% {}
+
+      50% {}
+
+      100% {}
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: cale(100%-100px);
+      height: 100vh;
+      animation: identifier 5 linear;
+      background: red url('') no-repeat 0 0 fixed;
+      background-size: cover;
+      position: relative;
+      /* position: sticky; 粘性定位 */
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-content: space-between;
+      align-items: center;
+      width: 400px;
+      height: 400px;
+      box-shadow: 0 0 2px 1px rgba(0, 0, 0, .8);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      padding: 0 0 0 0;
+      margin: 0 0 0;
+      border: 0 0;
+      border-radius: 50%;
+
+      letter-spacing: 1px;
+      text-indent: 1px;
+      transition: all 1s;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+    }
+
+    .item {
+      flex: 1;
+      order: 1;
+      align-self: start;
+      border: 1px solid mediumvioletred;
+      width: 40px;
+      height: 80px;
+      background: #d43e2e;
+    }
+
+    .item2,
+    .item3 {
+      margin-top: 10px;
+    }
+
+    .shade::after {
+      content: '';
+
+      margin: 50px auto;
+      background: linear-gradient(to top left, red, blue);
+      filter: blur();
+      filter: grayscale();
+      /* vertical-align: middle; 图片与问题垂直居中 */
+      /* position: fixed;固定定位 绝对定位不占位置 */
+
+      width: 100px;
+      height: 100px;
+    }
+
+    .shade:hover menu {
+      visibility: hidden;
+      
+      display: none;
+    }
+
+    .hot:first-child {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-top: 100px solid red;
+    }
+
+
+/* pading 可以撑大盒子 */
+
+    a :nth-child(2n) i{
+      display: block;
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      background-color: blue;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      /* filter: blur();模糊度 */
+      /* filter: grayscale();灰度  */
+      background: linear-gradient(to right bottom red blue)
+    }
+  </style>
+
+  <a href=https://www.baidu.com/>去百度 </a> <div class="container">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+
+    </div>
+
+    <div class="shade">
+      <div>
+        <div class="menu menu1">a</div>
+        <div class="menu menu2">b</div>
+        <div class="menu menu3">c</div>
+        <div class="menu menu4">d</div>
+      </div>
+    </div>
+
+    <div class="hot"></div>
+
+    <div class=""></div>
+
+    <script>
+      let arr = [11, 22, 33, 44, 55]
+      let a = arr.map((item, index) => {
+        item = item.toFixed(2) //toFixed只能对数字型保留
+        return item
+      })
+
+
+      //本地存储值能是字符串
+      // localStorage.setItem('token','abv')
+      // localStorage.getItem('token')
+      // localStorage.removeItem('token')
+      // localStorage.clear()
+      // JSON.parse()  JSON对象转字符串
+      // JSON.stringify()字符串转JSON对象
+
+      // switch (key) {
+
+      //   case value:
+
+      //     break;
+
+      //   case value1:
+
+      //   default:
+
+      //     break;
+      // }
+
+      //模块化  module.exports    require('')  图片一般用require('')
+      // export{}   ,  import{} from ''    export default xx     import xx from '' 
+
+      //循环中break表示终止循环 continue表示跳过此项循环继续下次循环  for循环中没得return
+      //if语句中 return 和return false 表示终止 通常在表单提交的时候 或者返回一个值  
+      //函数中的return表示该函数返回一个值,给调用者使用,当有返回多个值时,用对象的形式返回
+      //只有for- for in -for of才能终止循环
+      /*
+        let arr = [1, 2, 3, 4, 5]
+        let arr1 = [1, 2, 3, 4, 5, 1, 2,]
+        let res = [
+            {id: 1, text: 'aa', done: true},
+            {id: 2, text: 'bb', done: false}
+        ]
+        const obj = {
+            id: 1,
+            name: 'zhangsan',
+            age: 18, 
+        }
+  
+
+        
+
+        
+        //for循环 
+        for (let i = 0; i < arr.length; i++) {
+            arr[i]=1
+            break  continue 
+        }
+        //es5 forEach循环  不需要返回 不能终止 不能链式调用 
+        arr.forEach((item, index) => {
+            console.log(item, index);
+        })
+        //for in  在数组中in是索引  --在对象中i是属性名 obj[i]是属性值
+        for (let idx in arr) {
+            console.log(idx);
+        }
+        //of 是当前每一项(可以遍历字符串)
+        for (let item of arr) {
+            console.log(item);
+        }
+        //map要返回一个新数组(item,index,array)//用于数组 返回一个新数组 长度与之前一样(映射关系)
+        这种简化先for() 在push()的操作
+        var a = arr.map((item, index) => {
+            item = item * 10
+            return item
+        })
+        console.log(a);
+        
+  
+        let bb = res.filter((item, index) => {过滤数组 返回一个数组 长度可能跟原数组不一样
+            return index > 0
+        })
+        console.log(bb);
+        //some查找第一个满足条件的项 ,有一个满足就返回true
+        let aaa = res.some((item, index) => {
+            let bb = item.id = 2;
+            return bb
+        })
+        console.log(aaa);
+  
+        //every是查找所有,必须所有满足才返true
+        let aa1 = arr.every((item, index) => {
+            let bb = item > 2
+            return bb
+        })
+        console.log(aa1);
+  
+        //find查找第一个满足条件的项 找到了就返回当前项(数组中满足当前的元素) 通常用于查找数组对象里面的值
+        let aa2 = res.find((item, index) => {
+            let item = item.id = 2
+            return item
+        })
+        console.log(aa2);
+        //findIndex查找第一个满足条件项的索引值,找不到返-1
+        let aa3 = arr.findIndex((item, index) => {
+            let item = item > 7
+            return item
+        })
+        console.log(aa3);
+        //reduce通常用于数组计算
+        let a = arr.reduce((prev, curr, index, a) => {
+            return prev + curr * 数量
+        }, 0)
+        console.log(a);
+        push()
+        pop()
+        shift()
+        unshift()
+  
+        for (let index of arr.keys()) {
+            console.log(index);
+        }
+        for (let index of arr.entries()) {
+            console.log(index);
+        }
+        arr.falt() //拉平数组 默认一维
+
+        //new Set([]) 生成的是不重名的伪数组
+
+        const set = new Set(arr1);
+
+        //console.log(set);
+
+        //Array.from把伪数组转为数组
+        let b = Array.from(set)
+        Array.of()
+        Array.isArray()//判断是不是数组
+        
+
+        Array.isArray(arr)判断数组 返回布尔值 
+  
+        let a = [...set]
+        console.log(a);
+        console.log(b);
+
+        for (let i in obj) {
+            console.log(i);//属性名
+            console.log(obj[i]);//属性值
+        }
+      
+        console.log(Object.keys(obj));//返回对象属性的数组
+        console.log(Object.values(obj));//返回对象属性值的数组
+        console.log(Object.entries(obj));
+      
+  
+        var string = '123,456,789';
+        var stringResult = string.split(',').map(Number);
+  
+        console.log(stringResult)
+        console.log(JSON.parse("[" + string + "]"));
+  
+        var array = ['abc', 'def', 'hig']
+        var arrayResult = array.join(' ')
+        console.log(arrayResult)
+        console.log(array.toString());
+        console.log([...array]);
+        const a = 'bcAAA ';
+
+        console.log(a.toLocaleLowerCase());//toLocaleLowerCase转为小写
+        console.log(a.toLocaleUpperCase());//toLocaleUpperCase转为大写
+        console.log(a.trim());//trim去掉两边额度空格
+  
+        let arr2 = [78, 8, 2, 6, 4]
+        let arr3 = [12, 4, 61, 1]
+        console.log(arr2.push(...arr3));//push()会改变原数组 返回数组长度
+        [...arr2,...arr3]
+        console.log(arr2);
+  
+  
+        
+  
+  
+        let arr3 = [1, 2, 3,]
+        let arr4 = {
+            arr:[4, 5, 6,],
+            str:'abc',
+            num:10
+        }
+      
+        console.log(arr3.constructor === Array);
+        //console.log(arr3.__proto__ === Array.prototype);
+        Array.isArray(arr3)//检测数组
+        Object.prototype.toString.call(arr4)//检测数据类型
+          
+        console.log(Object.prototype.toString.call([1, 23, 12]));
+        console.log(Object.prototype.toString.call('a'));
+        console.log(Object.prototype.toString.call({}));
+        console.log(typeof []);
+      
+        console.log(typeof 1===Number);//检测数据类型 type [] 返回数据类型(8大类型 ) 
+        console.log(1 instanceof Number);//检测数组类型 'a' instanceof String 返回布尔值
+        let v = arr.includes(0)// 检测数组 字符串中是否包某个元素 arr.includes(a) 返回布尔值
+  
+        console.log(v);
+        charAt
+        console.log(arr.indexOf(1))//indexOf根据值返回满足条件的索引 没找到就返回-1*/
+
+       
+        
+
+    // Object.prototype.toString.call().slice(8,-1)==='string' 判断是不是字符串[string string]
+    // Object.prototype.toString.call().slice(8,-1)==='number' 判断是不是数字
+    // Object.prototype.toString.call().slice(8,-1)==='object' 判断是不是对象
+    // Object.prototype.toString.call().slice(8,-1)==='array' 判断是不是数组
+        // Object.prototype.toString().call().slice(8,-1)==='null'
+      let arrH = [2, 4, 6, 8, 10, 12];
+
+      function isArr(arr, val) {
+        if (arr.indexOf(val) >= 0) {
+          console.log('yes');
+          return true
+        } else {
+          console.log('no');
+          return false
+        }
+      }
+      isArr(arrH, 10)
+
+     
+      let arrC = [13, 14, 15]
+      let arrA = ['1', '2', '3', 'a', 'b', 'c'];
+
+      
+        //截取 不会改变原数组
+        
+      
+            //console.log(arrH.slice(0, 2));两值之差
+            //console.log(str.substr(0, 1));长度
+            //console.log(str.substring(0, 1));两值之差
+
+        // splice()//会改变原数组
+        // 第一个值为开始索引
+        // 第二个值为0是 表示删除所有
+        // 第二个值为0是 后面跟元素 表示插入几个值
+        // 第二个值为12是 后面跟元素 表示替换几个值
+
+
+
+
+            //console.log(str.charAt(1));//根据下标返值 str[1]
+            //console.log(arrA.join());
+            //console.log(arrA.join(','));
+            //console.log(...arrA);
+            //console.log(isNaN(1));
+            //.log(Array.isArray(arrA));
+            //console.log(arrH.slice(0, 3));
+            //console.log(arrH.concat(arrC));
+            //console.log([...arrH, ...arrC]);
+            //console.log(arrH.push(...arrC));
+            //console.log(arrH);
+            // async function f() {
+            //     return 'hello world';
+            //   }
+            //   f().then(v => console.log(v))
+
+            //   let myArr = [3, 3, 4, 5, 6, 3, 7, 4];
+            //   let a1 = myArr.filter((value, index) => myArr.indexOf(value) === index) //数组去重
+            //   console.log(a1);
+
+
+
+
+            // var oDay = new Date();
+
+            //console.log(oDay);
+            // console.log(oDay.getYear());; //当前年份
+            // console.log(oDay.getFullYear());; //完整的年月日（xx年，xx月，xx日）
+            // console.log(oDay.getMonth());; //当前的月份(0-11,0代表1月)         // 获取当前的月份是oDay.getMonth()+1;   <br>oDay.getDate(); //当前的日(1-31)
+            // console.log(oDay.getDay());; //当前的星期X(0-6,0代表星期天)
+            // console.log(oDay.getDate());当前日
+
+            //arr[oDay.getDay()]
+              Date.now()
+              const oDay=new Date()
+            // console.log(oDay.getTime());; //当前的时间(从1970.1.1开始的毫秒数)
+            // console.log(oDay.getHours());; //当前的小时数(0-23)
+            // console.log(oDay.getMinutes());; //当前的分钟数(0-59)
+            // console.log(oDay.getSeconds());; //当前的秒数(0-59)
+            // console.log(oDay.getMilliseconds());; //当前的毫秒数(0-999)
+            //  console.log(oDay.toLocaleDateString());; //当前的日期
+            //  var oTime=oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
+            //  console.log(oTime);
+            //  console.log(oDay.toLocaleString()) //当前时间
+
+
+
+
+            //防抖debounce代码：(用于搜索 监听图片load加载)
+            function debounce(fn, delay = 150) {
+              let timeout = null; // 创建一个标记用来存放定时器的返回值
+              return function (...args) {
+                // 每当用户输入的时候把前一个 setTimeout clear 掉
+                if (timeout) clearTimeout(timeout);
+                // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
+                timeout = setTimeout(() => {
+                  fn.apply(this, arg);
+                }, delay);
+              };
+            }
+        
+            //节流方案一(用在表单提交)
+            function throttle(fn, delay = 150) {
+              let canRun = true; // 通过闭包保存一个标记
+              return function (...arg) {
+                // 在函数开头判断标记是否为true，不为true则return
+                if (!canRun) return;
+                // 立即设置为false
+                canRun = false;
+                // 将外部传入的函数的执行放在setTimeout中
+                setTimeout(() => {
+                  // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
+                  // 当定时器没有执行的时候标记永远是false，在开头被return掉
+                  fn.apply(this, arg);
+                  canRun = true;
+                }, delay);
+              };
+            }
+
+
+              // 定时器节流方案二
+              function throttle(fn, wait = 150) {
+                var timer = null;
+                return function (...args) {
+                  //var context = this;
+                  //var args = arguments;
+                  if (!timer) {
+                    timer = setTimeout(function () {
+                      fn.apply(this, args);
+                      // timer = null;
+                      clearTimeout(timer)
+                    }, wait)
+                  }
+                }
+              }
+
+              // 深拷贝拷贝对象封装函数 (递归)
+              function deepCopy(newobj, oldobj) {
+                for (var k in oldobj) {
+                  // 判断我们的属性值属于那种数据类型
+                  // 1. 获取属性值  oldobj[k]
+                  var item = oldobj[k];
+                  // 2. 判断这个值是否是数组
+                  if (item instanceof Array) {
+                    newobj[k] = [];
+                    deepCopy(newobj[k], item)
+                  } else if (item instanceof Object) {
+                    // 3. 判断这个值是否是对象
+                    newobj[k] = {};
+                    deepCopy(newobj[k], item)
+                  } else {
+                    // 4. 属于简单数据类型
+                    newobj[k] = item;
+                  }
+                }
+              }
+
+              
+              //时间格式化  先将时间鹾转入new Date()中然后再格式化
+             export function formatDate(date, fmt) {
+                if (/(y+)/.test(fmt)) {
+                  fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+                }
+                let o = {
+                  'M+': date.getMonth() + 1,
+                  'd+': date.getDate(),
+                  'h+': date.getHours(),
+                  'm+': date.getMinutes(),
+                  's+': date.getSeconds()
+                };
+                for (let k in o) {
+                  if (new RegExp(`(${k})`).test(fmt)) {
+                    let str = o[k] + '';
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+                  }
+                }
+                return fmt;
+              };
+
+              function padLeftZero(str) {
+                return ('00' + str).substr(str.length);
+              };
+             
+    </script>
+</body>
+
+</html>

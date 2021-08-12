@@ -1,0 +1,118 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-08 22:37:33
+ * @LastEditTime: 2021-07-27 21:51:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\JS练习\Untitled-1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <style>
+    /* .box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 10px 10px;
+      width: 200px;
+      height: 50px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, .7);
+    }
+    input {
+      border: 1px solid rgb(20, 20, 37);
+      border-radius: 3px;
+    }
+
+    .container {
+      margin: 100px auto;
+      width: 500px;
+      /* height: 500px; */
+    /* background: red;
+    /* overflow: hidden; */
+    /*     }
+
+    .container>div {
+      float: left;
+      width: 100px;
+      height: 50px;
+      background: rgb(37, 20, 20);
+
+    }
+ */
+    /* .container::after {
+      clear: both;
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+    } */
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+
+
+
+  <div id="app" v-cloak>
+    <h1>
+      {{msg}}
+    </h1>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'hellol world'
+        }
+      }
+    }).mount('#app')
+
+    // let cart = [
+    //   { name: "iphone", price: 12000, num: 4 },
+    //   { name: "imac", price: 25000, num: 3 },
+    //   { name: "ipad", price: 3600, num: 2 }
+    // ];
+    // const total = cart.reduce(
+    //   (total, goods) => {
+    //     total += goods.price * goods.num
+    //     return total
+    //   }, 0
+    // );
+    // console.log(total); //40600
+    // // const callback = (e) => {
+    // //   console.log(e.target);
+    // // }
+    // const container = document.querySelector('.container')
+    // container.addEventListener('mouseover', callback)
+    // function callback(e) {
+    //   // console.log(e);
+    // }
+    // console.log(window.location.host);
+    // console.log(window.location.hostname);
+    // console.log(window.location.port);
+    // console.log(window.location.href);
+    // console.log(window.location.protocol);
+
+  </script>
+
+</body>
+
+</html>

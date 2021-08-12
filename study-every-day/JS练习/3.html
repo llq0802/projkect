@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<style>
+	[v-cloak]{
+		display: none;
+	}
+</style>
+<body>
+
+<div id="app" v-cloak>
+<cnp @iincrement="Gettotal" @ddecrement="Gettotal"></cnp>
+	<h2>{{cs}} {{total}}</h2>
+</div>
+
+<template id="cp">
+	<div>
+		<button @click="increment":disabled="cut>=10">+</button>
+		<button @click="decrement" :disabled="cut<=0">-</button>
+	</div>
+</template>
+<script src="vue.js"></script>
+<script>
+/*	const cnp={
+		template:'#cp',
+		data(){
+			return{cut:0}
+		},
+		methods:{
+			increment(){
+				this.cut++
+				this.$emit('iincrement',this.cut)
+			},
+			decrement(){
+				this.cut--
+				this.$emit('ddecrement',this.cut)
+			},
+		}
+	};
+
+
+	const app=new Vue({
+		el:'#app',
+		data:{
+			total:0,
+			cs:'点击次数'
+		},
+		methods:{
+			Gettotal(cut){
+				this.total=cut;
+			}
+
+		},
+		components:{
+			cnp:cnp,
+		},
+
+	})*/
+</script>
+<script>
+
+
+	const app=new Vue({
+		el:'#app',
+		data:{
+			total:0,
+			cs:'点击次数'
+		},
+		methods:{
+			Gettotal(cut){
+				this.total=cut;
+			}
+
+		},
+		components:{
+			cnp:{
+				template:'#cp',
+				data(){
+					return{cut:0}
+				},
+				methods:{
+					increment(){
+						this.cut++
+						this.$emit('iincrement',this.cut)
+					},
+					decrement(){
+						this.cut--
+						this.$emit('ddecrement',this.cut)
+					},
+				}
+			},
+		},
+
+	})
+</script>
+</body>
+</html>

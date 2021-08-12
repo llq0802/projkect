@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    let obj = {
+      id: 1,
+      name: '请求',
+      age: 18,
+      sing() {
+        return '唱歌'
+      }
+    }
+    // obj.sex = 'nan' //给对象赋值
+    // delete obj.sing //删除对象某个值
+    // console.log(obj);
+
+    obj= {//给对象添加值  
+      ...obj,
+      height: 1.88
+    }
+    console.log(obj);
+    // Object.is() 判读两个值是否相等
+    // Object.assign(obj) 浅拷贝  yisheng ky shenbuf
+    // console.log(Object.keys(obj));
+    // console.log(Object.values(obj));
+    // Object.defineProperty(obj, 'age', {
+    //   value: 20,
+    //   writable: true,
+    //   enumerable: true,
+    //   configurable: true,
+    // })
+    // console.log(obj);
+
+    // window对象
+    window.open() //打开新的页面
+    window.print() //打印
+    window.scrollTo(0,y) //把内容滚动到指定的坐标。
+    window.resizeTo() //把页面大小设置
+    //onload 监听页面加载完成或者图片加载完成  //onresize监听页面大小发生变化
+    location.reload()
+
+
+    window.innerHeight //- 浏览器窗口的内高度（以像素计）
+    window.innerWidth //- 浏览器窗口的内宽度（以像素计）
+    window.pageYOffset //页面头部被卷去的高
+
+    document.body.clientHeight //文档的高度()
+    // document.body.offsetLeft //
+    document.body.clientWidth //文档的宽度()不含边框
+    document.body.offsetWidth //() 含边框的
+    document.body.offsetHeight //()
+  
+
+    document.documentElement.clientHeight //html高
+    document.documentElement.clientWidth //html宽
+
+
+    // location对象
+    location.reload() //重新加载网页文档
+    location.assign(URL) //加载新的网页
+    location.href //设置或返回完整的 URL
+    location.host //设置或返回主机名和当前 URL 的端口号。
+    location.search //设置或返回从问号 (?) 开始的 URL（查询部分）。(参数)
+    // location.pathname
+
+    
+
+
+
+    screen.height //返回显示器屏幕的高度
+    screen.width //返回显示器屏幕的宽度
+    screenLeft
+    screenTop
+
+
+    // document对象
+    document.title //返回当前网页标题
+    document.body
+    document.URL
+    document.documentElement //返回html
+    document.URL //返回当前url
+    document.body //body
+    document.documentElement //html
+    // history对象
+    history.go() //网页前进 后退
+    history.go(0) //刷新
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

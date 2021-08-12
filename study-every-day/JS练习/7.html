@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+
+</style>
+
+<body>
+
+  <style>
+    .container {
+      width: 400px;
+      height: 400px;
+      background-color: black;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      /* justify-content: center; */
+    }
+
+    .item {
+      vertical-align: middle;
+      flex: 1;
+      /* line-height: 40px; */
+      text-align: center;
+      width: 50px;
+
+    }
+
+    .box {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      width: 100px;
+      height: 100px;
+      border: blue 1px solid;
+      /* line-height: 100px; */
+    }
+
+    #hd {
+      background-color: blue;
+      width: 100px;
+      height: 5px;
+    }
+  </style>
+
+  <div class="container">
+    <div id="hd">
+
+    </div>
+  </div>
+
+
+  <script>
+    const div = document.getElementById('hd')
+    function handle() {
+      let i = 0;
+      (function run() {
+        console.log(i);
+        div.innerHTML = i
+        div.style.width = i + '%'
+        if (++i <= 100) setTimeout(run, 10)
+      })()
+    }
+    // handle()
+
+    async function load() {
+      for (let i = 0; i <= 100; i++) {
+        await new Promise(resolve => {
+          setTimeout(() => {
+            resolve()
+          }, 100)
+        })
+        div.innerHTML = i
+        div.style.width = i + '%'
+      }
+    }
+    load()
+    // async function sleep() {
+    //   return new Promise(resolve => {
+    //     setTimeout(resolve, 100)
+    //   })
+    // }
+    // async function load() {
+    //   for (let i = 0; i <= 100; i++) {
+    //     div.innerHTML = i
+    //     div.style.width = i + '%'
+    //     await sleep()
+    //   }
+    // }
+    // load()
+    // window.onload=function(){
+    // 	onResize()
+    // }
+    // window.onresize=function(){
+    //   onResize()
+    // }
+
+    // function onResize() {
+
+
+
+    // window.onresize=function(){
+    // 	const html= document.documentElement
+    // 	let oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+    // 	let num=20
+    // 	console.log(html.style.fontSize=oWidth/num +'px');
+    // }
+
+    // let str = 'abcdef'
+
+    // console.log(str.charAt(2));
+    // console.log(str[2]);
+
+    // console.log([...str].reverse().join(''));反转字符串
+    // let totel = +str
+    // console.log(totel);
+    // let num =456
+    // console.log(num);
+    // let res=num+''
+    // console.log(res);
+
+    //---------------------------------------
+
+    // //防抖
+    // function name(fn, wait = 150) {
+    //   let timer = null
+    //   if (timer) clearTimeout(timer)
+    //   return function (...arg) {
+    //     timer = setTimeout(() => {
+    //       fn.apply(this, arg)
+    //     }, wait)
+    //   }
+    // }
+
+    // function debounce(fn, delay = 150) {
+    //   let timeout = null
+    //   return function (...args) {
+    //     if (timeout) clearTimeout(timeout)
+    //     timeout = setTimeout(() => {
+    //       fn.apply(this, arg)
+    //     }, delay)
+    //   }
+    // }
+
+
+    // //----------------------------------------------
+
+    // //节流1
+    // function nn(fn, wait) {
+    //   let timer = null
+    //   if (!timer) {
+    //     return function (...arg) {
+    //       timer = setTimeout(() => {
+    //         fn.apply(this, arg)
+    //         timer = null
+    //       }, wait)
+    //     }
+    //   }
+    // }
+
+
+
+    // function nnn(fn, wait) {
+    //   let flag = true
+    //   if (!flag) return
+    //   flag = false
+    //   return function (...arg) {
+    //     setTimeout(() => {
+    //       fn.apply(this, arg)
+    //       flag = true
+    //     }, wait)
+    //   }
+    // }
+
+
+
+
+    //----------------------------------------------------------
+
+
+
+    //防抖debounce代码：
+    // function debounce(fn, delay = 150) {
+    //   let timeout = null; // 创建一个标记用来存放定时器的返回值
+    //   return function (...args) {
+    //     // 每当用户输入的时候把前一个 setTimeout clear 掉
+    //     if (timeout) clearTimeout(timeout);
+    //     // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
+    //     timeout = setTimeout(() => {
+    //       fn.apply(this, arg);
+    //     }, delay);
+    //   };
+    // }
+
+    //节流方案一
+    // function throttle(fn, delay = 150) {
+    //   let canRun = true; // 通过闭包保存一个标记
+    //   return function (...arg) {
+    //     // 在函数开头判断标记是否为true，不为true则return  
+    //     if (!canRun) return;
+    //     // 立即设置为false
+    //     canRun = false;
+    //     // 将外部传入的函数的执行放在setTimeout中
+    //     setTimeout(() => {
+    //       // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
+    //       // 当定时器没有执行的时候标记永远是false，在开头被return掉
+    //       fn.apply(this, arg);
+    //       canRun = true;
+    //     }, delay);
+    //   };
+    // }
+
+
+    // // 定时器节流方案二
+    // function throttle(fn, wait = 150) {
+    //   let timer = null;
+    //   return function (...args) {
+    //     //var context = this;
+    //     //var args = arguments;
+    //     if (!timer) {
+    //       timer = setTimeout(function () {
+    //         fn.apply(this, args);
+    //         timer = null;
+    //       }, wait)
+    //     }
+    //   }
+    // }
+    // // 深拷贝拷贝对象封装函数 (递归)
+    // function deepCopy(newobj, oldobj) {
+    //   for (var k in oldobj) {
+    //     // 判断我们的属性值属于那种数据类型
+    //     // 1. 获取属性值  oldobj[k]
+    //     var item = oldobj[k];
+    //     // 2. 判断这个值是否是数组
+    //     if (item instanceof Array) {
+    //       newobj[k] = [];
+    //       deepCopy(newobj[k], item)
+    //     } else if (item instanceof Object) {
+    //       // 3. 判断这个值是否是对象
+    //       newobj[k] = {};
+    //       deepCopy(newobj[k], item)
+    //     } else {
+    //       // 4. 属于简单数据类型
+    //       newobj[k] = item;
+    //     }
+    //   }
+    // }
+
+
+
+    // //时间格式化
+    // function formatDate(date, fmt) {
+    //   if (/(y+)/.test(fmt)) {
+    //     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+    //   }
+    //   let o = {
+    //     'M+': date.getMonth() + 1,
+    //     'd+': date.getDate(),
+    //     'h+': date.getHours(),
+    //     'm+': date.getMinutes(),
+    //     's+': date.getSeconds()
+    //   };
+    //   for (let k in o) {
+    //     if (new RegExp(`(${k})`).test(fmt)) {
+    //       let str = o[k] + '';
+    //       fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+    //     }
+    //   }
+    //   return fmt;
+    // };
+    // function padLeftZero(str) {
+    //   return ('00' + str).substr(str.length);
+    // };
+
+    // let hd = {};
+    // //  Object.prototype.show =function () {
+    // //    console.log(123);
+    // //  }
+    // //  hd.show()
+    // console.log(Object.prototype.__proto__ === null);
+
+
+
+    // const lessons = [
+    //   {
+    //     title: "媒体查询响应式布局",
+    //     category: "css"
+    //   },
+    //   {
+    //     title: "FLEX 弹性盒模型",
+    //     category: "css"
+    //   },
+    //   {
+    //     title: "MYSQL多表查询随意操作",
+    //     category: "mysql"
+    //   }
+    // ];
+    // let lessonObj = lessons.reduce((obj, cur, index) => {
+    //   obj[`${cur["category"]}-${index}`] = cur;
+    //   return obj;
+    // }, {});
+    // console.log(lessonObj); //{css-0: {…}, css-1: {…}, mysql-2: {…}}
+    // console.log(lessonObj["css-0"]); //{title: "媒体查询响应式布局", category: "css"}
+  </script>
+</body>
+
+</html>
