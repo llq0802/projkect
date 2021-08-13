@@ -359,7 +359,7 @@ set;
 function unique(arr) {
   let newArr = [];
   let obj = {};
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (typeof item !== "object") {
       if (newArr.indexOf(item) === -1) {
         newArr.push(item);
@@ -403,11 +403,11 @@ Number.MIN_VALUE;
 // 使用 in 可以在原型对象上检测
 // Object.getOwnPropertyNames
 Object.freeze();
-Object.prototype.__proto__ == null;
-Object.prototype.getPrototypeOf(Object) == null;
+Object.prototype.__proto__ == null; //true
+Object.prototype.getPrototypeOf(Object) == null; //true
 a.isPrototypeOf(b); //b的原型链上是否有a对象
 a instanceof b; // a对象的原型链上是否还有b构造函数的原型
-Object.create();
+Object.create(); //创建一个新对象 并且吧里面的参数赋值给新对象的原型__proto__
 Object.assign();
 
 // Object.setPrototypeOf(obj, hd);// /设置hd为obj的新原型
@@ -472,10 +472,10 @@ function toFixed(val, num = 0) {
  * @param {*} arr
  * @returns
  */
-const functions = arr => {
+const functions = (arr) => {
   let obj = {};
   let newArr = [];
-  arr.map(item => {
+  arr.map((item) => {
     if (typeof item !== "object") {
       newArr.search(item) == -1 && newArr.push(item);
       // newArr.indexOf(item) == -1 && newArr.push(item)
@@ -494,7 +494,7 @@ const functions = arr => {
 // 利用for循环，配合事件循环制作倒时效果\
 function Countdown() {
   async function fn(i) {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
         console.log(i);

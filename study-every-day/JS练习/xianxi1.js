@@ -12,13 +12,8 @@
 // arr.pop()
 // arr.shift()
 
-
 // //console.log(arr[arr.length - 1]);
 // //console.log(arr[0]);
-
-
-
-
 
 // function doublce(params) {
 //   if (4 > 3) return
@@ -41,7 +36,6 @@
 // let res=num+''
 // console.log(num);
 
-
 // const date=new Date()
 // console.log(date.setFullYear(2020));
 // console.log(date.setMonth(11));
@@ -58,7 +52,6 @@
 // (2==3) && console.log('yes')谁假返回谁 表达式一成立 则执行表达式二 反之一 (相当于if判断,通常用于函数调用)
 // (2==3) || console.log('yes')谁真返回谁 表达式一成立 则执行表达式一  反之二(通常用于设置参数的默认值 )
 
-
 // try {
 // throw '错误'
 // } catch (error) {
@@ -68,13 +61,11 @@
 // }
 // debugger
 
-
 // if(true){
 //   return
 //   console.log('res');
 // }
 // console.log('yes');
-
 
 // localStorage.setItem('token','456123')
 
@@ -86,7 +77,7 @@
 // click
 // let x = 0.1
 // let y = 0.2
-// // let z = (x * 10 + y * 10) / 10; 
+// // let z = (x * 10 + y * 10) / 10;
 // // let z = Math.floor(x + y)
 // let z = (x*10+y*10)/10
 // console.log(z);
@@ -98,7 +89,6 @@
 // console.log(aaa instanceof String );
 // console.log(aaa.substr(1,2));
 // console.log(aaa.substring(1,2));
-
 
 // const isInculdeStr = (arr, val) => {
 //   return arr.indexOf(val) != -1 ? true : false
@@ -117,7 +107,6 @@
 // })
 
 // console.log(arrr);
-
 
 // arr1.forEach((item,index)=>{
 //   console.log(item,index);
@@ -158,3 +147,4 @@
 // console.log(!nun);
 // console.log(!r);
 
+// '' NaN undefined null 0 都表示假

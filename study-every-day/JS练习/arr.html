@@ -180,7 +180,8 @@
       //     break;
       // }
 
-      //模块化  module.exports    require('')  图片一般用require('')
+      //模块化  module.exports    require('')  图片一般用require('') module
+
       // export{}   ,  import{} from ''    export default xx     import xx from '' 
 
       //循环中break表示终止循环 continue表示跳过此项循环继续下次循环  for循环中没得return
@@ -308,6 +309,7 @@
   
         var string = '123,456,789';
         var stringResult = string.split(',').map(Number);
+        var stringResult = string.split(',').filter(Bouloo);
   
         console.log(stringResult)
         console.log(JSON.parse("[" + string + "]"));
@@ -339,7 +341,7 @@
             str:'abc',
             num:10
         }
-      
+        Array.prototype.constructor = Array;
         console.log(arr3.constructor === Array);
         //console.log(arr3.__proto__ === Array.prototype);
         Array.isArray(arr3)//检测数组

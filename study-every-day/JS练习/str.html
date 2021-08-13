@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <style lang="scss">
+      /* scss练习*/
 
-<body>
-  <style lang="scss">
-    /* scss练习*/
-
-    /* @mixin important-text {
+      /* @mixin important-text {
   color: red;
   font-size: 25px;
   font-weight: bold;
@@ -21,160 +20,151 @@
   @include important-text;
 } */
 
-    /* css3动画 */
+      /* css3动画 */
 
+      @keyframes myfirst {
+        0% {
+          background: red;
+        }
 
-    @keyframes myfirst {
-      0% {
-        background: red;
+        25% {
+          background: yellow;
+        }
+
+        50% {
+          background: blue;
+        }
+
+        100% {
+          background: green;
+        }
       }
 
-      25% {
-        background: yellow;
-      }
-
-      50% {
-        background: blue;
-      }
-
-      100% {
-        background: green;
-      }
-    }
-
-    .container {
-      /* animation: myfirst 5s linear 0s 1 alternate; */
-      /* filter: blur(5px);模糊
+      .container {
+        /* animation: myfirst 5s linear 0s 1 alternate; */
+        /* filter: blur(5px);模糊
        */
-      /* filter: grayscale();灰度 */
-      margin-left: 50%;
-      margin-top: 100px;
-      transform: translateX(-50%);
-      display: flex;
-      /* flex-direction: row;
+        /* filter: grayscale();灰度 */
+        margin-left: 50%;
+        margin-top: 100px;
+        transform: translateX(-50%);
+        display: flex;
+        /* flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
       align-content: space-between;
       align-self: center; */
-      overflow: hidden;
-      /* 超出文字显示...*/
-      text-overflow: ellipsis;
-      white-space: nowrap;
+        overflow: hidden;
+        /* 超出文字显示...*/
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
+        width: 400px;
+        height: 400px;
+        /* background-color: #eee; */
+        background: linear-gradient(#e66465, #9198e5);
+        transition: all 1s;
+        box-sizing: border-box;
+      }
 
-      width: 400px;
-      height: 400px;
-      /* background-color: #eee; */
-      background: linear-gradient(#e66465, #9198e5);
-      transition: all 1s;
-      box-sizing: border-box;
-    }
+      .container:hover {
+        transform: scale(1.2, 1.2);
+      }
 
-    .container:hover {
-      transform: scale(1.2, 1.2);
-    }
+      .item {
+        flex: 1;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid white;
+      }
 
-    .item {
-      flex: 1;
-      height: 100px;
-      border-radius: 50%;
-      border: 1px solid white;
-    }
+      .test {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 50px solid red;
+      }
+    </style>
 
-    .test {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 50px solid red;
-    }
-  </style>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
 
+    <div class="test"></div>
+    <script>
+      //console.log(Math.floor((Math.random()*11)));
+      let str = "gtfhfabc";
+      let str1 = "gtfhfava";
+      let arr = [1, 2, 3];
+      !10; //false
+      !0; //ture
+      !"abc"; // 字符串去反 为false
 
-  <div class="container">
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-  </div>
+      let reg = /\s/;
+      str.length;
+      str.includes("a"); //查找元素 返回布尔值
+      //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
+      console.log(str1.slice(1, 2));
+      console.log(str.slice(1, -1));
+      str.substring(); //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
+      //arr.splice()
+      str.substr(); //第一个值是开始索引 截取长度为第二个值
 
-  <div class="test"></div>
-  <script>
-    //console.log(Math.floor((Math.random()*11)));
-    let str = 'gtfhfabc'
-    let str1 = 'gtfhfava'
-    let arr = [1, 2, 3]
-    !10 //false
-    !0 //ture
-    !'abc' // 字符串去反 为false
-    
-  
-    let reg = /\s/
-    str.length
-    str.includes('a') //查找元素 返回布尔值
-    //第一个值是开始索引 截取长度为两个值之差
-    console.log(str1.slice(1, 2));
-    console.log(str.slice(1, -1));
+      str.startsWith("a"); //是否以某个字符串开头 返回布尔值
+      str.endsWith("a"); //是否以某个字符串结尾 返回布尔值
 
-    
-    //arr.splice()
-    str.substr() //第一个值是开始索引 截取长度为第二个值
+      str.replace(); //第一个是要要替换的字符串或者正则表达式,第二个值是替换成的字符串
 
+      str.repeat(); //重复字符串
 
-    str.substring() //第一个值是开始索引 截取长度为两个值之差
+      str.trim(); //去空格
 
-    str.startsWith('a') //是否以某个字符串开头 返回布尔值
-    str.endsWith('a') //是否以某个字符串结尾 返回布尔值
-    str.replace() //第一个是要要替换的字符串或者正则表达式,第二个值是替换成的字符串
-    str.repeat()//重复字符串
-    str.trim() //去空格
-    str.toLocaleLowerCase() //转小写
-    str.toLocaleUpperCase() //转大写
-    str.indexOf() // 根据值返回索引 找不到则返回-1 
-    str.charAt()  //根据索引返回只
-    str[1]
-    str.startsWith()
-    str.endsWith()
-    
+      str.toLocaleLowerCase(); //转小写
+      str.toLocaleUpperCase(); //转大写
+      str.indexOf(); // 根据值返回索引 找不到则返回-1
+      str.charAt(); //根据索引返回值
+      str[1];
+      str.charCodeAt(); //根据索引返回值的UN码
 
-    //console.log(str[1]); //根据索引反值
-    for (let item of str) {
-      //console.log(item);//遍历字符串
-    }
-    for (let i = 0; i < str.length; i++) {
-      //console.log(str[i]);//遍历字符串
-    }
+      //console.log(str[1]); //根据索引反值
+      for (let item of str) {
+        //有迭代器
+        //console.log(item);//遍历字符串
+      }
+      for (let i = 0; i < str.length; i++) {
+        //console.log(str[i]);//遍历字符串
+      }
 
-    //console.log(str.indexOf('f')); //根据值返回索引  找到则返回索引 找不到则返回-1
+      //console.log(str.indexOf('f')); //根据值返回索引  找到则返回索引 找不到则返回-1
 
-    //console.log(str.charAt(3)); //根据索引返回值---等价于str[3]
+      //console.log(str.charAt(3)); //根据索引返回值---等价于str[3]
 
+      str.match(); //方法只接收一个参数，要么是一个正则表达式，要么是一个RegExp对象。在字符串上调用match()方法，本质上和调用RegExp的exec()方法相同，返回的是一个数组
+      str.search(); //search()的参数与match()相同，不同在于search()返回的是字符串中第一个匹配项的索引；如果没有找到匹配项，返回-1.
+      str.split(","); //字符串转数组
 
+      // arr.join()
 
-    str.match() //方法只接收一个参数，要么是一个正则表达式，要么是一个RegExp对象。在字符串上调用match()方法，本质上和调用RegExp的exec()方法相同，返回的是一个数组
-    str.search() //search()的参数与match()相同，不同在于search()返回的是字符串中第一个匹配项的索引；如果没有找到匹配项，返回-1.
-    str.split(',') //字符串转数组
+      // JS获取当前页面URL的方法小结
+      // 　　①. document.URL;              http://localhost:81/Test/1.htm/id/12
+      // 　　②. location.href;　　　 http://localhost:81/Test/1.htm/id/12
+      // 　　③. self.location.href;　　　　　　http://localhost:81/Test/1.htm/id/12
+      // 　　④. document.location　　　　　　　 http://localhost:81/Test/1.htm/id/12
+      // 　　⑤. top.location.href; 　　　　　　 http://localhost:81/Test/1.htm/id/12
+      // 　　⑥. parent.document.location;       http://localhost:81/Test/1.htm/id/12
+      // 　　⑦. top.location.hostname;           localhost
+      // 　　⑧. location.hostname;                 localhost
+      // 　　⑨. window.location.protocol;      http
+      // 　　①. window.location.host;            localhost:81
+      // 　　②location.pathname;        /Test/1.htm/id/12
+      // document.title
+      // document.URL
 
-
-    // arr.join()
-    // JS获取当前页面URL的方法小结
-    // 　　①. document.URL;                 http://localhost:81/Test/1.htm/id/12
-    // 　　②. location.href;　　　 http://localhost:81/Test/1.htm/id/12
-    // 　　③. self.location.href;　　　　　　http://localhost:81/Test/1.htm/id/12
-    // 　　④. document.location　　　　　　　 http://localhost:81/Test/1.htm/id/12
-    // 　　⑤. top.location.href; 　　　　　　 http://localhost:81/Test/1.htm/id/12
-    // 　　⑥. parent.document.location;       http://localhost:81/Test/1.htm/id/12
-    // 　　⑦. top.location.hostname;           localhost
-    // 　　⑧. location.hostname;                 localhost
-    // 　　⑨. window.location.protocol;      http
-    // 　　①. window.location.host;            localhost:81
-    // 　　②location.pathname;        /Test/1.htm/id/12
-    // document.title
-    // document.URL
-
-    // console.log( +'1'); 数字
-
-  </script>
-</body>
-
+      // console.log( +'1'); 数字
+    </script>
+  </body>
 </html>
