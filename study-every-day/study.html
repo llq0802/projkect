@@ -20,82 +20,91 @@
       <span>起点</span>
     </div> -->
     <!-- <span class="info">终点</span> -->
-
     <div class="container-header"></div>
-
     <div class="container-main">
       <div class="container-slider"></div>
       <div class="container-content">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        1<br />
-        <br />
-        <br />
-        <br />
-        2<br />
-        <br />
-        3<br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        1 <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        1 <br />
-        <br />
-        <br />
-        <br />
-        1 <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <hr />
-        <br />
-        <br />
-        <br />
-        <br />
+        <div class="app-content">
+          <a href="http://www.baidu.com" target="_blank">baidu</a>
+          <a href="http://www.baidu.com" target="_self">百度</a>
+          abc
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          1<br />
+          <br />
+          <br />
+          <br />
+          2<br />
+          <br />
+          3<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          1 <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          1 <br />
+          <br />
+          <br />
+          <br />
+          1 <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <hr />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
+    </div>
+    <div style="position: relative;width: 500px;height: 500px;border: mediumblue;padding:20px">
+      <div class="aaa">abc</div>
     </div>
 
     <style>
+      .aaa {
+        position: absolute;
+      }
       html,
       body {
         display: flex;
@@ -132,7 +141,7 @@
       .container-content {
         flex: 5;
         overflow: auto;
-        background-color: rgb(106, 105, 201);
+        background-color: #ccc;
         /* position: fixed;
         top: 68px;
         right: 0;
@@ -140,6 +149,10 @@
         width: 80%; */
       }
 
+      .app-content {
+        margin: 20px;
+        background-color: rgb(106, 105, 201);
+      }
       /* flex可以嵌套 */
       /* 父盒子:flex-direction
         row（默认值）：主轴为水平方向，起点在左端。
@@ -156,7 +169,7 @@
       align-items:属性定义项目在交叉轴上如何对齐。(单个侧轴)
         align-items: flex-start | flex-end | center | baseline | stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。所有的子项都会同时撑满父盒子;
 
-      align-content:属性定义了多根轴线的对齐方式。
+      align-content:属性定义了多根轴线的对齐方式。 
         align-content: flex-start | flex-end | center | space-between | space-around | stretch;
 
       子盒子: flex:数字 表示占剩余空间的几份 */
@@ -257,6 +270,7 @@
       // decodeURIComponent
       // encodeURIComponent
       // document.title = "标题"
+      // document.URL 地址
       // document.body :body
       // document.documentElement :html
 
@@ -265,6 +279,7 @@
       // “../”：代表上一层目录。
 
       // ”/”开头：代表根目录。
+
       // position使用文档定位，fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档 stacky粘性定位
       // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
       // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动的情况下，clientX和cilentY与pageX和pageY是相等的
@@ -549,7 +564,7 @@
       const cloneDeep = (obj) => {
         let temp = Array.isArray(obj) ? [] : {};
         for (let k in obj) {
-          temp[k] = typeof obj[k] === "object" ? cloneDeep(obj[k]) : obj[k];
+          temp[k] = typeof obj[k] === 'object' ? cloneDeep(obj[k]) : obj[k];
         }
         return temp;
       };
@@ -573,7 +588,7 @@
         let tempArr = [];
         let obj = {};
         arr.map((item) => {
-          if (typeof item !== "object") {
+          if (typeof item !== 'object') {
             if (!tempArr.includes(item)) {
               tempArr.push(item);
             }
@@ -723,9 +738,9 @@
 
       // 如果是git clone  远程仓库地址 自动会将仓库分支关联
 
-      //本地仓库关联远程仓库: git remote add origin 你的远程仓库地址
+      //本地仓库关联远程仓库: git remote add origin 你的远程仓库地址 //git remote add origin
 
-      //取消本地目录下关联的远程库：git remote remove origin
+      //取消本地目录下关联的远程库：git remote remove origin //git remote remove origin
 
       // 当github上已经有master分支和dev分支
       // 在本地git checkout -b dev 新建并切换到本地dev分支
@@ -743,6 +758,68 @@
       // };
       // asy();
       // console.log(3);
+
+      let obj = {
+        name: 'test',
+        age: 18,
+      };
+
+      let hd = {
+        desc: '我是',
+        age: 20,
+      };
+
+      obj.age = hd.age;
+      hd.age = 30;
+      console.log(obj);
+      console.log(hd);
+      const bind = (fn, context, ...boundArgs) => (...args) =>
+        fn.apply(context, [...boundArgs, ...args]);
+      const delay = (fn, wait, ...args) => setTimeout(fn, wait, ...args);
+
+      const throttle11 = (fn, wait) => {
+        let inThrottle, lastFn, lastTime;
+        return function() {
+          const context = this,
+            args = arguments;
+          if (!inThrottle) {
+            fn.apply(context, args);
+            lastTime = Date.now();
+            inThrottle = true;
+          } else {
+            clearTimeout(lastFn);
+            lastFn = setTimeout(function() {
+              if (Date.now() - lastTime >= wait) {
+                fn.apply(context, args);
+                lastTime = Date.now();
+              }
+            }, Math.max(wait - (Date.now() - lastTime), 0));
+          }
+        };
+      };
+      const debounce11 = (fn, ms = 0) => {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn.apply(this, args), ms);
+        };
+      };
+      const deepClone1 = (obj) => {
+        let clone = Object.assign({}, obj);
+        Object.keys(clone).forEach(
+          (key) => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
+        );
+        return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
+      };
+      //简易版的随机排序
+      const randomSort = (arr) => {
+        arr.sort(() => Math.random() - 0.5);
+      };
+
+      let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      arr1.sort(() => Math.random() - 0.5);
+      console.log(arr1);
     </script>
   </body>
 </html>
