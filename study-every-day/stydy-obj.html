@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-09-03 14:25:58
+ * @LastEditTime: 2021-09-18 09:39:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -33,7 +33,6 @@
       // console.log(Reflect.__proto__ === Object.prototype);
       // console.log(window.Reflect);
       // console.log(window.Proxy);
-      // Reflect.ownKeys(obj) 获取所有属性 包括symbol
 
       const obj = {
         name: '浏览器',
@@ -46,7 +45,7 @@
 
       // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
       // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
-
+      // Reflect.ownKeys(obj) 获取所有属性 包括symbol
       Reflect.deleteProperty(obj, 'name'); //删除属性
       // console.log(obj);
       // console.log(Reflect);
@@ -167,12 +166,12 @@
           name: 'll',
         },
         {
-          get() {},
-          set() {
+          get(obj, property) {},
+          set(obj, property, newValue) {
             // console.log("2");
           },
           // 删除
-          deleteProperty() {
+          deleteProperty(obj, property) {
             // console.log("删除");
           },
         }
@@ -190,13 +189,14 @@
       // ondragstart - 用户开始拖动元素时触发
       // ondrag - 元素正在拖动时触发
       // ondragend - 用户完成元素拖动后触发
+
       // 释放目标时触发的事件:
       // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
       // ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
       // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
       // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+      // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
 
-      // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle
       let arr = [3, 1, 4, 6, 5, 7, 2];
       function quickSort(arr) {
         if (arr.length === 0) {
@@ -218,18 +218,18 @@
 
         return quickSort(l).concat(c, quickSort(r));
       }
+      // console.log(arr);
 
-      console.log(arr);
-      //       Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+      // Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
 
-      // object.getBoundingClientRect().top：元素上边到视窗上边的距离
-      // object.getBoundingClientRect().right：元素右边到视窗左边的距离
-      // object.getBoundingClientRect().bottom：元素下边到视窗上边的距离
-      // object.getBoundingClientRect().left：元素左边到视窗左边的距离
-      // object.getBoundingClientRect().width：元素宽度
-      // object.getBoundingClientRect().height：元素高度
-      // object.getBoundingClientRect().x：用于left
-      // object.getBoundingClientRect().y：用于top
+      // Element.getBoundingClientRect().top：元素上边到视窗上边的距离
+      // Element.getBoundingClientRect().right：元素右边到视窗左边的距离
+      // Element.getBoundingClientRect().bottom：元素下边到视窗上边的距离
+      // Element.getBoundingClientRect().left：元素左边到视窗左边的距离
+      // Element.getBoundingClientRect().width：元素宽度
+      // Element.getBoundingClientRect().height：元素高度
+      // Element.getBoundingClientRect().x：用于left
+      // Element.getBoundingClientRect().y：用于top
 
       // 学习别人的博客网站 https://www.crazyming.com/
 
@@ -242,6 +242,39 @@
       // 其中参数-L 是确定要几级目录，-I是排除哪个文件夹下的
       // 如果生成的结构是乱的，可以用 代码块三点语法 包起来
       //
+
+      for (let i = 0; i < 5; i++) {
+        setTimeout(function() {
+          // console.log(i);
+        }, 1000);
+      }
+
+      function view() {
+        let i = 0;
+        (function handle() {
+          if (i++ < 100) {
+            setTimeout(handle, 1000);
+            console.log(i);
+          }
+        })();
+      }
+
+      console.time('runtime');
+      let count = 0;
+      let num = 987654321;
+      function hd1() {
+        for (let i = 0; i < 100000000; i++) {
+          if (num <= 0) break;
+          count += num--;
+        }
+        if (num > 0) {
+          console.log(num);
+          setTimeout(hd1);
+        }
+      }
+      hd1();
+      console.log('houdunren.com'); //立刻显示出来
+      // view();
     </script>
   </body>
 </html>
