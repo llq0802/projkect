@@ -27,6 +27,7 @@
     <div class="container"></div>
     <script>
       // 重排是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
+
       // 重绘是指改变页面的样式 比如 background 字体颜色
 
       // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
@@ -59,6 +60,7 @@
       // console.log(document.cookie);
       // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
+      Object.getOwnPropertySymbols();
       // 封装获取cookie
       function getCookie(cname) {
         let name = cname + '=';
@@ -274,6 +276,30 @@
       }
       hd1();
       console.log('houdunren.com'); //立刻显示出来
+      // const div = document.getElementById('hd');
+      // function handle() {
+      //   let i = 0;
+      //   (function run() {
+      //     console.log(i);
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //     if (++i <= 100) setTimeout(run, 10);
+      //   })();
+      // }
+      // // handle()
+
+      // async function load() {
+      //   for (let i = 0; i <= 100; i++) {
+      //     await new Promise((resolve) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 100);
+      //     });
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //   }
+      // }
+      // load();
       // view();
     </script>
   </body>
