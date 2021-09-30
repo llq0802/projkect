@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-09-18 09:39:57
+ * @LastEditTime: 2021-09-30 17:28:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -301,6 +301,37 @@
       // }
       // load();
       // view();
+
+      //迭代器
+      let iteratorObj = {
+        name: 'llq',
+        age: 20,
+        desc: 'shuaige',
+        arr: [11, 22, 33, 44],
+        [Symbol.iterator]: function() {
+          let index = 0;
+          return {
+            next: () => {
+              if (index < this.arr.length) {
+                let res = {
+                  value: this.arr[index],
+                  done: false,
+                };
+                index++;
+                return res;
+              } else {
+                return {
+                  value: undefined,
+                  done: true,
+                };
+              }
+            },
+          };
+        },
+      };
+      // for (item of iteratorObj) {
+      //   console.log(item);
+      // }
     </script>
   </body>
 </html>
