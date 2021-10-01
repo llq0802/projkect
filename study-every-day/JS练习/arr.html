@@ -168,7 +168,6 @@
       // JSON.stringify()字符串转JSON对象
 
       // switch (key) {
-
       //   case value:
 
       //     break;
@@ -179,6 +178,14 @@
 
       //     break;
       // }
+      switch (key) {
+        case key:
+
+        break
+        default:
+          break;
+
+      }
 
       //模块化  module.exports    require('')  图片一般用require('') module
 
@@ -210,7 +217,7 @@
             arr[i]=1
             break  continue 
         }
-        //es5 forEach循环  不需要返回 不能终止 不能链式调用 
+        //es5 forEach循环  不需要返回 不能终止 不能链式调用 只能通过try catch
         arr.forEach((item, index) => {
             console.log(item, index);
         })
@@ -249,7 +256,8 @@
         })
         console.log(aa1);
   
-        //find查找第一个满足条件的项 找到了就返回当前项(数组中满足当前的元素) 通常用于查找数组对象里面的值
+        //find查找第一个满足条件的项 找到了就返回当前项(数组中满足当前的元素) 通常用于查找数组对象里面的值 
+        找不到就返回undefined
         let aa2 = res.find((item, index) => {
             let item = item.id = 2
             return item
@@ -262,6 +270,7 @@
         })
         console.log(aa3);
         //reduce通常用于数组计算
+        prev上一次返回值,curr当前值 第二个参数是开始值 
         let a = arr.reduce((prev, curr, index, a) => {
             return prev + curr * 数量
         }, 0)
@@ -341,6 +350,7 @@
             str:'abc',
             num:10
         }
+        
         Array.prototype.constructor = Array;
         console.log(arr3.constructor === Array);
         //console.log(arr3.__proto__ === Array.prototype);
@@ -397,10 +407,7 @@
         // 第一个值为开始索引
         // 第二个值为0是 表示删除所有
         // 第二个值为0是 后面跟元素 表示插入几个值
-        // 第二个值为12是 后面跟元素 表示替换几个值
-
-
-
+        // 第二个值不为0 是后面跟元素 表示替换几个值
 
             //console.log(str.charAt(1));//根据下标返值 str[1]
             //console.log(arrA.join());

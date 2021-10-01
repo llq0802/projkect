@@ -64,7 +64,7 @@ function createReavtiveObj(targetObj) {
     },
   },
   
-  let proxy= new Proxy(targetObj, baseHandler); 
+  let proxy= Proxy(targetObj, baseHandler);
   toProxy.get(targetObj,proxy)
   toRaw.get(proxy,targetObj)
   return proxy;

@@ -108,7 +108,7 @@
 
 // 8+'' 字符串
 
-// toFixed() 只能对数字型的转换 如果是字符串则需要转成数字型
+// toFixed() 只能对数字型的转换 如果是字符串则需要转成数字型 并且转换后是字符串类型
 
 // console.log(str.repeat(5));重复字符串
 //console.log(str.replace('a','e'));
@@ -416,7 +416,7 @@ Object.defineProperty(obj, "id", {
   value: "",
   configurable, //不能删除
   enumerable, //不能枚举
-  writable, //不能修改
+  writable, //不能重写
 }); //设置对象的单个属性
 Object.defineProperties(obj, {
   name: {

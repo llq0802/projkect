@@ -269,7 +269,6 @@ let c = new Change<Admin>();
 // c.updata(q, 1);
 
 //装饰器 (本质就是一个方法) 扩展被装饰的方法 属性 行为 类
-
 /* 
 
 // 类装饰起(普通模式 无参数)
@@ -359,4 +358,4 @@ function llq(params: any) {
 // };
 // console.log(ii);
 
-const randomSort = (arr: any[]) => arr.sort((a: any, b: any): number => Math.random() - 0.5);
+// const randomSort = (arr: any[]) => arr.sort((a: any, b: any): number => Math.random() - 0.5);

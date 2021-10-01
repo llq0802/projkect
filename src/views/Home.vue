@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:44:53
- * @LastEditTime: 2021-08-10 11:44:33
+ * @LastEditTime: 2021-09-06 09:15:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\views\Home.vue
@@ -9,7 +9,7 @@
 <template>
   <div>
     <h1>首页</h1>
-
+    <!-- v-solt: -->
     <!-- 父子组件双向绑定数据 -->
     <Base :msg="msg" v-model:title="title">
       <!-- 插槽作用域 -->

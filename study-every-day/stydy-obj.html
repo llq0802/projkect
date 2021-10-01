@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-08-22 16:31:11
+ * @LastEditTime: 2021-10-01 17:28:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -16,8 +16,18 @@
     <title>Document</title>
   </head>
   <body>
+    <style>
+      .container {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        background-color: red;
+      }
+    </style>
+    <div class="container"></div>
     <script>
       // 重排是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
+
       // 重绘是指改变页面的样式 比如 background 字体颜色
 
       // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
@@ -36,7 +46,7 @@
 
       // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
       // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
-
+      // Reflect.ownKeys(obj) 获取所有属性 包括symbol
       Reflect.deleteProperty(obj, 'name'); //删除属性
       // console.log(obj);
       // console.log(Reflect);
@@ -50,6 +60,7 @@
       // console.log(document.cookie);
       // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
+      Object.getOwnPropertySymbols();
       // 封装获取cookie
       function getCookie(cname) {
         let name = cname + '=';
@@ -59,9 +70,7 @@
           if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
         }
         return '';
-      }
-
-      // 匹配汉字
+      } // 匹配汉字
       // console.log(getCookie("username"));
 
       // for (var i = 0; i < 5; i++) {
@@ -127,7 +136,7 @@
        * @description: 正则表达
        * @param {*}
        * @return {*}
-       */ const regHan = /^\p{sc=Han}+$/gu;
+       */ const regHan = /^\p{sc=Han}+$/gu; //匹配汉字
 
       let hd = 'houdunren2200hdcms998';
       // console.log(hd.match(/\d/));
@@ -151,32 +160,178 @@
       // [0-9]	匹配0-9任何一个数字
       // [a-z]	匹配小写a-z任何一个字母
       // [A-Z]	匹配大写A-Z任何一个字母
+      //通用的邮箱验证
+      const regMail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
-      // const proxy = new Proxy(
-      //   {
-      //     name: "ll",
-      //   },
-      //   {
-      //     get() {},
-      //     set() {
-      //       console.log("2");
-      //     },
+      const proxy = new Proxy(
+        {
+          name: 'll',
+        },
+        {
+          get(obj, property) {},
+          set(obj, property, newValue) {
+            // console.log("2");
+          },
+          // 删除
+          deleteProperty(obj, property) {
+            // console.log("删除");
+          },
+        }
+      );
+      proxy.age = 20;
+      delete proxy.name;
+      // set 会自动吧字符串转成不能重复的伪数组
+      // console.log([...new Set("houdunren")].join("")); //houdnre
+      // console.log(new Set("houdunren")); //houdnre
+      // console.log(new Set(["a", "b", "c", "d", "e", "f"]));
 
-      //     deleteProperty() {
-      //       console.log("删除");
-      //     },
+      // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键,但是WeaMap对键名是弱引用的，键值是正常引用。
+
+      //  拖动目标时触发的事件:
+      // ondragstart - 用户开始拖动元素时触发
+      // ondrag - 元素正在拖动时触发
+      // ondragend - 用户完成元素拖动后触发
+
+      // 释放目标时触发的事件:
+      // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
+      // ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+      // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+      // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+      // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
+
+      let arr = [3, 1, 4, 6, 5, 7, 2];
+      function quickSort(arr) {
+        if (arr.length === 0) {
+          return []; // 返回空数组
+        }
+
+        var cIndex = Math.floor(arr.length / 2);
+        var c = arr.splice(cIndex, 1);
+        var l = [];
+        var r = [];
+
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] < c) {
+            l.push(arr[i]);
+          } else {
+            r.push(arr[i]);
+          }
+        }
+
+        return quickSort(l).concat(c, quickSort(r));
+      }
+      // console.log(arr);
+
+      // Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+
+      // Element.getBoundingClientRect().top：元素上边到视窗上边的距离
+      // Element.getBoundingClientRect().right：元素右边到视窗左边的距离
+      // Element.getBoundingClientRect().bottom：元素下边到视窗上边的距离
+      // Element.getBoundingClientRect().left：元素左边到视窗左边的距离
+      // Element.getBoundingClientRect().width：元素宽度
+      // Element.getBoundingClientRect().height：元素高度
+      // Element.getBoundingClientRect().x：用于left
+      // Element.getBoundingClientRect().y：用于top
+
+      // 学习别人的博客网站 https://www.crazyming.com/
+
+      /*项目生成结构树*/
+      //  sudo npm i tree-node-cli -g
+      // 查看所有指令：
+      // tree --help
+      // 进入项目根目录，我们需要在README.md文件中写入目录，执行：
+      // tree -L 4 -I "node_modules" > README.md
+      // 其中参数-L 是确定要几级目录，-I是排除哪个文件夹下的
+      // 如果生成的结构是乱的，可以用 代码块三点语法 包起来
+      //
+
+      for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+          // console.log(i);
+        }, 1000);
+      }
+
+      function view() {
+        let i = 0;
+        (function handle() {
+          if (i++ < 100) {
+            setTimeout(handle, 1000);
+            console.log(i);
+          }
+        })();
+      }
+
+      console.time('runtime');
+      let count = 0;
+      let num = 987654321;
+      function hd1() {
+        for (let i = 0; i < 100000000; i++) {
+          if (num <= 0) break;
+          count += num--;
+        }
+        if (num > 0) {
+          console.log(num);
+          setTimeout(hd1);
+        }
+      }
+      hd1();
+      console.log('houdunren.com'); //立刻显示出来
+      // const div = document.getElementById('hd');
+      // function handle() {
+      //   let i = 0;
+      //   (function run() {
+      //     console.log(i);
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //     if (++i <= 100) setTimeout(run, 10);
+      //   })();
+      // }
+      // // handle()
+
+      // async function load() {
+      //   for (let i = 0; i <= 100; i++) {
+      //     await new Promise((resolve) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 100);
+      //     });
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
       //   }
-      // );
-      // proxy.age = 20;
-      // delete proxy.name;
+      // }
+      // load();
+      // view();
 
-      const map = new WeakMap();
-      map.set({ name: 1 }, { age: 10 });
-      // console.log(map.get({ name: 1 }));
-
-      console.log(map);
-
-      // let buf = Buffer.alloc(10);
+      //迭代器
+      let iteratorObj = {
+        name: 'llq',
+        age: 20,
+        desc: 'shuaige',
+        arr: [11, 22, 33, 44],
+        [Symbol.iterator]: function () {
+          let index = 0;
+          return {
+            next: () => {
+              if (index < this.arr.length) {
+                let res = {
+                  value: this.arr[index],
+                  done: false,
+                };
+                index++;
+                return res;
+              } else {
+                return {
+                  value: undefined,
+                  done: true,
+                };
+              }
+            },
+          };
+        },
+      };
+      // for (item of iteratorObj) {
+      //   console.log(item);
+      // }
     </script>
   </body>
 </html>

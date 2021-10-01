@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:27:50
- * @LastEditTime: 2021-08-12 11:44:07
+ * @LastEditTime: 2021-08-16 11:56:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\router\index.ts
@@ -16,6 +16,7 @@ const Dynamic = () => import("../views/Dynamic.vue");
 const Transition = () => import("../views/Transition.vue");
 const ElementUiPlus = () => import("../views/ElementUiPlus.vue");
 const Echarts = () => import("../views/Echarts.vue");
+const Request = () => import("../views/Request.vue");
 
 const News = () => import("../components/News.vue");
 const News2 = () => import("../components/News2.vue");
@@ -105,6 +106,14 @@ const routes: any[] = [
     path: "/echarts",
     name: "echarts",
     component: Echarts,
+    meta: {
+      title: "ke",
+    },
+  },
+  {
+    path: "/request",
+    name: "request",
+    component: Request,
     meta: {
       title: "ke",
     },
