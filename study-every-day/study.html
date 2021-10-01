@@ -62,15 +62,6 @@
         <br />
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         1 <br />
         <br />
         <br />
@@ -494,16 +485,16 @@
         return tempArr;
       };
       // 手写bind函数
-      Function.prototype.simpleBind = function(targetThis, ...args) {
+      Function.prototype.simpleBind = function (targetThis, ...args) {
         const thisFn = this;
-        return function(...params) {
+        return function (...params) {
           thisFn.call(targetThis, ...args, ...params);
         };
       };
       // 防抖函数
       const debounce = (fn, delay = 100) => {
         let timeoutId;
-        return function(...args) {
+        return function (...args) {
           if (timeoutId) clearTimeout(timeoutId);
           timeoutId = setTimeout(() => fn.apply(this, args), delay);
         };
@@ -516,7 +507,7 @@
        */
       const throttle1 = (fn, wait) => {
         let inThrottle, lastFn, lastTime;
-        return function() {
+        return function () {
           const context = this,
             args = arguments;
           if (!inThrottle) {
@@ -525,7 +516,7 @@
             inThrottle = true;
           } else {
             clearTimeout(lastFn);
-            lastFn = setTimeout(function() {
+            lastFn = setTimeout(function () {
               if (Date.now() - lastTime >= wait) {
                 fn.apply(context, args);
                 lastTime = Date.now();
@@ -537,7 +528,7 @@
       //节流函数
       function throttle(fn, delay = 100) {
         let lastTime = 0;
-        return function() {
+        return function () {
           let currTime = +new Date();
           if (currTime - lastTime > delay) {
             fn.apply(this, arguments);
@@ -621,7 +612,7 @@
       }
       // 数组随机排序
       function randomSort(arr) {
-        arr.sort(function() {
+        arr.sort(function () {
           return Math.random() - 0.5;
         });
       }
@@ -726,6 +717,7 @@
       //本地仓库关联远程仓库: git remote add origin 你的远程仓库地址
 
       //取消本地目录下关联的远程库：git remote remove origin
+      // git remote -v
 
       // 当github上已经有master分支和dev分支
       // 在本地git checkout -b dev 新建并切换到本地dev分支

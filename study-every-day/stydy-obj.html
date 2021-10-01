@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-08-13 17:11:19
+ * @LastEditTime: 2021-08-22 16:31:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -26,18 +26,18 @@
       // console.log(window.Proxy);
 
       const obj = {
-        name: "浏览器",
+        name: '浏览器',
         age: 20,
         id: 15,
       };
 
-      let reslut = Reflect.get(obj, "name"); //获取属性
-      Reflect.set(obj, "desc", "这是谷歌"); //设置属性,返回值是一个Boolean的值。
+      let reslut = Reflect.get(obj, 'name'); //获取属性
+      Reflect.set(obj, 'desc', '这是谷歌'); //设置属性,返回值是一个Boolean的值。
 
       // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
       // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
 
-      Reflect.deleteProperty(obj, "name"); //删除属性
+      Reflect.deleteProperty(obj, 'name'); //删除属性
       // console.log(obj);
       // console.log(Reflect);
 
@@ -45,21 +45,23 @@
       // 方法 1 ： 引入module.js，然后在script标签里面调用
 
       // cookie的使用:  可以用js-cookie插件 expires过期时间,path路径
-      document.cookie = "username=John Doe";
-      document.cookie = "username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";
+      document.cookie = 'username=John Doe';
+      document.cookie = 'username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/';
       // console.log(document.cookie);
       // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
       // 封装获取cookie
       function getCookie(cname) {
-        let name = cname + "=";
-        ca = document.cookie.split(";");
+        let name = cname + '=';
+        ca = document.cookie.split(';');
         for (let i = 0; i < ca.length; i++) {
           let c = ca[i].trim();
           if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
         }
-        return "";
-      } // 匹配汉字
+        return '';
+      }
+
+      // 匹配汉字
       // console.log(getCookie("username"));
 
       // for (var i = 0; i < 5; i++) {
@@ -92,7 +94,7 @@
 
       // application/x-www-form-urlencoded 这应该是默认的 POST 提交数据的方式了。浏览器的原生 form 表单
       // Content-Type 被指定为 application/x-www-form-urlencoded；其次，提交的数据按照 key1=val1&key2=val2 的方式进行编码
-
+      // qs.stringify k库可以转换
       // Content-Type： multipart/form-data 一般用于二进制的上传 图片 视频 音频
 
       // application/json axios默认的get形式
@@ -114,7 +116,7 @@
       // application/msword ： Word文档格式
       // application/octet-stream ： 二进制流数据（如常见的文件下载）
       // application/x-www-form-urlencoded ： <form encType=””>中默认的encType，form表单数据被编码为key=value格式发送到服务器（表单默认的提交数据的格式）
-      // multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式
+      // multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式需要配合formdata对象
 
       // 全局的 axios 默认值
       // axios.defaults.baseURL = 'https://api.example.com';
@@ -127,10 +129,10 @@
        * @return {*}
        */ const regHan = /^\p{sc=Han}+$/gu;
 
-      let hd = "houdunren2200hdcms998";
+      let hd = 'houdunren2200hdcms998';
       // console.log(hd.match(/\d/));
       // console.log(hd.match(regHan));
-      let str = "hn.com";
+      let str = 'hn.com';
       // console.log(str.search("om"));
 
       // *	重复零次或更多次
@@ -144,29 +146,37 @@
       //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
       // 可以使用 [\s\S]+ 或 [\d\D]* 来匹配所有字符
 
-      //       []	只匹配其中的一个原子
+      //       []	只匹配其中的一个原子 ()表示一个组
       // [^]	只匹配"除了"其中字符的任意一个原子
       // [0-9]	匹配0-9任何一个数字
       // [a-z]	匹配小写a-z任何一个字母
       // [A-Z]	匹配大写A-Z任何一个字母
 
-      const proxy = new Proxy(
-        {
-          name: "ll",
-        },
-        {
-          get() {},
-          set() {
-            console.log("2");
-          },
+      // const proxy = new Proxy(
+      //   {
+      //     name: "ll",
+      //   },
+      //   {
+      //     get() {},
+      //     set() {
+      //       console.log("2");
+      //     },
 
-          deleteProperty() {
-            console.log("删除");
-          },
-        }
-      );
-      proxy.age = 20;
-      delete proxy.name;
+      //     deleteProperty() {
+      //       console.log("删除");
+      //     },
+      //   }
+      // );
+      // proxy.age = 20;
+      // delete proxy.name;
+
+      const map = new WeakMap();
+      map.set({ name: 1 }, { age: 10 });
+      // console.log(map.get({ name: 1 }));
+
+      console.log(map);
+
+      // let buf = Buffer.alloc(10);
     </script>
   </body>
 </html>

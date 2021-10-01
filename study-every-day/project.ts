@@ -59,6 +59,7 @@ interface fullName {
   secondName?: string;
   age: number;
   info?: any;
+  
 }
 /**
  * 函数类型接口  (只能用于函数表达式)
