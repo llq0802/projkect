@@ -170,7 +170,7 @@
         align-items: flex-start | flex-end | center | baseline | stretch（默认值）：如果子项目未设置高度或设为auto，将占满整个容器的高度。所有的子项都会同时撑满父盒子;
 
       align-content:属性定义了多根轴线的对齐方式。 
-        align-content: flex-start | flex-end | center | space-between | space-around | stretch（默认值）;
+        align-content: flex-start | flex-end | center | space-between | space-around |space-evenly| stretch（默认值）;
             如果子项目未设置高度或设为auto，将占满整个容器的高度。所有的子项都会同时撑满父盒子;
 
       子盒子: flex:数字 表示占剩余空间的几份 */
@@ -610,6 +610,7 @@
         });
         return tempArr;
       };
+      
       //统计出现最多次数的字符串
       const llq = (str) => {
         let temp = {};

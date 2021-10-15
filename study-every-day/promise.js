@@ -36,7 +36,7 @@ class HD {
       // then中的回调函数是异步执行的
       setTimeout(() => {
         this.callbacks.map((item) => {
-          item.onResolve && item.onResolve();
+          item.onResolve && item.onResolve(this.value);
         });
       });
     }
@@ -47,7 +47,7 @@ class HD {
       this.value = value;
       setTimeout(() => {
         this.callbacks.map((item) => {
-          item.onReject && item.onReject();
+          item.onReject && item.onReject(this.value);
         });
       });
     }
