@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-10-15 17:52:26
+ * @LastEditTime: 2021-10-20 17:58:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -17,8 +17,8 @@
   <body>
     <script src="">
       /*
-            选择题 判断多选的情况
-            */
+                    选择题 判断多选的情况
+                    */
       let arr1 = [
         {
           title: 'abcdefg',
@@ -277,14 +277,15 @@
           thisFn.apply(context, [...args, ...params]);
         };
       };
-      //new
+      //手写new
       function myNew(fun, ...args) {
+        //创建新对象并把新对象的原型指向构造函数的原型，将构造函数的this指向新对象 并且调用
         let obj = {};
         obj.__proto__ = fun.prototype;
         let res = fun.apply(obj, args);
         return res instanceof Object ? res : obj;
       }
-
+      //深克隆对象
       function deepClone(obj) {
         // 先判断是对象还是数组
         let copy = obj instanceof Array ? [] : {};
@@ -297,6 +298,112 @@
         }
         return copy;
       }
+
+      //将数组拆分成平均长度的数组
+      function group(array, subNum) {
+        let startIndex = 0;
+        let newArray = [];
+        while (startIndex < array.length) {
+          newArray.push(array.slice(startIndex, (startIndex += subNum)));
+        }
+        return newArray;
+      }
+      // 深度过滤数组重复值
+      const uniqueDeep = (arr) => {
+        let tempArr = [];
+        let obj = {};
+        arr.map((item) => {
+          if (typeof item !== 'object') {
+            if (!tempArr.includes(item)) {
+              tempArr.push(item);
+            }
+          } else {
+            let key = JSON.stringify(item);
+            if (!obj[key]) {
+              tempArr.push(item);
+              obj[key] = 1;
+            }
+          }
+        });
+        return tempArr;
+      };
+
+      //统计出现最多次数的字符串
+      const llq = (str) => {
+        let temp = {};
+        let max = 0,val;
+        for (let item of str) {
+          if (!temp[str]) {
+            temp[str] = 1;
+          } else {
+            temp[str]++;
+          }
+        }
+        for (let k in temp) {
+          if (temp[k] > max) {
+            temp[k] = max;
+            val = k;
+          }
+        }
+        return {
+          val,
+          max,
+        };
+      };
+      // 以下函数返回 min（包含）～ max（包含）之间的数字：
+      function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // 以下函数返回 min（包含）～ max（不包含）之间的数字：
+      function getRndIntegerNo(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+      // 数组随机排序
+      function randomSort(arr) {
+        arr.sort(() => Math.random() - 0.5);
+      }
+
+      function isSplitWaterway() {
+        //原本的航道数组
+        let arr = [];
+        // 存储的航道数组
+        let pathArr = [];
+        // 存储的航道每一段线段
+        let lineArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          // 第一次线段为0时直接加入第一个点
+          if (lineArr.length === 0) {
+            lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
+          } else {
+            if (arr[i - 1].navaid.radius < this.getDistance(arr[i - 1].navaid, arr[i].navaid)) {
+              pathArr.push(lineArr);
+              // 清空数组,重新开始压入
+              lineArr = [];
+              // 从当前断开的端点重新压入线段
+              i--;
+            } else {
+              // 两点可以连接 直接将当前点压入数组
+              lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
+            }
+          }
+        }
+        // 遍历完成后,检查lineArr压入pathArr
+        if (lineArr.length) pathArr.push(lineArr);
+        return pathArr;
+      }
+      /*
+      *  element.getComputedStyle()
+      //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
+      // {
+      //   bottom: 556.21875,
+      //   height: 393.59375,
+      //   left: 333,
+      //   right: 1017,
+      //   top: 162.625,
+      //   width: 684
+      // }
+      */
     </script>
   </body>
 </html>

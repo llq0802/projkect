@@ -1,21 +1,7 @@
-# vue3.0-cli-ts
+### 好看的颜色网站
 
-## Project setup
+https://flatuicolors.com/
 
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Customize configuration
+tree /f > xxx.txt
+安装 npm i treer
+treer -i node_modules -e ./ result.txt
