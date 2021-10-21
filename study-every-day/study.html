@@ -296,10 +296,12 @@
       //element.screenLeft; //距离整个显示屏幕的距离
 
       //element.offsetWidth; // offsetWidth    返回元素width 包括padding border
-      //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
       //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
+      //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
       //element.screenWidth; // clientWidth    返回屏幕width
-
+      // window.pageYOffset === document.scrollTop
+      // console.log(window.pageYOffset == document.scrollTop);
+      // element.getBoundingClientRect().width =
       // addEventListener('click',fn)
       // removeEventListener('click',fn)
 
@@ -318,7 +320,7 @@
       // //   console.log(item,index);
 
       // // }
-      // function group(array, subNum) {
+      // function group(array, sub  Num) {
       //   let index = 0;
       //   let newArray = [];
       //   while (index < array.length) {
@@ -610,7 +612,7 @@
         });
         return tempArr;
       };
-      
+
       //统计出现最多次数的字符串
       const llq = (str) => {
         let temp = {};
@@ -829,6 +831,11 @@
 
       arr1.sort(() => Math.random() - 0.5);
       console.log(arr1);
+
+      function Free() {}
+      let f = new Free();
+      //f instanceof Free;  Free构造函数的原型对象是否在f实例对象的原型链上
+      // b.isPrototypeOf(a)  b对象是否在是a对象的原型链上
     </script>
   </body>
 </html>
