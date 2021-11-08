@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-09-30 17:28:51
+ * @LastEditTime: 2021-11-01 17:26:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -194,9 +194,10 @@
 
       // 释放目标时触发的事件:
       // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
-      // ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
       // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+      // ondragover - 当被鼠标拖动的对象在另一对象容器范围内移动时触发此事件
       // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+
       // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
 
       let arr = [3, 1, 4, 6, 5, 7, 2];
@@ -331,6 +332,27 @@
       // for (item of iteratorObj) {
       //   console.log(item);
       // }
+
+      // 禁止右键菜单
+      document.oncontextmenu = function() {
+        return false;
+      };
+      // 禁止文字选择
+      document.onselectstart = function() {
+        return false;
+      };
+      // 禁止复制
+      document.oncopy = function() {
+        return false;
+      };
+      // 禁止剪切
+      document.oncut = function() {
+        return false;
+      };
+      // 禁止粘贴
+      document.onpaste = function() {
+        return false;
+      };
     </script>
   </body>
 </html>

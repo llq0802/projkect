@@ -152,7 +152,10 @@
       .app-content {
         margin: 20px;
         background-color: rgb(106, 105, 201);
+        user-select: none;/*禁止用户复制文字或图片 */
+        -webkit-user-drag: none;/*禁止用户拖拽元素 */
       }
+       /* user-select: none;*/  /*禁止用户复制文字或图片 */
       /* flex可以嵌套 */
       /* 父盒子:flex-direction 
           row（默认值）：主轴为水平方向，起点在左端。
@@ -281,7 +284,7 @@
       // “../”：代表上一层目录。
 
       // ”/”开头：代表根目录。
-
+      // element.getBoundingClientRect()
       // position absoulut使用文档定位 ，position fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档 stacky粘性定位
       // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
       // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动条的情况下，clientX和cilentY与pageX和pageY是相等的
@@ -299,10 +302,10 @@
       //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
       //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
       //element.screenWidth; // clientWidth    返回屏幕width
-      // window.pageYOffset === document.scrollTop
+      // window.pageYOffset === document.body.scrollTop
       // console.log(window.pageYOffset == document.scrollTop);
       // element.getBoundingClientRect().width =
-      // addEventListener('click',fn)
+      // addEventListener('click',fn)s
       // removeEventListener('click',fn)
 
       //  app.style.cssText = `background-color:red;color:yellow` //批量设置css style

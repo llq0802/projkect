@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-10-20 17:58:44
+ * @LastEditTime: 2021-11-01 14:41:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -17,8 +17,8 @@
   <body>
     <script src="">
       /*
-                    选择题 判断多选的情况
-                    */
+                          选择题 判断多选的情况
+                          */
       let arr1 = [
         {
           title: 'abcdefg',
@@ -94,8 +94,8 @@
       //*********************************//********************************//
 
       /*
-                手写题！
-              */
+                      手写题！
+                    */
 
       // 1. Promise
       // let p = new Promise((resolve, reject) => {
@@ -279,6 +279,7 @@
       };
       //手写new
       function myNew(fun, ...args) {
+        // let obj = Object.create(fun.prototype)
         //创建新对象并把新对象的原型指向构造函数的原型，将构造函数的this指向新对象 并且调用
         let obj = {};
         obj.__proto__ = fun.prototype;
@@ -305,6 +306,8 @@
         let newArray = [];
         while (startIndex < array.length) {
           newArray.push(array.slice(startIndex, (startIndex += subNum)));
+          // newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
+            // (page-1*size),(page*size)
         }
         return newArray;
       }
@@ -331,7 +334,8 @@
       //统计出现最多次数的字符串
       const llq = (str) => {
         let temp = {};
-        let max = 0,val;
+        let max = 0,
+          val;
         for (let item of str) {
           if (!temp[str]) {
             temp[str] = 1;
@@ -392,18 +396,42 @@
         if (lineArr.length) pathArr.push(lineArr);
         return pathArr;
       }
+
+      // 深度过滤数组重复值
+      const uniqueDeep = (arr) => {
+        let tempArr = [];
+        let obj = {};
+        arr.map((item) => {
+          if (typeof item !== 'object') {
+            if (!tempArr.includes(item)) {
+              tempArr.push(item);
+            }
+          } else {
+            let key = JSON.stringify(item);
+            if (!obj[key]) {
+              tempArr.push(item);
+              obj[key] = 1;
+            }
+          }
+        });
+        return tempArr;
+      };
+
+      //随机生成字符串＋数字 Math.random().toString(36).slice(2)
+      // console.log(Math.random().toString(36).slice(2));
+
       /*
-      *  element.getComputedStyle()
-      //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
-      // {
-      //   bottom: 556.21875,
-      //   height: 393.59375,
-      //   left: 333,
-      //   right: 1017,
-      //   top: 162.625,
-      //   width: 684
-      // }
-      */
+            *  window.getComputedStyle()
+            //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
+            // {
+            //   bottom: 556.21875,
+            //   height: 393.59375,
+            //   left: 333,
+            //   right: 1017,
+            //   top: 162.625,
+            //   width: 684
+            // }
+            */
     </script>
   </body>
 </html>

@@ -11,13 +11,7 @@
 </template>
 
 <script lang="ts">
-import {
-  InjectionKey,
-  provide,
-  inject,
-  defineComponent,
-  defineAsyncComponent,
-} from "vue";
+import { provide, inject, defineComponent, defineAsyncComponent } from "vue";
 export default defineComponent({
   data() {
     return {
