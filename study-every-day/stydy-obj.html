@@ -140,7 +140,9 @@
 
       let hd = 'houdunren2200hdcms998';
       // console.log(hd.match(/\d/));
+      /\d/.exec(hd);
       // console.log(hd.match(regHan));
+
       let str = 'hn.com';
       // console.log(str.search("om"));
 
@@ -151,7 +153,7 @@
       // {n,}	重复n次或更多次
       // {n,m}	重复n到m次包括n m
 
-      // | 表示左右任意一边2选1
+      // | 表示左右任意一边2选1   ()表示一个组
       //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
       // 可以使用 [\s\S]+ 或 [\d\D]* 来匹配所有字符
 
