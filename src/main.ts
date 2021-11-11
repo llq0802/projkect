@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-11-08 17:16:29
+ * @LastEditTime: 2021-11-11 15:41:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\main.ts
@@ -23,7 +23,7 @@ app.use(ElementPlus);
 
 // 插件先引入,最后在调用挂载app
 app.mount('#app');
-
+app.config.globalProperties.$axios = 'axios';
 // 相当于以前vue2中的 vue.prototype 原型
 // app.config.globalProperties  vue3中的原型
 

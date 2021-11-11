@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-10 09:30:41
- * @LastEditTime: 2021-11-02 17:33:25
+ * @LastEditTime: 2021-11-11 15:44:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\dynamic .vue
@@ -68,7 +68,7 @@ export default defineComponent({
     // 一旦解构响应式对象, 必须加上toRefs() 不然响应式就会失效
     const state = toRefs(store.state);
     // const state = store.state;
-    console.log(store.state?.currentCount);
+    // console.log(store.state?.currentCount);
     const isShowComponent = ref<string>("Main");
     const tabs = reactive<string[]>(["main", "Top", "Main", "Buttom", "a"]);
     const handleChangeComponent = (params: string): any => {
@@ -89,8 +89,6 @@ export default defineComponent({
       console.log(reslut);
     };
     onMounted(() => {
-      console.log(v);
-
       console.log(getCurrentInstance());
     });
     onDeactivated(() => {});

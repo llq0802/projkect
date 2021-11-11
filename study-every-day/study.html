@@ -152,10 +152,10 @@
       .app-content {
         margin: 20px;
         background-color: rgb(106, 105, 201);
-        user-select: none;/*禁止用户复制文字或图片 */
-        -webkit-user-drag: none;/*禁止用户拖拽元素 */
+        user-select: none; /*禁止用户复制文字或图片 */
+        -webkit-user-drag: none; /*禁止用户拖拽元素 */
       }
-       /* user-select: none;*/  /*禁止用户复制文字或图片 */
+      /* user-select: none;*/ /*禁止用户复制文字或图片 */
       /* flex可以嵌套 */
       /* 父盒子:flex-direction 
           row（默认值）：主轴为水平方向，起点在左端。
@@ -654,6 +654,7 @@
           return Math.random() - 0.5;
         });
       }
+
       //线程随眠
       function sleepss(delay) {
         let start = new Date().getTime();
@@ -661,6 +662,9 @@
           continue;
         }
       }
+      // 动画定时器 间隔时间为屏幕刷新帧数 用法与setTimeout一样
+      window.requestAnimationFrame;
+      window.cancelAnimationFrame;
 
       // default
       // const f = new FileReader()

@@ -1,0 +1,730 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-30 09:18:14
+ * @LastEditTime: 2021-11-11 15:05:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \code\yz.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgba(104, 109, 224, 1);
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+      @media screen and (max-width: 1600px) {
+        body {
+          background-color: rgb(112, 62, 62);
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        body {
+          background-color: red;
+        }
+      }
+      @media screen and (max-width: 960px) {
+        body {
+          background-color: #f6e58d;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        body {
+          background-color: black;
+        }
+      }
+
+      nav {
+        width: 50vw;
+        height: 100px;
+        background-color: skyblue;
+      }
+      nav > div {
+        background: #f6e58d;
+        transform: translateY(0px);
+      }
+      nav > div:hover {
+        color: aliceblue;
+        transform: translateY(100px);
+      }
+      .container {
+        position: relative;
+        text-align: center;
+        width: 20vw;
+        height: 40px;
+        line-height: 40px;
+        background-color: #ccc;
+        margin: 0 auto;
+        margin-bottom: 20vh;
+        margin-top: 20vh;
+      }
+      .icon-box {
+        left: 10vw;
+        position: absolute;
+        display: inline-block;
+        background-color: blue;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+      .bg-box {
+        position: absolute;
+        top: 0;
+        width: 10vw;
+        height: 40px;
+        background-color: yellow;
+      }
+      .icon-bo {
+        position: absolute;
+        top: 0;
+        width: 10vw;
+        height: 40px;
+        text-align: center;
+      }
+      .content {
+        display: flex;
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        height: 200px;
+        border: 2px solid black;
+      }
+      .content > div {
+        user-select: none;
+        /* width: 80px; */
+        border: 1px solid red;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+      }
+      .box-header {
+        background-color: sandybrown;
+      }
+    </style>
+    <input type="week" /> url
+    <div class="box-header">tou</div>
+    <h1>你好h1</h1>
+    <h2>你好h2</h2>
+    <h3>你好h3</h3>
+    <h4>你好h4</h4>
+    <h5>你好h5</h5>
+    <h6>你好h6</h6>
+    <sub>你好sub</sub>
+    <sup>你好sup</sup>
+    <span>你好span</span>
+    <strong>你好strong</strong>
+    <small>你好small</small>
+    <del>你好del</del>
+    <s>你好s</s>
+    <i>你好i</i>
+    <input type="file" />
+    <hr />
+    <br />
+
+    <header>头部</header>
+    <main>
+      <aside>侧边</aside>
+      <article>右侧</article>
+    </main>
+    <footer>页底</footer>
+    <div class="content">
+      <div>1</div>
+      <div style="margin-right: auto">2</div>
+      <div>3</div>
+    </div>
+
+    <br />
+    <progress value="60" max="100">完成60%</progress>
+    <div class="container">
+      <span>滑动图标以验证</span>
+      <span class="icon-box">图标</span>
+      <div class="bg-box"></div>
+    </div>
+
+    <!-- <nav>
+      <div>a</div>
+      <input type="hidden" />
+    </nav> -->
+
+    <script>
+      // clientX
+      console.time('time');
+
+      const slider = document.querySelector('.icon-box');
+      slider.addEventListener('mouseenter', function () {
+        console.log(11);
+      });
+      slider.addEventListener('mousedown', function () {
+        console.log(22);
+      });
+      slider.addEventListener('mousemove', function (e) {
+        // this.style.left =''
+        console.log(e.clientX);
+        console.log(this.offsetLeft);
+      });
+      slider.addEventListener('mouseup', function () {
+        console.log(44);
+      });
+      let aa = 'fasgs1894fga48g4a215a';
+      let res = aa.match(/\d/);
+      // console.log(res);
+
+      // function test(fn) {
+      //   if (typeof fn !== 'function') {
+      //     fn = (value) => value;
+      //   }
+      //   console.log(fn);
+      // }
+
+      // test(() => {});
+      // test(1);
+
+      let arr = [11, 22, 33, 44];
+      let iterator = arr[Symbol.iterator]();
+      // console.dir(iterator.next());
+      // console.dir(iterator.next());
+      // console.dir(iterator.next());
+      // console.dir(iterator.next());
+      // console.dir(iterator.next());
+
+      let iteratorObj = {
+        name: 'llq',
+        age: 20,
+        desc: 'shuaige',
+        arr: [11, 22, 33, 44],
+        [Symbol.iterator]: function () {
+          let index = 0;
+          return {
+            next: () => {
+              if (index < this.arr.length) {
+                let res = {
+                  value: this.arr[index],
+                  done: false,
+                };
+                index++;
+                return res;
+              } else {
+                return {
+                  value: undefined,
+                  done: true,
+                };
+              }
+            },
+          };
+        },
+      };
+      // for (item of iteratorObj) {
+      //   console.log(item);
+      // }
+      //随机生成字符串＋数字
+      // console.log(Math.random()*newDate().toString(36).slice(2));
+      // console.log('abcdefg'.slice(1));
+
+      let arr1 = [
+        {
+          title: 'abcdefg',
+          value: false,
+        },
+        {
+          title: 'abcdef',
+          value: true,
+        },
+        {
+          title: 'abcd',
+          value: true,
+        },
+        {
+          title: 'abc',
+          value: true,
+        },
+      ];
+      let arr2 = [
+        {
+          title: 'abcdefg',
+          value: true,
+        },
+        {
+          title: 'abcdef',
+          value: true,
+        },
+
+        {
+          title: 'abcd',
+          value: false,
+        },
+        {
+          title: 'abc',
+          value: false,
+        },
+      ];
+      let ar = arr1.map((item) => item.value);
+      let ar2 = arr2.map((item) => item.value);
+      // console.log(ar);
+      // console.log(ar2);
+      let q = 0;
+      let l = 0;
+      let c = 0;
+      function isTrue(ar, ar2) {
+        let flag = false;
+        for (i in ar) {
+          if (ar[i] < ar2[i]) {
+            flag = true;
+            break;
+          }
+        }
+        return flag;
+      }
+      let res111 = ar2.find((item, index) => {
+        return item > ar[index];
+      });
+      let res11 = ar2.some((item, index) => {
+        return ar.includes(item);
+      });
+      // console.log(isTrue(ar, ar2));
+      // console.log(res111);
+      // console.log(res11);
+      if (ar.toString() == ar2.toString()) {
+        q++;
+      } else if (res111) {
+        c++;
+      } else {
+        l++;
+      } // 'ababx'
+      // console.log('quandui--- ' + q, 'loule--- ' + l, 'cuoel--- ' + c);
+
+      // console.log(arP);
+      // console.log(ar2P);
+
+      // let count = 0;
+      // for (i in ar2P) {
+      //   if (arP[i] !== ar2P[i]) count++;
+      // }
+      // console.log(count);
+      // for of Symbol.iterator
+      /* a=>97 A=>65 */
+      // console.log(String.fromCharCode(65)); 65
+      // let str = 'AELLO WORLD';
+      // let n = str.charCodeAt(0); 97
+      // console.log(n);
+      // alert([1, 2, 3].toString() == [3, 2, 1].toString());   false
+      // alert([1, 2, 3].sort().toString() == [3, 2, 1].sort().toString()); true
+
+      // 差集
+      // let c = [0, 1, 2, 3].filter((item) => {
+      //   return !new Set([1]).has(item);
+      // });
+      // console.log(c);
+      // let obj = {
+      //   fn: function () {
+      //     return new Promise(function (resolve, reject) {});
+      //   },
+      // };
+      // console.log(obj.fn());
+      async function fo() {
+        await 1;
+      }
+      let result = fo();
+      // console.log(result);
+
+      // var a = (b = c = 1);
+      // let a = (b = c = 1);
+
+      // function fn() {
+      //   console.log('shengming');
+      // }
+      // fn();
+      // var fn = function () {
+      //   console.log('biaodashi');
+      // };
+
+      // console.log('x'.padStart(3, 'ab'));
+      // console.log('x'.padEnd(5, 'ab')); // 'xabab'
+
+      // console.log(100_0 == 10_00);
+      // console.log(Math.sign(10)); 1
+      // console.log(Math.sign(0));0
+      // console.log(Math.sign(-90));-1
+      // console.log((0.1 * 10 + 0.2 * 10) / 10);
+      // console.log(+(0.1 + 0.2).toFixed(1));
+      Number.parseFloat();
+      Number.parseInt();
+      // console.log('gasgas489b1rtbyn1'.match(/\d/gi).join(''));
+      let obj = {
+        name: 'gsb',
+        aa: function () {
+          console.log(this);
+        },
+        sing: () => {
+          console.log(this);
+        },
+
+        say() {
+          setTimeout(() => {
+            console.log(this);
+          });
+        },
+      };
+      // obj.aa();
+      // obj.sing();
+      // obj.say();
+
+      // console.dir(obj?.age);
+      let resl = Object.assign(obj);
+      // console.log(0 ?? 10);
+      // Symbol undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、|||对象（Object）
+      let s1 = Symbol('foo');
+      // console.log(typeof s1);
+      let [a, b, cc] = [11, 22, 33, 44];
+      // console.log(a, b, cc);
+      // console.log('hshd'.startsWith('h'));
+      // console.log(1_000 == 1000);
+
+      let cms = 'lggs';
+
+      // console.log(cms.substr(0, 2));
+
+      // let arrR = ['A', 'B', 'C', 'D', 'E', 'F'];
+      // const index = Math.floor(Math.random() * arrR.length);
+      // console.log(arrR[index]);
+
+      //  return  min + Math.floor(Math.random() * (max - min + 1))
+      // console.log(fnn());
+      function fnn() {
+        // console.log(1312);
+      }
+      var fnn = function () {
+        console.log(000);
+      };
+
+      let setId = setTimeout(() => {}, 1000);
+      // console.log(setId);
+
+      let objj = {
+        set desc(value) {
+          // console.log(value);
+        },
+        get desc() {
+          return this.name;
+        },
+        name: 'kt',
+        age: 20,
+        lesson: {
+          title: 'aaaaaaa',
+        },
+      };
+
+      let {
+        name,
+        lesson: { title },
+      } = objj;
+      // console.log(name, title);
+      for (let [k, v] of Object.entries(objj)) {
+        // console.log(k, v);
+      }
+      // console.log(Object.getOwnPropertyDescriptors(objj));
+      // * enumrable 是否枚举
+      //  * con     是否删除
+      //  * writable 是否重写
+
+      // Object.freeze(objj);
+      // console.log(Object.isFrozen(objj));
+      function Free() {}
+      let f = new Free();
+      //f instanceof Free;  Free构造函数的原型对象是否在f实例对象的原型链上
+      // b.isPrototypeOf(a)  b对象是否在是a对象的原型链上
+      // console.dir(Free.prototype == Free.__proto__);
+      // console.dir(Free.prototype.constructor == f.__proto__.constructor);
+      // console.dir(f.__proto__.constructor);
+      // console.dir(Free.prototype.__proto__ == Object.prototype);
+      // console.log(Object.prototype.__proto__);
+      // console.log(Function.prototype.__proto__ == Object.prototype);
+
+      let user = {
+        name: 'user',
+      };
+      let hd = Object.create(user);
+      // console.log(hd);
+
+      function myNew(Fn, ...args) {
+        // let obj ={}
+        // obj.__proto__ =Fn.prototype
+        let obj = Object.create(Fn.prototype);
+        Fn.call(obj, ...args);
+        return obj;
+      }
+      // Object.getOwnPropertySymbols()
+      // Reflect.ownKeys()
+      //严格模式 函数中的this指向undefined
+
+      class A {
+        site = 'www.vsdv';
+        sum() {
+          console.log(this.site);
+        }
+      }
+
+      class B extends A {
+        site = 'erzi';
+        constructor() {
+          super();
+        }
+        info() {
+          super.sum();
+        }
+      }
+
+      let bb = new B();
+      // console.log(bb);
+      // bb.sum();
+      // console.log(document.body.getBoundingClientRect());
+      // console.log(window.getComputedStyle(document.body));
+
+      // console.log(Math.random().toString(36).split('.')[1]);
+      // console.log(Math.random().toString(36).slice(2).substr(0, 4));
+      // console.log(Math.random().toString(36).indexOf('.'));
+      // console.log(Math.random().toString(36).lastIndexOf('.'));
+
+      // let strs = 'gs18.9.4';
+      // let ii = strs.indexOf('.');
+      // console.log(ii);
+      // console.log(strs.slice(0, ii));
+      // console.log(ccc);
+
+      // var ccc = 1;
+      // (function ccc() {
+      //   var ccc = 2;
+      //   console.log(ccc);
+      // })();
+      // console.log(ccc);
+
+      let hdfh = 'adcd';
+      // console.log(hdfh.split('').reverse().join(''));
+
+      // choose 策略对象模式判断
+      // function choose(val) {
+      // let chooseValue =['a','b','c']
+      //   const chooseValue = {
+      //     0: "a",
+      //     1: "b",
+      //     2: "c",
+      //   };
+      //   return chooseValue[val];
+      // }
+      // console.log( choose(2));
+
+      class Hd {
+        constructor(executor) {
+          this.status = 'pending';
+          this.value = null;
+          this.callbacks = [];
+          function resolve(value) {
+            if (this.status == 'pending') {
+              this.status = 'resolve';
+              this.value = value;
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onResove && item.onResove();
+                });
+              });
+            }
+          }
+
+          function reject(value) {
+            if (this.status == 'pending') {
+              this.status = 'reject';
+              this.value = value;
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onReject && item.onReject();
+                });
+              });
+            }
+          }
+          try {
+            executor(resolve.bind(this), reject.bind(this));
+          } catch (error) {
+            reject(error);
+          }
+        }
+
+        then(onResove, onReject) {
+          if (typeof onResove != 'function') {
+            onResove = (value) => value;
+          }
+          if (typeof onReject != 'function') {
+            onReject = (value) => value;
+          }
+          let thenResult = new Hd((resolve, reject) => {
+            function callFn(typeFn) {
+              let result = typeFn(this.value);
+              if (result == thenResult) {
+                throw new Error('warning');
+              }
+              try {
+                if (result instanceof Hd) {
+                  result.then(
+                    (v) => {
+                      resolve(v);
+                    },
+                    (r) => {
+                      reject(r);
+                    }
+                  );
+                } else {
+                  reject(result);
+                }
+              } catch (error) {
+                reject(error);
+              }
+            }
+
+            if (this.status == 'resolve') {
+              setTimeout(() => {
+                callFn(onResove);
+              });
+            }
+
+            if (this.status == 'reject') {
+              setTimeout(() => {
+                callFn(onReject);
+              });
+            }
+            if (this.status == 'pending') {
+              this.callbacks.push({
+                onResove: () => {
+                  callFn(onResove);
+                },
+                onReject: () => {
+                  callFn(onReject);
+                },
+              });
+            }
+          });
+
+          return thenResult;
+        }
+
+        catch(onReject) {
+          return this.then(undefined, onReject);
+        }
+        resolve(value) {
+          return new Hd((resolve, reject) => {
+            if (value instanceof Hd) {
+              value.then(
+                (v) => {
+                  resolve(v);
+                },
+                (r) => {
+                  reject(r);
+                }
+              );
+            } else {
+              reject(value);
+            }
+          });
+        }
+        reject(value) {
+          return new Hd((resolve, reject) => {
+            reject(value);
+          });
+        }
+        static race(PromiseArr) {
+          return new Hd((resolve, reject) => {
+            PromiseArr.map((itemPromise, index) => {
+              itemPromise.then(
+                (v) => {
+                  resolve(v);
+                },
+                (r) => {
+                  reject(r);
+                }
+              );
+            });
+          });
+        }
+        static all(PromiseArr) {
+          return new Hd((resolve, reject) => {
+            let resultArr = [];
+            PromiseArr.map((itemPromise, index) => {
+              itemPromise.then(
+                (v) => {
+                  resultArr[idnex] = [v];
+                  if (arr.length === PromiseArr.length) {
+                    resolve(resultArr);
+                  }
+                },
+                (r) => {
+                  reject(r);
+                }
+              );
+            });
+          });
+        }
+      }
+
+      // let request = new XMLHttpRequest();
+      // console.log('request', request);
+      // console.log(String.fromCharCode(97));
+      // console.log('aaa'.charCodeAt(1));
+
+      for (let i = 0; i < 1000000; i++) {}
+
+      let sss = 'abcDEhd1286FHEHEggh何工';
+
+      // console.log(sss.match(/hd/));
+      // console.log(/hd/.exec(sss));
+
+      // sss = sss.replace(/[a-zA-Z]/g, (item) => {
+      //   return item.toLocaleUpperCase() === item
+      //     ? item.toLocaleLowerCase()
+      //     : item.toLocaleUpperCase();
+      // });
+      // console.log(sss);
+      let arr11 = [11, 22, 33, 44];
+      // console.log([...arr11, 55]);
+      let obj111 = {
+        name: 11,
+        age: 20,
+      };
+      let obj222 = {
+        ...obj111,
+        age: 30,
+      };
+      // console.log(obj222);
+
+      let fn111 = async () => {
+        setTimeout(() => {
+          console.log('setTimeout');
+        });
+        console.log('async');
+      };
+
+      // fn111();
+
+      document.ondblclick = function (e) {
+        // console.dir(document);
+        // console.dir(window.focus);
+        let rf = new FileReader();
+        let ws = new WebSocket('ws:www.baidu.com');
+
+        console.log(rf);
+        console.log(ws);
+      };
+      console.timeEnd('time');
+    </script>
+  </body>
+</html>
