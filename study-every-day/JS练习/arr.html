@@ -39,7 +39,7 @@
     .container {
       width: cale(100%-100px);
       height: 100vh;
-      animation: identifier 5 linear;
+      animation: identifier 5 ease;
       background: red url('') no-repeat 0 0 fixed;
       background-size: cover;
       position: relative;
@@ -178,14 +178,14 @@
 
       //     break;
       // }
-      switch (key) {
-        case key:
+      // switch (key) {
+      //   case key:
 
-        break
-        default:
-          break;
+      //   break
+      //   default:
+      //     break;
 
-      }
+      // }
 
       //模块化  module.exports    require('')  图片一般用require('') module
 
@@ -217,7 +217,7 @@
             arr[i]=1
             break  continue 
         }
-        //es5 forEach循环  不需要返回 不能终止 不能链式调用 只能通过try catch
+        //es5 forEach循环  返回值为undefined 不能终止，只能通过try catch 不能链式调用
         arr.forEach((item, index) => {
             console.log(item, index);
         })
@@ -274,6 +274,8 @@
         let a = arr.reduce((prev, curr, index, a) => {
             return prev + curr * 数量
         }, 0)
+
+        
         console.log(a);
         push()
         pop()
@@ -398,10 +400,10 @@
       
         //截取 不会改变原数组
         
-      
-            //console.log(arrH.slice(0, 2));两值之差
-            //console.log(str.substr(0, 1));长度
-            //console.log(str.substring(0, 1));两值之差
+       
+            //console.log(arrH.slice(0, 2));两值之差  arr str 
+            //console.log(str.substr(0, 1));长度 str
+            //console.log(str.substring(0, 1));两值之差 str
 
         // splice()//会改变原数组
         // 第一个值为开始索引
@@ -442,115 +444,115 @@
             // console.log(oDay.getDate());当前日
 
             //arr[oDay.getDay()]
-              Date.now()
               const oDay=new Date()
             // console.log(oDay.getTime());; //当前的时间(从1970.1.1开始的毫秒数)
             // console.log(oDay.getHours());; //当前的小时数(0-23)
             // console.log(oDay.getMinutes());; //当前的分钟数(0-59)
             // console.log(oDay.getSeconds());; //当前的秒数(0-59)
             // console.log(oDay.getMilliseconds());; //当前的毫秒数(0-999)
-            //  console.log(oDay.toLocaleDateString());; //当前的日期
-            //  var oTime=oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
-            //  console.log(oTime);
-            //  console.log(oDay.toLocaleString()) //当前时间
+             console.log(oDay.toLocaleDateString());; //当前的日期
+             var oTime=oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
+             console.log(oTime);
+             console.log(oDay.toLocaleString()) //当前时间
 
 
+            console.log(  Date.now());
 
 
             //防抖debounce代码：(用于搜索 监听图片load加载)
-            function debounce(fn, delay = 150) {
-              let timeout = null; // 创建一个标记用来存放定时器的返回值
-              return function (...args) {
-                // 每当用户输入的时候把前一个 setTimeout clear 掉
-                if (timeout) clearTimeout(timeout);
-                // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
-                timeout = setTimeout(() => {
-                  fn.apply(this, arg);
-                }, delay);
-              };
-            }
+            // function debounce(fn, delay = 150) {
+            //   let timeout = null; // 创建一个标记用来存放定时器的返回值
+            //   return function (...args) {
+            //     // 每当用户输入的时候把前一个 setTimeout clear 掉
+            //     if (timeout) clearTimeout(timeout);
+            //     // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
+            //     timeout = setTimeout(() => {
+            //       fn.apply(this, arg);
+            //     }, delay);
+            //   };
+            // }
         
             //节流方案一(用在表单提交)
-            function throttle(fn, delay = 150) {
-              let canRun = true; // 通过闭包保存一个标记
-              return function (...arg) {
-                // 在函数开头判断标记是否为true，不为true则return
-                if (!canRun) return;
-                // 立即设置为false
-                canRun = false;
-                // 将外部传入的函数的执行放在setTimeout中
-                setTimeout(() => {
-                  // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
-                  // 当定时器没有执行的时候标记永远是false，在开头被return掉
-                  fn.apply(this, arg);
-                  canRun = true;
-                }, delay);
-              };
-            }
+            // function throttle(fn, delay = 150) {
+            //   let canRun = true; // 通过闭包保存一个标记
+            //   return function (...arg) {
+            //     // 在函数开头判断标记是否为true，不为true则return
+            //     if (!canRun) return;
+            //     // 立即设置为false
+            //     canRun = false;
+            //     // 将外部传入的函数的执行放在setTimeout中
+            //     setTimeout(() => {
+            //       // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
+            //       // 当定时器没有执行的时候标记永远是false，在开头被return掉
+            //       fn.apply(this, arg);
+            //       canRun = true;
+            //     }, delay);
+            //   };
+            // }
 
 
               // 定时器节流方案二
-              function throttle(fn, wait = 150) {
-                var timer = null;
-                return function (...args) {
-                  //var context = this;
-                  //var args = arguments;
-                  if (!timer) {
-                    timer = setTimeout(function () {
-                      fn.apply(this, args);
-                      // timer = null;
-                      clearTimeout(timer)
-                    }, wait)
-                  }
-                }
-              }
+              // function throttle(fn, wait = 150) {
+              //   var timer = null;
+              //   return function (...args) {
+              //     //var context = this;
+              //     //var args = arguments;
+              //     if (!timer) {
+              //       timer = setTimeout(function () {
+              //         fn.apply(this, args);
+              //         // timer = null;
+              //         clearTimeout(timer)
+              //       }, wait)
+              //     }
+              //   }
+              // }
 
               // 深拷贝拷贝对象封装函数 (递归)
-              function deepCopy(newobj, oldobj) {
-                for (var k in oldobj) {
-                  // 判断我们的属性值属于那种数据类型
-                  // 1. 获取属性值  oldobj[k]
-                  var item = oldobj[k];
-                  // 2. 判断这个值是否是数组
-                  if (item instanceof Array) {
-                    newobj[k] = [];
-                    deepCopy(newobj[k], item)
-                  } else if (item instanceof Object) {
-                    // 3. 判断这个值是否是对象
-                    newobj[k] = {};
-                    deepCopy(newobj[k], item)
-                  } else {
-                    // 4. 属于简单数据类型
-                    newobj[k] = item;
-                  }
-                }
-              }
+              // function deepCopy(newobj, oldobj) {
+              //   for (var k in oldobj) {
+              //     // 判断我们的属性值属于那种数据类型
+              //     // 1. 获取属性值  oldobj[k]
+              //     var item = oldobj[k];
+              //     // 2. 判断这个值是否是数组
+              //     if (item instanceof Array) {
+              //       newobj[k] = [];
+              //       deepCopy(newobj[k], item)
+              //     } else if (item instanceof Object) {
+              //       // 3. 判断这个值是否是对象
+              //       newobj[k] = {};
+              //       deepCopy(newobj[k], item)
+              //     } else {
+              //       // 4. 属于简单数据类型
+              //       newobj[k] = item;
+              //     }
+              //   }
+              // }
 
               
               //时间格式化  先将时间鹾转入new Date()中然后再格式化
-             export function formatDate(date, fmt) {
-                if (/(y+)/.test(fmt)) {
-                  fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-                }
-                let o = {
-                  'M+': date.getMonth() + 1,
-                  'd+': date.getDate(),
-                  'h+': date.getHours(),
-                  'm+': date.getMinutes(),
-                  's+': date.getSeconds()
-                };
-                for (let k in o) {
-                  if (new RegExp(`(${k})`).test(fmt)) {
-                    let str = o[k] + '';
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
-                  }
-                }
-                return fmt;
-              };
+            //  export function formatDate(date, fmt) {
+            //     if (/(y+)/.test(fmt)) {
+            //       fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            //     }
+            //     let o = {
+            //       'M+': date.getMonth() + 1,
+            //       'd+': date.getDate(),
+            //       'h+': date.getHours(),
+            //       'm+': date.getMinutes(),
+            //       's+': date.getSeconds()
+            //     };
+            //     for (let k in o) {
+            //       if (new RegExp(`(${k})`).test(fmt)) {
+            //         let str = o[k] + '';
+            //         fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+            //       }
+            //     }
+            //     return fmt;
+            //   };
 
-              function padLeftZero(str) {
-                return ('00' + str).substr(str.length);
-              };
+            //   function padLeftZero(str) {
+            //     return ('00' + str).substr(str.length);
+            //   };
              
     </script>
 </body>

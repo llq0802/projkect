@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-11-11 15:05:58
+ * @LastEditTime: 2021-11-22 15:45:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -163,20 +163,20 @@
     <script>
       // clientX
       console.time('time');
-
+      // window.print();
       const slider = document.querySelector('.icon-box');
-      slider.addEventListener('mouseenter', function () {
+      slider.addEventListener('mouseenter', function() {
         console.log(11);
       });
-      slider.addEventListener('mousedown', function () {
+      slider.addEventListener('mousedown', function() {
         console.log(22);
       });
-      slider.addEventListener('mousemove', function (e) {
+      slider.addEventListener('mousemove', function(e) {
         // this.style.left =''
         console.log(e.clientX);
         console.log(this.offsetLeft);
       });
-      slider.addEventListener('mouseup', function () {
+      slider.addEventListener('mouseup', function() {
         console.log(44);
       });
       let aa = 'fasgs1894fga48g4a215a';
@@ -206,7 +206,7 @@
         age: 20,
         desc: 'shuaige',
         arr: [11, 22, 33, 44],
-        [Symbol.iterator]: function () {
+        [Symbol.iterator]: function() {
           let index = 0;
           return {
             next: () => {
@@ -365,7 +365,7 @@
       // console.log('gasgas489b1rtbyn1'.match(/\d/gi).join(''));
       let obj = {
         name: 'gsb',
-        aa: function () {
+        aa: function() {
           console.log(this);
         },
         sing: () => {
@@ -406,7 +406,7 @@
       function fnn() {
         // console.log(1312);
       }
-      var fnn = function () {
+      var fnn = function() {
         console.log(000);
       };
 
@@ -715,7 +715,7 @@
 
       // fn111();
 
-      document.ondblclick = function (e) {
+      document.ondblclick = function(e) {
         // console.dir(document);
         // console.dir(window.focus);
         let rf = new FileReader();

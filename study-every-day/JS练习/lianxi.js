@@ -86,11 +86,11 @@
 
 // Object.is()：判断两个值是否是相同的值。返回布尔值 做if判断
 
-// if(Object.is('1',1)){
-//   console.log('xiangdeng');
-// }else{
-//   console.log('budeng');
-// }
+if (Object.is('1', 1)) {
+  console.log('xiangdeng');
+} else {
+  console.log('budeng');
+}
 
 // let num='123'
 // Object.keys()
@@ -203,27 +203,27 @@
 // })
 
 //判断页面大小
-// onResize() {
-//   let pwidth = 1920;
-//   let prem = 100;
-//   let html = document.getElementsByTagName("html")[0];
-//   let oWidth = docu6
+onResize() {
+  let pwidth = 1920;
+  let prem = 100;
+  let html = document.getElementsByTagName("html")[0];
+  let oWidth =html.width;
 
-// document.body.clientWidth || document.documentElement.clientWidth;
-//   if (oWidth > 1300) {
-//     oWidth = 1920
-//     html.style.fontSize = oWidth / pwidth * prem + "px";
-//   } else if(oWidth>800) {
-//     oWidth = oWidth + 400
-//     html.style.fontSize = oWidth / pwidth * prem + "px";
-//   } else if(oWidth<800){
-//     //手机适配
-//     let pwidth = 750;
-//     let prem = 100;
-//     let html = document.getElementsByTagName("html")[0];
-//     let oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-//     html.style.fontSize = oWidth/pwidth*prem + "px";
-//   }
+document.body.clientWidth || document.documentElement.clientWidth;
+  if (oWidth > 1300) {
+    oWidth = 1920
+    html.style.fontSize = oWidth / pwidth * prem + "px";
+  } else if(oWidth>800) {
+    oWidth = oWidth + 400
+    html.style.fontSize = oWidth / pwidth * prem + "px";
+  } else if(oWidth<800){
+    //手机适配
+    let pwidth = 750;
+    let prem = 100;
+    let html = document.getElementsByTagName("html")[0];
+    let oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+    html.style.fontSize = oWidth/pwidth*prem + "px";
+  }
 
 // function fn() {
 //   let num = 10;
@@ -297,7 +297,7 @@
 // console.log(Math.max.apply(Math, arr1));
 // call()立即调用 第一个参数改变this指向 第二个参数是参数(字符串)
 // apply()立即调用 第一个参数改变this指向 第二个参数必须是数组[]
-// bind()不会立即调用 只会改变this指向
+// bind()不会立即调用 只会改变this指向 返回一个新的函数
 set;
 
 // 异步操作=>任务队列
@@ -360,7 +360,7 @@ function unique(arr) {
   let newArr = [];
   let obj = {};
   arr.forEach((item) => {
-    if (typeof item !== "object") {
+    if (typeof item !== 'object') {
       if (newArr.indexOf(item) === -1) {
         newArr.push(item);
       }
@@ -377,6 +377,7 @@ function unique(arr) {
 // console.log(unique([123, 123, [1, 2, 3], [1, '2', 3], [1, 3, 4], [1, 2, 3], { a: 1 }, { a: 1 }, 'hello', null, null]))
 
 Infinity;
+flat(Infinity)
 Number.MAX_VALUE;
 Number.MIN_VALUE;
 // class User {
@@ -405,25 +406,25 @@ Number.MIN_VALUE;
 Object.freeze();
 Object.prototype.__proto__ == null; //true
 Object.prototype.getPrototypeOf(Object) == null; //true
-a.isPrototypeOf(b); //b的原型链上是否有a对象
+a.isPrototypeOf(b); //
 a instanceof b; // a对象的原型链上是否还有b构造函数的原型
 Object.create(); //创建一个新对象 并且吧里面的参数赋值给新对象的原型__proto__
 Object.assign();
 
 // Object.setPrototypeOf(obj, hd);// /设置hd为obj的新原型
 // Object.getPrototypeOf(obj)// 获取obj的新原型
-Object.defineProperty(obj, "id", {
-  value: "",
+Object.defineProperty(obj, 'id', {
+  value: '',
   configurable, //不能删除
   enumerable, //不能枚举
   writable, //不能重写
 }); //设置对象的单个属性
 Object.defineProperties(obj, {
   name: {
-    value: "",
+    value: '',
   },
   ag: {
-    value: "",
+    value: '',
   },
 });
 // Object.getOwnPropertyDescriptor()查看对象属性的描述。
@@ -453,15 +454,15 @@ function toFixed(val, num = 0) {
   if (num == 0) {
     return val;
   } else {
-    val = val.toString().split(".");
+    val = val.toString().split('.');
     if (val.length == 1) {
-      let hou = "",
+      let hou = '',
         res;
-      for (let i = 0; i < num; i++) hou += "0";
-      res = "." + hou;
+      for (let i = 0; i < num; i++) hou += '0';
+      res = '.' + hou;
       return +(val[0] + res);
     } else {
-      let hou = "." + val[1].substr(0, num);
+      let hou = '.' + val[1].substr(0, num);
       return +(val[0] + hou);
     }
   }
@@ -476,7 +477,7 @@ const functions = (arr) => {
   let obj = {};
   let newArr = [];
   arr.map((item) => {
-    if (typeof item !== "object") {
+    if (typeof item !== 'object') {
       newArr.search(item) == -1 && newArr.push(item);
       // newArr.indexOf(item) == -1 && newArr.push(item)
       // newArr.includes(item) == -1 && newArr.push(item)
@@ -505,4 +506,3 @@ function Countdown() {
     for (let i = 6; i > -1; i--) await fn(i);
   })();
 }
-Countdown();
