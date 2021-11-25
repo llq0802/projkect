@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-11-01 14:41:37
+ * @LastEditTime: 2021-11-23 10:38:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -277,6 +277,10 @@
           thisFn.apply(context, [...args, ...params]);
         };
       };
+      const bind = (fn, context, ...boundArgs) => (...args) =>
+        fn.apply(context, [...boundArgs, ...args]);
+      const call = (key, ...args) => (context) => context[key](...args);
+
       //手写new
       function myNew(fun, ...args) {
         // let obj = Object.create(fun.prototype)
@@ -307,7 +311,7 @@
         while (startIndex < array.length) {
           newArray.push(array.slice(startIndex, (startIndex += subNum)));
           // newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
-            // (page-1*size),(page*size)
+          // (page-1*size),(page*size)
         }
         return newArray;
       }

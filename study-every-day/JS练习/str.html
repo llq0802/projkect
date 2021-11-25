@@ -97,16 +97,16 @@
     <div class="test"></div>
     <script>
       //console.log(Math.floor((Math.random()*11)));
-      let str = "gtfhfabc";
-      let str1 = "gtfhfava";
+      let str = 'gtfhfabc';
+      let str1 = 'gtfhfava';
       let arr = [1, 2, 3];
       !10; //false
       !0; //ture
-      !"abc"; // 字符串去反 为false
+      !'abc'; // 字符串去反 为false
 
       let reg = /\s/;
       str.length;
-      str.includes("a"); //查找元素 返回布尔值
+      str.includes('a'); //查找元素 返回布尔值
       //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
       console.log(str1.slice(1, 2));
       console.log(str.slice(1, -1));
@@ -114,8 +114,8 @@
       //arr.splice()
       str.substr(); //第一个值是开始索引 截取长度为第二个值
 
-      str.startsWith("a"); //是否以某个字符串开头 返回布尔值
-      str.endsWith("a"); //是否以某个字符串结尾 返回布尔值
+      str.startsWith('a'); //是否以某个字符串开头 返回布尔值
+      str.endsWith('a'); //是否以某个字符串结尾 返回布尔值
 
       str.replace(); //第一个是要要替换的字符串或者正则表达式,第二个值是替换成的字符串
 
@@ -145,7 +145,7 @@
 
       str.match(); //方法只接收一个参数，要么是一个正则表达式，要么是一个RegExp对象。在字符串上调用match()方法，本质上和调用RegExp的exec()方法相同，返回的是一个数组
       str.search(); //search()的参数与match()相同，不同在于search()返回的是字符串中第一个匹配项的索引；如果没有找到匹配项，返回-1.
-      str.split(","); //字符串转数组
+      str.split(','); //字符串转数组
 
       // arr.join()
 
@@ -165,6 +165,135 @@
       // document.URL
 
       // console.log( +'1'); 数字
+
+      class HD {
+        constructor(executor) {
+          this.state = 'pending';
+          this.value = null;
+          this.callbacks = [];
+          function resolve(value) {
+            if (this.state === 'pending') {
+              this.state === 'resolve';
+              this.value = value;
+              this.callbacks.map(item=>{
+                item.onResove&&item.onResove()
+              })
+            }
+          }
+          function reject(value) {
+            if (this.state === 'pending') {
+              this.state === 'reject';
+              this.value = value;
+              this.callbacks.map(item=>{
+                item.onReject&&item.onReject()
+              })
+            }
+          }
+          try {
+            executor(resolve.bind(this), reject.bind(this));
+          } catch (error) {
+            reject(error);
+          }
+        }
+
+        then(onResove, onReject) {
+          if (onResove != 'function') {
+            onResove = (value) => value;
+          }
+          if (onReject != 'function') {
+            onReject = (value) => value;
+          }
+
+          let thenResult = new Hd((resolve, reject) => {
+            if (this.state === 'resolve') {
+              let result = onResove(this.value);
+              try {
+                if (result instanceof HD) {
+                  result.then(
+                    (r) => {
+                      resolve(r);
+                    },
+                    (v) => {
+                      reject(v);
+                    }
+                  );
+                } else {
+                  resolve(result);
+                }
+              } catch (error) {
+                reject(error);
+              }
+            }
+            if (this.state === 'reject') {
+              let result = onReject(this.value);
+              try {
+                if (result instanceof HD) {
+                  result.then(
+                    (r) => {
+                      resolve(r);
+                    },
+                    (v) => {
+                      reject(v);
+                    }
+                  );
+                } else {
+                  resolve(thenresultResult);
+                }
+              } catch (error) {
+                reject(error);
+              }
+            }
+            if (this.state === 'pending') {
+              this.callbacks.push({
+                onResove: () => {
+                  let result = onResove(this.value);
+                  try {
+                    if (result instanceof HD) {
+                      result.then(
+                        (r) => {
+                          resolve(r);
+                        },
+                        (v) => {
+                          reject(v);
+                        }
+                      );
+                    } else {
+                      resolve(result);
+                    }
+                  } catch (error) {
+                    reject(error);
+                  }
+                },
+                onReject: () => {
+                  let result = onReject(this.value);
+                  try {
+                    if (result instanceof HD) {
+                      result.then(
+                        (r) => {
+                          resolve(r);
+                        },
+                        (v) => {
+                          reject(v);
+                        }
+                      );
+                    } else {
+                      resolve(result);
+                    }
+                  } catch (error) {
+                    reject(error);
+                  }
+                },
+              });
+            }
+          });
+
+          return thenResult;
+        }
+
+        catch(){
+          return this.then(undefined,onReject)
+        }
+      }
     </script>
   </body>
 </html>

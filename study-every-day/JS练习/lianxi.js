@@ -203,28 +203,28 @@ if (Object.is('1', 1)) {
 // })
 
 //判断页面大小
-onResize() {
+function onResize() {
   let pwidth = 1920;
   let prem = 100;
-  let html = document.getElementsByTagName("html")[0];
-  let oWidth =html.width;
+  let html = document.getElementsByTagName('html')[0];
+  let oWidth = html.width;
 
-document.body.clientWidth || document.documentElement.clientWidth;
+  document.body.clientWidth || document.documentElement.clientWidth;
   if (oWidth > 1300) {
-    oWidth = 1920
-    html.style.fontSize = oWidth / pwidth * prem + "px";
-  } else if(oWidth>800) {
-    oWidth = oWidth + 400
-    html.style.fontSize = oWidth / pwidth * prem + "px";
-  } else if(oWidth<800){
+    oWidth = 1920;
+    html.style.fontSize = (oWidth / pwidth) * prem + 'px';
+  } else if (oWidth > 800) {
+    oWidth = oWidth + 400;
+    html.style.fontSize = (oWidth / pwidth) * prem + 'px';
+  } else if (oWidth < 800) {
     //手机适配
     let pwidth = 750;
     let prem = 100;
-    let html = document.getElementsByTagName("html")[0];
+    let html = document.getElementsByTagName('html')[0];
     let oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-    html.style.fontSize = oWidth/pwidth*prem + "px";
+    html.style.fontSize = (oWidth / pwidth) * prem + 'px';
   }
-
+}
 // function fn() {
 //   let num = 10;
 //   function fun() {
@@ -377,7 +377,7 @@ function unique(arr) {
 // console.log(unique([123, 123, [1, 2, 3], [1, '2', 3], [1, 3, 4], [1, 2, 3], { a: 1 }, { a: 1 }, 'hello', null, null]))
 
 Infinity;
-flat(Infinity)
+flat(Infinity);
 Number.MAX_VALUE;
 Number.MIN_VALUE;
 // class User {
@@ -403,30 +403,30 @@ Number.MIN_VALUE;
 // hasOwnProperty检测对象自身是否包含指定的属性，不检测原型链上继承的属性。
 // 使用 in 可以在原型对象上检测
 // Object.getOwnPropertyNames
-Object.freeze();
-Object.prototype.__proto__ == null; //true
-Object.prototype.getPrototypeOf(Object) == null; //true
-a.isPrototypeOf(b); //
-a instanceof b; // a对象的原型链上是否还有b构造函数的原型
-Object.create(); //创建一个新对象 并且吧里面的参数赋值给新对象的原型__proto__
-Object.assign();
+// Object.freeze();
+// Object.prototype.__proto__ == null; //true
+// Object.prototype.getPrototypeOf(Object) == null; //true
+// a.isPrototypeOf(b); //
+// a instanceof b; // a对象的原型链上是否还有b构造函数的原型
+// Object.create(); //创建一个新对象 并且吧里面的参数赋值给新对象的原型__proto__
+// Object.assign();
 
 // Object.setPrototypeOf(obj, hd);// /设置hd为obj的新原型
 // Object.getPrototypeOf(obj)// 获取obj的新原型
-Object.defineProperty(obj, 'id', {
-  value: '',
-  configurable, //不能删除
-  enumerable, //不能枚举
-  writable, //不能重写
-}); //设置对象的单个属性
-Object.defineProperties(obj, {
-  name: {
-    value: '',
-  },
-  ag: {
-    value: '',
-  },
-});
+// Object.defineProperty(obj, 'id', {
+//   value: '',
+//   configurable, //不能删除
+//   enumerable, //不能枚举
+//   writable, //不能重写
+// }); //设置对象的单个属性
+// Object.defineProperties(obj, {
+//   name: {
+//     value: '',
+//   },
+//   ag: {
+//     value: '',
+//   },
+// });
 // Object.getOwnPropertyDescriptor()查看对象属性的描述。
 
 // try {
@@ -436,12 +436,12 @@ Object.defineProperties(obj, {
 // finally {
 // }
 
-splice();
-slice(); //第二个参数为0时从最后一个字母开始（-1）
+// splice();
+// slice(); //第二个参数为0时从最后一个字母开始（-1）
 
-substring(); //第二个参数为0时从0开始截取
-substr(); //第二个参数为截取的长度
-slice();
+// substring(); //第二个参数为0时从0开始截取
+// substr(); //第二个参数为截取的长度
+// slice();
 
 /**
  *
@@ -506,3 +506,14 @@ function Countdown() {
     for (let i = 6; i > -1; i--) await fn(i);
   })();
 }
+
+// '' NaN undefined null 0 都表示假
+
+// (2==3) && console.log('yes')谁假返回谁 表达式一成立 则执行表达式二 反之一 (相当于if判断,通常用于函数调用)
+// (2==3) || console.log('yes')谁真返回谁 表达式一成立 则执行表达式一  反之二(通常用于设置参数的默认值 )
+
+// try {
+// throw '错误'
+// } catch (error) {
+//     console.log(error);
+// } finally {
