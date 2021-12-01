@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-02 20:31:29
- * @LastEditTime: 2021-08-07 12:05:35
+ * @LastEditTime: 2021-11-22 15:23:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web\JS练习\dome.js
@@ -160,24 +160,26 @@
 
 // name1()
 
-// function a(params) {
-//   console.log(1);
-//   setTimeout(() => {
-//     console.log(2);
-//   }, 1000);
+function a(params) {
+  console.log(1);
+  setTimeout(() => {
+    console.log(2);
+  }, 1000);
 
-//   setTimeout(() => {
-//     console.log(3);
-//   }, 0);
+  setTimeout(() => {
+    console.log(3);
+  }, 0);
 
-//   new Promise(function (resolve) {
-//     resolve()
-//   }).then(function () {
-//     console.log(4);
-//   })
-//   console.log(5);
-// }
-// a()
+  new Promise(function(resolve) {
+    console.log(8);
+    resolve();
+    console.log(7);
+  }).then(function() {
+    console.log(4);
+  });
+  console.log(5);
+}
+a(); // a()1 8 5 3 2 7 4
 
 // console.log(!1, !'a', !0);
 // 1 === 1 && console.log(1);
@@ -364,70 +366,57 @@
 // Object.freeze()冻结对象
 
 //深拷贝
-JSON.parse(JSON.stringify(obj));
+// JSON.parse(JSON.stringify(obj));
 //深拷贝
-function deepCopy1(newobj, oldobj) {
-  for (let [k, v] of Object.entries(oldobj)) {
-    switch (Object.prototype.toString.call().slice(1, -8)) {
-      case "array":
-        newobj[k] = [];
-        deepCopy1(newobj[k], v);
-        break;
-      case "object":
-        newobj[k] = {};
-        deepCopy1(newobj[k], v);
-        break;
-      default:
-        newobj[k] = v;
-        break;
-    }
-  }
-}
+// function deepCopy1(newobj, oldobj) {
+//   for (let [k, v] of Object.entries(oldobj)) {
+//     switch (Object.prototype.toString.call().slice(1, -8)) {
+//       case 'array':
+//         newobj[k] = [];
+//         deepCopy1(newobj[k], v);
+//         break;
+//       case 'object':
+//         newobj[k] = {};
+//         deepCopy1(newobj[k], v);
+//         break;
+//       default:
+//         newobj[k] = v;
+//         break;
+//     }
+//   }
+// }
 //深拷贝
-function copy(obj) {
-  let res = obj instanceof Array ? [] : {};
-  for (let [v, k] of Object.entries(obj))
-    res[v] = typeof k == "object" ? copy(k) : k;
-  return res;
-}
+// function copy(obj) {
+//   let res = obj instanceof Array ? [] : {};
+//   for (let [v, k] of Object.entries(obj)) res[v] = typeof k == 'object' ? copy(k) : k;
+//   return res;
+// }
 
-const copy = obj => {
-  let val = obj instanceof Array ? [] : {};
-  for (let k in obj) val[k] = typeof obj[k] == "object" ? copy(obj[k]) : obj[k];
-  return val;
-};
+// const copy = (obj) => {
+//   let val = obj instanceof Array ? [] : {};
+//   for (let k in obj) val[k] = typeof obj[k] == 'object' ? copy(obj[k]) : obj[k];
+//   return val;
+// };
 // 深拷贝拷贝对象封装函数 (递归)
-function deepCopy(newobj, oldobj) {
-  for (var k in oldobj) {
-    // 判断我们的属性值属于那种数据类型
-    // 1. 获取属性值  oldobj[k]
-    var item = oldobj[k];
-    // 2. 判断这个值是否是数组
-    if (item instanceof Array) {
-      newobj[k] = [];
-      deepCopy(newobj[k], item);
-    } else if (item instanceof Object) {
-      // 3. 判断这个值是否是对象
-      newobj[k] = {};
-      deepCopy(newobj[k], item);
-    } else {
-      // 4. 属于简单数据类型
-      newobj[k] = item;
-    }
-  }
-}
-
-let aga = {
-  a: "1",
-  b: [1, 5],
-  c: {
-    age: 20,
-  },
-};
-
-let g = {};
-deepCopy1(g, aga);
-console.log(g);
+// function deepCopy(newobj, oldobj) {
+//   for (var k in oldobj) {
+//     // 判断我们的属性值属于那种数据类型
+//     // 1. 获取属性值  oldobj[k]
+//     var item = oldobj[k];
+//     // 2. 判断这个值是否是数组
+//     if (item instanceof Array) {
+//       newobj[k] = [];
+//       deepCopy(newobj[k], item);
+//     } else if (item instanceof Object) {
+//       // 3. 判断这个值是否是对象
+//       newobj[k] = {};
+//       deepCopy(newobj[k], item);
+//     } else {
+//       // 4. 属于简单数据类型
+//       newobj[k] = item;
+//     }
+//   }
+// }
 
 // let sym = symbol()
 // console.log(sym);
@@ -457,6 +446,6 @@ console.log(g);
 // console.log(lessonObj["css-0"]); //{title: "媒体查询响应式布局", category: "css"}
 
 // 返回随机数
-function random(max, min) {
-  return min + Math.floor(Math.random() * (max - min + 1));
-}
+// function random(max, min) {
+//   return min + Math.floor(Math.random() * (max - min + 1));
+// }

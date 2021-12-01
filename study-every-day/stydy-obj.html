@@ -1,7 +1,11 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
+<<<<<<< HEAD
  * @LastEditTime: 2021-10-02 11:30:14
+=======
+ * @LastEditTime: 2021-11-25 09:30:18
+>>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -18,18 +22,25 @@
   <body>
     <style>
       .container {
-        width: 100px;
-        height: 100px;
+        width: 800px;
+        height: 800px;
         padding: 10px;
         background-color: red;
+        display: grid;
+        place-content: center;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        background: skyblue;
       }
     </style>
-    <div class="container"></div>
+    <div class="container">
+      <div class="box"></div>
+    </div>
     <script>
-      // 重排是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
-
+      // 重排，回流是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
       // 重绘是指改变页面的样式 比如 background 字体颜色
-
       // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
       // console.log(Reflect.__proto__ === Object.prototype);
       // console.log(window.Reflect);
@@ -140,7 +151,9 @@
 
       let hd = 'houdunren2200hdcms998';
       // console.log(hd.match(/\d/));
+      /\d/.exec(hd);
       // console.log(hd.match(regHan));
+
       let str = 'hn.com';
       // console.log(str.search("om"));
 
@@ -151,7 +164,7 @@
       // {n,}	重复n次或更多次
       // {n,m}	重复n到m次包括n m
 
-      // | 表示左右任意一边2选1
+      // | 表示左右任意一边2选1   ()表示一个组
       //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
       // 可以使用 [\s\S]+ 或 [\d\D]* 来匹配所有字符
 
@@ -187,16 +200,15 @@
 
       // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键,但是WeaMap对键名是弱引用的，键值是正常引用。
 
-      //  拖动目标时触发的事件:
       // ondragstart - 用户开始拖动元素时触发
       // ondrag - 元素正在拖动时触发
       // ondragend - 用户完成元素拖动后触发
 
-      // 释放目标时触发的事件:
       // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
-      // ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
       // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+      // ondragover - 当被鼠标拖动的对象在另一对象容器范围内移动时触发此事件
       // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+
       // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
 
       let arr = [3, 1, 4, 6, 5, 7, 2];
@@ -223,7 +235,6 @@
       // console.log(arr);
 
       // Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
-
       // Element.getBoundingClientRect().top：元素上边到视窗上边的距离
       // Element.getBoundingClientRect().right：元素右边到视窗左边的距离
       // Element.getBoundingClientRect().bottom：元素下边到视窗上边的距离
@@ -333,6 +344,7 @@
       //   console.log(item);
       // }
 
+<<<<<<< HEAD
       new Pro((resolve, reject) => {});
       class Pro {
         constructor() {
@@ -412,6 +424,104 @@
           return thenPro;
         }
       }
+=======
+      // keycode=123  是f12键
+      // 禁止右键菜单
+      document.oncontextmenu = function() {
+        return false;
+      };
+      // 禁止文字选择
+      document.onselectstart = function() {
+        return false;
+      };
+      // 禁止复制
+      document.oncopy = function() {
+        return false;
+      };
+      // 禁止剪切
+      document.oncut = function() {
+        return false;
+      };
+      // 禁止粘贴
+      document.onpaste = function() {
+        return false;
+      };
+
+      export function formatTime(time, option) {
+        time = +time * 1000;
+        const d = new Date(time);
+        const now = Date.now();
+
+        const diff = (now - d) / 1000;
+
+        if (diff < 30) {
+          return '刚刚';
+        } else if (diff < 3600) {
+          // less 1 hour
+          return Math.ceil(diff / 60) + '分钟前';
+        } else if (diff < 3600 * 24) {
+          return Math.ceil(diff / 3600) + '小时前';
+        } else if (diff < 3600 * 24 * 2) {
+          return '1天前';
+        }
+        if (option) {
+          return parseTime(time, option);
+        } else {
+          return (
+            d.getMonth() +
+            1 +
+            '月' +
+            d.getDate() +
+            '日' +
+            d.getHours() +
+            '时' +
+            d.getMinutes() +
+            '分'
+          );
+        }
+      }
+
+      export function parseTime(time, cFormat) {
+        if (arguments.length === 0) {
+          return null;
+        }
+        const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+        let date;
+        if (typeof time === 'object') {
+          date = time;
+        } else {
+          if (('' + time).length === 10) time = parseInt(time) * 1000;
+          date = new Date(time);
+        }
+        const formatObj = {
+          y: date.getFullYear(),
+          m: date.getMonth() + 1,
+          d: date.getDate(),
+          h: date.getHours(),
+          i: date.getMinutes(),
+          s: date.getSeconds(),
+          a: date.getDay(),
+        };
+        const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+          let value = formatObj[key];
+          if (key === 'a') {
+            return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
+          }
+          if (result.length > 0 && value < 10) {
+            value = '0' + value;
+          }
+          return value || 0;
+        });
+        return timeStr;
+      }
+
+      //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
+      // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址
+      // 2. null == undefined成立/ null===undefined不成立
+      // 3. NaN==NaN不成立 NaN和谁都不相等
+      // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
+      //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+>>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34
     </script>
   </body>
 </html>

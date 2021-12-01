@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 16:19:16
- * @LastEditTime: 2021-09-02 09:41:13
+ * @LastEditTime: 2021-11-02 17:14:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\Login.vue
@@ -12,12 +12,13 @@
     <span>{{ name }}</span
     >-<span>{{ age }}</span>
     <h3>{{ dbCount }}</h3>
-    <sym></sym>
+    <h1 ref="dl">denglu</h1>
   </div>
 </template>
 
 <script lang="ts">
 import {
+  onActivated,
   defineComponent,
   ref,
   toRefs,
@@ -28,7 +29,6 @@ import {
   onMounted,
   getCurrentInstance,
   nextTick,
-  InjectionKey,
   provide,
   inject,
 } from "vue";
@@ -47,8 +47,12 @@ export default defineComponent({
     sym,
   },
 
-  setup(props, { attrs }) {
+  setup(props, context) {
     const internalInstance: any = getCurrentInstance();
+    console.log(internalInstance);
+    onActivated(() => {
+      console.log(111);
+    });
     // 访问 globalProperties vue原型
     // console.log(internalInstance.appContext.config.globalProperties);
 
@@ -62,6 +66,7 @@ export default defineComponent({
       name: "llq",
       age: 20,
     });
+    let dl = ref();
     let dbCount = computed((): number => (count.value * 2) as number);
 
     // console.log(nextTick);返回一个Promise
@@ -87,7 +92,8 @@ export default defineComponent({
       { deep: true }
     );
     onMounted(() => {
-      // console.log("Dom完成");
+      console.log(dl);
+      console.log(context);
     });
 
     return {
@@ -95,6 +101,7 @@ export default defineComponent({
       ...toRefs(user),
       dbCount,
       list,
+      dl,
     };
   },
 });

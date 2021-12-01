@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-10 09:30:41
- * @LastEditTime: 2021-08-12 09:31:42
+ * @LastEditTime: 2021-11-11 15:44:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\dynamic .vue
@@ -9,9 +9,11 @@
 <template>
   <div>
     <h3>
-      动态组件component 里面的is属性可以整个组件标签. 在原生元素上使用 但要以 is:vue: 的形式
+      ' 里面的is属性可以整个组件标签. 在原生元素上使用 但要以 is:vue: 的形式
     </h3>
+    <!-- "<component :is="isShowComponent"></component> -->
     <!-- is: - string | Component -->
+
     <!-- <template v-for="(item, index) in tabs" :key="index">
       <keep-alive>
         <component :is="item"></component>
@@ -25,9 +27,7 @@
     <template v-for="(item, index) in tabs" :key="index">
       <button @click="handleChangeComponent(item)">{{ item }}</button>
     </template>
-    <h3>
-      vuex:
-    </h3>
+    <h3>vuex:</h3>
     {{ currentCount }}
     <br />
     <button @click="jia">+commit</button>
@@ -42,9 +42,11 @@ import {
   reactive,
   onMounted,
   onDeactivated,
+  getCurrentInstance,
   defineComponent,
   defineAsyncComponent,
 } from "vue";
+import * as v from "vue";
 import { useStore, mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import Top from "../components/Top.vue";
 import Buttom from "../components/Buttom.vue";
@@ -53,7 +55,7 @@ import Main from "../components/Main.vue";
 export default defineComponent({
   name: "async",
   components: {
-    Top,
+    Top: defineAsyncComponent((): any => import("../components/Top.vue")), // 异步组件
     Main,
     Buttom,
   },
@@ -66,7 +68,7 @@ export default defineComponent({
     // 一旦解构响应式对象, 必须加上toRefs() 不然响应式就会失效
     const state = toRefs(store.state);
     // const state = store.state;
-    console.log(store.state?.currentCount);
+    // console.log(store.state?.currentCount);
     const isShowComponent = ref<string>("Main");
     const tabs = reactive<string[]>(["main", "Top", "Main", "Buttom", "a"]);
     const handleChangeComponent = (params: string): any => {
@@ -86,7 +88,9 @@ export default defineComponent({
       let reslut = await store.dispatch("asyncAdd", { value: 200 });
       console.log(reslut);
     };
-    onMounted(() => {});
+    onMounted(() => {
+      console.log(getCurrentInstance());
+    });
     onDeactivated(() => {});
     return {
       tabs,
