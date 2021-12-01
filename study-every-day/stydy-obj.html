@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-10-01 17:28:14
+ * @LastEditTime: 2021-10-02 11:30:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -332,6 +332,86 @@
       // for (item of iteratorObj) {
       //   console.log(item);
       // }
+
+      new Pro((resolve, reject) => {});
+      class Pro {
+        constructor() {
+          this.status = 'pending';
+          this.value = null;
+          this.callbacks = [];
+          try {
+            executor(this.resolve.bind(this), this.reject.bind(this));
+          } catch (error) {
+            this.reject(error);
+          }
+        }
+        resolve(value) {
+          if (this.status === 'pending') {
+            this.status = 'resolve';
+            this.value = value;
+            this.callbacks.map((item) => {
+              item.onResolve && item.onResolve();
+            });
+          }
+        }
+        reject(value) {
+          if (this.status === 'pending') {
+            this.status = 'reject';
+            this.value = value;
+            this.callbacks.map((item) => {
+              item.onReject && item.onReject();
+            });
+          }
+        }
+
+        then(onResolve, onReject) {
+          if (typeof onResolve !== 'function') {
+            onResolve = (value) => value;
+          }
+          if (typeof onReject !== 'function') {
+            onReject = (value) => value;
+          }
+
+          let thenPro = new Pro((resolve, reject) => {
+            if (this.status === 'pending') {
+              this.callbacks.push({
+                onResolve: () => {
+                  resolve();
+                },
+                onReject: () => {
+                  reject();
+                },
+              });
+            }
+            if (this.status === 'resolve') {
+              let result = onResolve(this.value);
+              if (result == thenPro) {
+                throw new Error('errors');
+              }
+              try {
+                if (result instanceof Pro) {
+                  result.then(
+                    (v) => {
+                      resolve(v);
+                    },
+                    (r) => {
+                      reject(r);
+                    }
+                  );
+                } else {
+                  resolve(result);
+                }
+              } catch (error) {
+                reject(error);
+              }
+            }
+            if (this.status === 'reject') {
+            }
+          });
+
+          return thenPro;
+        }
+      }
     </script>
   </body>
 </html>
