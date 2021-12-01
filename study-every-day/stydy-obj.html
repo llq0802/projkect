@@ -1,15 +1,6 @@
-<!--
- * @Author: your name
- * @Date: 2021-08-12 16:21:10
-<<<<<<< HEAD
- * @LastEditTime: 2021-10-02 11:30:14
-=======
- * @LastEditTime: 2021-11-25 09:30:18
->>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
--->
+* @LastEditTime: 2021-11-25 09:30:18 >>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34 *
+@LastEditors: Please set LastEditors * @Description: In User Settings Edit * @FilePath:
+\vue3.0-cli-ts\demo\stydu-obj.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -344,106 +335,25 @@
       //   console.log(item);
       // }
 
-<<<<<<< HEAD
-      new Pro((resolve, reject) => {});
-      class Pro {
-        constructor() {
-          this.status = 'pending';
-          this.value = null;
-          this.callbacks = [];
-          try {
-            executor(this.resolve.bind(this), this.reject.bind(this));
-          } catch (error) {
-            this.reject(error);
-          }
-        }
-        resolve(value) {
-          if (this.status === 'pending') {
-            this.status = 'resolve';
-            this.value = value;
-            this.callbacks.map((item) => {
-              item.onResolve && item.onResolve();
-            });
-          }
-        }
-        reject(value) {
-          if (this.status === 'pending') {
-            this.status = 'reject';
-            this.value = value;
-            this.callbacks.map((item) => {
-              item.onReject && item.onReject();
-            });
-          }
-        }
-
-        then(onResolve, onReject) {
-          if (typeof onResolve !== 'function') {
-            onResolve = (value) => value;
-          }
-          if (typeof onReject !== 'function') {
-            onReject = (value) => value;
-          }
-
-          let thenPro = new Pro((resolve, reject) => {
-            if (this.status === 'pending') {
-              this.callbacks.push({
-                onResolve: () => {
-                  resolve();
-                },
-                onReject: () => {
-                  reject();
-                },
-              });
-            }
-            if (this.status === 'resolve') {
-              let result = onResolve(this.value);
-              if (result == thenPro) {
-                throw new Error('errors');
-              }
-              try {
-                if (result instanceof Pro) {
-                  result.then(
-                    (v) => {
-                      resolve(v);
-                    },
-                    (r) => {
-                      reject(r);
-                    }
-                  );
-                } else {
-                  resolve(result);
-                }
-              } catch (error) {
-                reject(error);
-              }
-            }
-            if (this.status === 'reject') {
-            }
-          });
-
-          return thenPro;
-        }
-      }
-=======
       // keycode=123  是f12键
       // 禁止右键菜单
-      document.oncontextmenu = function() {
+      document.oncontextmenu = function () {
         return false;
       };
       // 禁止文字选择
-      document.onselectstart = function() {
+      document.onselectstart = function () {
         return false;
       };
       // 禁止复制
-      document.oncopy = function() {
+      document.oncopy = function () {
         return false;
       };
       // 禁止剪切
-      document.oncut = function() {
+      document.oncut = function () {
         return false;
       };
       // 禁止粘贴
-      document.onpaste = function() {
+      document.onpaste = function () {
         return false;
       };
 
@@ -521,7 +431,6 @@
       // 3. NaN==NaN不成立 NaN和谁都不相等
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
->>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34
     </script>
   </body>
 </html>

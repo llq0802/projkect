@@ -257,256 +257,255 @@
             }   */
     </style>
     <script>
-            console.time('time');
-            //经度longitude 纬度latitude
+      console.time('time');
+      //经度longitude 纬度latitude
 
-            // console.log(navigator);
-            // window.navigator.userAgent.includes("MSIE");ie
-            // navigator.userAgent.includes("Firefox");火狐
-            // navigator.userAgent.includes("Chrome");谷歌
-            // navigator.userAgent.includes("Opera");opera
-            // navigator.userAgent.includes("Safari");苹果
+      // console.log(navigator);
+      // window.navigator.userAgent.includes("MSIE");ie
+      // navigator.userAgent.includes("Firefox");火狐
+      // navigator.userAgent.includes("Chrome");谷歌
+      // navigator.userAgent.includes("Opera");opera
+      // navigator.userAgent.includes("Safari");苹果
 
-            // element.scrollLeft	 获取和设置元素X轴滚动位置
-            // element.scrollTop	获取和设置元素Y轴滚动位置
-            // element.scrollBy()	按偏移量进行滚动内容	参数为对象，{top:垂直偏移量,left:水平偏移量,behavior:'滚动方式'}
-            // element.scroll() 或 element.scrollTo()	滚动到指定的具体位置	参数为对象，{top:X轴文档位置,left:Y轴文档位置,behavior:'滚动方式'}
-            // element.scrollIntoView(bool)	定位到顶部或底部	参数为true元素定位到顶部，为false定位到窗口底部
-            //window.pageYOffset对象属性是文档(body,html)滚动的高度 它等于 document.documentElement.scrollTop
-            // window.pageYOffset == document.documentElement.scrollTop;
+      // element.scrollLeft	 获取和设置元素X轴滚动位置
+      // element.scrollTop	获取和设置元素Y轴滚动位置
+      // element.scrollBy()	按偏移量进行滚动内容	参数为对象，{top:垂直偏移量,left:水平偏移量,behavior:'滚动方式'}
+      // element.scroll() 或 element.scrollTo()	滚动到指定的具体位置	参数为对象，{top:X轴文档位置,left:Y轴文档位置,behavior:'滚动方式'}
+      // element.scrollIntoView(bool)	定位到顶部或底部	参数为true元素定位到顶部，为false定位到窗口底部
+      //window.pageYOffset对象属性是文档(body,html)滚动的高度 它等于 document.documentElement.scrollTop
+      // window.pageYOffset == document.documentElement.scrollTop;
 
-            // document.getElementById('nav')
-            // document.getElementsByClassName
-            // document.getElementsByTagName
-            // document.querySelector()
-            // document.querySelectorAll()
+      // document.getElementById('nav')
+      // document.getElementsByClassName
+      // document.getElementsByTagName
+      // document.querySelector()
+      // document.querySelectorAll()
 
-            // decodeURI
-            // encodeURI
-            // decodeURIComponent
-            // encodeURIComponent
+      // decodeURI
+      // encodeURI
+      // decodeURIComponent
+      // encodeURIComponent
 
-            // document.title = "标题"
-            // document.URL 地址
-            // document.body :body
-            // document.documentElement :html
+      // document.title = "标题"
+      // document.URL 地址
+      // document.body :body
+      // document.documentElement :html
 
-            //  “./”：代表目前所在的目录。
+      //  “./”：代表目前所在的目录。
 
-            // “../”：代表上一层目录。
+      // “../”：代表上一层目录。
 
-            // ”/”开头：代表根目录。
-            // element.getBoundingClientRect()
+      // ”/”开头：代表根目录。
+      // element.getBoundingClientRect()
 
-            //(e.pageX-element.offsetLeft)表示鼠标在element盒子中的位置
-            //e.pageX- (e.pageX-element.offsetLeft)表示拖动的盒子距离左边窗口的距离
+      //(e.pageX-element.offsetLeft)表示鼠标在element盒子中的位置
+      //e.pageX- (e.pageX-element.offsetLeft)表示拖动的盒子距离左边窗口的距离
 
-            // position absoulut使用文档定位 ，position fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档 stacky粘性定位
-            // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
-            // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动条的情况下，clientX和cilentY与pageX和pageY是相等的
-            // offsetX和offsetY是相对于事件触发的盒子的的距离
+      // position absoulut使用文档定位 ，position fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档 stacky粘性定位
+      // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
+      // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动条的情况下，clientX和cilentY与pageX和pageY是相等的
+      // offsetX和offsetY是相对于事件触发的盒子的的距离
 
-            // window.innerWidth; //html body整个视口宽度 包括滚动条
-            // document.documentElement.clientWidth || document.body.clientWidth; //html body视口宽度 不包括滚动条
+      // window.innerWidth; //html body整个视口宽度 包括滚动条
+      // document.documentElement.clientWidth || document.body.clientWidth; //html body视口宽度 不包括滚动条
 
-            //element.offsetLeft; //距离带有定位父亲盒子的距离 ,如果么有父亲或者父亲没有定位布局! 则以body为准
-            //element.clientLeft; //盒子内容距离外部的距离 mar+pad+bor
-            //element.scrollTop; //垂直滚动条顶部已经滚动的高度
-            //element.screenLeft; //距离整个显示屏幕的距离
+      //element.offsetLeft; //距离带有定位父亲盒子的距离 ,如果么有父亲或者父亲没有定位布局! 则以body为准
+      //element.clientLeft; //盒子内容距离外部的距离 mar+pad+bor
+      //element.scrollTop; //垂直滚动条顶部已经滚动的高度
+      //element.screenLeft; //距离整个显示屏幕的距离
 
-            //element.offsetWidth; // offsetWidth    返回元素width 包括padding border
-            //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
-            //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
-            //element.screenWidth; // clientWidth    返回屏幕width
-            // window.pageYOffset === document.body.scrollTop||document.documentElement.scrollTop
-            // console.log(window.pageYOffset == document.scrollTop);
-            // element.getBoundingClientRect().width =
-            // addEventListener('click',fn)s
-            // removeEventListener('click',fn)
+      //element.offsetWidth; // offsetWidth    返回元素width 包括padding border
+      //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
+      //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
+      //element.screenWidth; // clientWidth    返回屏幕width
+      // window.pageYOffset === document.body.scrollTop||document.documentElement.scrollTop
+      // console.log(window.pageYOffset == document.scrollTop);
+      // element.getBoundingClientRect().width =
+      // addEventListener('click',fn)s
+      // removeEventListener('click',fn)
 
-            //  app.style.cssText = `background-color:red;color:yellow` //批量设置css style
-            //  window.getComputedStyle(app) // 获取元素的样式,不能设置样式 包括行内样式和class定义的样式 window.getComputedStyle(element).width
+      //  app.style.cssText = `background-color:red;color:yellow` //批量设置css style
+      //  window.getComputedStyle(app) // 获取元素的样式,不能设置样式 包括行内样式和class定义的样式 window.getComputedStyle(element).width
 
-            // charAt() 根据索引返回值
-            // charCodeAt() 根据索引返回啊斯可码
-            // indexof() 返回索引
-            // // arr.forEach(callBcak);
-            // // function callBcak(item,index) {
-            // //   console.log(item,index);
+      // charAt() 根据索引返回值
+      // charCodeAt() 根据索引返回啊斯可码
+      // indexof() 返回索引
+      // // arr.forEach(callBcak);
+      // // function callBcak(item,index) {
+      // //   console.log(item,index);
 
-            // // }
-            // function group(array, sub  Num) {
-            //   let index = 0;
-            //   let newArray = [];
-            //   while (index < array.length) {
-            //     newArray.push(array.slice(index, (index += subNum)));
-            //   }
-            //   return newArray;
-            // }
-            // var Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-            // var groupArray = group(Array, 5);
-            // console.log(groupArray); // [[1,2,3,4,5,6],[7,8,9,10,11,12]]
-            // let arr = ["a", "e", 55, 44, "f", 1, 8, "g", "b", "c", "h", "d"];
-            // let arr1 = ["a", "e", "g", "b", "c", "h", "d"];
-            // let str = "21gshghsdjhdjfy";
-            // console.log(str.charAt(5));
-            // console.log(str.charCodeAt(0));
-            // let a = arr1.sort((a, b) => {
-            //   return a.charCodeAt(0) - b.charCodeAt(0);
-            // });
-            // console.log(arr1);
-            // charCodeAt()
-            // console.log(arr.charCodeAt(0));
-            // let startIndex = arr.findIndex(item => item === "a");
-            // let endIndex = arr.findIndex(item => item === "e");
-            // console.log(startIndex,endIndex);
-            // // arr.splice(1,4)
-            // let arr1 = [ "a", "c", "d",
-            // '2','e']
-            // // console.log(arr.splice(1,3));
-            //  arr.splice(1,4)
-            //  arr.splice(1,0,...arr1)
-            // // console.log(arr);
-            // arr.splice(startIndex,endIndex+1,...arr1)
-            // console.log(arr);
+      // // }
+      // function group(array, sub  Num) {
+      //   let index = 0;
+      //   let newArray = [];
+      //   while (index < array.length) {
+      //     newArray.push(array.slice(index, (index += subNum)));
+      //   }
+      //   return newArray;
+      // }
+      // var Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      // var groupArray = group(Array, 5);
+      // console.log(groupArray); // [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+      // let arr = ["a", "e", 55, 44, "f", 1, 8, "g", "b", "c", "h", "d"];
+      // let arr1 = ["a", "e", "g", "b", "c", "h", "d"];
+      // let str = "21gshghsdjhdjfy";
+      // console.log(str.charAt(5));
+      // console.log(str.charCodeAt(0));
+      // let a = arr1.sort((a, b) => {
+      //   return a.charCodeAt(0) - b.charCodeAt(0);
+      // });
+      // console.log(arr1);
+      // charCodeAt()
+      // console.log(arr.charCodeAt(0));
+      // let startIndex = arr.findIndex(item => item === "a");
+      // let endIndex = arr.findIndex(item => item === "e");
+      // console.log(startIndex,endIndex);
+      // // arr.splice(1,4)
+      // let arr1 = [ "a", "c", "d",
+      // '2','e']
+      // // console.log(arr.splice(1,3));
+      //  arr.splice(1,4)
+      //  arr.splice(1,0,...arr1)
+      // // console.log(arr);
+      // arr.splice(startIndex,endIndex+1,...arr1)
+      // console.log(arr);
 
-            // ([1,[2],[[3],4],5])
-            // let arr = [
-            //   [["ggsg"], ["f"], ["h"], ["mf"], ["jf"]],
-            //   [["ggsg"], ["f"], ["jf"]],
-            // ];
-            // const a  = deepFlat([1,[2],[[3],4],5]);
-            // console.log(a);
-            // const b =deepFlatten([1,[2],[[3],4],5])
-            // console.log(b);
-            //Object.freeze()冻结
+      // ([1,[2],[[3],4],5])
+      // let arr = [
+      //   [["ggsg"], ["f"], ["h"], ["mf"], ["jf"]],
+      //   [["ggsg"], ["f"], ["jf"]],
+      // ];
+      // const a  = deepFlat([1,[2],[[3],4],5]);
+      // console.log(a);
+      // const b =deepFlatten([1,[2],[[3],4],5])
+      // console.log(b);
+      //Object.freeze()冻结
 
-            // let {length : len} =  ["a", 1, { age: 20 }]
-            // let str = 'abcdefg'
+      // let {length : len} =  ["a", 1, { age: 20 }]
+      // let str = 'abcdefg'
 
-            // console.log(str.substring(1,3));
-            //isInteger判断一个数是否是整数
-            // Number.isInteger(25.2); // true
-            // console.log(Number.isInteger(25.2));
+      // console.log(str.substring(1,3));
+      //isInteger判断一个数是否是整数
+      // Number.isInteger(25.2); // true
+      // console.log(Number.isInteger(25.2));
 
-            // setTimeout 文件读取上传 网络请求  ()宏任务
+      // setTimeout 文件读取上传 网络请求  ()宏任务
 
-            // console.log(Object.prototype.toString.call({}).slice(8, -1));
-            // for(const i in obj){
-            //   console.log(i);
-            // }
-            // const FileReade = new FileReader();
-            // console.log(FileReade);
-            // const ws = new WebSocket("wss://echo.websocket.org");
-            // ws.addEventListener("open", function (event) {
-            //   ws.send("Hello Server!");
-            // });
-            // console.log(ws);
+      // console.log(Object.prototype.toString.call({}).slice(8, -1));
+      // for(const i in obj){
+      //   console.log(i);
+      // }
+      // const FileReade = new FileReader();
+      // console.log(FileReade);
+      // const ws = new WebSocket("wss://echo.websocket.org");
+      // ws.addEventListener("open", function (event) {
+      //   ws.send("Hello Server!");
+      // });
+      // console.log(ws);
 
-            // window.onresize=(e)=>{
-            //   console.log(e);
-            // }
+      // window.onresize=(e)=>{
+      //   console.log(e);
+      // }
 
-            // let s = Symbol("s"); //注意，Symbol值作为对象属性名时，不能用点运算符。并且Symbol不能被遍历!
-            // //是原始类型:Number String 布尔  null undefined Symbol;
-            // const obj = {
-            //   [s]: "这是symbol",
-            //   age: 20,
-            //   11: "arr",
-            // };
-            // const columnList = Object.freeze([
-            //   {
-            //     title: "姓名",
-            //     key: "name",
-            //     align: "center",
-            //   },
-            //   {
-            //     title: "性别",
-            //     key: "gender",
-            //     align: "center",
-            //   },
-            // ]);
+      // let s = Symbol("s"); //注意，Symbol值作为对象属性名时，不能用点运算符。并且Symbol不能被遍历!
+      // //是原始类型:Number String 布尔  null undefined Symbol;
+      // const obj = {
+      //   [s]: "这是symbol",
+      //   age: 20,
+      //   11: "arr",
+      // };
+      // const columnList = Object.freeze([
+      //   {
+      //     title: "姓名",
+      //     key: "name",
+      //     align: "center",
+      //   },
+      //   {
+      //     title: "性别",
+      //     key: "gender",
+      //     align: "center",
+      //   },
+      // ]);
 
-            // for (const item of Object.keys(obj)) {
-            //   console.log(typeof item);
-            // }
+      // for (const item of Object.keys(obj)) {
+      //   console.log(typeof item);
+      // }
 
-            //父子组件的加载顺序 home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
+      //父子组件的加载顺序 home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
 
-            //  css 按照 布局方式>width margin padding boeder > 字体中的样式颜色背景 >其他属性
-            // Number.isInteger()
+      //  css 按照 布局方式>width margin padding boeder > 字体中的样式颜色背景 >其他属性
+      // Number.isInteger()
 
-            // console.log(Object.prototype.toString.call('a').slice(8,-1)==='String');
-            // console.log(Object.prototype.toString.call(set).slice(8,-1) );
-            // console.log(Object.prototype.toString.call(map).slice(8,-1) );
-            //   Object Array  Date RegExp Set Map
-            // String Number null undefined  Symbol Boolean
+      // console.log(Object.prototype.toString.call('a').slice(8,-1)==='String');
+      // console.log(Object.prototype.toString.call(set).slice(8,-1) );
+      // console.log(Object.prototype.toString.call(map).slice(8,-1) );
+      //   Object Array  Date RegExp Set Map
+      // String Number null undefined  Symbol Boolean
 
-            // null??1;
-            // obj?.value
+      // null??1;
+      // obj?.value
 
-            //==========map set 结构==========
-            // const map = new Map();
-            // const set = new Set();
-            // map.set('a', 1);
-            // map.set('b', 2);
-            // map.set('c', 3);
-            // map.set('d', 4);
-            // map.get('d')
-            // for (let item of map.entries()) {
-            //   // console.log(item);
-            // }
+      //==========map set 结构==========
+      // const map = new Map();
+      // const set = new Set();
+      // map.set('a', 1);
+      // map.set('b', 2);
+      // map.set('c', 3);
+      // map.set('d', 4);
+      // map.get('d')
+      // for (let item of map.entries()) {
+      //   // console.log(item);
+      // }
 
-            // map.forEach((value, key) => {
-            //   console.log(value,key);
-            // })
-            // set.add('a');
-            // console.log(map);
-            // console.log(set);
+      // map.forEach((value, key) => {
+      //   console.log(value,key);
+      // })
+      // set.add('a');
+      // console.log(map);
+      // console.log(set);
 
-            // choose 策略对象模式判断
-            // function choose(val) {
-            //   const chooseValue = {
-            //     1: "a",
-            //     2: "b",
-            //     3: "c",
-            //   };
-            //   return chooseValue[val];
-            // }
-            // console.log( choose(2));
+      // choose 策略对象模式判断
+      // function choose(val) {
+      //   const chooseValue = {
+      //     1: "a",
+      //     2: "b",
+      //     3: "c",
+      //   };
+      //   return chooseValue[val];
+      // }
+      // console.log( choose(2));
 
-            //==========Proxy代理==========
-            // const proxy = new Proxy({},{
-            //   set(){
+      //==========Proxy代理==========
+      // const proxy = new Proxy({},{
+      //   set(){
 
-            //   },
-            //   get(){
+      //   },
+      //   get(){
 
-            //   }
-            // })
-            // const ws = new WebSocket()
-            // const readfile = new FileReader()
-            // object-fit 用在img标签中
+      //   }
+      // })
+      // const ws = new WebSocket()
+      // const readfile = new FileReader()
+      // object-fit 用在img标签中
 
-            // 箭头函数不能当做构造函数，因为箭头函数没得prototype 在new对象时，会创建一个新的对象并把对象的__proto__与构造函数的prototype关联
+      // 箭头函数不能当做构造函数，因为箭头函数没得prototype 在new对象时，会创建一个新的对象并把对象的__proto__与构造函数的prototype关联
 
-            // 做用slice函数做分页分割时，或者数组分割时 前一个永远比后一个参数page少1  slice(index*size,(index+1)*size)
+      // 做用slice函数做分页分割时，或者数组分割时 前一个永远比后一个参数page少1  slice(index*size,(index+1)*size)
 
-            //==========函数方法==========
-            // const cunck = (arr, size) => {
-            //   let startIndex = 0;
-            //   let newArray = [];
-            //   for (let i = 0; i < arr.length; i++) {
-            //     if (startIndex < arr.length) {
-            //       startIndex === 0 ? newArray.push(arr.substr(0, size)) : newArray.push(arr.substr(startIndex += size, size));
-            //     }
-            //   }
-            //   return newArray
-            // }
+      //==========函数方法==========
+      // const cunck = (arr, size) => {
+      //   let startIndex = 0;
+      //   let newArray = [];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (startIndex < arr.length) {
+      //       startIndex === 0 ? newArray.push(arr.substr(0, size)) : newArray.push(arr.substr(startIndex += size, size));
+      //     }
+      //   }
+      //   return newArray
+      // }
 
-            // console.log(cunck([12, 5, 4, 49, 9, 485, 71, 7, 8, 1], 2));
+      // console.log(cunck([12, 5, 4, 49, 9, 485, 71, 7, 8, 1], 2));
 
-<<<<<<< HEAD
       // 手写bind函数
       Function.prototype.simpleBind = function (targetThis, ...args) {
         const thisFn = this;
@@ -816,387 +815,283 @@
       const randomSort = (arr) => {
         arr.sort(() => Math.random() - 0.5);
       };
-=======
-            // ==========常见函数==========
-            // ==========动态模块引入import()返回一个Promise对象==========
-            // import(`./section-modules/${someVariable}.js`)
-            //   .then(module => {
-            //     module.loadPageInto(main);
-            //   })
-            //   .catch(err => {
-            //     main.textContent = err.message;
-            //   });
 
-            // const deepFlatten = arr => {
-            //   return [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)));
-            // };
-            /**
-             * @description:
-             * @param {*}
-             * @return {*}
-             */
-            const deepFlat = (arr) => {
-              let tempArr = [];
-              arr.map((item) => {
-                if (Array.isArray(item)) {
-                  tempArr.push(...deepFlat(item));
-                } else {
-                  tempArr.push(item);
-                }
-              });
-              return tempArr;
-            };
-
-            // Array.flat(Infinity)
-
-            // 手写bind函数
-            Function.prototype.simpleBind = function(targetThis, ...args) {
-              const thisFn = this;
-              return function(...params) {
-                thisFn.apply(targetThis, [...args, ...params]);
-              };
-            };
-            // 防抖函数
-            const debounce = (fn, delay = 100) => {
-              let timeoutId;
-              return function(...args) {
-                if (timeoutId) clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => fn.apply(this, args), delay);
-              };
-            };
-
-            /**
-             * @description:
-             * @param {*}
-             * @return {*}
-             */
-            const throttle1 = (fn, wait) => {
-              let inThrottle, lastFn, lastTime;
-              return function() {
-                const context = this,
-                  args = arguments;
-                if (!inThrottle) {
-                  fn.apply(context, args);
-                  lastTime = Date.now();
-                  inThrottle = true;
-                } else {
-                  clearTimeout(lastFn);
-                  lastFn = setTimeout(function() {
-                    if (Date.now() - lastTime >= wait) {
-                      fn.apply(context, args);
-                      lastTime = Date.now();
-                    }
-                  }, Math.max(wait - (Date.now() - lastTime), 0));
-                }
-              };
-            };
-            //节流函数
-            function throttle(fn, delay = 100) {
-              let lastTime = 0;
-              return function() {
-                let currTime = +new Date();
-                if (currTime - lastTime > delay) {
-                  fn.apply(this, arguments);
-                  lastTime = currTime;
-                }
-              };
+      //                               // index*subNum,(index+1)*subNum
+      //     newArray.push(array.slice(startIndex, (startIndex += subNum)));
+      //   }
+      //   return newArray;
+      // }
+      // 深度过滤数组重复值
+      const uniqueDeep = (arr) => {
+        let tempArr = [];
+        let obj = {};
+        arr.map((item) => {
+          if (typeof item !== 'object') {
+            if (!tempArr.includes(item)) {
+              tempArr.push(item);
             }
-            //深拷贝
-            const cloneDeep = (obj) => {
-              let temp = Array.isArray(obj) ? [] : {};
-              for (let k in obj) {
-                temp[k] = typeof obj[k] === 'object' ? cloneDeep(obj[k]) : obj[k];
+          } else {
+            let key = JSON.stringify(item);
+            if (!obj[key]) {
+              tempArr.push(item);
+              obj[key] = 1;
+            }
+          }
+        });
+        return tempArr;
+      };
+
+      //统计出现最多次数的字符串
+      const llq = (str) => {
+        let temp = {};
+        let max = 0,
+          val;
+        for (let item of str) {
+          if (!temp[str]) {
+            temp[str] = 1;
+          } else {
+            temp[str]++;
+          }
+        }
+        for (let k in temp) {
+          if (temp[k] > max) {
+            temp[k] = max;
+            val = k;
+          }
+        }
+        return {
+          val,
+          max,
+        };
+      };
+      // 以下函数返回 min（包含）～ max（包含）之间的数字：
+      function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // 以下函数返回 min（包含）～ max（不包含）之间的数字：
+      function getRndIntegerNo(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+      // 数组随机排序
+      function randomSort(arr) {
+        arr.sort(function (a, b) {
+          return Math.random() - 0.5;
+        });
+      }
+
+      //线程随眠
+      function sleepss(delay) {
+        let start = new Date().getTime();
+        while (new Date().getTime() - start < delay) {
+          continue;
+        }
+      }
+
+      // 动画定时器 间隔时间为屏幕刷新帧数 用法与setTimeout一样
+      window.requestAnimationFrame;
+      window.cancelAnimationFrame; //取消动画定时器
+
+      // default
+      // const f = new FileReader()
+      // const w = new WebSocket()
+      // const {append} = new FormData()
+      // const pro = new Promise()
+      // console.log(append);
+      // create创建
+      //development production
+      // console.log(1e20);
+      // new set()
+      // new map()
+      // var a,b,c =1
+      // console.log(a,b,c);
+      // document.getElementById('nav')
+      // document.getElementsByClassName
+      // document.getElementsByTagName
+      // document.querySelector()
+
+      // document.querySelectorAll()
+      // decodeURI
+      // encodeURI
+      // decodeURIComponent
+      // encodeURIComponent
+      // document.title = "标题"
+      // document.body
+      // document.documentElement
+      // position使用文档定位，fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档
+      // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
+      // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动的情况下，clientX和cilentY与pageX和pageY是相等的
+      // offsetX和offsetY是相对于事件触发的盒子的的距离
+      // window.innerWidth; //html body视口宽度 包括滚动条
+      // document.documentElement.clientWidth || document.body.clientWidth; //html body视口宽度 不包括滚动条
+      //element.offsetLeft; //距离带有定位父亲盒子的距离 ,如果么有父亲或者父亲没有定位布局! 则以body为准
+      //element.clientLeft; //盒子内容距离外部的距离
+      //element.scrollTop; //垂直滚动条顶部已经滚动的高度
+      //element.screenLeft; //距离整个显示屏幕的距离
+      //element.offsetWidth; // offsetWidth    返回元素width 包括padding border
+      //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
+      //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
+      //element.screenWidth; // clientWidth    返回屏幕width
+      // addEventListener('click',fn)
+      // removeEventListener('click',fn)
+      //  app.style.cssText = `background-color:red;color:yellow` //批量设置css style
+      //  window.getComputedStyle(app) // 获取元素的样式 包括行内样式和class定义的样式
+
+      // async function delay() {
+      //   return 11;
+      // }
+      // console.log(delay());
+
+      // let map = new Map()
+      // map.set(delay,{age:10})
+      // console.log(map);
+      // document.addEventListener("resize", () => {
+      //   console.log(111);
+      // });
+      // window.onresize = function () {
+      //   console.log(112);
+      // };
+      // document.documentElement.style.cssText = `font-size:10px`
+      // console.log(window.getComputedStyle(document.documentElement).fontSize);
+
+      // ES6 规定，通过super调用父类的方法时，super会绑定子类的this。
+      // super作为函数时,只能出现在子类的构造函数中
+      // super作为对象时，指向父类的原型对象。
+
+      // 发送的JSON类型需要设置请求头为 application/json;charset=utf-8
+      // 发送的图片,文件需要设置请求头为 application/formdata;charset=utf-8
+      // 发送的普通表单对象,文件需要设置请求头为 application/x-www-form-urlencoded;charset=utf-8
+
+      // const desc = {
+      //   status: 0,
+      //   name: "llq",
+      //   age: 10,
+      //   money: 10000,
+      // };
+      // console.log(Object.getOwnPropertyDescriptors(desc));
+      // Object.defineProperties();
+
+      // console.log(Object.getOwnPropertyDescriptor(desc, "name"));
+      // Object.defineProperty();
+
+      // for (let i = 1; i <= 5; i++) {
+      //   setTimeout(() => console.log(i), 1000 * i);
+      // }
+
+      //   (/是根目录 ./是当前目录! ../是上一层目录!)
+
+      // 如果是git clone  远程仓库地址 自动会将仓库分支关联
+
+      //本地仓库关联远程仓库: git remote add origin 你的远程仓库地址 //git remote add origin(如果远程没有分支 就自动新建一个)
+
+      //取消本地目录下关联的远程库：git remote remove origin //git remote remove origin
+
+      // 当github上已经有master分支和dev分支
+      // 在本地git checkout -b dev 新建并切换到本地dev分支
+      // git pull origin dev 本地分支与远程分支相关联
+
+      // 当远程没有分支,在本地新建分支并推送到远程
+      // git checkout -b test
+      // git push origin test   这样远程仓库中也就创建了一个test分支
+
+      // console.log(1);
+      // const asy = async (params) => {
+      //   setTimeout(() => {
+      //     console.log(2);
+      //   });
+      // };
+      // asy();
+      // console.log(3);
+
+      let obj = {
+        name: 'test',
+        age: 18,
+      };
+
+      let hd = {
+        desc: '我是',
+        age: 20,
+      };
+
+      obj.age = hd.age;
+      hd.age = 30;
+      console.log(obj);
+      console.log(hd);
+      const bind =
+        (fn, context, ...boundArgs) =>
+        (...args) =>
+          fn.apply(context, [...boundArgs, ...args]);
+      const delay = (fn, wait, ...args) => setTimeout(fn, wait, ...args);
+
+      const throttle11 = (fn, wait) => {
+        let inThrottle, lastFn, lastTime;
+        return function () {
+          const context = this,
+            args = arguments;
+          if (!inThrottle) {
+            fn.apply(context, args);
+            lastTime = Date.now();
+            inThrottle = true;
+          } else {
+            clearTimeout(lastFn);
+            lastFn = setTimeout(function () {
+              if (Date.now() - lastTime >= wait) {
+                fn.apply(context, args);
+                lastTime = Date.now();
               }
-              return temp;
-            };
-            //休眠延迟函数
-            const sleep =  () => {
-              await new Promise((resolve) => {
-                setTimeout(resolve, 1000);
-              });
-            };
-            //将数组拆分成平均长度的数组
-            function group(array, subNum) {
-              let startIndex = 0;
-              let newArray = [];
-              while (startIndex < array.length) {
->>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34
+            }, Math.max(wait - (Date.now() - lastTime), 0));
+          }
+        };
+      };
+      const debounce11 = (fn, ms = 0) => {
+        let timeoutId;
+        return function (...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn.apply(this, args), ms);
+        };
+      };
 
-                                          // index*subNum,(index+1)*subNum
-                newArray.push(array.slice(startIndex, (startIndex += subNum)));
-              }
-              return newArray;
-            }
-            // 深度过滤数组重复值
-            const uniqueDeep = (arr) => {
-              let tempArr = [];
-              let obj = {};
-              arr.map((item) => {
-                if (typeof item !== 'object') {
-                  if (!tempArr.includes(item)) {
-                    tempArr.push(item);
-                  }
-                } else {
-                  let key = JSON.stringify(item);
-                  if (!obj[key]) {
-                    tempArr.push(item);
-                    obj[key] = 1;
-                  }
-                }
-              });
-              return tempArr;
-            };
+      const deepClone1 = (obj) => {
+        let clone = Object.assign({}, obj);
+        Object.keys(clone).forEach(
+          (key) => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
+        );
+        return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
+      };
+      //简易版的随机排序
+      // const randomSort = (arr) => {
+      //   arr.sort(() => Math.random() - 0.5);
+      // };
 
-            //统计出现最多次数的字符串
-            const llq = (str) => {
-              let temp = {};
-              let max = 0,
-                val;
-              for (let item of str) {
-                if (!temp[str]) {
-                  temp[str] = 1;
-                } else {
-                  temp[str]++;
-                }
-              }
-              for (let k in temp) {
-                if (temp[k] > max) {
-                  temp[k] = max;
-                  val = k;
-                }
-              }
-              return {
-                val,
-                max,
-              };
-            };
-            // 以下函数返回 min（包含）～ max（包含）之间的数字：
-            function getRndInteger(min, max) {
-              return Math.floor(Math.random() * (max - min + 1)) + min;
-            }
+      let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-            // 以下函数返回 min（包含）～ max（不包含）之间的数字：
-            function getRndIntegerNo(min, max) {
-              return Math.floor(Math.random() * (max - min)) + min;
-            }
-            // 数组随机排序
-            function randomSort(arr) {
-              arr.sort(function(a,b) {
-                return Math.random() - 0.5;
-              });
-            }
+      arr1.sort(() => Math.random() - 0.5);
+      console.log(arr1);
 
-            //线程随眠
-            function sleepss(delay) {
-              let start = new Date().getTime();
-              while (new Date().getTime() - start < delay) {
-                continue;
-              }
-            }
+      function Free() {}
+      let f = new Free();
+      //f instanceof Free;  Free构造函数的原型对象是否在f实例对象的原型链上
+      // b.isPrototypeOf(a)  b对象是否在是a对象的原型链上
 
-            // 动画定时器 间隔时间为屏幕刷新帧数 用法与setTimeout一样
-            window.requestAnimationFrame;
-            window.cancelAnimationFrame; //取消动画定时器
+      function formatTime(time, option) {
+        time = +time * 1000;
+        const d = new Date(time);
+        const now = Date.now();
 
-            // default
-            // const f = new FileReader()
-            // const w = new WebSocket()
-            // const {append} = new FormData()
-            // const pro = new Promise()
-            // console.log(append);
-            // create创建
-            //development production
-            // console.log(1e20);
-            // new set()
-            // new map()
-            // var a,b,c =1
-            // console.log(a,b,c);
-            // document.getElementById('nav')
-            // document.getElementsByClassName
-            // document.getElementsByTagName
-            // document.querySelector()
-
-            // document.querySelectorAll()
-            // decodeURI
-            // encodeURI
-            // decodeURIComponent
-            // encodeURIComponent
-            // document.title = "标题"
-            // document.body
-            // document.documentElement
-            // position使用文档定位，fixed使用视口定位  视口<=文档!! 在没有滚动的情况下,视口=文档
-            // pageX和pageY代表鼠标光标在文档中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的。
-            // clientX和cilentY代表鼠标光标在视口中的位置, 在没有滚动的情况下，clientX和cilentY与pageX和pageY是相等的
-            // offsetX和offsetY是相对于事件触发的盒子的的距离
-            // window.innerWidth; //html body视口宽度 包括滚动条
-            // document.documentElement.clientWidth || document.body.clientWidth; //html body视口宽度 不包括滚动条
-            //element.offsetLeft; //距离带有定位父亲盒子的距离 ,如果么有父亲或者父亲没有定位布局! 则以body为准
-            //element.clientLeft; //盒子内容距离外部的距离
-            //element.scrollTop; //垂直滚动条顶部已经滚动的高度
-            //element.screenLeft; //距离整个显示屏幕的距离
-            //element.offsetWidth; // offsetWidth    返回元素width 包括padding border
-            //element.scrollWidth; // scrollWidth    返回元素width 包括padding border 还有滚动超出的部分
-            //element.clientWidth; // clientWidth    返回元素width 包括padding 不包括border
-            //element.screenWidth; // clientWidth    返回屏幕width
-            // addEventListener('click',fn)
-            // removeEventListener('click',fn)
-            //  app.style.cssText = `background-color:red;color:yellow` //批量设置css style
-            //  window.getComputedStyle(app) // 获取元素的样式 包括行内样式和class定义的样式
-
-            // async function delay() {
-            //   return 11;
-            // }
-            // console.log(delay());
-
-            // let map = new Map()
-            // map.set(delay,{age:10})
-            // console.log(map);
-            // document.addEventListener("resize", () => {
-            //   console.log(111);
-            // });
-            // window.onresize = function () {
-            //   console.log(112);
-            // };
-            // document.documentElement.style.cssText = `font-size:10px`
-            // console.log(window.getComputedStyle(document.documentElement).fontSize);
-
-            // ES6 规定，通过super调用父类的方法时，super会绑定子类的this。
-            // super作为函数时,只能出现在子类的构造函数中
-            // super作为对象时，指向父类的原型对象。
-
-            // 发送的JSON类型需要设置请求头为 application/json;charset=utf-8
-            // 发送的图片,文件需要设置请求头为 application/formdata;charset=utf-8
-            // 发送的普通表单对象,文件需要设置请求头为 application/x-www-form-urlencoded;charset=utf-8
-
-            // const desc = {
-            //   status: 0,
-            //   name: "llq",
-            //   age: 10,
-            //   money: 10000,
-            // };
-            // console.log(Object.getOwnPropertyDescriptors(desc));
-            // Object.defineProperties();
-
-            // console.log(Object.getOwnPropertyDescriptor(desc, "name"));
-            // Object.defineProperty();
-
-            // for (let i = 1; i <= 5; i++) {
-            //   setTimeout(() => console.log(i), 1000 * i);
-            // }
-
-            //   (/是根目录 ./是当前目录! ../是上一层目录!)
-
-            // 如果是git clone  远程仓库地址 自动会将仓库分支关联
-
-            //本地仓库关联远程仓库: git remote add origin 你的远程仓库地址 //git remote add origin(如果远程没有分支 就自动新建一个)
-
-            //取消本地目录下关联的远程库：git remote remove origin //git remote remove origin
-
-            // 当github上已经有master分支和dev分支
-            // 在本地git checkout -b dev 新建并切换到本地dev分支
-            // git pull origin dev 本地分支与远程分支相关联
-
-            // 当远程没有分支,在本地新建分支并推送到远程
-            // git checkout -b test
-            // git push origin test   这样远程仓库中也就创建了一个test分支
-
-            // console.log(1);
-            // const asy = async (params) => {
-            //   setTimeout(() => {
-            //     console.log(2);
-            //   });
-            // };
-            // asy();
-            // console.log(3);
-
-            let obj = {
-              name: 'test',
-              age: 18,
-            };
-
-            let hd = {
-              desc: '我是',
-              age: 20,
-            };
-
-            obj.age = hd.age;
-            hd.age = 30;
-            console.log(obj);
-            console.log(hd);
-            const bind = (fn, context, ...boundArgs) => (...args) =>
-              fn.apply(context, [...boundArgs, ...args]);
-            const delay = (fn, wait, ...args) => setTimeout(fn, wait, ...args);
-
-            const throttle11 = (fn, wait) => {
-              let inThrottle, lastFn, lastTime;
-              return function() {
-                const context = this,
-                  args = arguments;
-                if (!inThrottle) {
-                  fn.apply(context, args);
-                  lastTime = Date.now();
-                  inThrottle = true;
-                } else {
-                  clearTimeout(lastFn);
-                  lastFn = setTimeout(function() {
-                    if (Date.now() - lastTime >= wait) {
-                      fn.apply(context, args);
-                      lastTime = Date.now();
-                    }
-                  }, Math.max(wait - (Date.now() - lastTime), 0));
-                }
-              };
-            };
-            const debounce11 = (fn, ms = 0) => {
-              let timeoutId;
-              return function(...args) {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => fn.apply(this, args), ms);
-              };
-            };
-
-
-            const deepClone1 = (obj) => {
-              let clone = Object.assign({}, obj);
-              Object.keys(clone).forEach(
-                (key) => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
-              );
-              return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
-            };
-            //简易版的随机排序
-            // const randomSort = (arr) => {
-            //   arr.sort(() => Math.random() - 0.5);
-            // };
-
-            let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-            arr1.sort(() => Math.random() - 0.5);
-            console.log(arr1);
-
-            function Free() {}
-            let f = new Free();
-            //f instanceof Free;  Free构造函数的原型对象是否在f实例对象的原型链上
-            // b.isPrototypeOf(a)  b对象是否在是a对象的原型链上
-
-             function formatTime (time, option) {
-        time = +time * 1000
-        const d = new Date(time)
-        const now = Date.now()
-
-        const diff = (now - d) / 1000
+        const diff = (now - d) / 1000;
 
         if (diff < 30) {
-          return '刚刚'
+          return '刚刚';
         } else if (diff < 3600) {
           // less 1 hour
-          return Math.ceil(diff / 60) + '分钟前'
+          return Math.ceil(diff / 60) + '分钟前';
         } else if (diff < 3600 * 24) {
-          return Math.ceil(diff / 3600) + '小时前'
+          return Math.ceil(diff / 3600) + '小时前';
         } else if (diff < 3600 * 24 * 2) {
-          return '1天前'
+          return '1天前';
         }
         if (option) {
-          return parseTime(time, option)
+          return parseTime(time, option);
         } else {
           return (
             d.getMonth() +
@@ -1208,10 +1103,10 @@
             '时' +
             d.getMinutes() +
             '分'
-          )
+          );
         }
       }
-            console.timeEnd('time');
+      console.timeEnd('time');
     </script>
   </body>
 </html>
