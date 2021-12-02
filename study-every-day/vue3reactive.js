@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-13 16:28:06
- * @LastEditTime: 2021-12-01 22:07:01
+ * @LastEditTime: 2021-12-02 19:14:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\vue3reactive.js
@@ -80,4 +80,3 @@ let data = reactive({
 delete data.name;
 //你好@
 //vue3
-//2
