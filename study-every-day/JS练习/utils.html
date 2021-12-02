@@ -227,6 +227,24 @@
 
       // 做用slice函数做分页分割时，或者数组分割时 前一个永远比后一个参数page少1  slice(index*size,(index+1)*size)
       // 前端分页 slice((page-1)*size,page*size)
+      // 条件1 ? 表达式1 : 条件2 ? 表达式2 : 条件3 ? 表达式3 : 表达式4
+      //随机生成字符串＋数字Math.random().toString(36).slice(2)
+
+      //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
+      // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址
+      // 2. null == undefined成立/ null===undefined不成立
+      // 3. NaN==NaN不成立 NaN和谁都不相等
+      // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
+      //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+
+      // 页面（window）滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
+
+      // 观察某个元素el 是否在屏幕可视区范围
+      // const ob = new  IntersectionObserver((e)=>{
+      //   e.isIntersecting  是否在可视区内
+      // })
+      //建立观察ob.observe(el)
+      //取消观察ob ob.unobserve(el)
     </script>
   </body>
 </html>

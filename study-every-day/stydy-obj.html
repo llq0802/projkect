@@ -29,6 +29,7 @@
         width: 200px;
         height: 200px;
         background: skyblue;
+        user-select: none;
       }
     </style>
     <div class="container">
@@ -436,7 +437,6 @@
       // 3. NaN==NaN不成立 NaN和谁都不相等
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
-
       // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
       let log = console.log.bind(document);
     </script>
