@@ -1,6 +1,11 @@
-* @LastEditTime: 2021-11-25 09:30:18 >>>>>>> 92bb2641f9743b1b8794ab8b0f731a02c0e77d34 *
-@LastEditors: Please set LastEditors * @Description: In User Settings Edit * @FilePath:
-\vue3.0-cli-ts\demo\stydu-obj.html -->
+<!--
+ * @Author: your name
+ * @Date: 2021-08-12 16:21:10
+ * @LastEditTime: 2021-12-02 09:07:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +29,7 @@
         width: 200px;
         height: 200px;
         background: skyblue;
+        user-select: none;
       }
     </style>
     <div class="container">
@@ -248,7 +254,7 @@
       //
 
       for (let i = 0; i < 5; i++) {
-        setTimeout(function () {
+        setTimeout(function() {
           // console.log(i);
         }, 1000);
       }
@@ -310,7 +316,7 @@
         age: 20,
         desc: 'shuaige',
         arr: [11, 22, 33, 44],
-        [Symbol.iterator]: function () {
+        [Symbol.iterator]: function() {
           let index = 0;
           return {
             next: () => {
@@ -337,23 +343,23 @@
 
       // keycode=123  是f12键
       // 禁止右键菜单
-      document.oncontextmenu = function () {
+      document.oncontextmenu = function() {
         return false;
       };
       // 禁止文字选择
-      document.onselectstart = function () {
+      document.onselectstart = function() {
         return false;
       };
       // 禁止复制
-      document.oncopy = function () {
+      document.oncopy = function() {
         return false;
       };
       // 禁止剪切
-      document.oncut = function () {
+      document.oncut = function() {
         return false;
       };
       // 禁止粘贴
-      document.onpaste = function () {
+      document.onpaste = function() {
         return false;
       };
 
@@ -431,6 +437,8 @@
       // 3. NaN==NaN不成立 NaN和谁都不相等
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+      // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
+      let log = console.log.bind(document);
     </script>
   </body>
 </html>
