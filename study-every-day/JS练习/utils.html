@@ -96,76 +96,6 @@
 
     <div class="test"></div>
     <script>
-      //console.log(Math.floor((Math.random()*11)));
-      let str = 'gtfhfabc';
-      let str1 = 'gtfhfava';
-      let arr = [1, 2, 3];
-      !10; //false
-      !0; //ture
-      !'abc'; // 字符串去反 为false
-
-      let reg = /\s/;
-      str.length;
-      str.includes('a'); //查找元素 返回布尔值
-      //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
-      console.log(str1.slice(1, 2));
-      console.log(str.slice(1, -1));
-      str.substring(); //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
-      //arr.splice()
-      str.substr(); //第一个值是开始索引 截取长度为第二个值
-
-      str.startsWith('a'); //是否以某个字符串开头 返回布尔值
-      str.endsWith('a'); //是否以某个字符串结尾 返回布尔值
-
-      str.replace(); //第一个是要要替换的字符串或者正则表达式,第二个值是替换成的字符串
-
-      str.repeat(); //重复字符串
-
-      str.trim(); //去空格
-
-      str.toLocaleLowerCase(); //转小写
-      str.toLocaleUpperCase(); //转大写
-      str.indexOf(); // 根据值返回索引 找不到则返回-1
-      str.charAt(); //根据索引返回值
-      str[1];
-      str.charCodeAt(); //根据索引返回值的UN码
-
-      //console.log(str[1]); //根据索引反值
-      for (let item of str) {
-        //有迭代器
-        //console.log(item);//遍历字符串
-      }
-      for (let i = 0; i < str.length; i++) {
-        //console.log(str[i]);//遍历字符串
-      }
-
-      //console.log(str.indexOf('f')); //根据值返回索引  找到则返回索引 找不到则返回-1
-
-      //console.log(str.charAt(3)); //根据索引返回值---等价于str[3]
-
-      str.match(); //方法只接收一个参数，要么是一个正则表达式，要么是一个RegExp对象。在字符串上调用match()方法，本质上和调用RegExp的exec()方法相同，返回的是一个数组
-      str.search(); //search()的参数与match()相同，不同在于search()返回的是字符串中第一个匹配项的索引；如果没有找到匹配项，返回-1.
-      str.split(','); //字符串转数组
-
-      // arr.join()
-
-      // JS获取当前页面URL的方法小结
-      // 　　①. document.URL;              http://localhost:81/Test/1.htm/id/12
-      // 　　②. location.href;　　　 http://localhost:81/Test/1.htm/id/12
-      // 　　③. self.location.href;　　　　　　http://localhost:81/Test/1.htm/id/12
-      // 　　④. document.location　　　　　　　 http://localhost:81/Test/1.htm/id/12
-      // 　　⑤. top.location.href; 　　　　　　 http://localhost:81/Test/1.htm/id/12
-      // 　　⑥. parent.document.location;       http://localhost:81/Test/1.htm/id/12
-      // 　　⑦. top.location.hostname;           localhost
-      // 　　⑧. location.hostname;                 localhost
-      // 　　⑨. window.location.protocol;      http
-      // 　　①. window.location.host;            localhost:81
-      // 　　②location.pathname;        /Test/1.htm/id/12
-      // document.title
-      // document.URL
-
-      // console.log( +'1'); 数字
-
       class HD {
         constructor(executor) {
           this.state = 'pending';
@@ -175,18 +105,18 @@
             if (this.state === 'pending') {
               this.state === 'resolve';
               this.value = value;
-              this.callbacks.map(item=>{
-                item.onResove&&item.onResove()
-              })
+              this.callbacks.map((item) => {
+                item.onResove && item.onResove();
+              });
             }
           }
           function reject(value) {
             if (this.state === 'pending') {
               this.state === 'reject';
               this.value = value;
-              this.callbacks.map(item=>{
-                item.onReject&&item.onReject()
-              })
+              this.callbacks.map((item) => {
+                item.onReject && item.onReject();
+              });
             }
           }
           try {
@@ -290,10 +220,13 @@
           return thenResult;
         }
 
-        catch(){
-          return this.then(undefined,onReject)
+        catch() {
+          return this.then(undefined, onReject);
         }
       }
+
+      // 做用slice函数做分页分割时，或者数组分割时 前一个永远比后一个参数page少1  slice(index*size,(index+1)*size)
+      // 前端分页 slice((page-1)*size,page*size)
     </script>
   </body>
 </html>

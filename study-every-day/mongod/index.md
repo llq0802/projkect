@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-26 14:35:02
- * @LastEditTime: 2021-11-29 10:47:38
+ * @LastEditTime: 2021-12-01 11:42:49
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\mongod\index.md
@@ -22,8 +22,8 @@ db.createCollection(name, options)创建集合
 
 db.<集合名>>.insert() 新增
 db.<collection>.find().sort({key：1}) 1 升 -1 降
-db.<collection>.find().limit() 前多少条数据
-db.<collection>.find().skip() 后多少条数据
+db.<collection>.find().limit() 前多少条数据 （多少条）
+db.<collection>.find().skip() 后多少条数据 （从哪条跳过）
 db.<collection>.update()更新
 db.<collection>.find().count()
 
@@ -58,3 +58,24 @@ db.<collection>.entrueIndex({name:1}) //为表中的数据设置索引
 db.col.getIndexes()
 
 db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
+
+\$lookup
+
+分页查询
+db.表名.find().skip((page-1)\*pageSize).limit(pageSize)
+
+\$regex 正则查询
+
+db.mycol.aggregate(
+[
+{
+$lookup:
+{
+from: <collection to join>,
+localField: <field from the input documents>,
+foreignField: <field from the documents of the "from" collection>,
+as: <output array field>
+}
+}
+]
+)
