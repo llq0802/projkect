@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-13 16:28:06
- * @LastEditTime: 2021-08-13 18:01:28
+ * @LastEditTime: 2021-12-01 22:07:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\vue3reactive.js
@@ -67,6 +67,7 @@ function createReavtiveObj(targetObj) {
   let proxy= Proxy(targetObj, baseHandler);
   toProxy.get(targetObj,proxy)
   toRaw.get(proxy,targetObj)
+  return proxy;
 }
 
 let data = reactive({
@@ -77,3 +78,6 @@ let data = reactive({
 
 // data.name = "aa";
 delete data.name;
+//你好@
+//vue3
+//2

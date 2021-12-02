@@ -1,24 +1,24 @@
 /*
  * @Author: your name
  * @Date: 2021-08-12 16:47:16
- * @LastEditTime: 2021-08-13 17:05:20
+ * @LastEditTime: 2021-12-01 21:22:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\vue2.js
  */
 
 let arrProto = Object.create(Array.prototype);
-["push", "shift", "pop", "unshift", "splice"].forEach((method) => {
-  arrProto[method] = function() {
+['push', 'shift', 'pop', 'unshift', 'splice'].forEach((method) => {
+  arrProto[method] = function () {
     // 函数劫持,新函数内部继续调用老函数
     Array.prototype[method].call(this, ...arguments);
     updateView();
   };
 });
 
-// 收集data返回的对象
+// 收集data返回的对象1
 function observer(targetObj) {
-  if (Object.prototype.toString.call(targetObj).slice(8, -1) !== "Object") {
+  if (Object.prototype.toString.call(targetObj).slice(8, -1) !== 'Object') {
     return targetObj;
   }
   if (targetObj instanceof Array) {
@@ -48,16 +48,16 @@ function defineReactive(targetObj, key, value) {
 }
 
 function updateView() {
-  console.log("更新视图");
+  console.log('更新视图');
 }
 
 let data = {
-  name: "llq",
+  name: 'llq',
   id: 15,
-  desc: "甩哥",
+  desc: '甩哥',
   age: 20,
 };
 
 observer(data);
 
-data.name = "aaaa";
+data.name = 'aaaa';

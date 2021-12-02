@@ -1,7 +1,7 @@
 /*
  * @Author: llq
  * @Date: 2021-09-29 15:58:11
- * @LastEditTime: 2021-09-30 15:39:23
+ * @LastEditTime: 2021-10-06 12:35:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\promise.js
@@ -200,7 +200,7 @@ class Mypromise {
         this.value = value;
         setTimeout(() => {
           this.callbacks.forEach((callback) => {
-            callback.onResolve && callback.onResolve();
+            callback.onResolve && callback.onResolve(this.value);
           });
         });
       }
@@ -212,7 +212,7 @@ class Mypromise {
         this.value = value;
         setTimeout(() => {
           this.callbacks.forEach((callback) => {
-            callback.onReject && callback.onReject();
+            callback.onReject && callback.onReject(this.value);
           });
         });
       }
