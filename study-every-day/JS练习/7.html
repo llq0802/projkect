@@ -4,48 +4,27 @@
     <meta charset="UTF-8" />
     <title></title>
   </head>
-  <style></style>
 
   <body>
     <style>
-      .container {
-        width: 400px;
-        height: 400px;
-        background-color: black;
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        /* justify-content: center; */
+      .parallelogram {
+        position: relative;
+        width: 160px;
+        height: 64px;
       }
-
-      .item {
-        vertical-align: middle;
-        flex: 1;
-        /* line-height: 40px; */
-        text-align: center;
-        width: 50px;
-      }
-
-      .box {
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-        width: 100px;
-        height: 100px;
-        border: blue 1px solid;
-        /* line-height: 100px; */
-      }
-
-      #hd {
-        background-color: blue;
-        width: 100px;
-        height: 5px;
+      .parallelogram::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #03f463;
+        transform: skewX(15deg);
       }
     </style>
 
-    <div class="container">
-      <div id="hd"></div>
-    </div>
+    <div class="btn parallelogram">Parallelogram</div>
 
     <script>
       const div = document.getElementById('hd');

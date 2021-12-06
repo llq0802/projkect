@@ -79,3 +79,28 @@ as: <output array field>
 }
 ]
 )
+
+{
+\$lookup:
+{
+from: <collection to join>, 表名
+localField: <field from the input documents>, 主表关联的字段
+foreignField: <field from the documents of the "from" collection>,副表关联的字段
+as: <output array field>  
+ }
+}
+语法值 解释说明
+from
+同一个数据库下等待被 Join 的集合（表名）。
+localField
+源集合中的 match 值，如果输入的集合中，某文档没有 localField
+
+这个 Key（Field），在处理的过程中，会默认为此文档含
+
+有 localField：null 的键值对。
+
+foreignField
+待 Join 的集合的 match 值，如果待 Join 的集合中，文档没有 foreignField
+值，在处理的过程中，会默认为此文档含有 foreignField：null 的键值对。
+as
+为输出文档的新增值命名。如果输入的集合中已存在该值，则会覆盖掉，
