@@ -1,7 +1,7 @@
 /*
  * @Author: your llq
  * @Date: 2021-08-07 15:54:50
- * @LastEditTime: 2021-08-10 21:29:00
+ * @LastEditTime: 2021-12-06 17:38:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web\lianxi.ts
@@ -59,7 +59,6 @@ interface fullName {
   secondName?: string;
   age: number;
   info?: any;
-  
 }
 /**
  * 函数类型接口  (只能用于函数表达式)
@@ -73,14 +72,14 @@ interface fn {
 //   // return 1;
 // };
 const ee: fn = () => {
-  return "g";
+  return 'g';
 };
 
 // console.log(tt(1, 1));
 // console.log(ee(1, 1));
 
 const printName = (fullName: fullName): void => {
-  console.log(fullName.firstName + "----" + fullName.secondName + fullName.age);
+  console.log(fullName.firstName + '----' + fullName.secondName + fullName.age);
 };
 const printName1 = (fullName: {
   [key: string]: any;
@@ -89,11 +88,11 @@ const printName1 = (fullName: {
   age: number;
   info?: any;
 }): void => {
-  console.log(fullName.firstName + "----" + fullName.secondName + fullName.age);
+  console.log(fullName.firstName + '----' + fullName.secondName + fullName.age);
 };
 
 const params = {
-  firstName: "llq",
+  firstName: 'llq',
   age: 20,
 };
 // printName1(params);
@@ -138,7 +137,7 @@ class User extends To implements proson {
     console.log(super.jump() + 44);
   }
 }
-let a = new User("h", 20);
+let ap = new User('h', 20);
 // a.sing("爱你");
 // a.eat();
 /*******************泛型(针对于函数或者类),在函数括号前声明泛型函数,在class类名后面声明泛型类*******传入的参数会将其类型传递给泛型<T>/
@@ -261,7 +260,7 @@ class Admin {
   }
 }
 let q = new Admin({
-  name: "admin",
+  name: 'admin',
   password: 123,
 });
 
