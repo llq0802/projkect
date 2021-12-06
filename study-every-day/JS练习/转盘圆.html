@@ -1,0 +1,146 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-02 17:39:11
+ * @LastEditTime: 2021-12-03 12:13:32
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\转盘.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>圆</title>
+  </head>
+  <body>
+    <style>
+      .box {
+        width: 600px;
+        height: 600px;
+        background-color: #dea681;
+        border-radius: 50%;
+        margin: 30px auto;
+        /* padding: 20px; */
+        position: relative;
+        overflow: hidden;
+      }
+      .lottery {
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        background-color: #977e7e;
+        box-shadow: 0 0 15px #000;
+      }
+      .block {
+        /* box-shadow: 0 0 1px #000 inset; */
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        transform-origin: right bottom;
+        -webkit-transform-origin: right bottom;
+      }
+
+      .block:nth-child(n + 4) {
+        background-color: #fd5b78;
+      }
+      .block:nth-child(1) {
+        transform: rotate(0deg) skewY(45deg);
+      }
+      .block:nth-child(2) {
+        transform: rotate(45deg) skewY(45deg);
+      }
+      .block:nth-child(3) {
+        transform: rotate(90deg) skewY(45deg);
+      }
+      .block:nth-child(4) {
+        transform: rotate(135deg) skewY(45deg);
+      }
+      .block:nth-child(5) {
+        transform: rotate(180deg) skewY(45deg);
+      }
+      .block:nth-child(6) {
+        transform: rotate(225deg) skewY(45deg);
+      }
+      .block:nth-child(7) {
+        transform: rotate(270deg) skewY(45deg);
+      }
+      .block:nth-child(8) {
+        transform: rotate(315deg) skewY(45deg);
+      }
+      .content {
+        width: 200px;
+        height: 230px;
+        transform-origin: center center 0;
+        transform: skewY(-45deg) rotate(-22.5deg) translate(10px, 70px);
+        -webkit-transform: skewY(-45deg) rotate(-22.5deg) translate(10px, 70px);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+      }
+      .content .img {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+      }
+      .content .none {
+        width: 34px;
+        height: 200px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 34px;
+        line-height: 200%;
+        font-weight: bold;
+      }
+    </style>
+
+    <div class="box">
+      <div class="lottery">
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="content">
+            <div class="none">1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-12-02 09:07:51
+ * @LastEditTime: 2021-12-03 16:57:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -439,6 +439,11 @@
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
       // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
       let log = console.log.bind(document);
+
+      //1 先主代码
+      // 2微任务
+      // 3宏任务
+      // 注意：每次执行完一个宏任务 就会立刻去查找执行微任务队列
     </script>
   </body>
 </html>
