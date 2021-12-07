@@ -105,8 +105,10 @@
             if (this.state === 'pending') {
               this.state === 'resolve';
               this.value = value;
-              this.callbacks.map((item) => {
-                item.onResove && item.onResove();
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onResove && item.onResove();
+                });
               });
             }
           }
@@ -114,8 +116,10 @@
             if (this.state === 'pending') {
               this.state === 'reject';
               this.value = value;
-              this.callbacks.map((item) => {
-                item.onReject && item.onReject();
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onReject && item.onReject();
+                });
               });
             }
           }
@@ -133,85 +137,44 @@
           if (onReject != 'function') {
             onReject = (value) => value;
           }
-
+          function callFn(typeFn) {
+            let result = typeFn(this.value);
+            if (thenResult === result) throw new TypeError('Chaining cycle detected for promise');
+            try {
+              if (result instanceof HD) {
+                result.then(
+                  (r) => {
+                    resolve(r);
+                  },
+                  (v) => {
+                    reject(v);
+                  }
+                );
+              } else {
+                resolve(result);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          }
           let thenResult = new Hd((resolve, reject) => {
             if (this.state === 'resolve') {
-              let result = onResove(this.value);
-              try {
-                if (result instanceof HD) {
-                  result.then(
-                    (r) => {
-                      resolve(r);
-                    },
-                    (v) => {
-                      reject(v);
-                    }
-                  );
-                } else {
-                  resolve(result);
-                }
-              } catch (error) {
-                reject(error);
-              }
+              setTimeout(() => {
+                callFn(onResove);
+              });
             }
             if (this.state === 'reject') {
-              let result = onReject(this.value);
-              try {
-                if (result instanceof HD) {
-                  result.then(
-                    (r) => {
-                      resolve(r);
-                    },
-                    (v) => {
-                      reject(v);
-                    }
-                  );
-                } else {
-                  resolve(thenresultResult);
-                }
-              } catch (error) {
-                reject(error);
-              }
+              setTimeout(() => {
+                callFn(onReject);
+              });
             }
             if (this.state === 'pending') {
               this.callbacks.push({
                 onResove: () => {
-                  let result = onResove(this.value);
-                  try {
-                    if (result instanceof HD) {
-                      result.then(
-                        (r) => {
-                          resolve(r);
-                        },
-                        (v) => {
-                          reject(v);
-                        }
-                      );
-                    } else {
-                      resolve(result);
-                    }
-                  } catch (error) {
-                    reject(error);
-                  }
+                  callFn(onResove);
                 },
                 onReject: () => {
-                  let result = onReject(this.value);
-                  try {
-                    if (result instanceof HD) {
-                      result.then(
-                        (r) => {
-                          resolve(r);
-                        },
-                        (v) => {
-                          reject(v);
-                        }
-                      );
-                    } else {
-                      resolve(result);
-                    }
-                  } catch (error) {
-                    reject(error);
-                  }
+                  callFn(onReject);
                 },
               });
             }
@@ -220,8 +183,53 @@
           return thenResult;
         }
 
-        catch() {
+        catch(onReject) {
           return this.then(undefined, onReject);
+        }
+
+        static resolve(value) {
+          return new Hd((resolve, reject) => {
+            try {
+              if (value instanceof Hd) {
+                value.then(resolve, reject);
+              } else {
+                resolve(value);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
+        static reject(value) {
+          return new Hd((resolve, reject) => {
+            reject(value);
+          });
+        }
+
+        static race(proArrs) {
+          return new Hd((resolve, reject) => {
+            proArrs.forEach((proArr) => {
+              proArr.then(resolve, reject);
+            });
+          });
+        }
+        static all(proArrs) {
+          let arrayResult = [];
+          return new Hd((resolve, reject) => {
+            proArrs.forEach((item, index) => {
+              item.then(
+                (r) => {
+                  arrayResult[index] = r;
+                  if (arrayResult.length === proArrs.length) {
+                    resolve(arrayResult);
+                  }
+                },
+                (v) => {
+                  reject(v);
+                }
+              );
+            });
+          });
         }
       }
 
