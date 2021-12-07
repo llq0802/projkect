@@ -111,6 +111,7 @@ enum state {
 interface proson {
   name: string;
   sing(val: string): void;
+  [key: string]: any;
 }
 
 class To {

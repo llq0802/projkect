@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-11-23 10:38:29
+ * @LastEditTime: 2021-12-07 14:11:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -436,6 +436,13 @@
             //   width: 684
             // }
             */
+
+      /*
+     *  vuex原理
+     调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，
+     在所有组件的 beforeCreate生命周期注入了设置 this.$store这样一个对象。
+     * 
+     */
     </script>
   </body>
 </html>
