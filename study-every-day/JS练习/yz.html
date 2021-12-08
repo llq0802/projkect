@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-11-30 14:21:22
+ * @LastEditTime: 2021-12-08 12:08:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -26,10 +26,12 @@
           display: none;
         }
       }
+
       body {
         background-color: rgba(104, 109, 224, 1);
         user-select: none;
         -webkit-user-drag: none;
+        /* width: clamp(500px, 100%, 100%); */
       }
       @media screen and (max-width: 1600px) {
         body {
@@ -128,7 +130,14 @@
         border: 12px solid lightpink;
         transform: rotateY(10deg);
       }
+      .san {
+        width: 300px;
+        height: 300px;
+        background: conic-gradient(red 20%, purple 0 60%, yellow 0);
+        border-radius: 50%;
+      }
     </style>
+    <div class="san"></div>
     <div class="yuan"></div>
     <input class="inp" />
     <div class="box-header">tou</div>
@@ -861,7 +870,7 @@
 
       let str = 'gtfhfabc';
       let str1 = 'gtfhfava';
-      let arr = [1, 2, 3];
+      // let arr = [1, 2, 3];
       !10; //false
       !0; //ture
       !'abc'; // 字符串去反 为false
@@ -870,8 +879,10 @@
       str.length;
       str.includes('a'); //查找元素 返回布尔值
       //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
-      console.log(str1.slice(1, 2));
-      console.log(str.slice(1, -1));
+      // console.log(str1.slice(1, 2));
+      // console.log(str.slice(1, -1));
+      str.padStart(5, 'a');
+      str.padEnd(5, 'a');
       str.substring(); //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
       //arr.splice()
       str.substr(); //第一个值是开始索引 截取长度为第二个值
@@ -882,7 +893,6 @@
       str.replace(); //第一个是要要替换的字符串或者正则表达式,第二个值是替换成的字符串
 
       str.repeat(); //重复字符串
-
       str.trim(); //去空格
 
       str.toLocaleLowerCase(); //转小写
@@ -927,6 +937,7 @@
       // document.URL
 
       // console.log( +'1'); 数字
+      htmlEncodeByRegExp();
     </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:44:53
- * @LastEditTime: 2021-11-26 11:10:20
+ * @LastEditTime: 2021-12-08 17:06:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\views\Home.vue
@@ -46,7 +46,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, watchEffect } from "vue";
-import axios from "axios";
+import { useRouter, useRoute } from "vue-router";
+
+import addRoute from "./addRoute.vue";
 import xlsx from "xlsx";
 export default defineComponent({
   setup() {
@@ -102,10 +104,21 @@ export default defineComponent({
       { title: "你好4", value: "1114" },
     ]);
 
-    onMounted(() => {
-      watchEffect(() => {
-        console.log("watchEffect");
+    onMounted(async () => {
+      const router = useRouter();
+
+      router.addRoute({
+        path: "/addRoute",
+        component: addRoute,
       });
+      // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
+      await router.replace(router.currentRoute.value.fullPath);
+      console.log(router.getRoutes());
+      console.log(router);
+
+      // watchEffect(() => {
+      //   console.log("watchEffect");
+      // });
       // 为给定 ID 的 user 创建请求
       // axios({
       //   baseURL: "http://192.168.110.84:8888/",

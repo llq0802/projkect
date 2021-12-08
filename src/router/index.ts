@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:27:50
- * @LastEditTime: 2021-11-03 09:37:26
+ * @LastEditTime: 2021-12-08 18:01:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\router\index.ts
@@ -10,6 +10,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 const Home = () => import('../views/Home.vue');
 const About = () => import('../views/About.vue');
+const addRoute = () => import('../views/addRoute.vue');
 const User = () => import('../views/User.vue');
 const Login = () => import('../views/Login.vue');
 const Dynamic = () => import('../views/Dynamic.vue');
@@ -134,4 +135,32 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  router.addRoute({
+    path: '/addRoute',
+    component: addRoute,
+  });
+
+  // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
+  // router.replace(router.currentRoute.value.fullPath);
+
+  // router.replace(to.fullPath);
+  // router.options.routes.push({
+  //   path: '/addRoute',
+  //   component: addRoute,
+  // });
+  // console.log(router.getRoutes());
+  // console.log(router.options.routes);
+  // next({ ...to, replace: true });
+
+  // router.addRoute({
+  //   path: '/addRoute',
+  //   component: addRoute,
+  // });
+  // next();
+
+  // return to.fullPath;
+});
+
 export default router;
