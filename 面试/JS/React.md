@@ -6,50 +6,34 @@
 2. Redux 在实际项目中的使用以及问题
 3. React 中的 Hooks
 
-
-
 ## 学习目标
 
-* [ ] 了解 Redux 与 React-Redux 之间的关系以及它们的基本原理
-* [ ] 了解一些关于 Redux 的最佳实践以及异步问题解决方案
-* [ ] 了解 React Hooks 的特性以及如何在实际项目中使用 React Hooks
-
-
+- [ ] 了解 Redux 与 React-Redux 之间的关系以及它们的基本原理
+- [ ] 了解一些关于 Redux 的最佳实践以及异步问题解决方案
+- [ ] 了解 React Hooks 的特性以及如何在实际项目中使用 React Hooks
 
 ## 问题详解
 
 ###1. Redux 是如何将 State 注入到 React 组件上去
-
-
 
 #### 问题分析
 
 - React：用于构建用户界面的 JavaScript 库（负责组件的 UI 界面渲染的库）
 - Redux：JavaScript 状态容器（负责管理数据的工具）
 
-
-
 -> 回顾一下 Redux 的用法
-
-
 
 [**React-Redux**](https://www.redux.org.cn/)
 
-扩展：[vuejs-redux](https://github.com/titouancreach/vuejs-redux) ,  [ng-redux](https://github.com/angular-redux/ng-redux)
-
-
+扩展：[vuejs-redux](https://github.com/titouancreach/vuejs-redux) , [ng-redux](https://github.com/angular-redux/ng-redux)
 
 > 结论：Redux 是一个独立的库，与 React 并没有直接关系，是 React-Redux 将它们俩联系起来的
-
-
 
 **Redux 解决了什么问题？**
 
 ![](./assets/1.jpg)
 
 > 结论： Redux 的出现其实就是解决了复杂应用的状态管理问题，可以**跨层级任意传递数据**。
-
-
 
 #### 问题详解
 
@@ -64,13 +48,11 @@ Button.onClick // 发布 -- 触发 A
 
 ```
 
-
-
 Redux 核心源码
 
 ```js
 /**
- * 
+ *
  * @param {Function} reducer   reducer
  * @param {any} preloadedState 初始化的 state，用的相对较少，一般在服务端渲染的时候使用
  * @param {Function} enhancer  中间件
@@ -82,20 +64,19 @@ export default function createStore(reducer, preloadedState, enhancer) {
     enhancer = preloadedState;
     preloadedState = undefined;
   }
-  
+
   let currentReducer = reducer;
   let currentState = preloadedState; // 整个应用所有的 State 都存储在这个变量里
   let currentListeners = []; // 订阅传进来的的回调函数 <=>  Button.addEventListener('click', () => { ... })
 
   // 这是一个很重要的设计
   let nextListeners = currentListeners;
- 
+
   function getState() {
     return currentState;
   }
 
   function subscribe(listener) {
-  
     if (nextListeners === currentListeners) {
       // 浅复制
       // 实际上 nextListeners 就是 currentListeners，避免直接操作 currentListeners，因为
@@ -103,141 +84,133 @@ export default function createStore(reducer, preloadedState, enhancer) {
       nextListeners = [...currentListeners];
     }
     nextListeners.push(listener);
-		
+
     return function unsubscribe() {
-       if (nextListeners === currentListeners) {
+      if (nextListeners === currentListeners) {
         // 浅复制
         nextListeners = [...currentListeners];
       }
 
       const index = nextListeners.indexOf(listener);
       nextListeners.splice(index, 1);
-    }
+    };
   }
-// Button.addEventListener('click', () => { ... })
-// Button.removeEventListener('click', () => { ... })
+  // Button.addEventListener('click', () => { ... })
+  // Button.removeEventListener('click', () => { ... })
 
   function dispatch(action) {
     currentState = currentReducer(currentState, action); // 调用 reducer 来更新数据
-   
     const listeners = (currentListeners = nextListeners); // 保证当前的 listeners 是最新的
-    
     for (let i = 0; i < listeners.length; i++) {
       listeners[i](); // 依次执行回调函数
     }
-
     return action;
   }
 
   // 手动触发一次 dispatch，初始化
-  dispatch({type: 'INIT'});
-
+  dispatch({ type: 'INIT' });
   return {
     getState,
     dispatch,
     subscribe,
-  }
+  };
 }
 ```
 
 > 总结：**Redux 就是帮我们用一个变量存储所有的 State，并且提供了发布功能来修改数据，以及订阅功能来触发回调（但是回调之后干嘛？自己解决）。**
 
-
-
 **React-Redux 做了什么事情?**
 
 ![2](./assets/2.png)
 
-
-
 Provider 核心源码
 
 ```javascript
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Provider extends React.Component {
   // context 往所有子组件，孙组件里传递数据
   // props   父组件往子组件里传递数据
   // state   组件自身的数据
-  
+
   // 声明一个 context 数据
   getChildContext() {
-    return { store: this.store }
+    return { store: this.store };
   }
 
   constructor(props, context) {
-    super(props, context)
-    this.store = props.store
+    super(props, context);
+    this.store = props.store;
   }
 
   render() {
-    return React.Children.only(this.props.children)
+    return React.Children.only(this.props.children);
   }
 }
 
 Provider.childContextTypes = {
-  store: PropTypes.object
-}
+  store: PropTypes.object,
+};
 ```
 
 > 总结：**Provider 就是通过 React 的 Context API 把数据往下传 。**
 
-
-
 connect 核心源码
 
 ```javascript
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // connect() => () => {} 函数的柯里化
 // const sum = (a) => { return (b) => a + b }
 // sum(1)(2) -> connect(mapStateToProps, mapDispatchToProps)(Comp)
 
 // HOC 高阶组件
-const connect = (mapStateToProps = state => state, mapDispatchToProps = {}) => (WrapComponent) => {
+const connect = (mapStateToProps = (state) => state, mapDispatchToProps = {}) => (
+  WrapComponent
+) => {
   return class ConnectComponent extends React.Component {
     static contextTypes = {
-      store: PropTypes.object
-    }
-  
+      store: PropTypes.object,
+    };
+
     constructor(props, context) {
-      super(props, context)
+      super(props, context);
       this.state = {
-        props: {} // 声明了一个叫做 props 的 state
-      }
+        props: {}, // 声明了一个叫做 props 的 state
+      };
     }
-  
+
     componentDidMount() {
-      const { store } = this.context  // 从 Context 中拿到 store 对象
-      store.subscribe(() => this.update()) // 订阅 Redux 的数据更新
-      this.update()
+      const { store } = this.context; // 从 Context 中拿到 store 对象
+      store.subscribe(() => this.update()); // 订阅 Redux 的数据更新
+      this.update();
     }
-  
+
     // 每次数据有更新的时候，就会调用这个方法
     update() {
-      const { store } = this.context // 从 Context 中拿到 store 对象
-      const stateProps = mapStateToProps(store.getState()) // 把 store 中的全部数据传到组件内部
-      const dispatchProps = mapDispatchToProps(store.dispatch)//把 store.dispatch 传到组件内部
-      
+      const { store } = this.context; // 从 Context 中拿到 store 对象
+      const stateProps = mapStateToProps(store.getState()); // 把 store 中的全部数据传到组件内部
+      const dispatchProps = mapDispatchToProps(store.dispatch); //把 store.dispatch 传到组件内部
+
       // 调用 setState 触发组件更新
       // 将最新的 state 以及 dispatch 合并到当前组件的 props 上
       this.setState({
         props: {
           ...this.state.props,
           ...stateProps,
-          ...dispatchProps
-        }
-      })
+          ...dispatchProps,
+        },
+      });
     }
-  
+
     render() {
       // 传入 props
-      return <WrapComponent {...this.state.props}></WrapComponent>
+      return <WrapComponent {...this.state.props}></WrapComponent>;
     }
-  }
-}
+  };
+};
 
 export default connect;
 
@@ -257,17 +230,13 @@ export default connect;
 
 > 总结：**connect 就是一个高阶组件，接收 Provider 传递过来的 store 对象，并订阅 store 中的数据，如果 store 中的数据发生改变，就调用 setState 触发组件更新。**
 
-
-
 #### 答题思路
 
 1. 首先明确与 React 产生关联的是 React-Redux 这个库
 2. Redux 的原理就是一个**发布订阅器**，帮我们用一个变量存储所有的 State，并且提供了发布功能来修改数据，以及订阅功能来触发回调 + 50
 3. 而 React-Redux 的作用就是订阅 Store 里数据的更新，他包含两个重要元素，Provider 和 connect 方法 +10
-4. **Provider 的作用就是通过  Context API 把 Store  对象注入到 React 组件上去** +20
+4. **Provider 的作用就是通过 Context API 把 Store 对象注入到 React 组件上去** +20
 5. 而 connect 方法就是一个高阶组件，在高阶组件里通过订阅 Store 中数据的更新，从而通过调用 setState 方法来触发组件更新 +20
-
-
 
 ###2. Redux 在实际项目中的使用以及问题
 
@@ -278,8 +247,6 @@ export default connect;
 1. 为什么要使用 Redux
 2. 如果一定是使用，有哪些最佳实践
 3. Redux 的异步问题怎么处理
-
-
 
 ####问题详解
 
@@ -293,15 +260,11 @@ Redux 的作者写过一篇文章 [也许你可以不必使用 Redux](https://zh
 
 > 结论：**如果你的 UI 层非常简单，没有很多交互，Redux 就是不必要的，用了反而增加复杂性（reducer, action => this.setState() ）。**
 
-
-
 **如果一定要使用 Redux, 可以有哪些最佳实践？**
 
 模拟面试对话：
 
-Q: 面试官爸爸    A: 你
-
-
+Q: 面试官爸爸 A: 你
 
 Q: 小伙子，我问你，你觉得你们的项目使用 Redux，吐槽最多的地方是什么？
 
@@ -309,9 +272,9 @@ Q: 小伙子，我问你，你觉得你们的项目使用 Redux，吐槽最多�
 
 问题分析
 
-​	先思考使用 Redux 的痛点是什么？
+​ 先思考使用 Redux 的痛点是什么？
 
-​    修改一次数据，太麻烦，dispatch(action) -> 调用 reducer 计算 -> 触发回调 -> 更新数据
+​ 修改一次数据，太麻烦，dispatch(action) -> 调用 reducer 计算 -> 触发回调 -> 更新数据
 
 ->
 
@@ -333,23 +296,21 @@ Q: nice，那你在使用 Redux 有哪些比较好的实践方式呢？
 
 问题分析
 
-​	从痛点出发，想办法解决 Redux 的痛点。
+​ 从痛点出发，想办法解决 Redux 的痛点。
 
-​	可以通过一些手段减少模板代码，从而简化 Redux API
+​ 可以通过一些手段减少模板代码，从而简化 Redux API
 
 1. 使用 [redux-actions](https://github.com/redux-utilities/redux-actions) ，在初始化 reducer 和 action 构造器时减少样板代码 -> 看看这么使用
    - 减少创建 action 时写一堆固定的方法
-     - () => ({ type: 'XXX' })   ->    createAction('XXX', payload => payload)
+     - () => ({ type: 'XXX' }) -> createAction('XXX', payload => payload)
    - 减少创建 reducer 时写一堆固定的 switch
-     - switch{}   ->   handleActions({})
+     - switch{} -> handleActions({})
 2. 使用 [cli 工具](https://github.com/facebook/create-react-app)，帮我们自动生成模板代码
    - 使用 [yeoman](https://yeoman.io/) 来帮我们用命令一键创建样板文件和样本代码（详细可参见在职加薪课）
 
 ->
 
-A:  可以通过一些手段减少模板，从而简化 Redux API，比如引入 Redux-Actions 来减少抒写固定不变的代码，以及使用 yeoman 来用命令自动生成样板文件以及代码。
-
-
+A: 可以通过一些手段减少模板，从而简化 Redux API，比如引入 Redux-Actions 来减少抒写固定不变的代码，以及使用 yeoman 来用命令自动生成样板文件以及代码。
 
 > 总结：
 >
@@ -360,15 +321,9 @@ A:  可以通过一些手段减少模板，从而简化 Redux API，比如引入
 > - 使用 Redux-Actions 来减少抒写固定不变的代码，让我们的 actions 和 reduces 更清晰
 > - 同时还可以使用 yeoman 等 cli 工具，帮我们用命令一键创建样板文件和样本代码
 
-
-
-
-
 **Redux 的异步问题怎么处理？**
 
 真实业务开发我们需要处理异步请求，比如：请求后台数据，延迟执行某个效果，setTimout, setInterval 等等，所以当 Redux 遇到异步操作的时候，该如何处理?
-
-
 
 模拟面试对话：
 
@@ -378,22 +333,20 @@ Q: 为什么 Redux 处理不了异步问题？
 
 问题分析
 
-​	从 Redux 代码的原理出发
+​ 从 Redux 代码的原理出发
 
 ```javascript
-dispatch(action) // action = { type: 'XXX', payload: 'xxx' };
+dispatch(action); // action = { type: 'XXX', payload: 'xxx' };
 
 // ->reducer 是一个纯函数，无法处理其他类型的数据
 
 // 所以 dispatch 默认接收的 action 不可以是其他类型的
 dispatch((dispatch) => {
   setTimeout(() => {
-    dispatch({ type: 'INCREMENT'})
+    dispatch({ type: 'INCREMENT' });
   }, 3000);
 });
 ```
-
-
 
 A: dispatch 默认只能接收一个 Object 类型的 action，因为 reducer 里面要接收 action.type 来处理不同的数据。
 
@@ -405,27 +358,21 @@ Q: very nice，那怎么解决？
 
 问题分析：
 
-​	找度娘，Redux 异步问题可以通过中间件来解决
+​ 找度娘，Redux 异步问题可以通过中间件来解决
 
 1. 使用 [Redux-thunk](https://github.com/reduxjs/redux-thunk) 中间件，来解决异步 Action 的问题
 
- 	2. 使用 [Redux-saga](https://redux-saga-in-chinese.js.org/) 中间件，让异步行为成为架构中独立的一层(称为 saga)（详细可参见中级程序员课程）
-
-
+   2. 使用 [Redux-saga](https://redux-saga-in-chinese.js.org/) 中间件，让异步行为成为架构中独立的一层(称为 saga)（详细可参见中级程序员课程）
 
 > 总结：
 >
 > Redux 默认 的 dispatch 只能接收一个 Object 类型的 action，如果要让 Redux 支持异步操作，可以通过引入 Redux-thunk 或者 Redux-saga 等其他的中间件来使 Redux 支持异步 Action。
 
-
-
 ####答题思路
 
 1. Redux 会额外增加代码的复杂性，使用前需要考虑当前项目的规模和需求 30
-2. 可以使用 Redux-Actions 来帮我们减少抒写固定不变的代码，并且使用 cli 工具来帮我们自动创建样板代码 30 
+2. 可以使用 Redux-Actions 来帮我们减少抒写固定不变的代码，并且使用 cli 工具来帮我们自动创建样板代码 30
 3. Redux 默认无法处理异步 Action 是因为 dispatch 只能接收一个 Object 类型的 Action。但是可以通过引入中间件的方式来解决 40
-
- 
 
 ###3. React 中的 Hooks
 
@@ -445,8 +392,6 @@ function Welcome (props) {
 }
 ```
 
-
-
 类组件：
 
 1. 一个 Class 就是一个类组件
@@ -463,8 +408,6 @@ class Welcome extends React.Component {
 }
 ```
 
-
-
 **函数组件 vs 类组件**
 
 | 区别             | 函数组件(无状态组件) | 类组件 |
@@ -473,16 +416,12 @@ class Welcome extends React.Component {
 | 是否有生命周期   | 没有                 | 有     |
 | 是否有状态 state | 没有                 | 有     |
 
-
-
 **Hooks 的作用，以及有哪些特性？**
 
 React Hooks 是 v16.8 版本引入了全新的 API，它算是一个**颠覆性**的变革。
 
 - 所有的 React 组件都可以是一个函数组件，再也不需要写类组件了
 - 再也不需要记住 React 有哪些生命周期函数了
-
-
 
 ####问题详解
 
@@ -521,8 +460,6 @@ class Example extends React.Component {
 }
 ```
 
-
-
 React Hooks 版本
 
 ```react
@@ -532,13 +469,13 @@ function Example() {
   const [count, setCount] = useState(0); // 类似于 this.state = { count: 0 }
   const [loading, setLoading] = useState(false); // this.state = {loading: false}
 	// 声明的名称叫做 xxx, 那么必定有一个值叫做 setXxx() (固定的写法)
-  
+
   // 类似于 componentDidMount 和 componentDidUpdate;
   useEffect(() => {
     // 改变 title
     document.title = `You clicked ${count} times`;
   });
-  
+
     useEffect(() => {
     // 发送 ajax 请求
   });
@@ -556,8 +493,6 @@ function Example() {
 
 > 结论：**React Hooks 可以让我们的代码变得更加简洁，结构更清晰**
 
-
-
 **在实际项目中如何使用 Hooks？**
 
 比如有一个需求，我们需要在页面 A 和 页面 B 上请求一部电影的详细数据。
@@ -567,8 +502,6 @@ function Example() {
 A -> 加载 -> 发送请求 `https://swapi.co/api/films/1`
 
 B -> 加载 -> 发送请求 `https://swapi.co/api/films/2`
-
-
 
 普通的写法
 
@@ -580,13 +513,13 @@ class App extends React.Component {
       loading: false, // 请求的菊花状态
       data: {},       // 电影的详细数据
     };
-  }  
+  }
 
   componentDidMount() {
     this.setState({  // 1. 设置 loading 为 true
       loading: true,
     })
-    
+
     fetch(`https://swapi.co/api/films/${this.props.filmId}`)  // 2. 发送请求
       .then(data => {
         this.setState({
@@ -595,17 +528,17 @@ class App extends React.Component {
         })
       });
   }
-  
+
   componentDidUpdate() {
      this.fethData(this.props.filmId);
   }
-  
+
   // 无法抽离出去，
   fetchData = (filmId) => {
     this.setState({  // 1. 设置 loading 为 true
       loading: true,
     })
-    
+
     fetch(`https://swapi.co/api/films/${filmId}`)  // 2. 发送请求
       .then(data => {
         this.setState({
@@ -614,7 +547,7 @@ class App extends React.Component {
         })
       });
   }
-  
+
   render() {
     const { loading, data } = this.state;
     if (loading === true) {
@@ -630,10 +563,6 @@ class App extends React.Component {
   }
 }
 ```
-
-
-
-
 
 解决问题的心路历程：
 
@@ -656,7 +585,7 @@ loading 和 data
 const useFetchData = (filmId) => {
   const [loading, setLoading] = useState(false); // 只有在第一次加载的时候才会 被 false 复制
   const [data, setData] = useState({});
-  
+
   useEffect(() => {
     setLoading(true); // 1. 设置 loading 为 true
     fetch(`https://swapi.co/api/films/${filmId}`) // 2. 发送请求
@@ -669,8 +598,6 @@ const useFetchData = (filmId) => {
   return loading, data];
 };
 ```
-
-
 
 使用自定义 Hooks
 
@@ -694,18 +621,10 @@ function App({ filmId }) {
 }
 ```
 
-
-
 扩展：[社区共享了很多已经实现好的常用业务 Hooks](https://github.com/gragland/usehooks)
-
-
 
 #### 答题思路
 
 1. React Hooks 是一个新的 API，可以用函数来写所有的组件
 2. 可以让函数组件也可以拥有自己的状态管理（包括 state 和生命周期函数）
 3. 可以通过创建自定义的 Hooks 来抽离可复用的业务组件
-
-
-
-

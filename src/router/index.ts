@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:27:50
- * @LastEditTime: 2021-12-08 18:01:06
+ * @LastEditTime: 2021-12-09 11:12:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\router\index.ts
@@ -119,48 +119,76 @@ const routes: any[] = [
       title: 'ke',
     },
   },
+  // {
+  //   path: '/addRoute',
+  //   name: 'requaddRouteest',
+  //   component: addRoute,
+  //   meta: {
+  //     title: 'addRoute',
+  //   },
+  // },
 
-  {
-    // path: "/:path(.*)",
-    path: '/:pathMatch(.*)*',
-    name: 'notFound',
-    component: NotFound,
-    meta: {
-      title: '404',
-    },
-  },
+  // {
+  //   // path: "/:path(.*)",
+  //   path: '/:pathMatch(.*)*',
+  //   name: 'notFound',
+  //   component: NotFound,
+  //   meta: {
+  //     title: '404',
+  //   },
+  // },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
+// router.beforeEach((to) => {
+// router.addRoute({
+//   path: '/123',
+//   component: addRoute,
+// });
+//   // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
+//   router.replace(router.currentRoute.value.fullPath);
+
+//   // router.replace(to.fullPath);
+//   // router.options.routes.push({
+//   //   path: '/addRoute',
+//   //   component: addRoute,
+//   // });
+//   console.log(router.getRoutes());
+//   // console.log(router.options.routes);
+//   // next({ ...to, replace: true });
+
+//   // router.addRoute({
+//   //   path: '/addRoute',
+//   //   component: addRoute,
+//   // });
+
+//   // return to.fullPath;
+// });
 router.beforeEach((to, from, next) => {
+  // if (to.fullPath != '/addRoute') {
+  //   next();
+  //   console.log(router.getRoutes());
+  //   return;
+  // } else {
+  //   router.addRoute({
+  //     path: '/addRoute',
+  //     component: addRoute,
+  //   });
+  //   console.log(router.getRoutes());
+  //   console.log(to.fullPath);
+  // }
+
+  // // // 触发重定向
+  // return to.fullPath;
   router.addRoute({
-    path: '/addRoute',
+    path: '/123',
     component: addRoute,
   });
-
-  // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
-  // router.replace(router.currentRoute.value.fullPath);
-
-  // router.replace(to.fullPath);
-  // router.options.routes.push({
-  //   path: '/addRoute',
-  //   component: addRoute,
-  // });
-  // console.log(router.getRoutes());
-  // console.log(router.options.routes);
-  // next({ ...to, replace: true });
-
-  // router.addRoute({
-  //   path: '/addRoute',
-  //   component: addRoute,
-  // });
-  // next();
-
-  // return to.fullPath;
+  console.log(router);
+  next();
 });
-
 export default router;

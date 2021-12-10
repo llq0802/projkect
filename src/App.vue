@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-11-02 17:00:50
+ * @LastEditTime: 2021-12-09 09:18:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\App.vue
@@ -21,8 +21,7 @@
       <el-button @click="handleJumpPage4">异步</el-button>
       <el-button @click="handleJumpPage5">过渡</el-button>
       <el-button @click="handleJumpPage6">UI</el-button>
-      <el-button @click="handleJumpPage7">echarts</el-button>
-      <button class="animate__bounce">animate动画</button>
+      <el-button @click="handleJumpPage8">about</el-button>
       <h1 class="animate__animated animate__bounce">An animated element</h1>
     </div>
     <hr />
@@ -72,6 +71,9 @@ class App extends Vue {
   }
   handleJumpPage7() {
     this.$router.push({ path: "/echarts" });
+  }
+  handleJumpPage8() {
+    this.$router.push({ path: "/about" });
   }
 }
 export default App;

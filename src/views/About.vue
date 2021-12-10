@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:44:53
- * @LastEditTime: 2021-12-08 17:06:08
+ * @LastEditTime: 2021-12-09 09:29:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\views\Home.vue
@@ -105,17 +105,15 @@ export default defineComponent({
     ]);
 
     onMounted(async () => {
-      const router = useRouter();
-
-      router.addRoute({
-        path: "/addRoute",
-        component: addRoute,
-      });
-      // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
-      await router.replace(router.currentRoute.value.fullPath);
-      console.log(router.getRoutes());
-      console.log(router);
-
+      // const router = useRouter();
+      // router.addRoute({
+      //   path: "/addRoute",
+      //   component: addRoute,
+      // });
+      // // // 我们也可以使用 this.$route 或 route = useRoute() （在 setup 中）
+      // await router.replace(router.currentRoute.value.fullPath);
+      // console.log(router.getRoutes());
+      // console.log(router);
       // watchEffect(() => {
       //   console.log("watchEffect");
       // });

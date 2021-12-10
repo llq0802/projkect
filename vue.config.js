@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-16 15:16:38
- * @LastEditTime: 2021-10-21 10:04:55
+ * @LastEditTime: 2021-12-10 09:14:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\vue.config.js
@@ -40,7 +40,6 @@ _React脚手架配置跨域代理的方法 src 目录下新建 setupProxy.js 文
 // )
 // }
 
-
 // antd4 动态创建icon
 // import React from "react";
 // import  * as Icon from '@ant-design/icons';
@@ -49,7 +48,7 @@ _React脚手架配置跨域代理的方法 src 目录下新建 setupProxy.js 文
 
 // export default function App() {
 //   return (
-//     <div > 
+//     <div >
 //     {
 //       React.createElement(
 //         Icon[iconType],

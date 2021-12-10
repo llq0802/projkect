@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-02 16:19:03
- * @LastEditTime: 2021-12-03 17:48:53
+ * @LastEditTime: 2021-12-09 14:39:53
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\node.js\demo.js
@@ -72,12 +72,12 @@ const path = require('path');
 //   }
 //   console.log(data + '12313123');
 // });
-fs.mkdir(path.join(__dirname, 'wenjian'), { recursive: true }, (err) => {
-  console.log('123231');
-});
-fs.mkdir(path.join(__dirname, 'wenjian'), { recursive: true }, (err) => {
-  console.log('12');
-});
+// fs.mkdir(path.join(__dirname, 'wenjian'), { recursive: true }, (err) => {
+//   console.log('123231');
+// });
+// fs.mkdir(path.join(__dirname, 'wenjian'), { recursive: true }, (err) => {
+//   console.log('12');
+// });
 
 // fs.open(path.join(__dirname, 'data.txt'), 'r', (err, data) => {
 //   if (err) {
@@ -100,3 +100,4 @@ fs.mkdir(path.join(__dirname, 'wenjian'), { recursive: true }, (err) => {
 //   console.log('setTimeout');
 // }, 1000);
 // console.log('zhu');
+console.log(process.env);

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-22 14:38:15
- * @LastEditTime: 2021-12-07 09:19:44
+ * @LastEditTime: 2021-12-10 12:22:21
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\websocket.js
@@ -35,18 +35,18 @@ class SocketService {
     this.ws.onmessage = (e) => {
       console.log(e);
       const typeFn = e.data.typeFn;
-      if (typeFn) this.callbacks[typeFn].call();
-      // this.cbs.forEach((item) => {
-      //   if (typeFn === item.typeFn) item.value.call();
-      // });
+      if (typeFn) this.callbacks[typeFn].call(this);
+      this.cbs.forEach((item) => {
+        if (typeFn === item.typeFn) item.value.call(this);
+      });
     };
   }
   setFn(value, cb) {
     this.callbacks[value] = cb;
-    // this.cbs.push({
-    //   value: cb,
-    //   typeFn: value,
-    // });
+    this.cbs.push({
+      value: cb,
+      typeFn: value,
+    });
   }
   removeFn(value) {
     this.callbacks[value] = null;

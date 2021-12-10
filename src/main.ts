@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-12-08 15:33:07
+ * @LastEditTime: 2021-12-09 14:37:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\main.ts
@@ -20,13 +20,17 @@ let app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(ElementPlus);
+console.log(process.env);
+console.log(process.env.BASE_NUM);
+console.log(process);
 
 // 插件先引入,最后在调用挂载app
 app.mount('#app');
 app.config.globalProperties.$axios = 'axios';
 // 相当于以前vue2中的 vue.prototype 原型
 // app.config.globalProperties  vue3中的原型
-
+// 访问 globalProperties vue原型
+// console.log(internalInstance.appContext.config.globalProperties);
 //父子组件加载顺序 home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
 
 // 自定义指令
