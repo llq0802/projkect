@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-07 14:11:05
+ * @LastEditTime: 2021-12-10 17:59:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -253,12 +253,14 @@
         }
       }
       //call
+      //  fn.myCall(obj)  =>  obj.fn()
       Function.prototype.myCall = function(context, ...rest) {
         context.fn = this;
         let result = context.fn(...rest);
         delete context.fn;
         return result;
       };
+
       //apply
       Function.prototype.myApply = function(context, args) {
         context.fn = this;
@@ -270,6 +272,7 @@
         }
         return res;
       };
+
       // 手写bind函数
       Function.prototype.myBind = function(context, ...args) {
         const thisFn = this; //当前调用的函数
