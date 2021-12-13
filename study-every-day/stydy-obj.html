@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 16:21:10
- * @LastEditTime: 2021-12-07 17:50:34
+ * @LastEditTime: 2021-12-13 14:47:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\demo\stydu-obj.html
@@ -431,12 +431,17 @@
         return timeStr;
       }
 
+      // ['1','2','3'].map(parseInt) =>[1,NaN,NaN]
+      // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数为，有效位，）
+      // parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN
+
       //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
-      // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址
-      // 2. null == undefined成立/ null===undefined不成立
+      // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址，栈指向堆内存地址
+      // 2. null == undefined成立/ null===undefined不成立   null,undefined不成立与其他类型比较时都不相等
       // 3. NaN==NaN不成立 NaN和谁都不相等
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+
       // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
 
       // let log = console.log.bind(document);
@@ -456,10 +461,10 @@
       //  1先主代码
       // 2.  process.next()
       //3.    Promise     2 3 都是微任务
+
       // timer 模块0ms
       // i/o I/O 回调。
       // check模块    setimmediate()
-
       //close callbacks
     </script>
   </body>

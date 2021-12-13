@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-10 17:59:06
+ * @LastEditTime: 2021-12-13 17:15:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -270,6 +270,7 @@
         } else {
           res = context.fn(...args);
         }
+        delete context.fn;
         return res;
       };
 
@@ -306,7 +307,12 @@
         }
         return copy;
       }
-
+      //  手写 instanceof
+      function checkPrototype(obj, constructor) {
+        if (!obj.__proto__) return false;
+        if (obj.__proto__ == constructor.prototype) return true;
+        return checkPrototype(obj.__proto__, constructor);
+      }
       //将数组拆分成平均长度的数组
       function group(array, subNum) {
         let startIndex = 0;
@@ -404,31 +410,12 @@
         return pathArr;
       }
 
-      // 深度过滤数组重复值
-      const uniqueDeep = (arr) => {
-        let tempArr = [];
-        let obj = {};
-        arr.map((item) => {
-          if (typeof item !== 'object') {
-            if (!tempArr.includes(item)) {
-              tempArr.push(item);
-            }
-          } else {
-            let key = JSON.stringify(item);
-            if (!obj[key]) {
-              tempArr.push(item);
-              obj[key] = 1;
-            }
-          }
-        });
-        return tempArr;
-      };
-
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
-      // console.log(Math.random().toString(36).slice(2));
+      //console.log(Math.random().toString(36).slice(2));
 
       /*
             *  window.getComputedStyle()
+            
             //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
             // {
             //   bottom: 556.21875,

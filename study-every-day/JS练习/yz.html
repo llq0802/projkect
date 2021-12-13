@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-08 12:08:56
+ * @LastEditTime: 2021-12-13 17:56:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -141,7 +141,7 @@
     <div class="yuan"></div>
     <input class="inp" />
     <div class="box-header">tou</div>
-    <h1>你好h1</h1>
+    <h1 draggable="true">你好h1</h1>
     <h2>你好h2</h2>
     <h3>你好h3</h3>
     <h4>你好h4</h4>
@@ -189,21 +189,22 @@
       // clientX
       console.time('time');
 
-      const slider = document.querySelector('.icon-box');
-      slider.addEventListener('mouseenter', function() {
-        console.log(11);
-      });
-      slider.addEventListener('mousedown', function() {
-        console.log(22);
-      });
-      slider.addEventListener('mousemove', function(e) {
-        // this.style.left =''
-        console.log(e.clientX);
-        console.log(this.offsetLeft);
-      });
-      slider.addEventListener('mouseup', function() {
-        console.log(44);
-      });
+      // const slider = document.querySelector('.icon-box');
+      // slider.addEventListener('mouseenter', function() {
+      //   console.log(11);
+      // });
+      // slider.addEventListener('mousedown', function() {
+      //   console.log(22);
+      // });
+      // slider.addEventListener('mousemove', function(e) {
+      //   // this.style.left =''
+      //   console.log(e.clientX);
+      //   console.log(this.offsetLeft);
+      // });
+      // slider.addEventListener('mouseup', function() {
+      //   console.log(44);
+      // });
+
       let aa = 'fasgs1894fga48g4a215a';
       let res = aa.match(/\d/gi);
       // console.log(res);
@@ -937,7 +938,28 @@
       // document.URL
 
       // console.log( +'1'); 数字
-      htmlEncodeByRegExp();
+
+      // htmlEncodeByRegExp();
+      // for (let i = 0; i < 5; i++) {
+      //   setTimeout(() => {
+      //     console.log(i++);
+      //   }, 2000);
+      // }
+
+      // console.log(i);
+      // obj.__proto__ == Object.prototype
+      // console.log([].__proto__.__proto__ == Object.__proto__);
+
+      // console.log(Function.__proto__ == Function.prototype); //true
+      // console.log(String.__proto__ == String.prototype); //false
+      // console.log(Array.__proto__ == Array.prototype); //false
+      // console.log(Object.__proto__ == Object.prototype); //false
+      // console.dir(Function.prototype);
+      const nm = () => {
+        // console.log(arguments);
+      };
+      new nm();
+      // console.dir(nm.__proto__);
     </script>
   </body>
 </html>
