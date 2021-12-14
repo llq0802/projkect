@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-13 17:15:27
+ * @LastEditTime: 2021-12-14 09:40:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -94,8 +94,8 @@
       //*********************************//********************************//
 
       /*
-                      手写题！
-                    */
+       *  手写题！
+       */
 
       // 1. Promise
       // let p = new Promise((resolve, reject) => {
@@ -255,9 +255,14 @@
       //call
       //  fn.myCall(obj)  =>  obj.fn()
       Function.prototype.myCall = function(context, ...rest) {
-        context.fn = this;
-        let result = context.fn(...rest);
-        delete context.fn;
+        //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
+        const keyFn = Symbol('keyFn');
+        context[keyFn] = this;
+        let result = context[keyFn](...rest);
+        // context.fn = this;
+        // let result = context.fn(...rest);
+        // delete context.fn;
+        delete context[keyFn];
         return result;
       };
 

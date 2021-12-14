@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-13 17:55:21
+ * @LastEditTime: 2021-12-14 15:35:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -951,15 +951,22 @@
       // console.log([].__proto__.__proto__ == Object.__proto__);
 
       // console.log(Function.__proto__ == Function.prototype); //true
-      // console.log(String.__proto__ == String.prototype); //false
+      // console.log('String'.__proto__ == String.prototype); //true
       // console.log(Array.__proto__ == Array.prototype); //false
       // console.log(Object.__proto__ == Object.prototype); //false
       // console.dir(Function.prototype);
-      const nm = () => {
-        // console.log(arguments);
-      };
-      nm();
-      // console.dir(nm.__proto__);
+      // function nm() {
+      //   // console.log(arguments); //箭头函数没argments 没有prototype 不能当做构造函数 没有自己的this
+      // }
+      // // nm();
+
+      // console.log(nm.__proto__ == Function.prototype);
+
+      // console.dir(nm);
+
+      // function* funcc(){
+      //   yield 2
+      // }
     </script>
   </body>
 </html>
