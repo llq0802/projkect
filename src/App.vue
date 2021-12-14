@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-12-09 09:18:19
+ * @LastEditTime: 2021-12-14 16:11:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\App.vue
@@ -55,7 +55,8 @@ class App extends Vue {
     this.$router.push({ path: "/user/15" });
   }
   handleJumpPage1() {
-    this.$router.push({ path: "/about" });
+    // 带查询参数，结果是 /register?plan=private
+    this.$router.push({ path: "/about", query: { plan: "private" } });
   }
   handleJumpPage3() {
     this.$router.push({ path: "/login" });
