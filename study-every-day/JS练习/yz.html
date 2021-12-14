@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-14 15:35:02
+ * @LastEditTime: 2021-12-14 17:45:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -964,9 +964,11 @@
 
       // console.dir(nm);
 
-      // function* funcc(){
-      //   yield 2
-      // }
+      function* funcc() {
+        yield 2;
+      }
+      let sad = funcc();
+      console.log(sad.next());
     </script>
   </body>
 </html>
