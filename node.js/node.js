@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-12-01 16:06:45
- * @LastEditTime: 2021-12-03 15:45:04
+ * @LastEditTime: 2021-12-15 12:01:51
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\node.js\index.js
  */
 
 // module.exports = {};
-// path.extname(); //返回后缀名
+// path.extname(); //返回文件后缀名
 const path = require('path');
 const querystring = require('querystring');
 let str = 'api/bin/idne.html';
@@ -34,8 +34,10 @@ let str = 'api/bin/idne.html';
 // console.log(path.resolve(__dirname, '../'));
 
 // node.js中 默认this是{}  console.log(this);
-let b1 = Buffer.alloc(10);
-console.log(b1);
-// let buf = Buffer.from('1');接受 字符串 数组 buffer
-let buf1 = Buffer.from([1, 2, 3]);
-console.log(buf1);
+// let b1 = Buffer.alloc(10);
+// console.log(b1);
+// // let buf = Buffer.from('1');接受 字符串 数组 buffer
+// let buf1 = Buffer.from([1, 2, 3]);
+// console.log(buf1);
+process.env.NODE_ENV = 'dev';
+console.log(process.env.NODE_ENV);
