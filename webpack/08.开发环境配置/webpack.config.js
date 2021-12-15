@@ -22,12 +22,47 @@ module.exports = {
       {
         // 处理less资源
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            //css兼容处理
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  // postcss的插件
+                  'postcss-preset-env',
+                ],
+              },
+            },
+          },
+          'less-loader',
+        ],
       },
       {
         // 处理css资源
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoader: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  // postcss的插件
+                  'postcss-preset-env',
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         // 处理图片资源
@@ -35,7 +70,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 8 * 1024,
-          name: '[hash:10].[ext]',
+          name: '[name].[hash:10].[ext]',
           // 关闭es6模块化
           esModule: false,
           outputPath: 'imgs',
