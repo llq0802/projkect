@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-26 14:35:02
- * @LastEditTime: 2021-12-01 11:42:49
+ * @LastEditTime: 2021-12-16 12:13:25
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\mongod\index.md
@@ -62,9 +62,53 @@ db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
 \$lookup
 
 分页查询
-db.表名.find().skip((page-1)\*pageSize).limit(pageSize)
+db.表名.find().skip((page-1) \* pageSize).limit(pageSize)
 
-\$regex 正则查询
+\$or 　　　　或关系
+
+\$nor 　　　 或关系取反
+
+\$gt 　　　　大于
+
+\$gte 　　　 大于等于
+
+\$lt 　　　　 小于
+
+\$lte 　　　 小于等于
+
+\$ne 不等于
+
+\$in 在多个值范围内
+
+\$nin 不在多个值范围内
+
+\$all 匹配数组中多个值
+
+\$regex 　　正则，用于模糊查询
+
+\$size 　　　匹配数组大小
+
+\$maxDistance 　　范围查询，距离（基于 LBS）
+
+\$mod 　　 取模运算
+
+\$near 　　　邻域查询，查询附近的位置（基于 LBS）
+
+\$exists 　　 字段是否存在
+
+\$elemMatch 　　匹配内数组内的元素
+
+\$within 　　范围查询（基于 LBS）
+
+\$box 　　　 范围查询，矩形范围（基于 LBS）
+
+\$center 范围醒询，圆形范围（基于 LBS）
+
+\$centerSphere 　　范围查询，球形范围（基于 LBS）
+
+\$slice 　　　　查询字段集合中的元素（比如从第几个之后，第 N 到第 M 个元素）
+
+$regex 正则查询 //   关键字查询 db.posts.find({title:{$regex:title,$Option:"\$i"} }})
 
 db.mycol.aggregate(
 [
