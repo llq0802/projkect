@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-15 10:41:15
+ * @LastEditTime: 2021-12-17 09:30:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -965,15 +965,23 @@
       // console.dir(nm);
 
       // yield句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句后面的返回值。
-      function* funcc() {
-        let a = 2 * (yield 1);
-        console.log(a);
+      // function* funcc() {
+      //   let a = 2 * (yield 1);
+      //   console.log(a);
 
-        let b = yield 2;
+      //   let b = yield 2;
+      // }
+      // let sad = funcc();
+      // console.log(sad.next());
+      // console.log(sad.next(111));
+
+      async function ee() {
+        return setTimeout(() => {
+          console.log(12123);
+        });
       }
-      let sad = funcc();
-      console.log(sad.next());
-      console.log(sad.next(111));
+      console.log(ee());
+      console.log(22);
     </script>
   </body>
 </html>

@@ -254,6 +254,7 @@
       //建立观察ob.observe(el)
       //取消观察ob ob.unobserve(el)
 
+      // 动画定时器 间隔时间为屏幕刷新帧数 用法与setTimeout一样
       // requestAnimationFrame(() => {});渲染函数
       // cancelAnimationFrame();
 
@@ -261,6 +262,28 @@
 
       // 通过FileReader.readAsDataURL(file)可以获取一段data:base64的字符串
       // 通过URL.createObjectURL(blob)可以获取当前文件的一个内存URL
+
+      // ['1','2','3'].map(parseInt) =>[1,NaN,NaN]
+      // parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN
+
+      // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数位，有效位，）
+
+      // 浏览器
+      //  1先主代码
+      //  2微任务
+      //  3宏任务
+      // 注意：每次执行完一个宏任务 就会立刻去查找执行微任务
+      // node事件
+      //  1先主代码
+      // 2.  process.next()
+      //3.    Promise     2 3 都是微任务
+      // timer 模块0ms
+      // i/o I/O 回调。
+      // check模块    setimmediate()
+      //close callbacks
+
+      // 执行上下文创建阶段：作用域链、变量对象、this
+      // 执行上下文执行阶段：变量赋值、函数引用
     </script>
   </body>
 </html>
