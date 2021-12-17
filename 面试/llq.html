@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-14 09:40:28
+ * @LastEditTime: 2021-12-17 12:32:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -17,8 +17,8 @@
   <body>
     <script src="">
       /*
-                          选择题 判断多选的情况
-                          */
+                                选择题 判断多选的情况
+                                */
       let arr1 = [
         {
           title: 'abcdefg',
@@ -329,6 +329,7 @@
         }
         return newArray;
       }
+
       // 深度过滤数组重复值
       const uniqueDeep = (arr) => {
         let tempArr = [];
@@ -372,6 +373,7 @@
           max,
         };
       };
+
       // 以下函数返回 min（包含）～ max（包含）之间的数字：
       function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -381,6 +383,7 @@
       function getRndIntegerNo(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
       }
+
       // 数组随机排序
       function randomSort(arr) {
         arr.sort(() => Math.random() - 0.5);
@@ -414,30 +417,51 @@
         if (lineArr.length) pathArr.push(lineArr);
         return pathArr;
       }
+      //线程随眠
+      function sleepss(delay) {
+        let start = +new Date();
+        while (+new Date() - start < delay) {
+          continue;
+        }
+      }
+      function sleepPro(delay) {
+        return new Promise((resolve, reject) => {
+          setTimeout(resolve, delay);
+        });
+      }
+      //取数组中的最大值
+      function arrayMax(array) {
+        return array.reduce((max, elem) => (max > elem ? max : elem), array[0]);
+      }
+      //取数组中的最大值
+      const total = [1, 2, 3, 4, 5].reduce((pre, cur) => {
+        let tol = pre + cur;
+        return tol;
+      });
 
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));
 
       /*
-            *  window.getComputedStyle()
-            
-            //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
-            // {
-            //   bottom: 556.21875,
-            //   height: 393.59375,
-            //   left: 333,
-            //   right: 1017,
-            //   top: 162.625,
-            //   width: 684
-            // }
-            */
+                  *  window.getComputedStyle()
+
+                  //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
+                  // {
+                  //   bottom: 556.21875,
+                  //   height: 393.59375,
+                  //   left: 333,
+                  //   right: 1017,
+                  //   top: 162.625,
+                  //   width: 684
+                  // }
+                  */
 
       /*
-     *  vuex原理
-     调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，
-     在所有组件的 beforeCreate生命周期注入了设置 this.$store这样一个对象。
-     * 
-     */
+           *  vuex原理
+           调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，
+           在所有组件的 beforeCreate生命周期注入了设置 this.$store这样一个对象。
+           *
+           */
     </script>
   </body>
 </html>
