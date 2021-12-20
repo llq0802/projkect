@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-17 09:30:13
+ * @LastEditTime: 2021-12-20 12:24:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -975,13 +975,26 @@
       // console.log(sad.next());
       // console.log(sad.next(111));
 
-      async function ee() {
-        return setTimeout(() => {
-          console.log(12123);
-        });
-      }
-      console.log(ee());
-      console.log(22);
+      // async function ee() {
+      //   return setTimeout(() => {
+      //     console.log(12123);
+      //   });
+      // }
+      // console.log(ee());
+      // console.log(22);
+
+      // console.log(String.fromCharCode(97)); //a
+      // console.log('a'.charCodeAt(0)); //97
+
+      // for (let i = 65; i < 91; i++) {
+      //   console.log(String.fromCharCode(i));
+      // }
+
+      console.log(
+        ['g', 'bg', 'p', 'a', 'hb', 'c', 'o'].sort((a, b) => {
+          return a.charCodeAt(0) - b.charCodeAt(0);
+        })
+      );
     </script>
   </body>
 </html>

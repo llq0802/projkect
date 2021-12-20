@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 16:19:16
- * @LastEditTime: 2021-12-08 10:53:55
+ * @LastEditTime: 2021-12-20 17:06:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\Login.vue
@@ -11,8 +11,9 @@
     <h3>{{ count }}</h3>
     <span>{{ name }}</span
     >-<span>{{ age }}</span>
-    <h3>{{ dbCount }}</h3>
+    <h3 ref="dl2">{{ dbCount }}</h3>
     <h1 ref="dl">denglu</h1>
+    <h2 ref="dl1">3893</h2>
   </div>
 </template>
 
@@ -67,6 +68,9 @@ export default defineComponent({
       age: 20,
     });
     let dl = ref();
+    let dl2 = ref();
+    let dl1 = ref();
+
     let dbCount = computed((): number => (count.value * 2) as number);
 
     // console.log(nextTick);返回一个Promise
@@ -93,6 +97,8 @@ export default defineComponent({
     );
     onMounted(() => {
       console.log(dl);
+      console.log(dl1);
+      console.log(dl2);
       console.log(context);
     });
 
@@ -102,6 +108,8 @@ export default defineComponent({
       dbCount,
       list,
       dl,
+      dl1,
+      dl2,
     };
   },
 });

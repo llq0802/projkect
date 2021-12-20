@@ -8,7 +8,8 @@
 -->
 <template>
   <div>
-    <h1>首页</h1>
+    <h1 ref="h1">首页</h1>
+    <h2 ref="h2">首页2</h2>
     <!-- v-solt: -->
     <!-- 父子组件双向绑定数据 -->
     <Base :msg="msg" v-model:title="title">

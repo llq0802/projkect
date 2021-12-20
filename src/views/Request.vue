@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:54:32
- * @LastEditTime: 2021-08-16 16:30:55
+ * @LastEditTime: 2021-12-20 17:03:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\request.vue
@@ -16,7 +16,7 @@ import { defineComponent, onMounted } from "vue";
 import axios from "axios";
 
 export default defineComponent({
-  setup() {
+  setup(props, { attrs, slots, emit, expose }) {
     let api = "/api/list";
     onMounted(() => {
       // axios
@@ -28,9 +28,9 @@ export default defineComponent({
       //     console.log(error);
       //   });
 
-      fetch("https://api.apiopen.top/getJoke?page=1&count=2&type=video")
-        .then((res) => res.json())
-        
+      fetch("https://api.apiopen.top/getJoke?page=1&count=2&type=video").then(
+        (res) => res.json()
+      );
     });
   },
 });

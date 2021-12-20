@@ -1,7 +1,7 @@
 /*
  * @Author: your llq
  * @Date: 2021-08-07 15:54:50
- * @LastEditTime: 2021-12-06 17:38:44
+ * @LastEditTime: 2021-12-20 09:24:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web\lianxi.ts
@@ -125,20 +125,20 @@ class To {
 }
 // protected可以在父类和子类中访问---- private只能本身类访问----public(默认)任何地方都可以访问
 //implements 用在泛型接口中
-class User extends To implements proson {
-  age: number;
-  constructor(name: string, age: number) {
-    super(name);
-    this.age = age;
-  }
-  sing(val: string) {
-    console.log(this.name + val + this.age);
-  }
-  eat() {
-    console.log(super.jump() + 44);
-  }
-}
-let ap = new User('h', 20);
+// class User extends To implements proson {
+//   age: number;
+//   constructor(name: string, age: number) {
+//     super(name);
+//     this.age = age;
+//   }
+//   sing(val: string) {
+//     console.log(this.name + val + this.age);
+//   }
+//   eat() {
+//     console.log(super.jump() + 44);
+//   }
+// }
+// let ap = new User('h', 20);
 // a.sing("爱你");
 // a.eat();
 /*******************泛型(针对于函数或者类),在函数括号前声明泛型函数,在class类名后面声明泛型类*******传入的参数会将其类型传递给泛型<T>/
@@ -244,28 +244,28 @@ const handlePageJump: fnLink = <T>(params1: T): T => {
 handlePageJump<number>(1, 3);
 /*************************************************************/
 //定义泛型类
-class Change<T> {
-  updata(info: T, id: number): boolean {
-    console.log(info);
-    console.log(id);
-    return true;
-  }
-}
+// class Change<T> {
+//   updata(info: T, id: number): boolean {
+//     console.log(info);
+//     console.log(id);
+//     return true;
+//   }
+// }
 // 把类当做参数传递给泛型类 就和类接口有点类似  类接口不需要实例化 但是类必须实例化
-class Admin {
-  name: string | undefined;
-  password: number | undefined;
-  constructor(obj: { name: string | undefined; password: number | undefined }) {
-    this.name = obj.name;
-    this.password = obj.password;
-  }
-}
-let q = new Admin({
-  name: 'admin',
-  password: 123,
-});
+// class Admin {
+//   name: string | undefined;
+//   password: number | undefined;
+//   constructor(obj: { name: string | undefined; password: number | undefined }) {
+//     this.name = obj.name;
+//     this.password = obj.password;
+//   }
+// }
+// let q = new Admin({
+//   name: 'admin',
+//   password: 123,
+// });
 
-let c = new Change<Admin>();
+// let c = new Change<Admin>();
 // c.updata(q, 1);
 
 //装饰器 (本质就是一个方法) 扩展被装饰的方法 属性 行为 类
