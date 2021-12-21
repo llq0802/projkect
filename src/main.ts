@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-12-16 17:57:46
+ * @LastEditTime: 2021-12-21 17:48:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\main.ts
@@ -15,6 +15,8 @@ import './assets/css/global.scss';
 import 'element-plus/lib/theme-chalk/index.css';
 import './assets/css/element-variables.scss';
 import 'animate.css';
+
+console.log(App);
 
 let app = createApp(App);
 app.use(router);

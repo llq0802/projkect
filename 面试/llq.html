@@ -1,227 +1,151 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-17 12:32:27
+ * @LastEditTime: 2021-12-21 16:06:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="">
-      /*
-                                选择题 判断多选的情况
-                                */
-      let arr1 = [
-        {
-          title: 'abcdefg',
-          value: false,
-        },
-        {
-          title: 'abcdef',
-          value: true,
-        },
-        {
-          title: 'abcd',
-          value: true,
-        },
-        {
-          title: 'abc',
-          value: true,
-        },
-      ];
-      let arr2 = [
-        {
-          title: 'abcdefg',
-          value: true,
-        },
-        {
-          title: 'abcdef',
-          value: true,
-        },
 
-        {
-          title: 'abcd',
-          value: false,
-        },
-        {
-          title: 'abc',
-          value: false,
-        },
-      ];
-      let ar = arr1.map((item) => item.value);
-      let ar2 = arr2.map((item) => item.value);
-      console.log(ar);
-      console.log(ar2);
-      let q = 0;
-      let l = 0;
-      let c = 0;
-      function isTrue(ar, ar2) {
-        let flag = false;
-        for (i in ar) {
-          if (ar[i] < ar2[i]) {
-            flag = true;
-            break;
-          }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="">
+    /*
+                              选择题 判断多选的情况
+                              */
+    let arr1 = [
+      {
+        title: 'abcdefg',
+        value: false,
+      },
+      {
+        title: 'abcdef',
+        value: true,
+      },
+      {
+        title: 'abcd',
+        value: true,
+      },
+      {
+        title: 'abc',
+        value: true,
+      },
+    ];
+    let arr2 = [
+      {
+        title: 'abcdefg',
+        value: true,
+      },
+      {
+        title: 'abcdef',
+        value: true,
+      },
+
+      {
+        title: 'abcd',
+        value: false,
+      },
+      {
+        title: 'abc',
+        value: false,
+      },
+    ];
+    let ar = arr1.map((item) => item.value);
+    let ar2 = arr2.map((item) => item.value);
+    console.log(ar);
+    console.log(ar2);
+    let q = 0;
+    let l = 0;
+    let c = 0;
+    function isTrue(ar, ar2) {
+      let flag = false;
+      for (i in ar) {
+        if (ar[i] < ar2[i]) {
+          flag = true;
+          break;
         }
-        return flag;
       }
-      let res111 = ar2.find((item, index) => {
-        return item > ar[index];
-      });
-      let res11 = ar2.some((item, index) => {
-        return ar.includes(item);
-      });
-      console.log(isTrue(ar, ar2));
-      console.log(res111);
-      console.log(res11);
-      if (ar.toString() == ar2.toString()) {
-        q++;
-      } else if (res111) {
-        c++;
-      } else {
-        l++;
+      return flag;
+    }
+    let res111 = ar2.find((item, index) => {
+      return item > ar[index];
+    });
+    let res11 = ar2.some((item, index) => {
+      return ar.includes(item);
+    });
+    console.log(isTrue(ar, ar2));
+    console.log(res111);
+    console.log(res11);
+    if (ar.toString() == ar2.toString()) {
+      q++;
+    } else if (res111) {
+      c++;
+    } else {
+      l++;
+    }
+    // console.log('quandui--- ' + q, 'loule--- ' + l, 'cuoel--- ' + c);
+
+    //*********************************//********************************//
+
+    /*
+     *  手写题！
+     */
+
+    // 1. Promise
+    // let p = new Promise((resolve, reject) => {
+    //   resolve(1)
+    // })
+    // p.then((i) => {},() => {})
+    class Pro {
+      constructor(executor) {
+        this.status = 'pending';
+        this.value = null;
+        this.callbacks = [];
+        function resolve(value) {
+          if (this.status === 'pending') {
+            this.value = value;
+            this.status = 'resolve';
+            setTimeout(() => {
+              this.callbacks.forEach((item) => {
+                item.onResolve && item.onResolve(this.value);
+              });
+            });
+          }
+        }
+        function reject(value) {
+          if (this.status === 'pending') {
+            this.value = value;
+            this.status = 'reject';
+            setTimeout(() => {
+              this.callbacks.forEach((item) => {
+                item.onReject && item.onReject(this.value);
+              });
+            });
+          }
+        }
+        executor(resolve.bind(this), reject.bind(this));
       }
-      // console.log('quandui--- ' + q, 'loule--- ' + l, 'cuoel--- ' + c);
 
-      //*********************************//********************************//
-
-      /*
-       *  手写题！
-       */
-
-      // 1. Promise
-      // let p = new Promise((resolve, reject) => {
-      //   resolve(1)
-      // })
-      // p.then((i) => {},() => {})
-      class Pro {
-        constructor(executor) {
-          this.status = 'pending';
-          this.value = null;
-          this.callbacks = [];
-          function resolve(value) {
-            if (this.status === 'pending') {
-              this.value = value;
-              this.status = 'resolve';
-              setTimeout(() => {
-                this.callbacks.forEach((item) => {
-                  item.onResolve && item.onResolve(this.value);
-                });
-              });
-            }
+      //then方法返回一个Promise
+      then(onResolve, onRreject) {
+        let callFn = (type) => {
+          let result = type(this.value);
+          // then手动返回的Promise不能与上一次相同
+          if (thenPro == result) {
+            throw new TypeError('Chaining cycle detected for promise');
           }
-          function reject(value) {
-            if (this.status === 'pending') {
-              this.value = value;
-              this.status = 'reject';
-              setTimeout(() => {
-                this.callbacks.forEach((item) => {
-                  item.onReject && item.onReject(this.value);
-                });
-              });
-            }
-          }
-          executor(resolve.bind(this), reject.bind(this));
-        }
-
-        //then方法返回一个Promise
-        then(onResolve, onRreject) {
-          let callFn = (type) => {
-            let result = type(this.value);
-            // then手动返回的Promise不能与上一次相同
-            if (thenPro == result) {
-              throw new TypeError('Chaining cycle detected for promise');
-            }
-            try {
-              if (result instanceof Pro) {
-                // result.then(resolve,reject) //是下面的简写方式
-                result.then(
-                  (v) => {
-                    resolve(v);
-                  },
-                  (r) => {
-                    reject(r);
-                  }
-                );
-              } else {
-                resolve(result);
-              }
-            } catch (error) {
-              reject(error);
-            }
-          };
-          let thenPro = new Pro((resolve, reject) => {
-            if (typeof resolve !== 'function') {
-              resolve = (value) => value;
-            }
-            if (typeof reject !== 'function') {
-              resolve = (value) => value;
-            }
-            if (this.status === 'resolve') {
-              setTimeout(() => {
-                callFn(onResolve);
-              });
-            }
-            if (this.status === 'reject') {
-              setTimeout(() => {
-                callFn(onReject);
-              });
-            }
-            if (this.status === 'pending') {
-              this.callbacks.push({
-                onResolve: () => {
-                  callFn(onResolve);
-                },
-                onRreject: () => {
-                  callFn(onRreject);
-                },
-              });
-            }
-          });
-          return thenPro;
-        }
-        catch(onRreject) {
-          return this.then(undefined, onRreject);
-        }
-
-        static resolve(value) {
-          return new Pro((resolve, reject) => {
-            try {
-              if (value instanceof Pro) {
-                value.then(
-                  (v) => {
-                    resolve(v);
-                  },
-                  (r) => {
-                    reject(r);
-                  }
-                );
-              } else {
-                resolve(value);
-              }
-            } catch (error) {
-              reject(error);
-            }
-          });
-        }
-        static reject(value) {
-          return new Pro((resolve, reject) => {
-            reject(value);
-          });
-        }
-
-        static race(proArr) {
-          return new Pro((resolve, reject) => {
-            proArr.forEach((item, idnex) => {
-              item.then(
+          try {
+            if (result instanceof Pro) {
+              // result.then(resolve,reject) //是下面的简写方式
+              result.then(
                 (v) => {
                   resolve(v);
                 },
@@ -229,239 +153,317 @@
                   reject(r);
                 }
               );
+            } else {
+              resolve(result);
+            }
+          } catch (error) {
+            reject(error);
+          }
+        };
+        let thenPro = new Pro((resolve, reject) => {
+          if (typeof resolve !== 'function') {
+            resolve = (value) => value;
+          }
+          if (typeof reject !== 'function') {
+            resolve = (value) => value;
+          }
+          if (this.status === 'resolve') {
+            setTimeout(() => {
+              callFn(onResolve);
             });
-          });
-        }
+          }
+          if (this.status === 'reject') {
+            setTimeout(() => {
+              callFn(onReject);
+            });
+          }
+          if (this.status === 'pending') {
+            this.callbacks.push({
+              onResolve: () => {
+                callFn(onResolve);
+              },
+              onRreject: () => {
+                callFn(onRreject);
+              },
+            });
+          }
+        });
+        return thenPro;
+      }
+      catch(onRreject) {
+        return this.then(undefined, onRreject);
+      }
 
-        static all(proArr) {
-          let arr = [];
-          return new Pro((resolve, reject) => {
-            proArr.forEach((item, index) => {
-              item.then(
+      static resolve(value) {
+        return new Pro((resolve, reject) => {
+          try {
+            if (value instanceof Pro) {
+              value.then(
                 (v) => {
-                  arr[index] = v;
-                  if (arr.length === proArr.length) {
-                    resolve(arr);
-                  }
+                  resolve(v);
                 },
                 (r) => {
                   reject(r);
                 }
               );
-            });
-          });
-        }
-      }
-      //call
-      //  fn.myCall(obj)  =>  obj.fn()
-      Function.prototype.myCall = function(context, ...rest) {
-        //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
-        const keyFn = Symbol('keyFn');
-        context[keyFn] = this;
-        let result = context[keyFn](...rest);
-        // context.fn = this;
-        // let result = context.fn(...rest);
-        // delete context.fn;
-        delete context[keyFn];
-        return result;
-      };
-
-      //apply
-      Function.prototype.myApply = function(context, args) {
-        context.fn = this;
-        let res;
-        if (!args) {
-          res = context.fn();
-        } else {
-          res = context.fn(...args);
-        }
-        delete context.fn;
-        return res;
-      };
-
-      // 手写bind函数
-      Function.prototype.myBind = function(context, ...args) {
-        const thisFn = this; //当前调用的函数
-        return function(...params) {
-          thisFn.apply(context, [...args, ...params]);
-        };
-      };
-      const bind = (fn, context, ...boundArgs) => (...args) =>
-        fn.apply(context, [...boundArgs, ...args]);
-      const call = (key, ...args) => (context) => context[key](...args);
-
-      //手写new
-      function myNew(fun, ...args) {
-        // let obj = Object.create(fun.prototype)
-        //创建新对象并把新对象的原型指向构造函数的原型，将构造函数的this指向新对象 并且调用
-        let obj = {};
-        obj.__proto__ = fun.prototype;
-        let res = fun.apply(obj, args);
-        return res instanceof Object ? res : obj;
-      }
-      //深克隆对象
-      function deepClone(obj) {
-        // 先判断是对象还是数组
-        let copy = obj instanceof Array ? [] : {};
-        for (let key in obj) {
-          // 判断是否是对象上的属性，而不是原型上的属性
-          if (obj.hasOwnProperty(key)) {
-            // obj[key] 是否是对象，如果是对象，递归遍历
-            copy[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
-          }
-        }
-        return copy;
-      }
-      //  手写 instanceof
-      function checkPrototype(obj, constructor) {
-        if (!obj.__proto__) return false;
-        if (obj.__proto__ == constructor.prototype) return true;
-        return checkPrototype(obj.__proto__, constructor);
-      }
-      //将数组拆分成平均长度的数组
-      function group(array, subNum) {
-        let startIndex = 0;
-        let newArray = [];
-        while (startIndex < array.length) {
-          newArray.push(array.slice(startIndex, (startIndex += subNum)));
-          // newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
-          // (page-1*size),(page*size)
-        }
-        return newArray;
-      }
-
-      // 深度过滤数组重复值
-      const uniqueDeep = (arr) => {
-        let tempArr = [];
-        let obj = {};
-        arr.map((item) => {
-          if (typeof item !== 'object') {
-            if (!tempArr.includes(item)) {
-              tempArr.push(item);
-            }
-          } else {
-            let key = JSON.stringify(item);
-            if (!obj[key]) {
-              tempArr.push(item);
-              obj[key] = 1;
-            }
-          }
-        });
-        return tempArr;
-      };
-
-      //统计出现最多次数的字符串
-      const llq = (str) => {
-        let temp = {};
-        let max = 0,
-          val;
-        for (let item of str) {
-          if (!temp[str]) {
-            temp[str] = 1;
-          } else {
-            temp[str]++;
-          }
-        }
-        for (let k in temp) {
-          if (temp[k] > max) {
-            temp[k] = max;
-            val = k;
-          }
-        }
-        return {
-          val,
-          max,
-        };
-      };
-
-      // 以下函数返回 min（包含）～ max（包含）之间的数字：
-      function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      // 以下函数返回 min（包含）～ max（不包含）之间的数字：
-      function getRndIntegerNo(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-      }
-
-      // 数组随机排序
-      function randomSort(arr) {
-        arr.sort(() => Math.random() - 0.5);
-      }
-
-      function isSplitWaterway() {
-        //原本的航道数组
-        let arr = [];
-        // 存储的航道数组
-        let pathArr = [];
-        // 存储的航道每一段线段
-        let lineArr = [];
-        for (let i = 0; i < arr.length; i++) {
-          // 第一次线段为0时直接加入第一个点
-          if (lineArr.length === 0) {
-            lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
-          } else {
-            if (arr[i - 1].navaid.radius < this.getDistance(arr[i - 1].navaid, arr[i].navaid)) {
-              pathArr.push(lineArr);
-              // 清空数组,重新开始压入
-              lineArr = [];
-              // 从当前断开的端点重新压入线段
-              i--;
             } else {
-              // 两点可以连接 直接将当前点压入数组
-              lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
+              resolve(value);
             }
+          } catch (error) {
+            reject(error);
           }
-        }
-        // 遍历完成后,检查lineArr压入pathArr
-        if (lineArr.length) pathArr.push(lineArr);
-        return pathArr;
-      }
-      //线程随眠
-      function sleepss(delay) {
-        let start = +new Date();
-        while (+new Date() - start < delay) {
-          continue;
-        }
-      }
-      function sleepPro(delay) {
-        return new Promise((resolve, reject) => {
-          setTimeout(resolve, delay);
         });
       }
-      //取数组中的最大值
-      function arrayMax(array) {
-        return array.reduce((max, elem) => (max > elem ? max : elem), array[0]);
+      static reject(value) {
+        return new Pro((resolve, reject) => {
+          reject(value);
+        });
       }
-      //取数组中的最大值
-      const total = [1, 2, 3, 4, 5].reduce((pre, cur) => {
-        let tol = pre + cur;
-        return tol;
+
+      static race(proArr) {
+        return new Pro((resolve, reject) => {
+          proArr.forEach((item, idnex) => {
+            item.then(
+              (v) => {
+                resolve(v);
+              },
+              (r) => {
+                reject(r);
+              }
+            );
+          });
+        });
+      }
+
+      static all(proArr) {
+        let arr = [];
+        return new Pro((resolve, reject) => {
+          proArr.forEach((item, index) => {
+            item.then(
+              (v) => {
+                arr[index] = v;
+                if (arr.length === proArr.length) {
+                  resolve(arr);
+                }
+              },
+              (r) => {
+                reject(r);
+              }
+            );
+          });
+        });
+      }
+    }
+    //call
+    //  fn.myCall(obj)  =>  obj.fn()
+    Function.prototype.myCall = function (context, ...rest) {
+      //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
+      const keyFn = Symbol('keyFn');
+      context[keyFn] = this;
+      let result = context[keyFn](...rest);
+      // context.fn = this;
+      // let result = context.fn(...rest);
+      // delete context.fn;
+      delete context[keyFn];
+      return result;
+    };
+
+    //apply
+    Function.prototype.myApply = function (context, args) {
+      context.fn = this;
+      let res;
+      if (!args) {
+        res = context.fn();
+      } else {
+        res = context.fn(...args);
+      }
+      delete context.fn;
+      return res;
+    };
+
+    // 手写bind函数
+    Function.prototype.myBind = function (context, ...args) {
+      const thisFn = this; //当前调用的函数
+      return function (...params) {
+        thisFn.apply(context, [...args, ...params]);
+      };
+    };
+    const bind = (fn, context, ...boundArgs) => (...args) =>
+      fn.apply(context, [...boundArgs, ...args]);
+    const call = (key, ...args) => (context) => context[key](...args);
+
+    //手写new
+    function myNew(fun, ...args) {
+      // let obj = Object.create(fun.prototype)
+      //创建新对象并把新对象的原型指向构造函数的原型，将构造函数的this指向新对象 并且调用
+      let obj = {};
+      obj.__proto__ = fun.prototype;
+      let res = fun.apply(obj, args);
+      return res instanceof Object ? res : obj;
+    }
+    //深克隆对象
+    function deepClone(obj) {
+      // 先判断是对象还是数组
+      let copy = obj instanceof Array ? [] : {};
+      for (let key in obj) {
+        // 判断是否是对象上的属性，而不是原型上的属性
+        if (obj.hasOwnProperty(key)) {
+          // obj[key] 是否是对象，如果是对象，递归遍历
+          copy[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
+        }
+      }
+      return copy;
+    }
+    //  手写 instanceof
+    function checkPrototype(obj, constructor) {
+      if (!obj.__proto__) return false;
+      if (obj.__proto__ == constructor.prototype) return true;
+      return checkPrototype(obj.__proto__, constructor);
+    }
+    //将数组拆分成平均长度的数组
+    function group(array, subNum) {
+      let startIndex = 0;
+      let newArray = [];
+      while (startIndex < array.length) {
+        newArray.push(array.slice(startIndex, (startIndex += subNum)));
+        // newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
+        // (page-1*size),(page*size)
+      }
+      return newArray;
+    }
+
+    // 深度过滤数组重复值
+    const uniqueDeep = (arr) => {
+      let tempArr = [];
+      let obj = {};
+      arr.map((item) => {
+        if (typeof item !== 'object') {
+          if (!tempArr.includes(item)) {
+            tempArr.push(item);
+          }
+        } else {
+          let key = JSON.stringify(item);
+          if (!obj[key]) {
+            tempArr.push(item);
+            obj[key] = 1;
+          }
+        }
       });
+      return tempArr;
+    };
+
+    //统计出现最多次数的字符串
+    const llq = (str) => {
+      let temp = {};
+      let max = 0,
+        val;
+      for (let item of str) {
+        if (!temp[str]) {
+          temp[str] = 1;
+        } else {
+          temp[str]++;
+        }
+      }
+      for (let k in temp) {
+        if (temp[k] > max) {
+          temp[k] = max;
+          val = k;
+        }
+      }
+      return {
+        val,
+        max,
+      };
+    };
+
+    // 以下函数返回 min（包含）～ max（包含）之间的数字：
+    function getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // 以下函数返回 min（包含）～ max（不包含）之间的数字：
+    function getRndIntegerNo(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    // 数组随机排序
+    function randomSort(arr) {
+      arr.sort(() => Math.random() - 0.5);
+    }
+
+    function isSplitWaterway() {
+      //原本的航道数组
+      let arr = [];
+      // 存储的航道数组
+      let pathArr = [];
+      // 存储的航道每一段线段
+      let lineArr = [];
+      for (let i = 0; i < arr.length; i++) {
+        // 第一次线段为0时直接加入第一个点
+        if (lineArr.length === 0) {
+          lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
+        } else {
+          if (arr[i - 1].navaid.radius < this.getDistance(arr[i - 1].navaid, arr[i].navaid)) {
+            pathArr.push(lineArr);
+            // 清空数组,重新开始压入
+            lineArr = [];
+            // 从当前断开的端点重新压入线段
+            i--;
+          } else {
+            // 两点可以连接 直接将当前点压入数组
+            lineArr.push([arr[i].navaid.location.longitude, arr[i].navaid.location.latitude]);
+          }
+        }
+      }
+      // 遍历完成后,检查lineArr压入pathArr
+      if (lineArr.length) pathArr.push(lineArr);
+      return pathArr;
+    }
+    //线程随眠
+    function sleepss(delay) {
+      let start = +new Date();
+      while (+new Date() - start < delay) {
+        continue;
+      }
+    }
+    function sleepPro(delay) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, delay);
+      });
+    }
+    //取数组中的最大值
+    function arrayMax(array) {
+      return array.reduce((max, elem) => (max > elem ? max : elem), array[0]);
+    }
+    //取数组中的最大值
+    const total = [1, 2, 3, 4, 5].reduce((pre, cur) => {
+      let tol = pre + cur;
+      return tol;
+    });
 
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));
 
-      /*
-                  *  window.getComputedStyle()
+    /*
+                *  window.getComputedStyle()
 
-                  //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
-                  // {
-                  //   bottom: 556.21875,
-                  //   height: 393.59375,
-                  //   left: 333,
-                  //   right: 1017,
-                  //   top: 162.625,
-                  //   width: 684
-                  // }
-                  */
+                //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
+                // {
+                //   bottom: 556.21875,
+                //   height: 393.59375,
+                //   left: 333,
+                //   right: 1017,
+                //   top: 162.625,
+                //   width: 684
+                // }
+                */
 
-      /*
-           *  vuex原理
-           调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，
-           在所有组件的 beforeCreate生命周期注入了设置 this.$store这样一个对象。
-           *
-           */
-    </script>
-  </body>
+    /*
+     *  vuex（vue-router）原理 插件install方法中
+     *   调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，在所有组件的 beforeCreate生命周期注入了设置this.$store这样一个对象。
+     *
+     */
+  </script>
+</body>
+
 </html>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 10:44:53
- * @LastEditTime: 2021-09-06 09:15:48
+ * @LastEditTime: 2021-12-21 10:13:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\views\Home.vue
@@ -17,7 +17,7 @@
       <template #main="obj">
         作用域插槽:
         <span v-for="(item, index) in obj.list" :key="index">
-          {{ item.name }}---{{ item.id }}
+          {{ item.name }}---{{ item.id }} - v-solt:'main'
         </span>
       </template>
     </Base>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 16:19:16
- * @LastEditTime: 2021-12-20 17:06:25
+ * @LastEditTime: 2021-12-21 10:50:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\src\views\Login.vue
@@ -33,8 +33,11 @@ import {
   provide,
   inject,
 } from "vue";
+
 import { useRouter, useRoute } from "vue-router";
-import sym from "@/components/LoginS.vue";
+import { defineAsyncComponent } from "vue";
+// import sym from "@/components/LoginS.vue";
+const sym = defineAsyncComponent(() => import("@/components/LoginS.vue"));
 interface setUser {
   name: string;
   age?: number;
