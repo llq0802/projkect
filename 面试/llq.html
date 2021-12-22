@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-21 16:06:33
+ * @LastEditTime: 2021-12-22 17:54:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -314,6 +314,15 @@
       }
       return copy;
     }
+    const deepClone1 = (obj) => {
+      let copy = obj instanceof Array ? [] : {};
+      for ([k, v] of Object.entries(obj)) {
+        if (obj.hasOwnProperty(k)) {
+          copy[k] = typeof v === 'object' ? deepClone1(k) : v;
+        }
+      }
+      return copy
+    }
     //  手写 instanceof
     function checkPrototype(obj, constructor) {
       if (!obj.__proto__) return false;
@@ -388,7 +397,7 @@
 
     // 数组随机排序
     function randomSort(arr) {
-      arr.sort(() => Math.random() - 0.5);
+      return arr.sort(() => Math.random() - 0.5);
     }
 
     function isSplitWaterway() {
@@ -440,6 +449,31 @@
       let tol = pre + cur;
       return tol;
     });
+    //数组中的累加合
+    const totals = [1, 2, 3, 4, 5].reduce((pre, cur) => (pre + cur));
+
+
+
+    /*********封装localStorage********/
+    const setLocalStorage = (key, value) => {
+      let data = localStorage.getItem('projectName')
+      if (!data) {
+        data = {}
+      } else {
+        data = JSON.parse(data)
+      }
+      data[key] = value
+      localStorage.setItem('projectName', JSON.stringify(data))
+    }
+    const getLocalStorage = (key) => {
+      let data = localStorage.getItem('projectName')
+      if (!data) {
+        return []
+      }
+      data = JSON.parse(data)
+      return data || []
+    }
+
 
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-21 16:27:08
+ * @LastEditTime: 2021-12-22 16:24:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -34,6 +34,7 @@
       background-color: rgba(104, 109, 224, 1);
       user-select: none;
       -webkit-user-drag: none;
+      /*不允许拖拽*/
       /* width: clamp(500px, 100%, 100%); */
     }
 
@@ -132,6 +133,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       word-break: break-all;
+      /*英文字符换行*/
       letter-spacing: 3px;
     }
 
@@ -153,6 +155,21 @@
       height: 300px;
       background: conic-gradient(red 20%, purple 0 60%, yellow 0);
       border-radius: 50%;
+    }
+
+    /*多行文字垂直居中 （父元素 display: table，子元素display: table-cell  vertical-align: middle;）*/
+    .table-cell {
+      width: 120px;
+      height: 50px;
+      background: #f6e58d;
+      display: table
+    }
+
+    .table-cell>.text {
+      display: table-cell;
+      font-size: 14px;
+      vertical-align: middle
+        /* line-height: 50px; */
     }
   </style>
   <div class="san"></div>
@@ -197,7 +214,10 @@
     <span class="icon-box">图标</span>
     <div class="bg-box"></div>
   </div>
-
+  <div class='table-cell' draggable=true>
+    <span class='text'> 感觉欧冠你送搜鞥口水干什-wrapper</span>
+  </div>
+  <svg>你好svg</svg>
   <!-- <nav>
       <div>a</div>
       <input type="hidden" />
@@ -208,6 +228,8 @@
     console.time('time');
 
     // const slider = document.querySelector('.icon-box');
+    // console.dir(slider.nodeName);
+    // console.dir(slider.parentNode);
     // slider.addEventListener('mouseenter', function() {
     //   console.log(11);
     // });
@@ -994,11 +1016,12 @@
     // console.log(sad.next(111));
 
     // async function ee() {
-    //   return setTimeout(() => {
-    //     console.log(12123);
-    //   });
+    //   setTimeout(() => {
+    //     console.log('ee');
+    //   })
+    //   console.log('11');
     // }
-    // console.log(ee());
+    // ee()
     // console.log(22);
 
     // console.log(String.fromCharCode(97)); //a
@@ -1020,18 +1043,18 @@
     //   })
     // );
 
-    //监听hash路由的改变
-    window.onhashchange = (e) => {
-      console.log(e.oldURL);
-      console.log(e.newURL);
-      console.log(location.hash);
-    }
-    //监听浏览器前进后退
-    Window.onpopstate = (e) => {
-      console.log(e);
-    }
-    //切换路由
-    history.pushState()
+    // //监听hash路由的改变
+    // window.onhashchange = (e) => {
+    //   console.log(e.oldURL);
+    //   console.log(e.newURL);
+    //   console.log(location.hash);
+    // }
+    // //监听浏览器前进后退
+    // Window.onpopstate = (e) => {
+    //   console.log(e);
+    // }
+    // //切换路由
+    // history.pushState()
     // console.log(self);
   </script>
 </body>
