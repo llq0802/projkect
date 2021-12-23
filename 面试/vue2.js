@@ -9,13 +9,12 @@
 
 let arrProto = Object.create(Array.prototype);
 ['push', 'shift', 'pop', 'unshift', 'splice'].forEach((method) => {
-  arrProto[method] = function () {
+  arrProto[method] = function() {
     // 函数劫持,新函数内部继续调用老函数
     Array.prototype[method].call(this, ...arguments);
     updateView();
   };
 });
-
 // 收集data返回的对象1
 function observer(targetObj) {
   if (Object.prototype.toString.call(targetObj).slice(8, -1) !== 'Object') {

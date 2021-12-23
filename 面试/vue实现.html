@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <link rel="stylesheet" href="a.css" />
+  </head>
+  <body>
+    <div id="app">
+      {{ msg1 }}
+      <button>{{ msg1 }}</button>
+      <button>{{ msg2 }}</button>
+      <button>{{ msg2 }}</button>
+      {{msg2}}
+      <input type="text" v-model="inputValue" />
+      <span>this.inputValue:</span> {{inputValue}}
+      <br />
+      this.msg1:<input type="text" v-model="msg1" />
+    </div>
+
+    <script>
+      // 数据劫持
+      class Observe {
+        constructor(op) {
+          Object.keys(op).forEach((key) => {
+            if (Object.prototype.toString.call(op[key]) == '[object Object]') {
+              this[key] = new Observe(op[key]);
+            } else {
+              Object.defineProperty(this, key, {
+                set(val) {
+                  op[key] = val;
+                  console.log(`修改了${op[key]}的值`);
+                  // render
+                },
+                get() {
+                  return op[key];
+                },
+              });
+            }
+          });
+        }
+      }
+      // 观察者
+      class Watcher {
+        constructor(vm, key, node, attr) {
+          this.vm = vm;
+          this.key = key;
+          this.node = node;
+          this.attr = attr;
+        }
+        update() {
+          if (this.node[this.attr]) {
+            this.node[this.attr] = this.vm[this.key];
+          } else {
+            this.node.value = this.vm[this.key];
+          }
+        }
+      }
+      class Vue {
+        constructor(options) {
+          this.$el = document.querySelector(options.el);
+          this.$data = new Observe(options.data());
+          this.$watcher = {};
+
+          this.proxyData(options.data());
+
+          this.compile(this.$el);
+        }
+
+        // 数据放在vue实例上
+        proxyData(op) {
+          Object.keys(op).forEach((key) => {
+            if (Object.prototype.toString.call(op[key]) == '[object Object]') {
+              this[key] = new Observe(op[key]);
+            } else {
+              Object.defineProperty(this, key, {
+                set(val) {
+                  op[key] = val;
+                  console.log(`修改了${op[key]}的值`);
+                  console.log(this.$watcher, key);
+                  this.$watcher[key].forEach((watcher) => {
+                    watcher.update();
+                  });
+                  // render
+                },
+                get() {
+                  return op[key];
+                },
+              });
+            }
+          });
+        }
+
+        // 解析模板
+        compile(el) {
+          console.log('调用了compile方法');
+          let nodes = el.childNodes;
+          let reg = /{{(.*)}}/g;
+          for (let i = 0; i < nodes.length; i++) {
+            // element node
+            if (nodes[i].nodeType === 1) {
+              if (nodes[i].hasAttribute('v-model')) {
+                let key = nodes[i].getAttribute('v-model').trim();
+                if (this.$watcher[key] == undefined) {
+                  this.$watcher[key] = [];
+                }
+                this.$watcher[key].push(new Watcher(this, key, nodes[i], 'textContent'));
+                nodes[i].value = this[key];
+                nodes[i].addEventListener('input', (e) => {
+                  this[key] = e.target.value;
+                });
+              }
+              this.compile(nodes[i]);
+
+              // text node
+            } else if (nodes[i].nodeType === 3) {
+              let content = nodes[i].textContent;
+              let template, key, value;
+              content.replace(reg, (pre, now) => {
+                template = pre;
+                key = now.trim();
+                value = this.$data[key];
+              });
+              if (template) {
+                if (this.$watcher[key] == undefined) {
+                  this.$watcher[key] = [];
+                }
+                this.$watcher[key].push(new Watcher(this, key, nodes[i], 'textContent'));
+              }
+
+              nodes[i].textContent = content.replace(template, value);
+            }
+          }
+        }
+
+        // life-cricle
+        beforeCreate() {}
+        created() {}
+        beforeMounte() {}
+        mounted() {}
+      }
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            msg1: '信息1',
+            msg2: '信息2',
+            inputValue: 123,
+            deepData: {
+              demo1: 1,
+              demo2: {
+                last: 'study',
+              },
+            },
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
