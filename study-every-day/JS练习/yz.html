@@ -1,7 +1,11 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
+<<<<<<< HEAD
  * @LastEditTime: 2021-12-23 20:58:20
+=======
+ * @LastEditTime: 2021-12-24 18:01:41
+>>>>>>> 254715d319cca0436bf623e22d6cd258f5e5a0ba
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -256,7 +260,7 @@
       console.time('time');
 
       // const slider = document.querySelector('.icon-box');
-      // console.dir(slider.nodeName);
+      // console.dir(slider.nodeName); //大写字符
       // console.dir(slider.parentNode);
       // slider.addEventListener('mouseenter', function() {
       //   console.log(11);
@@ -1101,13 +1105,11 @@
           text: '一级菜单3',
           parentId: null,
         },
-
         {
           id: '2-1',
           text: '二级菜单1',
           parentId: '1',
         },
-
         {
           id: '2-2',
           text: '二级菜单2',
@@ -1136,6 +1138,7 @@
         });
         return newArray;
       }
+<<<<<<< HEAD
       console.timeEnd('2');
       let rsss = getTreeList(treeList, null);
       console.time('1');
@@ -1158,7 +1161,58 @@
 
       let rssss = getTreeList1(treeList, null);
       console.log(rssss);
+=======
+      const arrayToTree = (items) => {
+        const result = [];
+        const itemMap = {}; // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
+        for (const item of items) {
+          const id = item.id;
+          const pid = item.parentId;
+          if (!itemMap[id]) {
+            itemMap[id] = {
+              ...item,
+              // children: [],
+            };
+          }
+          const treeItem = itemMap[id];
+          if (pid == null) {
+            result.push(treeItem);
+          } else {
+            if (!itemMap[pid].children) itemMap[pid].children = [];
+            itemMap[pid].children.push(treeItem);
+          }
+        }
+        return result;
+      };
+      //let rssss = getTreeList(treeList, null);
+      // arrayToTree(treeList);
 
+      // 维持一个执行副作用的栈
+      // const runningEffects = [];
+      // const createEffect = (fn) => {
+      //   // 将传来的 fn 包裹在一个副作用函数中
+      //   const effect = () => {
+      //     runningEffects.push(effect);
+>>>>>>> 254715d319cca0436bf623e22d6cd258f5e5a0ba
+
+      //     fn();
+      //     runningEffects.pop();
+      //   };
+
+      //   // 立即自动执行副作用
+      //   effect();
+      // };
+      // let val1 = 1,
+      //   val2 = 2,
+      //   sum = null;
+      // createEffect(() => {
+      //   sum = val1 + val2;
+      //   console.log('xiangjiale');
+      // });
+
+      // console.log(runningEffects);
+
+      //光影滑动效果：
       //设计一个透明层div 绝对定位 left为负值，skewx在X轴上做了负25度的变形，
       //背景颜色用的是CSS3的线性渐变linear-gradient
       // background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));，

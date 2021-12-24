@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:15:14
- * @LastEditTime: 2021-12-21 17:48:14
+ * @LastEditTime: 2021-12-24 11:39:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\main.ts
@@ -16,15 +16,15 @@ import 'element-plus/lib/theme-chalk/index.css';
 import './assets/css/element-variables.scss';
 import 'animate.css';
 
-console.log(App);
+// console.log(App);
 
 let app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(ElementPlus);
-console.log(process.env);
-console.log(process.env.BASE_NUM);
-console.log(process);
+// console.log(process.env);
+// console.log(process.env.BASE_NUM);
+// console.log(process);
 
 // 插件先引入,最后在调用挂载app
 app.mount('#app');

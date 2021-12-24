@@ -1,14 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2021-08-09 10:27:50
- * @LastEditTime: 2021-12-09 11:12:58
+ * @LastEditTime: 2021-12-24 14:56:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \web-study\vue3.0-cli-ts\src\router\index.ts
  */
 
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
+import { defineAsyncComponent } from 'vue';
+
 const Home = () => import('../views/Home.vue');
+
 const About = () => import('../views/About.vue');
 const addRoute = () => import('../views/addRoute.vue');
 const User = () => import('../views/User.vue');
@@ -18,7 +21,6 @@ const Transition = () => import('../views/Transition.vue');
 const ElementUiPlus = () => import('../views/ElementUiPlus.vue');
 const Echarts = () => import('../views/Echarts.vue');
 const Request = () => import('../views/Request.vue');
-
 const News = () => import('../components/News.vue');
 const News2 = () => import('../components/News2.vue');
 // const Top = () => import("../components/Top.vue");
@@ -188,7 +190,7 @@ router.beforeEach((to, from, next) => {
     path: '/123',
     component: addRoute,
   });
-  console.log(router);
+  // console.log(router);
   next();
 });
 export default router;
