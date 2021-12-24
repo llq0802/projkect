@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-23 16:06:05
+ * @LastEditTime: 2021-12-23 20:58:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -298,7 +298,7 @@
         age: 20,
         desc: 'shuaige',
         arr: [11, 22, 33, 44],
-        [Symbol.iterator]: function() {
+        [Symbol.iterator]: function () {
           let index = 0;
           return {
             next: () => {
@@ -815,7 +815,7 @@
       // };
       // fn111();
 
-      document.ondblclick = function(e) {
+      document.ondblclick = function (e) {
         const inp = document.querySelector('input');
         inp.select();
         document.execCommand('copy'); //选择复制文本到粘贴板中
@@ -1124,7 +1124,7 @@
           parentId: '2-1',
         },
       ];
-
+      console.time('2');
       function getTreeList(list, iid) {
         let newArray = [];
         list.forEach((item, index) => {
@@ -1136,8 +1136,27 @@
         });
         return newArray;
       }
+      console.timeEnd('2');
+      let rsss = getTreeList(treeList, null);
+      console.time('1');
 
-      let rssss = getTreeList(treeList, null);
+      const getTreeList1 = (arr, iid) => {
+        let resultArr = [];
+        for (let item of arr) {
+          if (item.parentId === iid) {
+            let itemObj = { ...item, children: [] };
+            resultArr.push(itemObj);
+          }
+        }
+        resultArr.forEach((item) => {
+          item.children.push(...getTreeList1(arr, item.id));
+          if (item.children.length === 0) delete item.children;
+        });
+        return resultArr;
+      };
+      console.timeEnd('1');
+
+      let rssss = getTreeList1(treeList, null);
       console.log(rssss);
 
       //设计一个透明层div 绝对定位 left为负值，skewx在X轴上做了负25度的变形，
