@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-16 15:16:38
- * @LastEditTime: 2021-12-10 09:14:06
+ * @LastEditTime: 2021-12-24 14:47:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\vue.config.js
@@ -17,6 +17,9 @@ module.exports = {
         },
       },
     },
+  },
+  configureWebpack: {
+    devtool: 'source-map',
   },
 };
 

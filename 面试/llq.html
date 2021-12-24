@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-23 14:28:57
+ * @LastEditTime: 2021-12-24 10:23:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -583,6 +583,7 @@
           parentId: '2-1',
         },
       ];
+      //数组转成树
       function getTreeList(list, iid) {
         let newArray = [];
         list.forEach((item, index) => {
@@ -594,6 +595,29 @@
         });
         return newArray;
       }
+      //数组转成树
+      const arrayToTree = (items) => {
+        const result = [];
+        const itemMap = {}; // 有时候多层遍历循环 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
+        for (const item of items) {
+          const id = item.id;
+          const pid = item.parentId;
+          if (!itemMap[id]) {
+            itemMap[id] = {
+              ...item,
+              // children: [],
+            };
+          }
+          const treeItem = itemMap[id];
+          if (pid == null) {
+            result.push(treeItem);
+          } else {
+            if (!itemMap[pid].children) itemMap[pid].children = [];
+            itemMap[pid].children.push(treeItem);
+          }
+        }
+        return result;
+      };
 
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));
