@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 14:21:47
- * @LastEditTime: 2021-12-27 16:12:51
+ * @LastEditTime: 2021-12-28 11:01:36
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \my-react\src\redux\my-redux.js
@@ -30,6 +30,7 @@ export class Provider extends Component {
   render() {
     const stroe = this.props.store;
     return <Provider value={{ stroe }}>{this.props.children}</Provider>;
+    // return  React.Children.only(this.props.children)
   }
 }
 
@@ -37,7 +38,6 @@ export function connect(mapState = (state) => state, mapDispatch = (dispatch) =>
   return (UiComponent) => {
     return class UU extends Component {
       static contextType = MyContext;
-
       componentDidMount() {
         const { store } = this.context; // 从 Context 中拿到 store 对象
         this.state = { ...store };
@@ -48,7 +48,7 @@ export function connect(mapState = (state) => state, mapDispatch = (dispatch) =>
         } else {
           dispatchProps = {};
           Object.keys(mapDispatch).forEach((itemKey) => {
-            let actionCreator = mapDispatch[itemKey];
+            const actionCreator = mapDispatch[itemKey];
             dispatchProps[itemKey] = (...args) => {
               store.dispatch(actionCreator(...args));
             };
@@ -59,6 +59,7 @@ export function connect(mapState = (state) => state, mapDispatch = (dispatch) =>
           mapState(store.getState());
         });
       }
+
       render() {
         return <UiComponent {...this.stateProps} {...this.dispatchProps} />;
       }

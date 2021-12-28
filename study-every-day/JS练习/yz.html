@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-24 18:01:41
+ * @LastEditTime: 2021-12-28 17:12:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -1156,7 +1156,7 @@
         }
         return result;
       };
-      //let rssss = getTreeList(treeList, null);
+      //  //let rssss = getTreeList(treeList, null);
       // arrayToTree(treeList);
 
       // 维持一个执行副作用的栈
@@ -1180,11 +1180,21 @@
       //   sum = val1 + val2;
       //   console.log('xiangjiale');
       // });
-
       // console.log(runningEffects);
 
+      let array1 = [1, 5, 48, 4, 8, 48, 2, 0];
+      let array2 = [1, 5, 13, 4, 76, 2, 78];
+      //交集
+      let jiao = array1.filter((item) => new Set(array2).has(item));
+      //并集
+      let bing = [...new Set([...array1, ...array2])];
+      //补集
+      let bu = array1.filter((item) => !new Set(array2).has(item));
+
+      //Object.fromEntities() //[[],[]] => {}
+      //Object.entries()  //{}=>[[],[]]
       //光影滑动效果：
-      //设计一个透明层div 绝对定位 left为负值，skewx在X轴上做了负25度的变形，
+      //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
       //背景颜色用的是CSS3的线性渐变linear-gradient
       // background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));，
       //然后hover的时候，left移动过来 设置0.5s的动画时间。

@@ -619,6 +619,15 @@
         return result;
       };
 
+      let array1 = [1, 5, 48, 4, 8, 48, 2, 0];
+      let array2 = [1, 5, 13, 4, 76, 2, 78];
+      //交集
+      let jiao = array1.filter((item) => new Set(array2).has(item));
+      //并集
+      let bing = [...new Set([...array1, ...array2])];
+      //补集
+      let bu = array1.filter((item) => !new Set(array2).has(item));
+
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));
 

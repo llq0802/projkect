@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <style lang="scss">
+      /* scss练习*/
 
-<body>
-  <style lang="scss">
-    /* scss练习*/
-
-    /* @mixin important-text {
+      /* @mixin important-text {
   color: red;
   font-size: 25px;
   font-weight: bold;
@@ -21,218 +20,218 @@
   @include important-text;
 } */
 
-    /* css3动画 */
+      /* css3动画 */
 
-    @keyframes myfirst {
-      0% {
-        background: red;
+      @keyframes myfirst {
+        0% {
+          background: red;
+        }
+
+        25% {
+          background: yellow;
+        }
+
+        50% {
+          background: blue;
+        }
+
+        100% {
+          background: green;
+        }
       }
 
-      25% {
-        background: yellow;
-      }
-
-      50% {
-        background: blue;
-      }
-
-      100% {
-        background: green;
-      }
-    }
-
-    .container {
-      /* animation: myfirst 5s linear 0s 1 alternate; */
-      /* filter: blur(5px);模糊
+      .container {
+        /* animation: myfirst 5s linear 0s 1 alternate; */
+        /* filter: blur(5px);模糊
        */
-      /* filter: grayscale();灰度 */
-      margin-left: 50%;
-      margin-top: 100px;
-      transform: translateX(-50%);
-      display: flex;
-      /* flex-direction: row;
+        /* filter: grayscale();灰度 */
+        margin-left: 50%;
+        margin-top: 100px;
+        transform: translateX(-50%);
+        display: flex;
+        /* flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
       align-content: space-between;
       align-self: center; */
-      overflow: hidden;
-      /* 超出文字显示...*/
-      text-overflow: ellipsis;
-      white-space: nowrap;
+        overflow: hidden;
+        /* 超出文字显示...*/
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
-      width: 400px;
-      height: 400px;
-      /* background-color: #eee; */
-      background: linear-gradient(#e66465, #9198e5);
-      transition: all 1s;
-      box-sizing: border-box;
-    }
-
-    .container:hover {
-      transform: scale(1.2, 1.2);
-    }
-
-    .item {
-      flex: 1;
-      height: 100px;
-      border-radius: 50%;
-      border: 1px solid white;
-    }
-
-    .test {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 50px solid red;
-    }
-  </style>
-
-  <div class="container">
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-  </div>
-
-  <div class="test"></div>
-  <script>
-    class HD {
-      constructor(executor) {
-        this.state = 'pending';
-        this.value = null;
-        this.callbacks = [];
-        function resolve(value) {
-          if (this.state === 'pending') {
-            this.state === 'resolve';
-            this.value = value;
-            setTimeout(() => {
-              this.callbacks.map((item) => {
-                item.onResove && item.onResove();
-              });
-            });
-          }
-        }
-        function reject(value) {
-          if (this.state === 'pending') {
-            this.state === 'reject';
-            this.value = value;
-            setTimeout(() => {
-              this.callbacks.map((item) => {
-                item.onReject && item.onReject();
-              });
-            });
-          }
-        }
-        try {
-          executor(resolve.bind(this), reject.bind(this));
-        } catch (error) {
-          reject(error);
-        }
+        width: 400px;
+        height: 400px;
+        /* background-color: #eee; */
+        background: linear-gradient(#e66465, #9198e5);
+        transition: all 1s;
+        box-sizing: border-box;
       }
 
-      then(onResove, onReject) {
-        if (onResove != 'function') {
-          onResove = (value) => value;
-        }
-        if (onReject != 'function') {
-          onReject = (value) => value;
-        }
-        function callFn(typeFn) {
-          let result = typeFn(this.value);
-          if (thenResult === result) throw new TypeError('Chaining cycle detected for promise');
+      .container:hover {
+        transform: scale(1.2, 1.2);
+      }
+
+      .item {
+        flex: 1;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid white;
+      }
+
+      .test {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 50px solid red;
+      }
+    </style>
+
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+
+    <div class="test"></div>
+    <script>
+      class HD {
+        constructor(executor) {
+          this.state = 'pending';
+          this.value = null;
+          this.callbacks = [];
+          function resolve(value) {
+            if (this.state === 'pending') {
+              this.state === 'resolve';
+              this.value = value;
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onResove && item.onResove();
+                });
+              });
+            }
+          }
+          function reject(value) {
+            if (this.state === 'pending') {
+              this.state === 'reject';
+              this.value = value;
+              setTimeout(() => {
+                this.callbacks.map((item) => {
+                  item.onReject && item.onReject();
+                });
+              });
+            }
+          }
           try {
-            if (result instanceof HD) {
-              result.then(
+            executor(resolve.bind(this), reject.bind(this));
+          } catch (error) {
+            reject(error);
+          }
+        }
+
+        then(onResove, onReject) {
+          if (onResove != 'function') {
+            onResove = (value) => value;
+          }
+          if (onReject != 'function') {
+            onReject = (value) => value;
+          }
+          function callFn(typeFn) {
+            let result = typeFn(this.value);
+            if (thenResult === result) throw new TypeError('Chaining cycle detected for promise');
+            try {
+              if (result instanceof HD) {
+                result.then(
+                  (r) => {
+                    resolve(r);
+                  },
+                  (v) => {
+                    reject(v);
+                  }
+                );
+              } else {
+                resolve(result);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          }
+          let thenResult = new Hd((resolve, reject) => {
+            if (this.state === 'resolve') {
+              setTimeout(() => {
+                callFn(onResove);
+              });
+            }
+            if (this.state === 'reject') {
+              setTimeout(() => {
+                callFn(onReject);
+              });
+            }
+            if (this.state === 'pending') {
+              this.callbacks.push({
+                onResove: () => {
+                  callFn(onResove);
+                },
+                onReject: () => {
+                  callFn(onReject);
+                },
+              });
+            }
+          });
+
+          return thenResult;
+        }
+
+        catch(onReject) {
+          return this.then(undefined, onReject);
+        }
+
+        static resolve(value) {
+          return new Hd((resolve, reject) => {
+            try {
+              if (value instanceof Hd) {
+                value.then(resolve, reject);
+              } else {
+                resolve(value);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
+        static reject(value) {
+          return new Hd((resolve, reject) => {
+            reject(value);
+          });
+        }
+
+        static race(proArrs) {
+          return new Hd((resolve, reject) => {
+            proArrs.forEach((proArr) => {
+              proArr.then(resolve, reject);
+            });
+          });
+        }
+        static all(proArrs) {
+          let arrayResult = [];
+          return new Hd((resolve, reject) => {
+            proArrs.forEach((item, index) => {
+              item.then(
                 (r) => {
-                  resolve(r);
+                  arrayResult[index] = r;
+                  if (arrayResult.length === proArrs.length) {
+                    resolve(arrayResult);
+                  }
                 },
                 (v) => {
                   reject(v);
                 }
               );
-            } else {
-              resolve(result);
-            }
-          } catch (error) {
-            reject(error);
-          }
+            });
+          });
         }
-        let thenResult = new Hd((resolve, reject) => {
-          if (this.state === 'resolve') {
-            setTimeout(() => {
-              callFn(onResove);
-            });
-          }
-          if (this.state === 'reject') {
-            setTimeout(() => {
-              callFn(onReject);
-            });
-          }
-          if (this.state === 'pending') {
-            this.callbacks.push({
-              onResove: () => {
-                callFn(onResove);
-              },
-              onReject: () => {
-                callFn(onReject);
-              },
-            });
-          }
-        });
-
-        return thenResult;
       }
-
-      catch(onReject) {
-        return this.then(undefined, onReject);
-      }
-
-      static resolve(value) {
-        return new Hd((resolve, reject) => {
-          try {
-            if (value instanceof Hd) {
-              value.then(resolve, reject);
-            } else {
-              resolve(value);
-            }
-          } catch (error) {
-            reject(error);
-          }
-        });
-      }
-      static reject(value) {
-        return new Hd((resolve, reject) => {
-          reject(value);
-        });
-      }
-
-      static race(proArrs) {
-        return new Hd((resolve, reject) => {
-          proArrs.forEach((proArr) => {
-            proArr.then(resolve, reject);
-          });
-        });
-      }
-      static all(proArrs) {
-        let arrayResult = [];
-        return new Hd((resolve, reject) => {
-          proArrs.forEach((item, index) => {
-            item.then(
-              (r) => {
-                arrayResult[index] = r;
-                if (arrayResult.length === proArrs.length) {
-                  resolve(arrayResult);
-                }
-              },
-              (v) => {
-                reject(v);
-              }
-            );
-          });
-        });
-      }
-    }
 
       // 做用slice函数做分页分割时，或者数组分割时 前一个永远比后一个参数page少1  slice(index*size,(index+1)*size)
       // 前端分页 slice((page-1)*size,page*size)
@@ -254,6 +253,9 @@
       // })
       //建立观察ob.observe(el)
       //取消观察ob ob.unobserve(el)
+
+      // new MutationObserver() //观察整个文档，组件 元素的属性 节点 文本的变化
+      // new ResizeObserver() //观察具体元素 组件的大小的变化
 
       // 动画定时器 间隔时间为屏幕刷新帧数 用法与setTimeout一样
       // requestAnimationFrame(() => {});渲染函数
@@ -297,7 +299,6 @@
       // 500M以下的用http协议传输(网上一搜大把的)
       // 500M以上1G以下的用http协议分块或者ftp协议传输
       // 1G以上的只能用ftp协议传输
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
