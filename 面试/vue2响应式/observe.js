@@ -6,8 +6,14 @@
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\index.js
  */
+
 import Observer from './Observer.js';
 
+/**
+ *响应式原理总结：
+ *  observer方法->Observer实例对象->defineReactive方法 ->dep.depend()->watcher.addSup()双向收集依赖(watcher添加到dep，dep添加到watcher)->dep.notify()
+ *
+ */
 export default function observer(value) {
   let ob; //为当前对象添加响应式
   if (Object.prototype.toString.call(value).slice(8, -1) !== 'Object') {
