@@ -17,7 +17,8 @@
  *  调用watcher.upade方法把 watcher 都放到watcher队列里面去（会判重处理）
  *  将执行watcher队列的函数作为nexttick参数的回调函数（如果该函数已经在执行， 等异步队列清空再执行)添加到全局的callbacks数组中
  *  利用浏览器异步队列，将执行的callbacks数组的函数 作为Promise成功的函数执行（如果该函数已经在执行， 等异步队列清空再执行 pendding节流阀）
- *  执行watcher队列的函数就会执行watcher队列中的每个watcher.run() 方法，从而进入更新阶段，如：执行组件的更新函数 updateComponents 或执行用户 watch 回调。
+ *  执行watcher队列的函数就会执行watcher队列中的每个watcher.run()方法（会对每个watcher排序，让其父组件先更新，子组件再更新），
+ *  从而进入更新阶段，如：执行组件的更新函数 updateComponents 或执行用户 watch 回调。
  * （Promise>MutationObserver>settimeOut）
  */
 

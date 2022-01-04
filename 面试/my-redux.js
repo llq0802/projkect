@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 14:21:47
- * @LastEditTime: 2021-12-28 11:01:36
+ * @LastEditTime: 2022-01-04 09:32:29
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \my-react\src\redux\my-redux.js
@@ -116,9 +116,11 @@ export function createStore(reducer) {
  * @returns {*function}
  */
 export function combineReducers(reducers) {
-  return (state, action) => {
+  // 返回一个总的reducer函数，state是总的状态
+  return (state = {}, action) => {
     return Object.keys(reducers).reduce((prv, cur) => {
       prv[cur] = reducers[cur](state[cur], action);
+      return prv;
     }, {});
   };
 }

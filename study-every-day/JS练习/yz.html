@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2021-12-28 17:12:29
+ * @LastEditTime: 2022-01-04 15:36:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -1193,6 +1193,39 @@
 
       //Object.fromEntities() //[[],[]] => {}
       //Object.entries()  //{}=>[[],[]]
+
+      let hdh = '2[2[a]3[b]]';
+
+      function ggg(str) {
+        let stack1 = [];
+        let stack2 = [];
+        let rest = str;
+        let index = 0;
+        while (index < str.length - 1) {
+          reat = str.substring(index);
+          if (/^\d+\[/.test(rest)) {
+            let num = +rest.match(/^(\d+)\[/)[1];
+            stack1.push(num);
+            stack2.push('');
+            index += num.toString().length + 1;
+          } else if (/^\w+\]/.test(rest)) {
+            let word = rest.match(/^(\w+)\]/)[1];
+            stack2[stack2.length - 1] = word;
+            index += word.length;
+          } else if (reat[0] === ']') {
+            let res1 = stack1.pop();
+            let res2 = stack2.pop();
+            stack2[stack2.length] += res2.repeat(res1);
+            index++;
+          }
+        }
+        return stack2[0].repeat(stack1[0]);
+      }
+
+      // let rr = 'key=val'.match(/^(.+)=(.+)$/);
+      // console.log(rr);
+
+      // ggg(hdh);
       //光影滑动效果：
       //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
       //背景颜色用的是CSS3的线性渐变linear-gradient

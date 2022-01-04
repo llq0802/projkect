@@ -45,6 +45,7 @@ export default function defineReactive(targetObj, key, val = targetObj[key]) {
 function dependArray(value) {
   for (let e, i = 0, l = value.length; i < l; i++) {
     e = value[i];
+    // 当数组中是对象或者数组的元素才触发
     e && e.__ob__ && e.__ob__.dep.depend();
     if (Array.isArray(e)) {
       dependArray(e);

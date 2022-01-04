@@ -299,6 +299,8 @@
       // 500M以下的用http协议传输(网上一搜大把的)
       // 500M以上1G以下的用http协议分块或者ftp协议传输
       // 1G以上的只能用ftp协议传输
+
+      //父子组件的加载顺序home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
     </script>
   </body>
 </html>
