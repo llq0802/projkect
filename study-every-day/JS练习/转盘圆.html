@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-02 17:39:11
- * @LastEditTime: 2021-12-07 17:56:24
+ * @LastEditTime: 2021-12-25 18:20:39
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\转盘.html
@@ -144,12 +144,30 @@
     </div>
 
     <script>
-      let i = requestAnimationFrame(() => {
-        console.log('requestAnimationFrame');
-      });
-      setTimeout(() => {
-        console.log('setTimeout');
-      });
+      // let i = requestAnimationFrame(() => {
+      //   console.log('requestAnimationFrame');
+      // });
+      // setTimeout(() => {
+      //   console.log('setTimeout');
+      // });
+      console.time('1');
+      // Number.isFinite(1);
+      // console.log(Number.isFinite(0.1));
+      // console.log(Number.isInteger(2));
+      // const resizeObserver = new ResizeObserver(() => {});
+      // console.log(resizeObserver);
+      HD.prototype.init = function () {
+        console.log(this);
+      };
+      function HD(options) {
+        // this.name = 'vue';
+        // console.log(this);
+        this.init();
+      }
+      let hd = new HD({ data: '1' });
+
+      console.dir(hd.constructor);
+      console.timeEnd('1');
     </script>
   </body>
 </html>

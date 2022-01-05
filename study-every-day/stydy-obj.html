@@ -256,7 +256,7 @@
       //
 
       for (let i = 0; i < 5; i++) {
-        setTimeout(function() {
+        setTimeout(function () {
           // console.log(i);
         }, 1000);
       }
@@ -318,7 +318,7 @@
         age: 20,
         desc: 'shuaige',
         arr: [11, 22, 33, 44],
-        [Symbol.iterator]: function() {
+        [Symbol.iterator]: function () {
           let index = 0;
           return {
             next: () => {
@@ -345,23 +345,23 @@
 
       // keycode=123  是f12键
       // 禁止右键菜单
-      document.oncontextmenu = function() {
+      document.oncontextmenu = function () {
         return false;
       };
       // 禁止文字选择
-      document.onselectstart = function() {
+      document.onselectstart = function () {
         return false;
       };
       // 禁止复制
-      document.oncopy = function() {
+      document.oncopy = function () {
         return false;
       };
       // 禁止剪切
-      document.oncut = function() {
+      document.oncut = function () {
         return false;
       };
       // 禁止粘贴
-      document.onpaste = function() {
+      document.onpaste = function () {
         return false;
       };
 
@@ -461,7 +461,7 @@
 
       // node事件
       //  1先主代码
-      // 2.  process.next()
+      // 2.  process.nextTick()
       //3.    Promise     2 3 都是微任务
 
       // timer 模块0ms
