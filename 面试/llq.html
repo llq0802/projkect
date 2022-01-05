@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-24 10:23:57
+ * @LastEditTime: 2021-12-31 15:49:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -393,6 +393,37 @@
           max,
         };
       };
+      //统计出现连续最多次数的字符串
+      const llq1 = (str) => {
+        let j = 1,
+          i = 0,
+          max = 0,
+          val;
+        // for (let i = 1; i < str.length - 1; i++) {
+        //   if (str[i] !== str[j]) {
+        //     j = i;
+        //     if (j - i > max) {
+        //       max = j - i;
+        //       val = str[i];
+        //     }
+        //   }
+        //
+        // }
+        while (i < str.length - 1) {
+          if (str[i] !== str[j]) {
+            i = j;
+            if (j - i > max) {
+              max = j - i;
+              val = str[i];
+            }
+          }
+          j++;
+        }
+        return {
+          max,
+          val,
+        };
+      };
 
       // 以下函数返回 min（包含）～ max（包含）之间的数字：
       function getRndInteger(min, max) {
@@ -598,7 +629,7 @@
       //数组转成树
       const arrayToTree = (items) => {
         const result = [];
-        const itemMap = {}; // 有时候多层遍历循环 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
+        const itemMap = {}; // 有时候多层遍历循环（递归） 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
         for (const item of items) {
           const id = item.id;
           const pid = item.parentId;
@@ -619,6 +650,15 @@
         return result;
       };
 
+      let array1 = [1, 5, 48, 4, 8, 48, 2, 0];
+      let array2 = [1, 5, 13, 4, 76, 2, 78];
+      //交集
+      let jiao = array1.filter((item) => new Set(array2).has(item));
+      //并集
+      let bing = [...new Set([...array1, ...array2])];
+      //补集
+      let bu = array1.filter((item) => !new Set(array2).has(item));
+
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));
 
@@ -638,7 +678,7 @@
 
       /*
        *  vuex（vue-router）原理 插件install方法中
-       *   调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，在所有组件的 beforeCreate生命周期注入了设置this.$store这样一个对象。
+       *  调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，在所有组件的 beforeCreate生命周期注入了设置this.$store这样一个对象。
        *
        */
     </script>

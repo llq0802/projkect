@@ -1,7 +1,11 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
+<<<<<<< HEAD
  * @LastEditTime: 2021-12-24 20:06:56
+=======
+ * @LastEditTime: 2022-01-05 16:42:42
+>>>>>>> 6e11f8f0bbb68363201d8c5c9768f2f75f114932
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -200,7 +204,7 @@
         }
       }
     </style>
-    <div class="san"></div>
+    <div class="san" idx="1"></div>
     <div class="yuan"></div>
     <input class="inp" />
     <div class="box-header">tou</div>
@@ -237,7 +241,7 @@
 
     <br />
     <progress value="60" max="100">完成60%</progress>
-    <div class="container">
+    <div class="container" idx="progress">
       <span>滑动图标以验证</span>
       <span class="icon-box">图标</span>
       <div class="bg-box"></div>
@@ -254,6 +258,20 @@
     <script>
       // clientX
       console.time('time');
+      let fragment = document.createDocumentFragment();
+      console.dir(fragment);
+      // const containers = document.querySelector('.container');
+      // console.dir(containers);
+      // console.dir(containers.tagName);
+      // console.dir(containers.parentNode);
+      // console.dir(containers.nodeName);
+      // console.dir(containers.nodeType);
+      // console.dir(containers.firstChild);
+      // console.dir(containers.childNodes);
+      // console.dir(containers.textContent);
+      // console.log([...containers.attributes]);
+      // console.log([...containers.attributes][0].name);
+      // console.log(Array.from(containers.attributes)[0].value);
 
       // const slider = document.querySelector('.icon-box');
       // console.dir(slider.nodeName); //大写字符
@@ -1178,7 +1196,7 @@
         }
         return result;
       };
-      //let rssss = getTreeList(treeList, null);
+      //  //let rssss = getTreeList(treeList, null);
       // arrayToTree(treeList);
 
       // 维持一个执行副作用的栈
@@ -1202,11 +1220,64 @@
       //   sum = val1 + val2;
       //   console.log('xiangjiale');
       // });
-
       // console.log(runningEffects);
 
+      let array1 = [1, 5, 48, 4, 8, 48, 2, 0];
+      let array2 = [1, 5, 13, 4, 76, 2, 78];
+      //交集
+      let jiao = array1.filter((item) => new Set(array2).has(item));
+      //并集
+      let bing = [...new Set([...array1, ...array2])];
+      //补集
+      let bu = array1.filter((item) => !new Set(array2).has(item));
+
+      //Object.fromEntities() //[[],[]] => {}
+      //Object.entries()  //{}=>[[],[]]
+
+      let hdh = '2[2[a]3[b]]';
+
+      function ggg(str) {
+        let stack1 = [];
+        let stack2 = [];
+        let rest = str;
+        let index = 0;
+        while (index < str.length - 1) {
+          reat = str.substring(index);
+          if (/^\d+\[/.test(rest)) {
+            let num = +rest.match(/^(\d+)\[/)[1];
+            stack1.push(num);
+            stack2.push('');
+            index += num.toString().length + 1;
+          } else if (/^\w+\]/.test(rest)) {
+            let word = rest.match(/^(\w+)\]/)[1];
+            stack2[stack2.length - 1] = word;
+            index += word.length;
+          } else if (reat[0] === ']') {
+            let res1 = stack1.pop();
+            let res2 = stack2.pop();
+            stack2[stack2.length] += res2.repeat(res1);
+            index++;
+          }
+        }
+        return stack2[0].repeat(stack1[0]);
+      }
+
+      // let rr = 'key=vals'.match(/^(.+)=(.+)$/);
+      // console.log(rr);
+
+      console.log(
+        [
+          ...new Set(
+            [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10].flat(
+              Number.MAX_VALUE
+            )
+          ),
+        ].sort((a, b) => a - b)
+      );
+
+      // ggg(hdh);
       //光影滑动效果：
-      //设计一个透明层div 绝对定位 left为负值，skewx在X轴上做了负25度的变形，
+      //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
       //背景颜色用的是CSS3的线性渐变linear-gradient
       // background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));，
       //然后hover的时候，left移动过来 设置0.5s的动画时间。
