@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-12-29 11:02:59
- * @LastEditTime: 2021-12-30 09:24:28
- * @LastEditors: your name
+ * @LastEditTime: 2022-01-05 10:50:22
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\defineReactive.js
  */
@@ -10,7 +10,7 @@ import observer from './observe.js';
 import Dep from './Dep.js';
 
 export default function defineReactive(targetObj, key, val = targetObj[key]) {
-  let dep = new Dep();
+  const dep = new Dep();
   let childOb = observer(val);
 
   Object.defineProperty(targetObj, key, {
@@ -42,13 +42,13 @@ export default function defineReactive(targetObj, key, val = targetObj[key]) {
   });
 }
 
-function dependArray(value) {
-  for (let e, i = 0, l = value.length; i < l; i++) {
-    e = value[i];
+function dependArray(array) {
+  for (let value, i = 0, l = array.length; i < l; i++) {
+    value = array[i];
     // 当数组中是对象或者数组的元素才触发
-    e && e.__ob__ && e.__ob__.dep.depend();
-    if (Array.isArray(e)) {
-      dependArray(e);
+    value && value.__ob__ && value.__ob__.dep.depend();
+    if (Array.isArray(value)) {
+      dependArray(value);
     }
   }
 }

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2022-01-04 15:36:10
+ * @LastEditTime: 2022-01-05 16:42:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -200,7 +200,7 @@
         }
       }
     </style>
-    <div class="san"></div>
+    <div class="san" idx="1"></div>
     <div class="yuan"></div>
     <input class="inp" />
     <div class="box-header">tou</div>
@@ -237,7 +237,7 @@
 
     <br />
     <progress value="60" max="100">完成60%</progress>
-    <div class="container">
+    <div class="container" idx="progress">
       <span>滑动图标以验证</span>
       <span class="icon-box">图标</span>
       <div class="bg-box"></div>
@@ -254,6 +254,20 @@
     <script>
       // clientX
       console.time('time');
+      let fragment = document.createDocumentFragment();
+      console.dir(fragment);
+      // const containers = document.querySelector('.container');
+      // console.dir(containers);
+      // console.dir(containers.tagName);
+      // console.dir(containers.parentNode);
+      // console.dir(containers.nodeName);
+      // console.dir(containers.nodeType);
+      // console.dir(containers.firstChild);
+      // console.dir(containers.childNodes);
+      // console.dir(containers.textContent);
+      // console.log([...containers.attributes]);
+      // console.log([...containers.attributes][0].name);
+      // console.log(Array.from(containers.attributes)[0].value);
 
       // const slider = document.querySelector('.icon-box');
       // console.dir(slider.nodeName); //大写字符
@@ -1222,8 +1236,18 @@
         return stack2[0].repeat(stack1[0]);
       }
 
-      // let rr = 'key=val'.match(/^(.+)=(.+)$/);
+      // let rr = 'key=vals'.match(/^(.+)=(.+)$/);
       // console.log(rr);
+
+      console.log(
+        [
+          ...new Set(
+            [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10].flat(
+              Number.MAX_VALUE
+            )
+          ),
+        ].sort((a, b) => a - b)
+      );
 
       // ggg(hdh);
       //光影滑动效果：

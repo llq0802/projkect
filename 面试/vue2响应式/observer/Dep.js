@@ -10,7 +10,7 @@
 //订阅发布模式
 let uid = 0;
 export default class Dep {
-  static target = null; //在同一时间只能有全局唯一的watcher
+  static target = null; //在同一时间只能有全局唯一的watcher（当实例化watcher时会将target赋值为当前watcher）
   constructor() {
     this.id = uid++;
     this.subs = []; //收集的依赖就是Watcher实例， 里面存放的是对象属性的绑定一个Watcher实例
