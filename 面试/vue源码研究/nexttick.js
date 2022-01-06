@@ -1,17 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-12-30 10:19:35
- * @LastEditTime: 2021-12-30 15:59:06
- * @LastEditors: your name
+ * @LastEditTime: 2022-01-06 09:21:38
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue源码研究\nexttick.js
  */
 // 调用upade方法把 watcher 都放到watcher队列里面去（会判重处理） 执行完队列的事件之后再清空队列 主要使用 nextTick方法 来执行 watcher 队列
 /* 控制重复添加cb */
-
 // 在 nextTick 中，会把接收的回调函数 cb 使用 try catch 进行包裹，目的是方便进行异常捕获，之后会把这个 cb 存入到 全局的 callbacks 数组中
 // 执行 timerFunc，通过浏览器的异步循环队列去执行 flushCallbacks 函数清空 callbacks 数组并执行里面的回调函数
-
 /**
  * Vue异步更新原理：
  *  调用watcher.upade方法把 watcher 都放到watcher队列里面去（会判重处理）
@@ -19,7 +17,7 @@
  *  利用浏览器异步队列，将执行的callbacks数组的函数 作为Promise成功的函数执行（如果该函数已经在执行， 等异步队列清空再执行 pendding节流阀）
  *  执行watcher队列的函数就会执行watcher队列中的每个watcher.run()方法（会对每个watcher排序，让其父组件先更新，子组件再更新），
  *  从而进入更新阶段，如：执行组件的更新函数 updateComponents 或执行用户 watch 回调。
- * （Promise>MutationObserver>settimeOut）
+ * （Promise>MutationObserver>setImmediate>settimeOut）
  */
 
 let pending = false;

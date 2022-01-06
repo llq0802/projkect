@@ -16,7 +16,7 @@ export default function compileAttrs(node, vm) {
       compileOnClick(node, value, vm);
     }
     if (name.match(/v-on:click/)) {
-      compileBind(node, attrName, value, vm);
+      compileBind(node, name, value, vm);
     }
     if (name.match(/v-model/)) {
       compileModel(node, value, vm);

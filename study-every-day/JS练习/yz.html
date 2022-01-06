@@ -1,7 +1,11 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
+<<<<<<< HEAD
  * @LastEditTime: 2022-01-05 21:14:16
+=======
+ * @LastEditTime: 2022-01-06 15:43:05
+>>>>>>> 161566e16703c0d5d09f8442b84088c6f2e8542a
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -254,10 +258,11 @@
     <script>
       // clientX
       console.time('time');
-      let fragment = document.createDocumentFragment();
-      console.dir(fragment);
-      // const containers = document.querySelector('.container');
+      // let fragment = document.createDocumentFragment();
+      // console.dir(fragment);
+      const containers = document.querySelector('.icon-box');
       // console.dir(containers);
+      console.dir(containers.nextSibling);
       // console.dir(containers.tagName);
       // console.dir(containers.parentNode);
       // console.dir(containers.nodeName);
@@ -1258,18 +1263,23 @@
         return stack2[0].repeat(stack1[0]);
       }
 
-      // let rr = 'key=vals'.match(/^(.+)=(.+)$/);
+      // let rr = 'key=vals'.match(/^(.+)=(.+)$/); // [原始值，匹配到的值，index]
       // console.log(rr);
+      // console.log(rr['index']);
+      // console.dir(RegExp);
+      // console.dir(RegExp.$1);
+      // console.dir(RegExp.input);
+      // console.dir(RegExp.$_);
 
-      console.log(
-        [
-          ...new Set(
-            [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10].flat(
-              Number.MAX_VALUE
-            )
-          ),
-        ].sort((a, b) => a - b)
-      );
+      // console.log(
+      //   [
+      //     ...new Set(
+      //       [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10].flat(
+      //         Number.MAX_VALUE
+      //       )
+      //     ),
+      //   ].sort((a, b) => a - b)
+      // );
 
       // ggg(hdh);
       //光影滑动效果：
