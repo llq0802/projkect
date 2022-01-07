@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-05 17:51:58
- * @LastEditTime: 2022-01-06 21:00:08
+ * @LastEditTime: 2022-01-07 20:32:47
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\parse.js
@@ -47,7 +47,7 @@ export default function parse(template) {
         let text = html.slice(0, nextStartIdx);
         processText(text);
       }
-      //截断html
+      //不管stack为不为空都要截断html
       html = html.slice(nextStartIdx);
     } else {
       // 说明没有匹配到开始标签，整个 html 就是一段文本
@@ -63,10 +63,12 @@ export default function parse(template) {
   function parseStartTag() {
     // 先找到开始标签的结束位置 >  <div class="app" index=0>xxxxxx</div>
     const endIdx = html.indexOf('>');
-    // 解析开始标签里的内容 <内容>，标签名 + 属性，比如: div id="app"
-    const content = html.slice(1, endIdx);
+
     // 截断 html，将上面解析的内容从 html 字符串中删除
     html = html.slice(endIdx + 1);
+
+    // 解析开始标签里的内容 <内容>，标签名 + 属性，比如: div id="app"
+    const content = html.slice(1, endIdx);
     // 找到 第一个空格位置
     const firstSpaceIdx = content.indexOf(' ');
     // 标签名和属性字符串
@@ -86,7 +88,6 @@ export default function parse(template) {
 
     // 得到属性数组，[id="app", xx='xx']
     const attrs = attrsStr ? attrsStr.split(' ') : [];
-
     // 进一步解析属性数组，得到一个 Map 对象
     const attrMap = parseAttrs(attrs);
     // 生成 AST 对象
@@ -101,36 +102,6 @@ export default function parse(template) {
     if (isUnaryTag(tagName)) {
       processElement();
     }
-  }
-
-  /**
-   *处理文本节点
-   * @param {*} text
-   */
-  function processText(text) {
-    if (text.trim()) {
-      // 构造文本节点的 AST 对象
-      const textAst = {
-        type: 3,
-        text,
-      };
-      if (text.match(/{{(.*)}}/)) {
-        // 说明是表达式{{name}} 响应式数据
-        textAst.expression = RegExp.$1.trim();
-      }
-      // 将 ast 放到栈顶元素的肚子里
-      stack[stack.length - 1].children.push(textAst);
-    }
-  }
-
-  /**
-   * 处理结束标签，比如: <div id="app">...</div>
-   */
-  function parseEnd() {
-    // 将结束标签从 html 字符串中截掉
-    html = html.slice(html.indexOf('>') + 1);
-    // 处理栈顶元素
-    processElement();
   }
 
   /**
@@ -170,11 +141,75 @@ export default function parse(template) {
       // 处理 v-on 指令，比如 <button v-on:click="add"> add </button>
       processVOn(curEle, RegExp.$1, rawAttr[`v-on:${RegExp.$1}`]);
     }
+    //处理插槽内容
+    processSlotContent(curEle);
 
     // 节点处理完以后让其和父节点产生关系
     if (stackLen) {
       stack[stackLen - 1].children.push(curEle);
+      // 当前节点的父节点 就是栈顶的元素
       curEle.parent = stack[stackLen - 1];
+
+      // 如果节点存在 slotName，则说明该节点是组件传递给插槽的内容
+      // 将插槽信息放到组件节点的 rawAttr.scopedSlots 对象上
+      // 而这些信息在生成组件插槽的 VNode 时（renderSlot）会用到
+      if (curEle.slotName) {
+        //此时curEle指的是template
+        const { parent, slotName, slotValue, children } = curEle;
+        // 这里关于 children 的操作，只是单纯为了避开 JSON.stringify 的循环引用问题
+        // 因为生成渲染函数时需要对 attr 执行 JSON.stringify 方法
+        const slotInfo = {
+          slotName,
+          slotValue,
+          //template的children
+          children: children.map((item) => {
+            //template的children
+            delete item.parent;
+            return item;
+          }),
+        };
+        // 在template父节点的属性中保存插槽信息
+        //  <cmp>
+        //    <template v-slot:top="topValue">
+        //       span
+        //    </template>
+        //  </cmp>
+        if (parent.rawAttr.scopedSlots) {
+          parent.rawAttr.slotInfo[curEle.slotName] = slotInfo;
+        } else {
+          parent.rawAttr.slotInfo = { [curEle.slotName]: slotInfo };
+        }
+      }
+    }
+  }
+
+  /**
+   * 处理结束标签，比如: <div id="app">...</div>
+   */
+  function parseEnd() {
+    // 将结束标签从 html 字符串中截掉
+    html = html.slice(html.indexOf('>') + 1);
+    // 处理栈顶元素
+    processElement();
+  }
+
+  /**
+   *处理文本节点
+   * @param {*} text
+   */
+  function processText(text) {
+    if (text.trim()) {
+      // 构造文本节点的 AST 对象
+      const textAst = {
+        type: 3,
+        text,
+      };
+      if (text.match(/{{(.*)}}/)) {
+        // 说明是表达式{{name}} 响应式数据
+        textAst.expression = RegExp.$1.trim();
+      }
+      // 将 ast 放到栈顶元素的肚子里
+      stack[stack.length - 1].children.push(textAst);
     }
   }
 }
@@ -262,13 +297,33 @@ function processVOn(curEle, vOnKey, vOnVal) {
   const { attr } = curEle;
   attr.vOn = { [vOnKey]: vOnVal };
 }
+
 /**
- *
- * @param {*} curEle
- * @param {*} vOnKey
- * @param {*} vOnVal
+ * 处理插槽
+ * <scope-slot>
+ *   <template v-slot:default="scopeSlot">
+ *     <div>{{ scopeSlot }}</div>
+ *   </template>
+ * </scope-slot>
+ * @param {*} curEle 节点对象
  */
-function processVIf(curEle, vOnKey, vOnVal) {
-  const { attr } = curEle;
-  attr.vOn = { [vOnKey]: vOnVal };
+function processSlotContent(curEle) {
+  // 注意，具有 v-slot:xx 属性的 template 只能是组件的根元素，这里不做判断
+  if (curEle.tag === 'template') {
+    // 获取插槽信息
+    const rawAttr = curEle.rawAttr; // 属性 map 对象
+    for (const key in rawAttr) {
+      //遍历属性 map 对象，找出其中的 v-slot 指令信息
+      if (!rawAttr.hasOwnProperty(key)) return;
+      if (key.match(/v-slot:(.*)/)) {
+        // 获取指令后的插槽名称和值，比如: v-slot:default=xx
+        // default
+        const slotName = (curEle.slotName = RegExp.$1);
+        //获取插槽作用域的值
+        curEle.slotValue = rawAttr[`v-slot:${slotName}`];
+        // 直接 return，因为该标签上只可能有一个 v-slot 指令
+        return;
+      }
+    }
+  }
 }

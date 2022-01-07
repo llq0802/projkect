@@ -13,6 +13,7 @@ import Vue from '../index.js';
  *
  *
  * @export
+ * @param {*} vm Vue实例
  */
 export default function mountComponent(vm) {
   // 更新组件的的函数
@@ -34,11 +35,11 @@ Vue.prototype._update = function(vnode) {
   const oldVNode = this._vnode;
   //设置新的VNode
   this._vnode = vnode;
-  //老的VNode不存在说明是首次渲染
+  //老的VNode不存在说明是首次渲染根组件
   if (!oldVNode) {
     this.$el = this._patch_(this.$el, vnode);
   } else {
-    //说明是后续更新
+    // 后续更新组件或者首次渲染子组件，都会走这里
     this.$el = this._patch_(oldVNode, vnode);
   }
 };
