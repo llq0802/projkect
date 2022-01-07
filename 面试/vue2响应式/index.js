@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-05 10:51:50
- * @LastEditTime: 2022-01-06 15:29:14
+ * @LastEditTime: 2022-01-07 10:05:26
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\index.js
@@ -22,10 +22,11 @@ Vue.prototype._init = function(options) {
   renderHelper(this);
   //在Vue实例上挂载函数patch方法
   this.__patch__ = patch;
+  //首次根组件挂载渲染，子组件没有el需要手动执行$mount
   if (options.el) {
     this.$mount(el);
   }
 };
-Vue.prototype['&mount'] = function(el) {
+Vue.prototype.$mount = function(el) {
   mount(el, this);
 };
