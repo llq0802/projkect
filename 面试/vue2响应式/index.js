@@ -14,18 +14,18 @@ import patch from './compiler2x/patch.js';
 export default function Vue(options) {
   this._init(options);
 }
-Vue.prototype._init = function(options) {
+Vue.prototype._init = function (options) {
   // this 是vue实例
   this.$options = options;
   initData(this);
   //在Vue实例上挂载运行render函数生成的VNode的工具函数
   renderHelper(this);
   //在Vue实例上挂载函数patch方法
-  this.__patch__ = patch;
+  this._patch_ = patch;
   if (options.el) {
     this.$mount(el);
   }
 };
-Vue.prototype['&mount'] = function(el) {
+Vue.prototype['&mount'] = function (el) {
   mount(el, this);
 };

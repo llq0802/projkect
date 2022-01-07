@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-05 17:51:58
- * @LastEditTime: 2022-01-06 15:15:52
+ * @LastEditTime: 2022-01-06 21:00:08
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\parse.js
@@ -19,7 +19,6 @@ export default function parse(template) {
   let html = template;
   /// 存放所有的未配对的开始标签的 AST 对象，当遇到闭合标签就从栈顶元素弹出来 里面的内容就是这对标签的children
   let stack = [];
-
   while (html.trim()) {
     // 过滤注释标签  <!--xxx-->
     if (html.indexOf('<!--') === 0) {
@@ -56,54 +55,127 @@ export default function parse(template) {
     }
   }
   return root;
-}
 
-/**
- * 解析开始标签
- * 比如： <div id="app">...</div>
- */
-function parseStartTag() {
-  // 先找到开始标签的结束位置 >  <div class="app" index=0>xxxxxx</div>
-  const endIdx = html.indexOf('>');
+  /**
+   * 解析开始标签
+   * 比如： <div id="app">...</div>
+   */
+  function parseStartTag() {
+    // 先找到开始标签的结束位置 >  <div class="app" index=0>xxxxxx</div>
+    const endIdx = html.indexOf('>');
+    // 解析开始标签里的内容 <内容>，标签名 + 属性，比如: div id="app"
+    const content = html.slice(1, endIdx);
+    // 截断 html，将上面解析的内容从 html 字符串中删除
+    html = html.slice(endIdx + 1);
+    // 找到 第一个空格位置
+    const firstSpaceIdx = content.indexOf(' ');
+    // 标签名和属性字符串
+    let tagName = '',
+      attrsStr = '';
 
-  // 截断 html，将上面解析的内容从 html 字符串中删除
-  html = html.slice(endIdx + 1);
+    if (firstSpaceIdx === -1) {
+      // 没有空格，则认为 content 就是标签名，比如 <h3></h3> 这种情况，content = h3
+      tagName = content;
+      // 没有属性
+      attrsStr = '';
+    } else {
+      tagName = content.slice(0, firstSpaceIdx);
+      // content 的剩下的内容就都是属性了，比如 id="app" xx=xx
+      attrsStr = content.slice(firstSpaceIdx + 1);
+    }
 
-  // 解析开始标签里的内容 <内容>，标签名 + 属性，比如: div id="app"
-  const content = html.slice(1, endIdx);
-  // 找到 第一个空格位置
-  const firstSpaceIdx = content.indexOf(' ');
-  // 标签名和属性字符串
-  let tagName = '',
-    attrsStr = '';
+    // 得到属性数组，[id="app", xx='xx']
+    const attrs = attrsStr ? attrsStr.split(' ') : [];
 
-  if (firstSpaceIdx === -1) {
-    // 没有空格，则认为 content 就是标签名，比如 <h3></h3> 这种情况，content = h3
-    tagName = content;
-    // 没有属性
-    attrsStr = '';
-  } else {
-    tagName = content.slice(0, firstSpaceIdx);
-    // content 的剩下的内容就都是属性了，比如 id="app" xx=xx
-    attrsStr = content.slice(firstSpaceIdx + 1);
+    // 进一步解析属性数组，得到一个 Map 对象
+    const attrMap = parseAttrs(attrs);
+    // 生成 AST 对象
+    const elementAst = generateAST(tagName, attrMap);
+    // 如果根节点不存在，说明当前节点为整个模版的第一个节点
+    if (!root) {
+      root = elementAst;
+    }
+    // 将 ast 对象 push 到栈中，当遇到结束标签的时候就将栈顶的 ast 对象 pop 出来，它两就是一对标签
+    stack.push(elementAst);
+    // 自闭合标签，则直接调用 end 方法，进入闭合标签的处理截断，就不入栈了
+    if (isUnaryTag(tagName)) {
+      processElement();
+    }
   }
 
-  // 得到属性数组，[id="app", xx='xx']
-  const attrs = attrsStr ? attrsStr.split(' ') : [];
-  // 进一步解析属性数组，得到一个 Map 对象
-  const attrMap = parseAttrs(attrs);
-  // 生成 AST 对象
-  const elementAst = generateAST(tagName, attrMap);
-  // 如果根节点不存在，说明当前节点为整个模版的第一个节点
-  if (!root) {
-    root = elementAst;
+  /**
+   *处理文本节点
+   * @param {*} text
+   */
+  function processText(text) {
+    if (text.trim()) {
+      // 构造文本节点的 AST 对象
+      const textAst = {
+        type: 3,
+        text,
+      };
+      if (text.match(/{{(.*)}}/)) {
+        // 说明是表达式{{name}} 响应式数据
+        textAst.expression = RegExp.$1.trim();
+      }
+      // 将 ast 放到栈顶元素的肚子里
+      stack[stack.length - 1].children.push(textAst);
+    }
   }
-  // 将 ast 对象 push 到栈中，当遇到结束标签的时候就将栈顶的 ast 对象 pop 出来，它两就是一对标签
-  stack.push(elementAst);
 
-  // 自闭合标签，则直接调用 end 方法，进入闭合标签的处理截断，就不入栈了
-  if (isUnaryTag(tagName)) {
+  /**
+   * 处理结束标签，比如: <div id="app">...</div>
+   */
+  function parseEnd() {
+    // 将结束标签从 html 字符串中截掉
+    html = html.slice(html.indexOf('>') + 1);
+    // 处理栈顶元素
     processElement();
+  }
+
+  /**
+   * 处理元素的闭合标签时会调用该方法
+   * 进一步处理元素上的各个属性，将处理结果放到 attr 属性上
+   *
+   */
+  function processElement() {
+    // 弹出栈顶元素，进一步处理该元素
+    const curEle = stack.pop();
+    const stackLen = stack.length;
+    //  {
+    //   // 元素节点
+    //   type: 1,
+    //   // 标签
+    //   tag: tagName,
+    //   // 原始属性 map 对象，后续还需要进一步处理
+    //   rawAttr: attrMap,
+    //   // 子节点
+    //   children: [],
+    // };
+
+    // 进一步处理 AST 对象中的 rawAttr 对象 { attrName: attrValue, ... }
+    const { tag, rawAttr } = curEle;
+    // 处理结果都放到 attr 对象上，并删掉 rawAttr 对象中相应的属性
+    curEle.attr = {};
+    // 属性对象的 key 组成的数组
+    const propertyArr = Object.keys(rawAttr);
+
+    if (propertyArr.includes('v-model')) {
+      // 处理 v-model 指令
+      processVModel(curEle);
+    } else if (propertyArr.find((item) => item.match(/^v-bind:(.*)/))) {
+      // 处理 v-bind 指令，比如 <span v-bind:test="xx" />
+      processVBind(curEle, RegExp.$1, rawAttr[`v-bind:${RegExp.$1}`]);
+    } else if (propertyArr.find((item) => item.match(/^v-on:(.*)/))) {
+      // 处理 v-on 指令，比如 <button v-on:click="add"> add </button>
+      processVOn(curEle, RegExp.$1, rawAttr[`v-on:${RegExp.$1}`]);
+    }
+
+    // 节点处理完以后让其和父节点产生关系
+    if (stackLen) {
+      stack[stackLen - 1].children.push(curEle);
+      curEle.parent = stack[stackLen - 1];
+    }
   }
 }
 
@@ -117,7 +189,7 @@ function parseAttrs(attrsArr) {
   let obj = {};
   for (let attr of attrsArr) {
     //[id="app", xx=xx]
-    [attrName, attrValue] = attr.split('=');
+    let [attrName, attrValue] = attr.split('=');
     obj[attrName] = attrValue.replace(/\"|\'/g, '');
   }
   return obj;
@@ -148,80 +220,6 @@ function generateAST(tagName, attrMap) {
  */
 function isUnaryTag(tagName) {
   return ['input', 'textarea', 'hr', 'br'].includes(tagName);
-}
-/**
- *处理文本节点
- * @param {*} text
- */
-function processText(text) {
-  if (text.trim()) {
-    // 构造文本节点的 AST 对象
-    const textAst = {
-      type: 3,
-      text,
-    };
-    if (text.match(/{{(.*)}}/)) {
-      // 说明是表达式{{name}} 响应式数据
-      textAst.expression = RegExp.$1.trim();
-    }
-    // 将 ast 放到栈顶元素的肚子里
-    stack[stack.length - 1].children.push(textAst);
-  }
-}
-
-/**
- * 处理结束标签，比如: <div id="app">...</div>
- */
-function parseEnd() {
-  // 将结束标签从 html 字符串中截掉
-  html = html.slice(html.indexOf('>') + 1);
-  // 处理栈顶元素
-  processElement();
-}
-
-/**
- * 处理元素的闭合标签时会调用该方法
- * 进一步处理元素上的各个属性，将处理结果放到 attr 属性上
- *
- */
-function processElement() {
-  // 弹出栈顶元素，进一步处理该元素
-  const curEle = stack.pop();
-  const stackLen = stack.length;
-  //  {
-  //   // 元素节点
-  //   type: 1,
-  //   // 标签
-  //   tag: tagName,
-  //   // 原始属性 map 对象，后续还需要进一步处理
-  //   rawAttr: attrMap,
-  //   // 子节点
-  //   children: [],
-  // };
-
-  // 进一步处理 AST 对象中的 rawAttr 对象 { attrName: attrValue, ... }
-  const { tag, rawAttr } = curEle;
-  // 处理结果都放到 attr 对象上，并删掉 rawAttr 对象中相应的属性
-  curEle.attr = {};
-  // 属性对象的 key 组成的数组
-  const propertyArr = Object.keys(rawAttr);
-
-  if (propertyArr.includes('v-model')) {
-    // 处理 v-model 指令
-    processVModel(curEle);
-  } else if (propertyArr.find((item) => item.match(/^v-bind:(.*)/))) {
-    // 处理 v-bind 指令，比如 <span v-bind:test="xx" />
-    processVBind(curEle, RegExp.$1, rawAttr[`v-bind:${RegExp.$1}`]);
-  } else if (propertyArr.find((item) => item.match(/^v-on:(.*)/))) {
-    // 处理 v-on 指令，比如 <button v-on:click="add"> add </button>
-    processVOn(curEle, RegExp.$1, rawAttr[`v-on:${RegExp.$1}`]);
-  }
-
-  // 节点处理完以后让其和父节点产生关系
-  if (stackLen) {
-    stack[stackLen - 1].children.push(curEle);
-    curEle.parent = stack[stackLen - 1];
-  }
 }
 
 /**
@@ -261,6 +259,16 @@ function processVBind(curEle, bindKey, bindVal) {
  *处理v-on
  */
 function processVOn(curEle, vOnKey, vOnVal) {
+  const { attr } = curEle;
+  attr.vOn = { [vOnKey]: vOnVal };
+}
+/**
+ *
+ * @param {*} curEle
+ * @param {*} vOnKey
+ * @param {*} vOnVal
+ */
+function processVIf(curEle, vOnKey, vOnVal) {
   const { attr } = curEle;
   attr.vOn = { [vOnKey]: vOnVal };
 }
