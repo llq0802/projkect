@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-06 15:27:02
- * @LastEditTime: 2022-01-07 17:43:45
+ * @LastEditTime: 2022-01-07 17:58:36
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\patch.js
@@ -281,7 +281,7 @@ function patchVnode(oldVnode, vnode) {
   const ch = vnode.children;
   const oldCh = oldVnode.children;
 
-  // 新节点不存在文本节点
+  // 新节点不存在文本节点就是说存在children（children跟文本只能存在一种）
   if (!vnode.text) {
     if (ch && oldCh) {
       // 说明新老节点都有孩子   diff算法
