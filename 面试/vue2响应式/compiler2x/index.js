@@ -8,6 +8,7 @@
  */
 
 import compileToFunction from './compileToFunction.js';
+import mountComponent from './mountComponent.js';
 
 /**
  *

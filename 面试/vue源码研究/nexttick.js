@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-30 10:19:35
- * @LastEditTime: 2022-01-06 09:21:38
+ * @LastEditTime: 2022-01-10 13:01:57
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue源码研究\nexttick.js
@@ -12,9 +12,9 @@
 // 执行 timerFunc，通过浏览器的异步循环队列去执行 flushCallbacks 函数清空 callbacks 数组并执行里面的回调函数
 /**
  * Vue异步更新原理：
- *  调用watcher.upade方法把 watcher 都放到watcher队列里面去（会判重处理）
- *  将执行watcher队列的函数作为nexttick参数的回调函数（如果该函数已经在执行， 等异步队列清空再执行)添加到全局的callbacks数组中
- *  利用浏览器异步队列，将执行的callbacks数组的函数 作为Promise成功的函数执行（如果该函数已经在执行， 等异步队列清空再执行 pendding节流阀）
+ *  调用watcher.upade方法中的queueWatcher函数把 watcher 都放到watcher队列里面去（会判重处理）
+ *  将执行watcher队列的函数将执行watcher队列的函数flushQueueWatcher作为nexttick参数的回调函数（如果该函数已经在执行，等异步队列清空再执行)添加到全局的callbacks数组中
+ *  利用浏览器异步队列，将执行的callbacks数组的函数flushCallbacks作为Promise成功的函数执行（如果该函数已经在执行， 等异步队列清空再执行 pendding节流阀）
  *  执行watcher队列的函数就会执行watcher队列中的每个watcher.run()方法（会对每个watcher排序，让其父组件先更新，子组件再更新），
  *  从而进入更新阶段，如：执行组件的更新函数 updateComponents 或执行用户 watch 回调。
  * （Promise>MutationObserver>setImmediate>settimeOut）

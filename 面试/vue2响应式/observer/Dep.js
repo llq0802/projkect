@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-29 14:12:54
- * @LastEditTime: 2021-12-30 09:53:11
+ * @LastEditTime: 2022-01-10 15:58:18
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\Dep.js
@@ -25,6 +25,8 @@ export default class Dep {
   }
   // 添加watcher实例
   addSub(sub) {
+    //防止重复收集watcher
+    if (this.subs.includes(Dep.target)) return;
     this.subs.push(sub);
   }
   // 清空依赖的原因：
@@ -35,8 +37,9 @@ export default class Dep {
     会通知 a 数据的订阅的回调，这显然是有浪费的。
    *
    */
-  removeSub(sub) {
-    this.subs.splice(this.subs.indexOf(sub), 1);
+  removeSub(watcher) {
+    let index = this.subs.find(sub.id === watcher.id);
+    index && this.subs.splice(index, 1);
   }
 
   //通知watcher实例更新
@@ -46,4 +49,14 @@ export default class Dep {
       subs[i].update();
     }
   }
+}
+
+//处理保证全局唯一的watcher，因为如果computed在data之前，computed中收集依赖后会导致watcher=null 进而后面data收集不到watcher
+const targetStack = [];
+export function pushStack(watcher) {
+  targetStack.push(watcher);
+  Dep.target = watcher;
+}
+export function popStack() {
+  Dep.target = targetStack[targetStack.length - 1];
 }
