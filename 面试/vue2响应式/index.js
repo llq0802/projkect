@@ -14,10 +14,15 @@ import patch from './compiler2x/patch.js';
 export default function Vue(options) {
   this._init(options);
 }
+
 Vue.prototype._init = function (options) {
   // this 是vue实例
   this.$options = options;
+  //初始化Data数据
   initData(this);
+  // 初始化 computed 选项，并将计算属性代理到 Vue 实例上
+  // 结合 watcher 实现缓存
+  initComputed(this);
   //在Vue实例上挂载运行render函数生成的VNode的工具函数
   renderHelper(this);
   //在Vue实例上挂载函数patch方法
@@ -27,6 +32,7 @@ Vue.prototype._init = function (options) {
     this.$mount(el);
   }
 };
+
 Vue.prototype.$mount = function (el) {
   mount(el, this);
 };
