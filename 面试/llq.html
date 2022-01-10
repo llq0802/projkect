@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-10-15 09:08:23
- * @LastEditTime: 2021-12-31 15:49:18
+ * @LastEditTime: 2022-01-10 16:50:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\llq.html
@@ -368,6 +368,18 @@
           }
         });
         return tempArr;
+      };
+      const uniqueDeepMap = (array) => {
+        const res = [];
+        const map = new Map();
+        for (let i = 0, len = array.length; i < len; i++) {
+          const item = array[i];
+          if (!map.has(item)) {
+            res.push(item);
+            map.set(item, true);
+          }
+        }
+        return res;
       };
 
       //统计出现最多次数的字符串

@@ -20,6 +20,3 @@ let Vnode = {
   componentInstance: 'Component',
   parent: 'VNode',
 };
-export default function patch(oldVnode, newVnode) {}
-
-function sameVnode() {}

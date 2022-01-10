@@ -290,6 +290,9 @@
 
       //console.log(self); // self不管在哪儿始终指向window
 
+      //reverse  sort push pop  shift unshift splice  这7个数组方法都是会改变原始数组
+      // concat slice map filter 都是得到新的数组 不会改变原数组
+
       // 分片 端点 上传大文件思路
       // 前端用file.slice()分块
       // 前端用FileReader获取每一分块的md5值 （spark-MD5插件）
@@ -301,6 +304,17 @@
       // 1G以上的只能用ftp协议传输
 
       //父子组件的加载顺序home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
+
+      // require和import的区别：
+      // 导入require 导出 exports/module.exports 是 CommonJS 的标准，通常适用范围如 Node.js
+      // import/export 是 ES6 的标准，通常适用范围如 React
+
+      // require 是赋值过程并且是运行时才执行，值的浅拷贝 同步加载
+      // require 可以理解为一个全局方法，因为它是一个方法所以意味着可以在任何地方执行。
+      // import 是解构过程并且是编译时执行，值的引用 同步加载异步加载
+      // import 会提升到整个模块的头部，具有置顶性，但是建议写在文件的顶部。
+      // require 是浅拷贝，也就是说你可以修改对象第二层的属性并影响原数据，import 是引用，基本数据类型，修改不会影响原数据，但是对象修改属性会。
+      // require 的性能相对于 import 稍低。因为 require 是在运行时才引入模块并且还赋值给某个变量，而 import 只需要依据 import 中的接口在编译时引入指定模块所以性能稍高
     </script>
   </body>
 </html>
