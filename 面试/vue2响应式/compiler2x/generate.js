@@ -51,6 +51,7 @@ function genChildren(ast) {
     const child = children[i];
     //文本节点
     if (child.type === 3) {
+      //child此时为文本节点对象
       res.push(`_v(${JSON.stringify(child)})`);
     } else if (child.type === 1) {
       //元素节点 用递归的方式

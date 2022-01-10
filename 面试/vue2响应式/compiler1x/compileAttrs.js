@@ -25,7 +25,7 @@ export default function compileAttrs(node, vm) {
 }
 
 function compileOnClick(node, value, vm) {
-  node.addEventListener('click', function(...args) {
+  node.addEventListener('click', function (...args) {
     vm.$options.methods[value].apply(vm, args);
   });
 }
@@ -45,29 +45,13 @@ function compileModel(node, value, vm) {
 
   if ((tagName == 'input' && type === 'text') || tagName == 'select') {
     node.value = vm[value];
-    node.addEventListener('input', function(...args) {
+    node.addEventListener('input', function (...args) {
       vm[value] = node.value;
     });
   } else if (tagName == 'input' && type === 'checkbox') {
     node.checked = vm[value];
-    node.addEventListener('input', function(...args) {
+    node.addEventListener('input', function (...args) {
       vm[value] = node.checked;
     });
   }
-}
-
-/**
- *
- * createDocumentFragment
- * @param {*} node
- * @return {*}
- */
-function node2Fragment(node) {
-  let fragment = document.createDocumentFragment();
-  let firstChild = node.firstChild;
-  while (firstChild) {
-    fragment.appendChild(firstChild);
-    firstChild = node.firstChild;
-  }
-  return fragment;
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-06 14:47:06
- * @LastEditTime: 2022-01-06 16:59:11
+ * @LastEditTime: 2022-01-07 20:41:57
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\mountComponent.js
@@ -25,12 +25,13 @@ export default function mountComponent(vm) {
   new Watcher(updateComponent);
 }
 
-Vue.prototype._render = function() {
+Vue.prototype._render = function () {
   // 给 render 函数绑定 this 上下文为 Vue 实例
   //回去执行renderHelper中vm的_c函数与_v函数
-  return this.$options.render.apply(this);
+  return this.$options.render.apply(this); //_c()
 };
-Vue.prototype._update = function(vnode) {
+
+Vue.prototype._update = function (vnode) {
   //获取旧的VNode
   const oldVNode = this._vnode;
   //设置新的VNode

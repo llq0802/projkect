@@ -1,9 +1,7 @@
-import Dep from './Dep';
-
 /*
  * @Author: your name
  * @Date: 2021-12-29 14:13:02
- * @LastEditTime: 2022-01-04 17:29:27
+ * @LastEditTime: 2022-01-07 21:12:39
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\Watcher.js
@@ -79,7 +77,7 @@ export default class Watcher {
 
 export function parsePath(path) {
   const segments = path.split('.');
-  return function(obj) {
+  return function (obj) {
     for (let i = 0; i < segments.length; i++) {
       if (!obj) return;
       obj = obj[segments[i]];

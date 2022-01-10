@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-05 17:51:58
- * @LastEditTime: 2022-01-07 20:32:47
+ * @LastEditTime: 2022-01-07 20:38:06
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\parse.js
@@ -63,12 +63,10 @@ export default function parse(template) {
   function parseStartTag() {
     // 先找到开始标签的结束位置 >  <div class="app" index=0>xxxxxx</div>
     const endIdx = html.indexOf('>');
-
-    // 截断 html，将上面解析的内容从 html 字符串中删除
-    html = html.slice(endIdx + 1);
-
     // 解析开始标签里的内容 <内容>，标签名 + 属性，比如: div id="app"
     const content = html.slice(1, endIdx);
+    // 截断 html，将上面解析的内容从 html 字符串中删除
+    html = html.slice(endIdx + 1);
     // 找到 第一个空格位置
     const firstSpaceIdx = content.indexOf(' ');
     // 标签名和属性字符串

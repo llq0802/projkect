@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2022-01-06 21:12:57
+ * @LastEditTime: 2022-01-09 20:55:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -872,54 +872,54 @@
       // };
 
       //  原生WebSocket 封装成单例模式
-      const instance = Symbol('instance');
-      class SocketService {
-        ws = null;
-        isConnected = false;
-        callbacks = {};
-        static [instance] = null;
-        static get Tnstance() {
-          if (!this[instance]) {
-            this[instance] = new SocketService();
-          }
-          return this[instance];
-        }
-        content() {
-          this.ws = new WebSocket('ws://82.157.123.54:9010/ajaxchattest');
-          this.ws.onopen = (e) => {
-            this.isConnected = true;
-          };
-          this.ws.onclose = (e) => {
-            this.isConnected = false;
-            const ii = setInterval(() => {
-              if (this.isConnected) clearInterval(ii);
-              this.content();
-            }, 1000);
-          };
-          this.ws.onmessage = (e) => {
-            // console.log(e);
-            const typeFn = e.data.typeFn;
-            if (typeFn) this.callbacks[typeFn]();
-          };
-        }
-        setFn(value, cb) {
-          this.callbacks[value] = cb;
-        }
-        removeFn(value) {
-          this.callbacks[value] = null;
-        }
-        send(data) {
-          if (this.isConnected) {
-            this.ws.send(data);
-          } else {
-            setTimeout(() => {
-              this.send(data);
-            }, 1000);
-          }
-        }
-      }
-      SocketService.Tnstance.content();
-      SocketService.Tnstance.send('123');
+      // const instance = Symbol('instance');
+      // class SocketService {
+      //   ws = null;
+      //   isConnected = false;
+      //   callbacks = {};
+      //   static [instance] = null;
+      //   static get Tnstance() {
+      //     if (!this[instance]) {
+      //       this[instance] = new SocketService();
+      //     }
+      //     return this[instance];
+      //   }
+      //   content() {
+      //     this.ws = new WebSocket('ws://82.157.123.54:9010/ajaxchattest');
+      //     this.ws.onopen = (e) => {
+      //       this.isConnected = true;
+      //     };
+      //     this.ws.onclose = (e) => {
+      //       this.isConnected = false;
+      //       const ii = setInterval(() => {
+      //         if (this.isConnected) clearInterval(ii);
+      //         this.content();
+      //       }, 1000);
+      //     };
+      //     this.ws.onmessage = (e) => {
+      //       // console.log(e);
+      //       const typeFn = e.data.typeFn;
+      //       if (typeFn) this.callbacks[typeFn]();
+      //     };
+      //   }
+      //   setFn(value, cb) {
+      //     this.callbacks[value] = cb;
+      //   }
+      //   removeFn(value) {
+      //     this.callbacks[value] = null;
+      //   }
+      //   send(data) {
+      //     if (this.isConnected) {
+      //       this.ws.send(data);
+      //     } else {
+      //       setTimeout(() => {
+      //         this.send(data);
+      //       }, 1000);
+      //     }
+      //   }
+      // }
+      // SocketService.Tnstance.content();
+      // SocketService.Tnstance.send('123');
 
       // const log = console.log.bind(document);
       // var o = {
@@ -1277,6 +1277,44 @@
       //   ].sort((a, b) => a - b)
       // );
 
+      console.log('*****************************************************');
+
+      const deepUnip = (arr) => {
+        const res = [];
+        const map = new Map();
+        for (let i = arr.length; i > len; i--) {
+          if (typeof arr[i] !== 'object') {
+            if (!res.indexOf(arr[i])) {
+              res.push(arr[i]);
+            }
+          } else {
+            map.set(arr[i], true);
+            if (!map.has(arr[i])) {
+              res.push(arr[i]);
+            }
+          }
+        }
+      };
+      const arr3l = (arr) => {
+        const res = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (!map.has(arr[i])) {
+            map.set(arr[i], true);
+            res.push(arr[i]);
+          }
+        }
+        return res;
+      };
+
+      /**
+       *
+       * 判断给定的日期是否周六周日
+       */
+      const isWeekday = (date) => [0, 1].includes(date.getDay() / 6);
+      let dddd = new Date('2022/1/2');
+      console.log(isWeekday(dddd));
+      // console.log(Object.prototype.toString.call(dddd.toLocaleString()).slice(8, -1));
+      // console.log(dddd.toTimeString());
       // 1、停止断点调试
       // 2、不跳入函数中去,继续执行下一行代码(F10)
       // 3、跳入函数中去(F11)
@@ -1284,8 +1322,8 @@
       // 5、禁用所有的断点,不做任何调试
       // 6、程序运行时遇到异常时是否中断的开关
 
-      // 普通for定length 》 普通for不定length  》forEach 》for of 》map，filter》for in 
-  
+      // 普通for定length 》 普通for不定length  》forEach 》for of 》map，filter》for in
+
       // ggg(hdh);
       //光影滑动效果：
       //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
