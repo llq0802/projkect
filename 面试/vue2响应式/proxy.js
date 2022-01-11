@@ -13,9 +13,9 @@ import { set } from 'core-js/core/dict';
  * 代理对象
  *
  * @export
- * @param {*} obj
- * @param {*} sourcesKey
- * @param {*} key
+ * @param {*} obj vm
+ * @param {*} sourcesKey data
+ * @param {*} key msg
  * @return {*}
  */
 export default function proxy(obj, sourcesKey, key) {

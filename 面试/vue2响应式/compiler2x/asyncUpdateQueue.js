@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-10 12:10:45
- * @LastEditTime: 2022-01-10 17:12:33
+ * @LastEditTime: 2022-01-11 17:18:17
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\compiler2x\asyncUpdataQueue.js
@@ -99,7 +99,7 @@ export function nextTick(cb, ctx) {
   });
 
   // 表明浏览器当前任务队列中没有刷新 callbacks 数组的函数
-  // 将 flushCallbacks 函数放入浏览器的微任务队列
+  // 将 flushCallbacks 函数放入浏览器的微任务队列（浏览器的异步任务队列只能有一个函数执行callbacks）
   if (!pending) {
     // 标识浏览器的微任务队列中已经存在 执行 callbacks 数组的函数了
     pending = true;
@@ -122,7 +122,7 @@ export function nextTick(cb, ctx) {
  */
 function flushCallbacks() {
   // 表示浏览器任务队列中的 flushCallbacks 函数已经被拿到执行栈执行了
-  // 新的 flushCallbacks 函数可以进入浏览器的任务队列了
+  // 新的 flushCallbacks 函数可以进入浏览器的异步任务队列了
   pending = false;
 
   for (let index = 0; index < callbacks.length; index++) {

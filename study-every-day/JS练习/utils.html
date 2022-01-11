@@ -238,22 +238,21 @@
       // 条件1 ? 表达式1 : 条件2 ? 表达式2 : 条件3 ? 表达式3 : 表达式4
       //随机生成字符串＋数字Math.random().toString(36).slice(2)
 
-      //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
+      /** == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：**/
       // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址
-      // 2. null == undefined成立/ null===undefined不成立
-      // 3. NaN==NaN不成立 NaN和谁都不相等
+      // 2.null == undefined成立/ null===undefined不成立
+      // 3.NaN==NaN不成立 NaN和谁都不相等
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
-      //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+      // 5.剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
 
       // 页面（window）滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
 
       // 观察某个元素el 是否在屏幕可视区范围
-      // const ob = new  IntersectionObserver((e)=>{
+      // const ob = new IntersectionObserver((e)=>{
       //   e.isIntersecting  是否在可视区内
       // })
       //建立观察ob.observe(el)
       //取消观察ob ob.unobserve(el)
-
       // new MutationObserver() //观察整个文档，组件 元素的属性 节点 文本的变化
       // new ResizeObserver() //观察具体元素 组件的大小的变化
 
@@ -272,29 +271,31 @@
       // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数位，有效位，）
       //第0位为符号位，0表示正数1表示负数；第1到11位存储指数部分；第12到63位存小数部分（即有效数字 53个二进制位）。
 
+      /**事件循环机制**/
       // 浏览器
       //  1先主代码
       //  2微任务
       //  3宏任务
       // 注意：每次执行完一个宏任务 就会立刻去查找执行微任务
-      // node事件
+      // Node事件
       //  1先主代码
-      // 2.  process.next()
-      //3.    Promise     2 3 都是微任务
-      // timer 模块0ms
+      // 2.  process.nextTick()
+      // 3.  Promise回调     2 3 都是微任务
+      // timer模块 setTimeout(()=>{})0ms
       // i/o I/O 回调。
-      // check模块    setimmediate()
-      //close callbacks
+      // check模块 setimmediate()
+      // close callbacks
 
       // 执行上下文创建阶段：作用域链、变量对象、this
       // 执行上下文执行阶段：变量赋值、函数引用
 
       //console.log(self); // self不管在哪儿始终指向window
 
+      /**数组改变**/
       //reverse  sort push pop  shift unshift splice  这7个数组方法都是会改变原始数组
       // concat slice map filter 都是得到新的数组 不会改变原数组
 
-      // 分片 端点 上传大文件思路
+      /**分片 端点 上传大文件思路**/
       // 前端用file.slice()分块
       // 前端用FileReader获取每一分块的md5值 （spark-MD5插件）
       // 前端上传每一分块前，都会去服务器校验分片是否已上传，以此来支持断点续传
@@ -304,18 +305,25 @@
       // 500M以上1G以下的用http协议分块或者ftp协议传输
       // 1G以上的只能用ftp协议传输
 
-      //父子组件的加载顺序home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
+      /**父子组件的加载顺序**/
+      //home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
 
-      // require和import的区别：
+      /**  require和import的区别：**/
       // 导入require 导出 exports/module.exports 是 CommonJS 的标准，通常适用范围如 Node.js
       // import/export 是 ES6 的标准，通常适用范围如 React
-
       // require 是赋值过程并且是运行时才执行，值的浅拷贝 同步加载
       // require 可以理解为一个全局方法，因为它是一个方法所以意味着可以在任何地方执行。
       // import 是解构过程并且是编译时执行，值的引用 同步加载异步加载
       // import 会提升到整个模块的头部，具有置顶性，但是建议写在文件的顶部。
       // require 是浅拷贝，也就是说你可以修改对象第二层的属性并影响原数据，import 是引用，基本数据类型，修改不会影响原数据，但是对象修改属性会。
       // require 的性能相对于 import 稍低。因为 require 是在运行时才引入模块并且还赋值给某个变量，而 import 只需要依据 import 中的接口在编译时引入指定模块所以性能稍高
+
+      /** 光影滑动效果：**/
+      //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
+      //背景颜色用的是CSS3的线性渐变linear-gradient
+      // background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));，
+      //然后hover的时候，left移动过来 设置0.5s的动画时间。
+      //同时在 i 层使用 cursor:pointer
     </script>
   </body>
 </html>

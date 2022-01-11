@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-30 09:18:14
- * @LastEditTime: 2022-01-10 17:54:34
+ * @LastEditTime: 2022-01-11 15:16:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\yz.html
@@ -1325,12 +1325,25 @@
       // 普通for定length 》 普通for不定length  》forEach 》for of 》map，filter》for in
 
       // ggg(hdh);
-      //光影滑动效果：
-      //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
-      //背景颜色用的是CSS3的线性渐变linear-gradient
-      // background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));，
-      //然后hover的时候，left移动过来 设置0.5s的动画时间。
-      //同时在 i 层使用 cursor:pointer
+      const _target = {
+        a: {
+          b: {
+            c: 777,
+          },
+        },
+      };
+      const parsePath = (path, target) => {
+        const tempArr = path.split('.');
+        for (let i = 0, len = tempArr.length; i < len; i++) {
+          target = target[tempArr[i]];
+        }
+        console.log(target);
+        return target;
+      };
+      parsePath('a.b.c', _target);
+      console.log(_target);
+      // let ff = parsePath('a.b.c');
+      // ff(_target);
     </script>
   </body>
 </html>

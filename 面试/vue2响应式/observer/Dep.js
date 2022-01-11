@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-29 14:12:54
- * @LastEditTime: 2022-01-10 15:58:18
+ * @LastEditTime: 2022-01-11 17:00:47
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\Dep.js
@@ -51,7 +51,8 @@ export default class Dep {
   }
 }
 
-//处理保证全局唯一的watcher，因为如果computed在data之前，computed中收集依赖后会导致watcher=null 进而后面data收集不到watcher
+//同一时间只会有一个 watcher 在执行，处理保证全局唯一的watcher，防止重复收集
+//因为如果computed在data之前，computed中收集依赖后会导致watcher=null 进而后面data收集不到watcher
 const targetStack = [];
 export function pushStack(watcher) {
   targetStack.push(watcher);
