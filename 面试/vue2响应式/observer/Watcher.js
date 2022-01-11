@@ -3,13 +3,21 @@ import Dep from './Dep';
 /*
  * @Author: your name
  * @Date: 2021-12-29 14:13:02
- * @LastEditTime: 2022-01-10 15:05:45
+ * @LastEditTime: 2022-01-11 17:09:04
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\面试\vue2响应式\Watcher.js
  */
 import Dep, { pushStack, popStack } from './Dep.js';
 let id = 0;
+
+/**
+ *
+ *
+ * @export
+ * @constructor
+ * @class Watcher
+ */
 export default class Watcher {
   constructor(vm = null, expOrFn, options = {}, userCb) {
     // 上次dep数组
@@ -20,6 +28,7 @@ export default class Watcher {
     this.vm = vm;
     // watcher的id
     this.id = id++;
+    // 当为渲染watcher时，用户watcher的回调函数为空函数
     this.userCb = userCb ? userCb : () => {};
     if (options) {
       this.deep = !!options.deep;
@@ -51,13 +60,14 @@ export default class Watcher {
   get() {
     // 存储所有的 Dep.target
     // 为什么会有多个 Dep.target?
-    // 组件会产生一个渲染 Watcher，在渲染的过程中如果处理到用户 Watcher，
+    // 组件会产生一个渲染 Watcher，在渲染的过程中如果处理到用户 Watcher，computed watcher，
     // 比如 computed 计算属性，这时候会执行 evalute -> get
     // 假如直接赋值 Dep.target，那 Dep.target 的上一个值 —— 渲染 Watcher 就会丢失
     // 造成在 computed 计算属性之后渲染的响应式数据无法完成依赖收集
     pushStack(this);
     // Dep.target = this;
 
+    // 执行回调函数，比如渲染watcher的回调函数updateComponent，进入 patch 阶段
     let value = this.getter.call(vm, vm);
     //把之前的computed watcher弹出 剩下栈顶的就是渲染watcher
     popStack();
@@ -101,11 +111,18 @@ export default class Watcher {
       // 当再次获取 计算属性 时就可以重新执行 evalute 方法获取最新的值了
       this.dirty = true;
     } else {
+      // 更新时一般都这里(渲染watcher)，将 watcher 放入 watcher 队列
       queueWatcher(this); //将当前watcher放入异步更新队列
     }
   }
 
-  //负责执行渲染watcher（和用户warcher）的回调函数（data）
+  /**
+   *负责执行渲染watcher（和用户warcher）的回调函数（data）
+   * 由 刷新队列函数 flushSchedulerQueue 调用，完成如下几件事：
+   *   1、执行实例化 watcher 传递的第二个参数，updateComponent 或者 获取 this.xx 的一个函数(parsePath 返回的函数)
+   *   2、更新旧值为新值
+   *   3、执行实例化 watcher 时传递的第三个参数，比如用户 watcher 的回调函数
+   */
   run() {
     //由刷新 watcher 队列的函数（渲染 watcher ）调用，负责执行 watcher.get 方法
     //那么对于渲染 watcher 而言，它在执行 this.get() 方法求值的时候，会执行 getter 方法
@@ -116,9 +133,11 @@ export default class Watcher {
       // set new value
       const oldValue = this.value;
       this.value = value;
+      // 如果是用户 watcher，则执行用户传递的第三个参数 —— 回调函数，参数为 val 和 oldVal
       if (this.user) {
         this.userCb.call(this.vm, value, oldValue);
       } else {
+        // 渲染 watcher，this.userCb = noop，一个空函数
         this.userCb.call(this.vm, value, oldValue);
       }
     }
@@ -153,11 +172,12 @@ export default class Watcher {
  */
 export function parsePath(path) {
   const segments = path.split('.');
-  return function(obj) {
+
+  return function(vm) {
     for (let i = 0; i < segments.length; i++) {
-      if (!obj) return;
-      obj = obj[segments[i]];
+      if (!vm) return;
+      vm = vm[segments[i]];
     }
-    return obj;
+    return vm;
   };
 }
