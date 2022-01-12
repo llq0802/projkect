@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-02 17:39:11
- * @LastEditTime: 2022-01-10 20:33:51
+ * @LastEditTime: 2022-01-11 21:32:45
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\转盘.html
@@ -188,7 +188,6 @@
       // setTimeout(() => {
       //   console.log('setTimeout');
       // });
-      console.time('1');
       // Number.isFinite(1);
       // console.log(Number.isFinite(0.1));
       // console.log(Number.isInteger(2));
@@ -206,14 +205,88 @@
 
       // console.dir(hd.constructor);
 
-      requestAnimationFrame(() => {
-        console.log('requestAnimationFrame');
-      });
-      setTimeout(() => {
-        console.log('setTimeout');
-      });
-      console.log(123);
-      console.timeEnd('1');
+      // setTimeout(() => {
+      //   console.log('setTimeout');
+      // });
+      // requestAnimationFrame(() => {
+      //   console.log('requestAnimationFrame');
+      // });
+      // console.log(123);
+
+      let obj = {
+        a: {
+          b: {
+            c: 777,
+          },
+        },
+      };
+
+      function fn(path, target) {
+        const tempArray = path.split('.');
+        let i = 0,
+          len = tempArray.length;
+        while (i < len) {
+          target = target[tempArray[i]];
+          i++;
+        }
+        console.log(target);
+        return target;
+      }
+
+      // fn('a.b.c', obj);
+
+      let arr = [41, 2, 43, 24, 5, 1];
+
+      const fastSort = (arr) => {
+        arr = 888;
+        console.log(arr);
+      };
+      // console.log(arr);
+
+      function bubbleSort(arr) {
+        console.time('BubbleSort');
+        // 获取数组长度，以确定循环次数。
+        let len = arr.length;
+        // 遍历数组len次，以确保数组被完全排序。
+        for (let i = 0; i < len; i++) {
+          // 遍历数组的前len-i项，忽略后面的i项（已排序部分）。
+          for (let j = 0; j < len - 1 - i; j++) {
+            let prev = arr[j],
+              next = arr[j + 1],
+              tmp = null;
+            // 将每一项与后一项进行对比，不符合要求的就换位。
+            if (prev > next) {
+              // [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+              temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+        console.timeEnd('BubbleSort');
+        // return arr;
+      }
+      bubbleSort(arr);
+      console.log(arr);
+      // console.log(obj);
+
+      let a = 111;
+      let b = 222;
+
+      fastSort(a);
+      console.log(a);
+      // let tmp = null;
+      // tmp = a;
+      // a = b;
+      // b = tmp;
+      [b, a] = [a, b];
+      // a = [b, (b = a)][0];
+      console.log('a' + a, 'b' + b);
+
+      let v = (c = 77);
+
+      v = 99;
+      console.log(v, c);
     </script>
   </body>
 </html>
