@@ -8,6 +8,8 @@
  */
 
 import generate from './generate.js';
+import parse from './parse.js';
+
 /**
  * 解析模版字符串，得到 AST 语法树
  * 将 AST 语法树生成渲染函数
