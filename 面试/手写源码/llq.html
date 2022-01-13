@@ -662,6 +662,16 @@
         return result;
       };
 
+      // 深度解析obj的路径
+      const parsePath = (path, obj) => {
+        let tempArr = path.split('.');
+        let i = 0;
+        while (i < tempArr.length) {
+          obj = obj[tempArr[i]];
+        }
+        return obj;
+      };
+
       let array1 = [1, 5, 48, 4, 8, 48, 2, 0];
       let array2 = [1, 5, 13, 4, 76, 2, 78];
       //交集
