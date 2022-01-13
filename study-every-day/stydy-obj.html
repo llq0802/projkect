@@ -70,7 +70,7 @@
       // console.log(document.cookie);
       // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
-      Object.getOwnPropertySymbols();
+      // Object.getOwnPropertySymbols();
       // 封装获取cookie
       function getCookie(cname) {
         let name = cname + '=';
@@ -272,20 +272,20 @@
       }
 
       console.time('runtime');
-      let count = 0;
-      let num = 987654321;
-      function hd1() {
-        for (let i = 0; i < 100000000; i++) {
-          if (num <= 0) break;
-          count += num--;
-        }
-        if (num > 0) {
-          console.log(num);
-          setTimeout(hd1);
-        }
-      }
-      hd1();
-      console.log('houdunren.com'); //立刻显示出来
+      // let count = 0;
+      // let num = 987654321;
+      // function hd1() {
+      //   for (let i = 0; i < 100000000; i++) {
+      //     if (num <= 0) break;
+      //     count += num--;
+      //   }
+      //   if (num > 0) {
+      //     console.log(num);
+      //     setTimeout(hd1);
+      //   }
+      // }
+      // hd1();
+      // console.log('houdunren.com'); //立刻显示出来
       // const div = document.getElementById('hd');
       // function handle() {
       //   let i = 0;
@@ -365,7 +365,7 @@
         return false;
       };
 
-      export function formatTime(time, option) {
+      function formatTime(time, option) {
         time = +time * 1000;
         const d = new Date(time);
         const now = Date.now();
@@ -399,7 +399,7 @@
         }
       }
 
-      export function parseTime(time, cFormat) {
+      function parseTime(time, cFormat) {
         if (arguments.length === 0) {
           return null;
         }

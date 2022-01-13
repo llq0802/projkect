@@ -35,5 +35,8 @@ Vue.prototype._init = function(options) {
 };
 
 Vue.prototype.$mount = function(el) {
+  if (el === document.body || el === document.documentElement) {
+    throw new Error('挂载元素不能是body或者html');
+  }
   mount(el, this);
 };
