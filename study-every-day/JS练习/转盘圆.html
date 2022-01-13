@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-02 17:39:11
- * @LastEditTime: 2022-01-11 21:32:45
+ * @LastEditTime: 2022-01-12 20:55:15
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\JS练习\转盘.html
@@ -239,7 +239,7 @@
 
       const fastSort = (arr) => {
         arr = 888;
-        console.log(arr);
+        // console.log(arr);
       };
       // console.log(arr);
 
@@ -267,26 +267,43 @@
         // return arr;
       }
       bubbleSort(arr);
-      console.log(arr);
+      // console.log(arr);
       // console.log(obj);
 
       let a = 111;
       let b = 222;
 
       fastSort(a);
-      console.log(a);
+      // console.log(a);
       // let tmp = null;
       // tmp = a;
       // a = b;
       // b = tmp;
       [b, a] = [a, b];
       // a = [b, (b = a)][0];
-      console.log('a' + a, 'b' + b);
+      // console.log('a' + a, 'b' + b);
 
-      let v = (c = 77);
+      // let v = (c = 77);
 
       v = 99;
-      console.log(v, c);
+      // console.log(v, c);
+
+      function Vue(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sing = function () {
+          console.log('sing');
+        };
+      }
+      Vue.prototype.set = function () {
+        console.log('Vue set');
+      };
+      function Child(...args) {
+        Vue.apply(this, args);
+      }
+      Child.prototype = Object.create(Vue.prototype);
+      let c = new Child('llq', 20);
+      console.log(c);
     </script>
   </body>
 </html>
