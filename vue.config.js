@@ -24,9 +24,9 @@ module.exports = {
 };
 
 /*
-_React脚手架配置跨域代理的方法 src 目录下新建 setupProxy.js 文件
-*/
-
+ *http-proxy-middleware插件
+ *React脚手架配置跨域代理的方法 src 目录下新建 setupProxy.js 文件
+ */
 // const proxy = require('http-proxy-middleware')
 // module.exports = function(app) {
 // app.use(
@@ -46,9 +46,7 @@ _React脚手架配置跨域代理的方法 src 目录下新建 setupProxy.js 文
 // antd4 动态创建icon
 // import React from "react";
 // import  * as Icon from '@ant-design/icons';
-
-// var iconType = 'MessageOutlined';
-
+// let iconType = 'MessageOutlined';
 // export default function App() {
 //   return (
 //     <div >

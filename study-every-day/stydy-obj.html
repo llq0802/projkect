@@ -8,7 +8,7 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -496,10 +496,10 @@
       const getLocalStorage = (key) => {
         let data = localStorage.getItem('projectName');
         if (!data) {
-          return [];
+          return {};
         }
         data = JSON.parse(data);
-        return data || [];
+        return data[key] || {};
       };
 
       // 元素节点1element对应网页的HTML标签元素。

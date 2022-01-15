@@ -16,7 +16,7 @@ class SocketService {
   static [instance] = null;
   static get Tnstance() {
     if (!this[instance]) {
-      this[instance] = new SocketService();
+      return (this[instance] = new SocketService());
     }
     return this[instance];
   }

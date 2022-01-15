@@ -11,9 +11,7 @@
 
 https://flatuicolors.com/
 
-tree /f > xxx.txt
-安装 npm i treer
-treer -i node_modules -e ./ result.txt
+> 生成树状目录结构：tree /f > txt.txt
 
 ```
 │  App.vue
