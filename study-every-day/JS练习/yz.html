@@ -253,7 +253,6 @@
 
     <script>
       // clientX
-      console.time('time');
       // let fragment = document.createDocumentFragment();
       // console.dir(fragment);
       const containers = document.querySelector('.icon-box');
@@ -1100,7 +1099,7 @@
       // history.pushState()
       // console.log(self);
 
-      let treeList = [
+      const treeList = [
         {
           id: '1',
           text: '一级菜单1',
@@ -1131,13 +1130,17 @@
           text: '二级菜单3',
           parentId: '2',
         },
-        {
-          id: '3-2-1',
-          text: '三级菜单1',
-          parentId: '2-1',
-        },
       ];
-      console.time('2');
+      const getTree = (list, id) => {
+        return list
+          .filter((item) => {
+            if (item.parentId === id) return item;
+          })
+          .filter((citem) => (citem.children = getTree(treeList, citem.id)));
+      };
+
+      // console.log(getTree(treeList, null));
+
       function getTreeList(list, iid) {
         let newArray = [];
         list.forEach((item, index) => {
@@ -1149,10 +1152,9 @@
         });
         return newArray;
       }
-      console.timeEnd('2');
-      let rsss = getTreeList(treeList, null);
-      console.time('1');
 
+      // let rsss = getTreeList(treeList, null);
+      // console.log(rsss);
       const getTreeList1 = (arr, iid) => {
         let resultArr = [];
         for (let item of arr) {
@@ -1167,34 +1169,47 @@
         });
         return resultArr;
       };
-      console.timeEnd('1');
 
-      let rssss = getTreeList1(treeList, null);
-      console.log(rssss);
+      // let rssss = getTreeList1(treeList, null);
+
       const arrayToTree = (items) => {
         const result = [];
-        const itemMap = {}; // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
+        // const itemMap = {}; // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
+        const itemMap = new Map(); // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
         for (const item of items) {
           const id = item.id;
           const pid = item.parentId;
-          if (!itemMap[id]) {
-            itemMap[id] = {
-              ...item,
-              // children: [],
-            };
+          // if (!itemMap[id]) {
+          //   itemMap[id] = {
+          //     ...item,
+          //     // children: [],
+          //   };
+          // }
+          // const treeItem = itemMap[id];
+
+          // if (pid == null) {
+          //   result.push(treeItem);
+          // } else {
+          //   if (!itemMap[id].children) {
+          //     itemMap[id].children = [];
+          //   }
+          //   itemMap[id].children.push(treeItem);
+          // }
+
+          if (!itemMap.has(id)) {
+            itemMap.set(id, { ...item });
           }
-          const treeItem = itemMap[id];
+          const treeItem = itemMap.get(id);
           if (pid == null) {
             result.push(treeItem);
           } else {
-            if (!itemMap[pid].children) itemMap[pid].children = [];
-            itemMap[pid].children.push(treeItem);
+            if (!itemMap.get(pid).children) itemMap.get(pid).children = [];
+            itemMap.get(pid).children.push(treeItem);
           }
         }
         return result;
       };
-      //  //let rssss = getTreeList(treeList, null);
-      // arrayToTree(treeList);
+      arrayToTree(treeList);
 
       // 维持一个执行副作用的栈
       // const runningEffects = [];
@@ -1312,7 +1327,7 @@
        */
       const isWeekday = (date) => [0, 1].includes(date.getDay() / 6);
       let dddd = new Date('2022/1/2');
-      console.log(isWeekday(dddd));
+      // console.log(isWeekday(dddd));
       // console.log(Object.prototype.toString.call(dddd.toLocaleString()).slice(8, -1));
       // console.log(dddd.toTimeString());
       // 1、停止断点调试
@@ -1337,13 +1352,15 @@
         for (let i = 0, len = tempArr.length; i < len; i++) {
           target = target[tempArr[i]];
         }
-        console.log(target);
+        // console.log(target);
         return target;
       };
       parsePath('a.b.c', _target);
-      console.log(_target);
+      // console.log(_target);
       // let ff = parsePath('a.b.c');
       // ff(_target);
+      console.log(encodeURIComponent('<script>'));
+      console.log(decodeURIComponent('<script>'));
     </script>
   </body>
 </html>

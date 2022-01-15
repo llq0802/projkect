@@ -255,7 +255,7 @@
       }
       //call
       //  fn.myCall(obj)  =>  obj.fn()
-      Function.prototype.myCall = function(context, ...rest) {
+      Function.prototype.myCall = function (context, ...rest) {
         //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
         const keyFn = Symbol('keyFn');
         context[keyFn] = this;
@@ -268,7 +268,7 @@
       };
 
       //apply
-      Function.prototype.myApply = function(context, args) {
+      Function.prototype.myApply = function (context, args) {
         context.fn = this;
         let res;
         if (!args) {
@@ -281,15 +281,20 @@
       };
 
       // 手写bind函数
-      Function.prototype.myBind = function(context, ...args) {
+      Function.prototype.myBind = function (context, ...args) {
         const thisFn = this; //当前调用的函数
-        return function(...params) {
+        return function (...params) {
           thisFn.apply(context, [...args, ...params]);
         };
       };
-      const bind = (fn, context, ...boundArgs) => (...args) =>
-        fn.apply(context, [...boundArgs, ...args]);
-      const call = (key, ...args) => (context) => context[key](...args);
+      const bind =
+        (fn, context, ...boundArgs) =>
+        (...args) =>
+          fn.apply(context, [...boundArgs, ...args]);
+      const call =
+        (key, ...args) =>
+        (context) =>
+          context[key](...args);
 
       //手写new
       function myNew(fun, ...args) {
@@ -506,7 +511,7 @@
 
       const debounce = (fn, ms = 100) => {
         let timeoutId;
-        return function(...args) {
+        return function (...args) {
           if (timeoutId) clearTimeout(timeoutId);
           timeoutId = setTimeout(() => fn.apply(this, args), ms);
         };
@@ -515,10 +520,10 @@
       //节流函数
       function throttle(fn, wait = 150) {
         let timer = null;
-        return function(...args) {
+        return function (...args) {
           //let context = this;  这儿的this指向DOM调用者   // self 永远指向window
           if (!timer) {
-            timer = setTimeout(function() {
+            timer = setTimeout(function () {
               fn.apply(this, args);
               timer = null;
             }, wait);
@@ -527,7 +532,7 @@
       }
       function throttle1(fn, delay = 100) {
         let lastTime = 0;
-        return function() {
+        return function () {
           let currTime = +new Date();
           if (currTime - lastTime > delay) {
             fn.apply(this, arguments);
@@ -537,7 +542,7 @@
       }
       const throttle2 = (fn, wait) => {
         let inThrottle, lastFn, lastTime;
-        return function() {
+        return function () {
           const context = this,
             args = arguments;
           if (!inThrottle) {
@@ -546,7 +551,7 @@
             inThrottle = true;
           } else {
             clearTimeout(lastFn);
-            lastFn = setTimeout(function() {
+            lastFn = setTimeout(function () {
               if (Date.now() - lastTime >= wait) {
                 fn.apply(context, args);
                 lastTime = Date.now();
@@ -570,10 +575,10 @@
       const getLocalStorage = (key) => {
         let data = localStorage.getItem('projectName');
         if (!data) {
-          return [];
+          return {};
         }
         data = JSON.parse(data);
-        return data || [];
+        return data[key] || {};
       };
       //拉平数组
       const deepFlat = (arr) => {
@@ -680,6 +685,88 @@
       let bing = [...new Set([...array1, ...array2])];
       //补集
       let bu = array1.filter((item) => !new Set(array2).has(item));
+
+      //封装的本地存储
+      class LocalStorage {
+        //实例
+        _instance = null;
+        //设置该项目的本地存储名称
+        projectName = null;
+        // 本地存储数据
+        #data = {};
+        // 初始化统一的过期时间
+        express = null;
+        // 单例模式获取实例
+        static Instance(projectName, express) {
+          if (!this._instance) {
+            return (this._instance = new LocalStorage(projectName, express));
+          } else {
+            return this._instance;
+          }
+        }
+        constructor(projectName, express) {
+          this.projectName = projectName;
+          this.express = express;
+          this.#data = localStorage.getItem(this.projectName);
+          this.#data = this.#data ? JSON.parse(this.#data) : {};
+        }
+
+        /**
+         * 设置本地存储ey
+         * @param {*string} key 键
+         * @param {*any} value 值
+         * @param {*number|function} express 过期时间或回调函数
+         * @param {*function} cb 回调函数
+         */
+        setValue(key, value, express, cb) {
+          if (typeof express === 'function') [cb, express] = [express, cb];
+          const cTime = Date.now();
+          this.#data[key] = {
+            cTime,
+            value,
+            express: express || this.express,
+          };
+          localStorage.setItem(this.projectName, JSON.stringify(this.#data));
+          cb && cb.call(this, this);
+        }
+        /**
+         * 获取本地存储ey
+         * @param {*string} key 键
+         * @param {*function} cb 回调函数
+         */
+        getValue(key, cb) {
+          const nTime = Date.now();
+          if (
+            this.#data[key] &&
+            this.#data[key]?.express &&
+            this.#data[key].express < nTime - this.#data[key]?.cTime
+          ) {
+            return this.#data[key];
+            cb && cb.call(this, this);
+          } else {
+            delete this.#data[key];
+            cb && cb.call(this, this);
+
+            return null;
+          }
+        }
+        /**
+         * 删除本地存储ey
+         * @param {*string} key 键
+         * @param {*function} cb 回调函数
+         */
+        delValue(key, cb) {
+          if (!key) {
+            this.#data = {};
+            localStorage.clear();
+            cb && cb.call(this, this);
+
+            return;
+          }
+          this.#data[key] && delete this.#data[key];
+          cb && cb.call(this, this);
+        }
+      }
 
       //随机生成字符串＋数字 Math.random().toString(36).slice(2)
       //console.log(Math.random().toString(36).slice(2));

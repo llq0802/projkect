@@ -303,7 +303,106 @@
       }
       Child.prototype = Object.create(Vue.prototype);
       let c = new Child('llq', 20);
-      console.log(c);
+      // console.log(c);
+
+      const setLocalStorage = (key, value) => {
+        let data = localStorage.getItem('projectName');
+        data = !data ? {} : JSON.parse(data);
+        data[key] = value;
+        localStorage.setItem('projectName', JSON.stringify(data));
+      };
+      const getLocalStorage = (key) => {
+        let data = localStorage.getItem('projectName');
+        if (!data) return {};
+        data = JSON.parse(data);
+        return data[key] || {};
+      };
+
+      //封装的本地存储
+      class LocalStorage {
+        //实例
+        _instance = null;
+        //设置该项目的本地存储名称
+        projectName = null;
+        // 本地存储数据
+        #data = {};
+        // 初始化统一的过期时间
+        express = null;
+        // 单例模式获取实例
+        static Instance(projectName, express) {
+          if (!this._instance) {
+            return (this._instance = new LocalStorage(projectName, express));
+          } else {
+            return this._instance;
+          }
+        }
+        constructor(projectName, express) {
+          this.projectName = projectName;
+          this.express = express;
+          this.#data = localStorage.getItem(this.projectName);
+          this.#data = this.#data ? JSON.parse(this.#data) : {};
+        }
+
+        /**
+         * 设置本地存储ey
+         * @param {*string} key 键
+         * @param {*any} value 值
+         * @param {*number|function} express 过期时间或回调函数
+         * @param {*function} cb 回调函数
+         */
+        setValue(key, value, express, cb) {
+          if (typeof express === 'function') [cb, express] = [express, cb];
+          const cTime = Date.now();
+          this.#data[key] = {
+            cTime,
+            value,
+            express: express || this.express,
+          };
+          localStorage.setItem(this.projectName, JSON.stringify(this.#data));
+          cb && cb.call(this, this);
+        }
+        /**
+         * 获取本地存储ey
+         * @param {*string} key 键
+         * @param {*function} cb 回调函数
+         */
+        getValue(key, cb) {
+          const nTime = Date.now();
+          if (
+            this.#data[key] &&
+            this.#data[key]?.express &&
+            this.#data[key].express < nTime - this.#data[key]?.cTime
+          ) {
+            return this.#data[key];
+            cb && cb.call(this, this);
+          } else {
+            delete this.#data[key];
+            cb && cb.call(this, this);
+
+            return null;
+          }
+        }
+        /**
+         * 删除本地存储ey
+         * @param {*string} key 键
+         * @param {*function} cb 回调函数
+         */
+        delValue(key, cb) {
+          if (!key) {
+            this.#data = {};
+            localStorage.clear();
+            cb && cb.call(this, this);
+
+            return;
+          }
+          this.#data[key] && delete this.#data[key];
+          cb && cb.call(this, this);
+        }
+      }
+      const instance = LocalStorage.Instance('projectName');
+      instance.setValue('age', 20, (e) => {
+        console.log(e); // LocalStorage实例
+      });
     </script>
   </body>
 </html>
