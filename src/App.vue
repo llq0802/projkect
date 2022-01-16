@@ -22,6 +22,8 @@
       <el-button @click="handleJumpPage5">过渡</el-button>
       <el-button @click="handleJumpPage6">UI</el-button>
       <el-button @click="handleJumpPage8">about</el-button>
+      <el-button @click="handleJumpPage9">table</el-button>
+      <el-button @click="handleJumpPage10">render</el-button>
       <h1 class="animate__animated animate__bounce">An animated element</h1>
     </div>
     <hr />
@@ -75,6 +77,12 @@ class App extends Vue {
   }
   handleJumpPage8() {
     this.$router.push({ path: "/about" });
+  }
+  handleJumpPage9() {
+    this.$router.push({ path: "/table" });
+  }
+  handleJumpPage10() {
+    this.$router.push({ path: "/render" });
   }
 }
 export default App;

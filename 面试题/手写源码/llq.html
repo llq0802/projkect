@@ -686,6 +686,9 @@
       //补集
       let bu = array1.filter((item) => !new Set(array2).has(item));
 
+      // 判断给定的日期是否周六周日
+      const isWeekday = (date) => [0, 1].includes(date.getDay() / 6);
+
       //封装的本地存储
       class LocalStorage {
         //实例

@@ -15,16 +15,17 @@ import './assets/css/global.scss';
 import 'element-plus/lib/theme-chalk/index.css';
 import './assets/css/element-variables.scss';
 import 'animate.css';
-
-// console.log(App);
-
+import locale from 'element-plus/es/locale/lang/zh-cn';
+// import locale from 'element-plus/lib/locale/lang/zh-cn' // element-plus
 let app = createApp(App);
 app.use(router);
 app.use(store);
-app.use(ElementPlus);
 // console.log(process.env);
 // console.log(process.env.BASE_NUM);
 // console.log(process);
+app.use(ElementPlus, {
+  locale,
+});
 
 // 插件先引入,最后在调用挂载app
 app.mount('#app');

@@ -11,7 +11,8 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import { defineAsyncComponent } from 'vue';
 
 const Home = () => import('../views/Home.vue');
-
+const Table = () => import('../views/Table.vue');
+const Render = () => import('../views/Render.vue');
 const About = () => import('../views/About.vue');
 const addRoute = () => import('../views/addRoute.vue');
 const User = () => import('../views/User.vue');
@@ -119,6 +120,22 @@ const routes: any[] = [
     component: Request,
     meta: {
       title: 'ke',
+    },
+  },
+  {
+    path: '/table',
+    name: 'table',
+    component: Table,
+    meta: {
+      title: 'table',
+    },
+  },
+  {
+    path: '/render',
+    name: 'render',
+    component: Render,
+    meta: {
+      title: 'render',
     },
   },
   // {

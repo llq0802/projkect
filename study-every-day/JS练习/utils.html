@@ -308,6 +308,8 @@
       /**父子组件的加载顺序**/
       //home beforeCreate -> home created -> home beforeMount ->list beforeCreate->list created -> list beforeMount -> list mounted->home mounted
 
+      // 普通for定length 》 普通for不定length  》forEach 》for of 》map，filter》for in
+
       /**  require和import的区别：**/
       // 导入require 导出 exports/module.exports 是 CommonJS 的标准，通常适用范围如 Node.js
       // import/export 是 ES6 的标准，通常适用范围如 React
@@ -317,6 +319,18 @@
       // import 会提升到整个模块的头部，具有置顶性，但是建议写在文件的顶部。
       // require 是浅拷贝，也就是说你可以修改对象第二层的属性并影响原数据，import 是引用，基本数据类型，修改不会影响原数据，但是对象修改属性会。
       // require 的性能相对于 import 稍低。因为 require 是在运行时才引入模块并且还赋值给某个变量，而 import 只需要依据 import 中的接口在编译时引入指定模块所以性能稍高
+
+      // 1、停止断点调试
+      // 2、不跳入函数中去,继续执行下一行代码(F10)
+      // 3、跳入函数中去(F11)
+      // 4、从执行的函数中跳出
+      // 5、禁用所有的断点,不做任何调试
+      // 6、程序运行时遇到异常时是否中断的开关
+
+      // 不要再forEach循环中执行异步任务(Promise)，经过查阅资料后发现,实际forEach函数内部是异步的
+      //  webpack4安装scss时 node-sass只能在4的版本并且sass-loader不能超过8的版本，比如：sass-loader@7.3.1 node-sass@4.14.1
+      //  webpack5只支持sass-loader@8.0.2以上
+      //一般现在会用dart-sass代替node-sass
 
       /** 光影滑动效果：**/
       //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
