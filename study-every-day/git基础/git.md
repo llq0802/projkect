@@ -3,6 +3,21 @@
 1. (/是根目录 ./是当前目录! ../是上一层目录!)
 2. （cd 到下一级目录 cd..返回上一级目录）
 
+```
+name:包名
+version:包的版本号，每次发包这个版本号都要改
+description：包的描述
+private：是否私有，一般都是false
+author:作者
+license：npm包协议 MIT
+keywords：关键字，供npm上模糊搜索到包 []
+main: 入口文件
+
+npm login //登录自己的npm账号
+npm publish
+npm unpublish 包名@版本号
+```
+
 ---
 
 _ git config --global user.name "李岚清"
