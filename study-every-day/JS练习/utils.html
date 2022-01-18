@@ -332,6 +332,16 @@
       //  webpack5只支持sass-loader@8.0.2以上
       //一般现在会用dart-sass代替node-sass
 
+      // $attrs对象，父组件向子组件传递的所有attr属性（没有在子组件props声明的属性），
+      // 默认会绑定在子组件的根元素上，可以设置inHeritAttrs为false不绑定在根组件中，
+      // 如果想绑定到指定的子组件标签上，则需要动态绑定
+
+      // $listeners数组，父组件向子组件传递的所有事件方法
+
+      // $slots，父组件向子组件传递的插槽内容
+
+      // $scopedSlots 作用域插槽值
+
       /** 光影滑动效果：**/
       //设计一个透明层div 绝对定位 left为很大的负值，skewx在X轴上做了负25度的变形，
       //背景颜色用的是CSS3的线性渐变linear-gradient
