@@ -193,7 +193,7 @@
       // console.log(Number.isInteger(2));
       // const resizeObserver = new ResizeObserver(() => {});
       // console.log(resizeObserver);
-      HD.prototype.init = function () {
+      HD.prototype.init = function() {
         console.log(this);
       };
       function HD(options) {
@@ -291,11 +291,11 @@
       function Vue(name, age) {
         this.name = name;
         this.age = age;
-        this.sing = function () {
+        this.sing = function() {
           console.log('sing');
         };
       }
-      Vue.prototype.set = function () {
+      Vue.prototype.set = function() {
         console.log('Vue set');
       };
       function Child(...args) {
@@ -403,6 +403,39 @@
       // instance.setValue('age', 20, (e) => {
       //   console.log(e); // LocalStorage实例
       // });
+
+      // console.log(0 ? 11 : 22 ? 33 : 44);
+
+      // Object.defineProperties(obj, {
+      //   ak: {
+      //     get: function() {
+      //       console.log(77);
+      //       return 77;
+      //     },
+      //   },
+      // });
+      // obj.ak;
+      // console.log(Object.getOwnPropertyDescriptor(obj, 'ak'));
+
+      // async function returnPromise() {
+      //   console.log(12);
+      // }
+      // returnPromise().then(function() {
+      //   console.log(48445);
+      // });
+      // console.log(7);
+      // Object.entries()
+      // Object.fromEntities()
+
+      const map = new Map([
+        ['foo', 'bar'],
+        ['baz', 42],
+      ]);
+      map.set('a', 1);
+
+      const obj1 = Object.fromEntries(map);
+
+      arrToObj;
     </script>
   </body>
 </html>

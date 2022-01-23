@@ -6,6 +6,7 @@
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue3.0-cli-ts\study-every-day\websocket.js
  */
+
 //  原生WebSocket 封装成单例模式
 const instance = Symbol('instance');
 class SocketService {
@@ -16,7 +17,7 @@ class SocketService {
   static [instance] = null;
   static get Tnstance() {
     if (!this[instance]) {
-      return (this[instance] = new SocketService());
+      this[instance] = new SocketService();
     }
     return this[instance];
   }
@@ -27,15 +28,20 @@ class SocketService {
     };
     this.ws.onclose = (e) => {
       this.isConnected = false;
-      const ii = setInterval(() => {
-        if (this.isConnected) clearInterval(ii);
+      setTimeout(() => {
         this.content();
       }, 1000);
     };
     this.ws.onmessage = (e) => {
       console.log(e);
-      const typeFn = e.data.typeFn;
-      if (typeFn) this.callbacks[typeFn].call(this);
+      let res = JSON.parse(e.data);
+      const typeFn = res.typeFn;
+      if (typeFn) {
+        if (res.action === 'getData') {
+          this.callbacks[typeFn].call(this, res.data.data);
+        }
+      }
+
       this.cbs.forEach((item) => {
         if (typeFn === item.typeFn) item.value.call(this);
       });
