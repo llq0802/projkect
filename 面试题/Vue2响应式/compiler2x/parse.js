@@ -72,7 +72,6 @@ export default function parse(template) {
     // 标签名和属性字符串
     let tagName = '',
       attrsStr = '';
-
     if (firstSpaceIdx === -1) {
       // 没有空格，则认为 content 就是标签名，比如 <h3></h3> 这种情况，content = h3
       tagName = content;
@@ -83,7 +82,6 @@ export default function parse(template) {
       // content 的剩下的内容就都是属性了，比如 id="app" xx=xx
       attrsStr = content.slice(firstSpaceIdx + 1);
     }
-
     // 得到属性数组，[id="app", xx='xx']
     const attrs = attrsStr ? attrsStr.split(' ') : [];
     // 进一步解析属性数组，得到一个 Map 对象

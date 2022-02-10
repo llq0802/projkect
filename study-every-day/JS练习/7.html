@@ -53,7 +53,7 @@
           div.style.width = i + '%';
         }
       }
-      load();
+      // load();
       // async function sleep() {
       //   return new Promise(resolve => {
       //     setTimeout(resolve, 100)
@@ -145,9 +145,12 @@
       //   }
       // }
 
-      // String.fromCharCode(97)
-      // charAt(0)
-      // charCodeAt(0)
+      console.log(String.fromCharCode(97));
+      console.log('ba'.charAt(0));
+      console.log('ba'.substring(0, 1));
+      console.log('ba'.slice(0, 1));
+      console.log('ba'.substr(0, 1));
+      console.log('ba'.charCodeAt(0));
 
       //----------------------------------------------------------
 
@@ -240,7 +243,6 @@
       function padLeftZero(str) {
         return ('00' + str).substr(str.length);
       }
-      
 
       // let hd = {};
       // //  Object.prototype.show =function () {
@@ -268,7 +270,229 @@
       //   return obj;
       // }, {});
       // console.log(lessonObj); //{css-0: {…}, css-1: {…}, mysql-2: {…}}
+
       // console.log(lessonObj["css-0"]); //{title: "媒体查询响应式布局", category: "css"}
+
+      // let rr = 'key=vals'.match(/^(.+)=(.+)$/); // [原始值，匹配到的值，index]
+      // console.log(rr);
+      // // console.log(rr['index']);
+      // console.dir(RegExp.$1);
+      // console.dir(RegExp.$2);
+      // console.dir(RegExp.input);
+      // console.dir(RegExp.$_);
+
+      console.log('**********');
+      var name = 1;
+
+      function test() {
+        var name = 2;
+
+        console.log(this.name);
+
+        return function inner() {
+          console.log(name);
+        };
+      }
+
+      test();
+
+      test()();
+
+      var b = {
+        name: 3,
+      };
+
+      b.test = test;
+
+      b.test();
+
+      var c = b.test;
+
+      c();
+
+      new test();
+
+      class Stack {
+        constructor() {
+          this.arr = [];
+        }
+        in(value) {
+          // 你的代码
+          this.arr.push(value);
+        }
+        out() {
+          // 你的代码
+          return this.arr.pop();
+        }
+        top() {
+          // 你的代码
+          return this.arr[this.arr.length - 1];
+        }
+        size() {
+          // 你的代码
+          return this.arr.length;
+        }
+      }
+
+      // 要求当执行下列代码时，能输出预期的结果
+      // const stack = new Stack();
+      // stack.in('x');
+      // stack.in('y');
+      // stack.in('z');
+      // console.log(stack);
+      // console.log(stack.top()); // 输出 'z'
+      // console.log(stack.size()); // 输出 3
+      // console.log(stack.out()); // 输出 'z'
+      // console.log(stack.top()); // 输出 'y'
+      // console.log(stack.size()); // 输出 2
+
+      // 输入 array = [1,5,2,3,2,5,4] 输出 [1, 5, 2, 3, 4]
+      function unique(array = [1, 5, 2, 3, 2, 5, 4]) {
+        // 在这里实现
+        return array.filter((item, index) => array.indexOf(item) === index);
+      }
+      // unique();
+      const filterNonUnique = (array) => {
+        return array.filter((i) => array.indexOf(i) === array.lastIndexOf(i));
+      };
+      const uniqueElements = (array) => {
+        return [...new Set(array)];
+      };
+
+      function fetchData(callback) {
+        setTimeout(() => {
+          callback('我是返回的数据');
+        }, 5000);
+      }
+
+      // 实现下面的函数
+      function promiseFecth() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve('我是返回的数据');
+          }, 5000);
+        });
+      }
+      promiseFecth().then((res) => {
+        console.log(res); // 我是返回的数据
+      });
+
+      const address = [
+        {
+          id: 1,
+          name: '北京市',
+          children: [
+            {
+              id: 11,
+              name: '海淀区',
+              children: [
+                {
+                  id: 111,
+                  name: '中关村',
+                },
+              ],
+            },
+            {
+              id: 12,
+              name: '朝阳区',
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: '河北省',
+        },
+      ];
+      // 请实现该函数
+      // 输入：getNameById(address, 2)，输出："河北省"
+      // 输入：getNameById(address, 111)，输出："中关村"
+      // 输入：getNameById(address, 32)，输出："" （未查找到，输出空字符串）
+      function getNameById(address, id) {
+        let res = '';
+        for (const item of address) {
+          if (item.children?.length) {
+            res = getNameById(item.children, id);
+          } else {
+            if (item.id === id) {
+              res = item.name;
+              break;
+            }
+          }
+        }
+        return res;
+      }
+      console.log(getNameById(address, 2));
+      console.log(getNameById(address, 111));
+      console.log(getNameById(address, 32));
+
+      class Pro {
+        status = 'pending';
+        value = null;
+        callbacks = [];
+        constructor(executor) {
+          try {
+            executor(this.resolve.bind(this), this.reject.bind(this));
+          } catch (error) {
+            this.reject(error);
+          }
+        }
+        resolve(value) {
+          if (this.status === 'pending') {
+            this.status === 'resolve';
+            this.value === value;
+          }
+        }
+        reject(value) {
+          if (this.status === 'pending') {
+            this.status === 'reject';
+            this.value === value;
+          }
+        }
+        then(onResove, onReject) {
+          let proRes = new Pro((resolve, reject) => {
+            if (typeof resolve !== 'function') {
+              resolve = (value) => value;
+            }
+            if (typeof reject !== 'function') {
+              resolve = (value) => value;
+            }
+
+            if (this.status === 'resolve') {
+              let result = onResove(this.value);
+              try {
+                if (result instanceof Pro) {
+                  result.then(resolve, reject);
+                } else {
+                  resolve(result);
+                }
+              } catch (error) {
+                reject(error);
+              }
+            }
+            if (this.status === 'reject') {
+            }
+            if (this.status === 'pending') {
+              this.callbacks.push({
+                onResove: () => {
+                  let result = onResove(this.value);
+                  try {
+                    if (result instanceof Pro) {
+                      result.then(resolve, reject);
+                    } else {
+                      resolve(result);
+                    }
+                  } catch (error) {
+                    reject(error);
+                  }
+                },
+                onReject: () => {},
+              });
+            }
+          });
+
+          return proRes;
+        }
+      }
     </script>
   </body>
 </html>

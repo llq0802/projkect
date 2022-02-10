@@ -87,7 +87,6 @@
 
     .shade::after {
       content: '';
-
       margin: 50px auto;
       background: linear-gradient(to top left, red, blue);
       filter: blur();
@@ -114,7 +113,7 @@
     }
 
 
-/* pading 可以撑大盒子 */
+      /* pading 可以撑大盒子 */
 
     a :nth-child(2n) i{
       display: block;
@@ -152,12 +151,9 @@
     <div class=""></div>
 
     <script>
-      let arr = [11, 22, 33, 44, 55]
-      let a = arr.map((item, index) => {
-        item = item.toFixed(2) //toFixed只能对数字型保留
-        return item
-      })
-
+      let arr = ['11', 22, '33', 44, 55,false,'',null]
+      let a = arr.filter(Boolean).map(Number)
+          // console.log(a);
 
       //本地存储值能是字符串
       // localStorage.setItem('token','abv')
@@ -166,7 +162,7 @@
       // localStorage.clear()
       // JSON.parse()  JSON对象转字符串
       // JSON.stringify()字符串转JSON对象
-
+      
       // switch (key) {
       //   case value:
 
@@ -190,9 +186,9 @@
       //模块化  module.exports    require('')  图片一般用require('') module
 
       // export{}   ,  import{} from ''    export default xx     import xx from '' 
-
+        // 在函数中停止for循环可以用break或者return
       //循环中break表示终止循环 continue表示跳过此项循环继续下次循环  for循环中没得return
-      //if语句中 return 和return false 表示终止 通常在表单提交的时候 或者返回一个值  
+      //在函数中if语句中 return 和return false 表示终止 通常在表单提交的时候 或者返回一个值  
       //函数中的return表示该函数返回一个值,给调用者使用,当有返回多个值时,用对象的形式返回
       //只有for- for in -for of wile才能终止循环 
       //在forEach、map、filter中break和continue不能正常执行，return仅仅跳出当前循环，不会跳出整个函数。
@@ -243,7 +239,7 @@
             return index > 0
         })
         console.log(bb);
-        //some查找第一个满足条件的项 ,有一个满足就返回true
+        //some查找第一个满足条件的项 ,有一个满足就返回true return true可以终止循环
         let aaa = res.some((item, index) => {
             let bb = item.id = 2;
             return bb
@@ -282,6 +278,9 @@
         pop()
         shift()
         unshift()
+        sort
+        splice
+        reserve
   
         for (let index of arr.keys()) {
             console.log(index);
@@ -381,7 +380,9 @@
     // Object.prototype.toString.call().slice(8,-1)==='object' 判断是不是对象
     // Object.prototype.toString.call().slice(8,-1)==='array' 判断是不是数组
         // Object.prototype.toString().call().slice(8,-1)==='null'
-      let arrH = [2, 4, 6, 8, 10, 12];
+     
+    //  console.log(   Object.prototype.toString.call('啊').slice(8,-1));
+        let arrH = [2, 4, 6, 8, 10, 12];
 
       function isArr(arr, val) {
         if (arr.indexOf(val) >= 0) {
@@ -392,13 +393,10 @@
           return false
         }
       }
-      isArr(arrH, 10)
+      // isArr(arrH, 10)
 
-     
       let arrC = [13, 14, 15]
       let arrA = ['1', '2', '3', 'a', 'b', 'c'];
-
-      
         //截取 不会改变原数组
         
        
@@ -451,13 +449,12 @@
             // console.log(oDay.getMinutes());; //当前的分钟数(0-59)
             // console.log(oDay.getSeconds());; //当前的秒数(0-59)
             // console.log(oDay.getMilliseconds());; //当前的毫秒数(0-999)
-             console.log(oDay.toLocaleDateString());; //当前的日期
+            //  console.log(oDay.toLocaleDateString());; //当前的日期
              var oTime=oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
-             console.log(oTime);
-             console.log(oDay.toLocaleString()) //当前时间
+            //  console.log(oTime);
+            //  console.log(oDay.toLocaleString()) //当前时间
 
 
-            console.log(  Date.now());
 
 
             //防抖debounce代码：(用于搜索 监听图片load加载)

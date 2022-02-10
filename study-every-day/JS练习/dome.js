@@ -12,7 +12,7 @@
 
 // const { log } = require("node:console");
 
-// let date = new Date()
+let date = new Date();
 // let tiem1 = +new Date()
 // let time = date.getTime() //时间戳
 // let year = date.getFullYear() //年
@@ -27,8 +27,9 @@
 // let miunte = date.getMinutes()
 // let second = date.getSeconds()
 // console.log(date);
-// let date_1 = new Date(2020 - 1 - 20)
-// let res = date - date_1
+let date_1 = new Date('2020 - 1 - 20');
+let res = date - date_1;
+console.log(res);
 // //时间对象相减得到之差为时间鹾 ms毫秒
 // //console.log(res);
 // /**
