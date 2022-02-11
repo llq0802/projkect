@@ -175,5 +175,66 @@
       <div>d</div>
       <div>e</div>
     </div>
+
+    <input />
   </body>
+  <script>
+    // async function asyfn() {
+    //   let p = new Promise((resolve, reject) => {
+    //     console.log(999);
+    //     resolve();
+    //   }).then(() => console.log('promise'));
+    //   console.log(789);
+    //   console.log(p);
+    // }
+
+    // function as() {
+    //   asyfn();
+    //   console.log(77);
+    // }
+    // as();
+
+    // executor
+    class Pro {
+      status = 'pending';
+      value = null;
+      callbacks = [];
+      constructor(executor) {
+        try {
+          console.log(this);
+          executor(this.resolve, this.reject);
+        } catch (error) {}
+      }
+
+      resolve(value) {
+        console.log(this);
+        if (this.status === 'pending') {
+          console.log(value);
+          this.status = 'resolve';
+          this.value = value;
+        }
+      }
+      reject(value) {
+        if (this.status === 'pending') {
+          this.status = 'reject';
+          this.value = value;
+        }
+      }
+    }
+
+    // new Pro((resolve, reject) => {
+    //   resolve(777);
+    // });
+    const debounce = (fn, ms = 100) => {
+      let timeoutId;
+      return function(...args) {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn(args), ms);
+      };
+    };
+    const inp = document.querySelector('input');
+    inp.oninput = debounce(function(e) {
+      console.log('debounce', this);
+    });
+  </script>
 </html>

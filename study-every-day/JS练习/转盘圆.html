@@ -204,14 +204,12 @@
       // let hd = new HD({ data: '1' });
 
       // console.dir(hd.constructor);
-
       // setTimeout(() => {
       //   console.log('setTimeout');
       // });
       // requestAnimationFrame(() => {
       //   console.log('requestAnimationFrame');
       // });
-      // console.log(123);
 
       let obj = {
         a: {
@@ -273,20 +271,16 @@
       let a = 111;
       let b = 222;
 
-      fastSort(a);
+      // fastSort(a);
       // console.log(a);
       // let tmp = null;
       // tmp = a;
       // a = b;
       // b = tmp;
-      [b, a] = [a, b];
+      // [b, a] = [a, b];
+
       // a = [b, (b = a)][0];
       // console.log('a' + a, 'b' + b);
-
-      // let v = (c = 77);
-
-      v = 99;
-      // console.log(v, c);
 
       function Vue(name, age) {
         this.name = name;
@@ -432,10 +426,28 @@
         ['baz', 42],
       ]);
       map.set('a', 1);
+      const set = new Set([11, 22, 33]);
+      set.add(55);
+      const fr = new FileReader();
 
-      const obj1 = Object.fromEntries(map);
+      // console.log(fr);
+      // const obj1 = Object.fromEntries(map);
+      // console.log(set);
+      // console.log(Object.fromEntries(map));
+      // console.log(Object.entries(obj1));
+      // console.log(Object.keys(obj1));
+      // console.log(Object.values(obj1));
+      // console.log(obj1);
+      const ss = Symbol('s');
+      let hjr = { a: 1, [ss]: 22 };
 
-      arrToObj;
+      console.log(Object.getOwnPropertyDescriptor(hjr, 'a'));
+      console.log(Object.getOwnPropertyNames(hjr));
+      console.log(Object.getOwnPropertySymbols(hjr));
+
+      console.log('a'.endsWith('a'));
+      console.log('a'.padStart(5, '*'));
+      console.log('a'.padEnd(5, '*'));
     </script>
   </body>
 </html>
