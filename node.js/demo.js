@@ -100,4 +100,4 @@ const path = require('path');
 //   console.log('setTimeout');
 // }, 1000);
 // console.log('zhu');
-console.log(process.env);
+// console.log(process.env);
