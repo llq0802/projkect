@@ -31,7 +31,7 @@ export default function parse(template) {
     //匹配到开始标签
     if (startIdx === 0) {
       if (html.indexOf('</') === 0) {
-        // 说明是闭合标签  <div>xxx</div>
+        // 说明是闭合标签 </ hr>
         parseEnd();
       } else {
         // 处理开始标签中的属性
@@ -108,7 +108,6 @@ export default function parse(template) {
   function processElement() {
     // 弹出栈顶元素，进一步处理该元素
     const curEle = stack.pop();
-    const stackLen = stack.length;
     //  {
     //   // 元素节点
     //   type: 1,
@@ -141,10 +140,10 @@ export default function parse(template) {
     processSlotContent(curEle);
 
     // 节点处理完以后让其和父节点产生关系
-    if (stackLen) {
-      stack[stackLen - 1].children.push(curEle);
+    if (stack.length) {
+      stack[stack.length - 1].children.push(curEle);
       // 当前节点的父节点 就是栈顶的元素
-      curEle.parent = stack[stackLen - 1];
+      curEle.parent = stack[stack.length - 1];
 
       // 如果节点存在 slotName，则说明该节点是组件传递给插槽的内容
       // 将插槽信息放到组件节点的 rawAttr.scopedSlots 对象上

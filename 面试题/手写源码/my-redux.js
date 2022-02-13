@@ -33,7 +33,6 @@ export class Provider extends Component {
     // return  React.Children.only(this.props.children)
   }
 }
-
 export function connect(mapState = (state) => state, mapDispatch = (dispatch) => dispatch) {
   return (UiComponent) => {
     return class UU extends Component {

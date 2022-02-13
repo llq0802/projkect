@@ -38,474 +38,473 @@
       <div class="box"></div>
     </div>
     <script>
-            // 重排，回流是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
-            // 重绘是指改变页面的样式 比如 background 字体颜色
-            // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
-            // console.log(Reflect.__proto__ === Object.prototype);
-            // console.log(window.Reflect);
-            // console.log(window.Proxy);
+      // 重排，回流是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
+      // 重绘是指改变页面的样式 比如 background 字体颜色
+      // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
+      // console.log(Reflect.__proto__ === Object.prototype);
+      // console.log(window.Reflect);
+      // console.log(window.Proxy);
 
-            const obj = {
-              name: '浏览器',
-              age: 20,
-              id: 15,
-            };
+      const obj = {
+        name: '浏览器',
+        age: 20,
+        id: 15,
+      };
 
-            let reslut = Reflect.get(obj, 'name'); //获取属性
-            Reflect.set(obj, 'desc', '这是谷歌'); //设置属性,返回值是一个Boolean的值。
+      let reslut = Reflect.get(obj, 'name'); //获取属性
+      Reflect.set(obj, 'desc', '这是谷歌'); //设置属性,返回值是一个Boolean的值。
 
-            // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
-            // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
-            // Reflect.ownKeys(obj) 获取所有属性 包括symbol
-            Reflect.deleteProperty(obj, 'name'); //删除属性
-            // console.log(obj);
-            // console.log(Reflect);
+      // Reflect.defineProperty方法类似的，不过唯一的区别是该方法与Object.defineProperty方法类似的，不过唯一的区别是 Reflect.defineProperty返回值是一个Boolean的值。
+      // Reflect.has(target,name) 是否含有该对象的属性 会在原型上找 跟es5中的 in方法一样
+      // Reflect.ownKeys(obj) 获取所有属性 包括symbol
+      Reflect.deleteProperty(obj, 'name'); //删除属性
+      // console.log(obj);
+      // console.log(Reflect);
 
-            // script标签中写js代码，或者使用src引入js文件时，默认不能使用module形式，即不能使用import导入文件，但是我们可以再script标签上加上type=module属性来改变方式。
-            // 方法 1 ： 引入module.js，然后在script标签里面调用
+      // script标签中写js代码，或者使用src引入js文件时，默认不能使用module形式，即不能使用import导入文件，但是我们可以再script标签上加上type=module属性来改变方式。
+      // 方法 1 ： 引入module.js，然后在script标签里面调用
 
-            // cookie的使用:  可以用js-cookie插件 expires过期时间,path路径
-            document.cookie = 'username=John Doe';
-            document.cookie = 'username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/';
-            // console.log(document.cookie);
-            // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
+      // cookie的使用:  可以用js-cookie插件 expires过期时间,path路径
+      document.cookie = 'username=John Doe';
+      document.cookie = 'username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/';
+      // console.log(document.cookie);
+      // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
-            // Object.getOwnPropertySymbols();
-            // 封装获取cookie
-            function getCookie(cname) {
-              let name = cname + '=';
-              ca = document.cookie.split(';');
-              for (let i = 0; i < ca.length; i++) {
-                let c = ca[i].trim();
-                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-              }
-              return '';
-            } // 匹配汉字
-            // console.log(getCookie("username"));
+      // Object.getOwnPropertySymbols();
+      // 封装获取cookie
+      function getCookie(cname) {
+        let name = cname + '=';
+        ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i].trim();
+          if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return '';
+      } // 匹配汉字
+      // console.log(getCookie("username"));
 
-            // for (var i = 0; i < 5; i++) {
-            //   setTimeout(function() {
-            //     console.log(i * 2);
-            //   }, 1000 * i);
-            //   console.log(i);
-            // }
+      // for (var i = 0; i < 5; i++) {
+      //   setTimeout(function() {
+      //     console.log(i * 2);
+      //   }, 1000 * i);
+      //   console.log(i);
+      // }
 
-            // for (let i = 0; i < 5; i++) {
-            //   console.log(i);
-            // }
-            // console.log(i);
+      // for (let i = 0; i < 5; i++) {
+      //   console.log(i);
+      // }
+      // console.log(i);
 
-            // vue3 + vite + ts + elementPlus + 高德地图Api
+      // vue3 + vite + ts + elementPlus + 高德地图Api
 
-            // Object.freeze(); //冻结
-            // Object.getOwnPropertyDescriptor(); //属性的描述 w重写 c删除 e枚举
+      // Object.freeze(); //冻结
+      // Object.getOwnPropertyDescriptor(); //属性的描述 w重写 c删除 e枚举
 
-            // const date = new Date().getTime();
-            // console.dir(date);
-            // console.dir(Math);
-            // console.log(Object.prototype.toString.call("a").slice(8, -1));
+      // const date = new Date().getTime();
+      // console.dir(date);
+      // console.dir(Math);
+      // console.log(Object.prototype.toString.call("a").slice(8, -1));
 
-            //  XSS攻击:跨站脚本攻击)是一种代码注入攻击
-            //  反之方式:对字符串进行编码。   encodeURIComponent()
+      //  XSS攻击:跨站脚本攻击)是一种代码注入攻击
+      //  反之方式:对字符串进行编码。   encodeURIComponent()
 
-            // 服务器告诉浏览器的格式:  Content-Type：text/HTML。
-            // 浏览器告诉服务器格式: application/x- 开头。
+      // 服务器告诉浏览器的格式:  Content-Type：text/HTML。
+      // 浏览器告诉服务器格式: application/x- 开头。
 
-            // application/x-www-form-urlencoded 这应该是默认的 POST 提交数据的方式了。浏览器的原生 form 表单
-            // Content-Type 被指定为 application/x-www-form-urlencoded；其次，提交的数据按照 key1=val1&key2=val2 的方式进行编码
-            // qs.stringify k库可以转换
-            // Content-Type： multipart/form-data 一般用于二进制的上传 图片 视频 音频
+      // application/x-www-form-urlencoded 这应该是默认的 POST 提交数据的方式了。浏览器的原生 form 表单
+      // Content-Type 被指定为 application/x-www-form-urlencoded；其次，提交的数据按照 key1=val1&key2=val2 的方式进行编码
+      // qs.stringify k库可以转换
+      // Content-Type： multipart/form-data 一般用于二进制的上传 图片 视频 音频
 
-            // application/json axios默认的get形式
-            // text/xml
+      // application/json axios默认的get形式
+      // text/xml
 
-            // text/html ： HTML格式
-            // text/plain ：纯文本格式
-            // text/xml ： XML格式
-            // image/gif ：gif图片格式
-            // image/jpeg ：jpg图片格式
-            // image/png：png图片格式
+      // text/html ： HTML格式
+      // text/plain ：纯文本格式
+      // text/xml ： XML格式
+      // image/gif ：gif图片格式
+      // image/jpeg ：jpg图片格式
+      // image/png：png图片格式
 
-            // 以application开头的媒体格式类型：
-            // application/xhtml+xml ：XHTML格式
-            // application/xml： XML数据格式
-            // application/atom+xml ：Atom XML聚合格式
-            // application/json： JSON数据格式
-            // application/pdf：pdf格式
-            // application/msword ： Word文档格式
-            // application/octet-stream ： 二进制流数据（如常见的文件下载）
-            // application/x-www-form-urlencoded ： <form encType=””>中默认的encType，form表单数据被编码为key=value格式发送到服务器（表单默认的提交数据的格式）
-            // multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式需要配合formdata对象
+      // 以application开头的媒体格式类型：
+      // application/xhtml+xml ：XHTML格式
+      // application/xml： XML数据格式
+      // application/atom+xml ：Atom XML聚合格式
+      // application/json： JSON数据格式
+      // application/pdf：pdf格式
+      // application/msword ： Word文档格式
+      // application/octet-stream ： 二进制流数据（如常见的文件下载）
+      // application/x-www-form-urlencoded ： <form encType=””>中默认的encType，form表单数据被编码为key=value格式发送到服务器（表单默认的提交数据的格式）
+      // multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式需要配合formdata对象
 
-            // 全局的 axios 默认值
-            // axios.defaults.baseURL = 'https://api.example.com';
-            // axios.defaults.headers.common['Authorization'] = token;
-            // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      // 全局的 axios 默认值
+      // axios.defaults.baseURL = 'https://api.example.com';
+      // axios.defaults.headers.common['Authorization'] = token;
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-            /**
-             * @description: 正则表达
-             * @param {*}
-             * @return {*}
-             */ const regHan = /^\p{sc=Han}+$/gu; //匹配汉字
+      /**
+       * @description: 正则表达
+       * @param {*}
+       * @return {*}
+       */
 
-            let hd = 'houdunren2200hdcms998';
-            // console.log(hd.match(/\d/));
-            /\d/.exec(hd);
-            // console.log(hd.match(regHan));
+      let hd = 'houdunren2200hdcms998';
+      // console.log(hd.match(/\d/));
+      // console.log(/\d/g.exec(hd));
+      // console.log(hd.match(/\d/g));
 
-            let str = 'hn.com';
-            // console.log(str.search("om"));
+      let str = 'hn.com';
+      // console.log(str.search("om"));
 
-            // *	重复零次或更多次
-            // +	重复一次或更多次
-            // ?	重复零次或一次
-            // {n}	重复n次
-            // {n,}	重复n次或更多次
-            // {n,m}	重复n到m次包括n m
+      // *	重复零次或更多次
+      // +	重复一次或更多次
+      // ?	重复零次或一次
+      // {n}	重复n次
+      // {n,}	重复n次或更多次
+      // {n,m}	重复n到m次包括n m
 
-            // | 表示左右任意一边2选1   ()表示一个组
-            //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
-            // 可以使用 [\s\S]+ 或 [\d\D]* 来匹配所有字符
+      // | 表示左右任意一边2选1   ()表示一个组
+      //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
+      // 可以使用 [\s\S]+ 或 [\d\D] .* 来匹配所有字符
 
-            //       []	只匹配其中的一个原子 ()表示一个组
-            // [^]	只匹配"除了"其中字符的任意一个原子
-            // [0-9]	匹配0-9任何一个数字
-            // [a-z]	匹配小写a-z任何一个字母
-            // [A-Z]	匹配大写A-Z任何一个字母
-            //通用的邮箱验证
-            const regMail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+      //       []	只匹配其中的一个原子 ()表示一个组
+      // [^]	只匹配"除了"其中字符的任意一个原子
+      // [0-9]	匹配0-9任何一个数字
+      // [a-z]	匹配小写a-z任何一个字母
+      // [A-Z]	匹配大写A-Z任何一个字母
+      //通用的邮箱验证
+      const regMail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
-            const proxy = new Proxy(
-              {
-                name: 'll',
-              },
-              {
-                get(obj, property) {},
-                set(obj, property, newValue) {
-                  // console.log("2");
-                },
-                // 删除
-                deleteProperty(obj, property) {
-                  // console.log("删除");
-                },
-              }
-            );
-            proxy.age = 20;
-            delete proxy.name;
-            // set 会自动吧字符串转成不能重复的伪数组
-            // console.log([...new Set("houdunren")].join("")); //houdnre
-            // console.log(new Set("houdunren")); //houdnre
-            // console.log(new Set(["a", "b", "c", "d", "e", "f"]));
+      const proxy = new Proxy(
+        {
+          name: 'll',
+        },
+        {
+          get(obj, property) {},
+          set(obj, property, newValue) {
+            // console.log("2");
+          },
+          // 删除
+          deleteProperty(obj, property) {
+            // console.log("删除");
+          },
+        }
+      );
+      proxy.age = 20;
+      delete proxy.name;
+      // set 会自动吧字符串转成不能重复的伪数组
+      // console.log([...new Set("houdunren")].join("")); //houdnre
+      // console.log(new Set("houdunren")); //houdnre
+      // console.log(new Set(["a", "b", "c", "d", "e", "f"]));
 
-            // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键,但是WeaMap对键名是弱引用的，键值是正常引用。
+      // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键,但是WeaMap对键名是弱引用的，键值是正常引用。
 
-            // ondragstart - 用户开始拖动元素时触发
-            // ondrag - 元素正在拖动时触发
-            // ondragend - 用户完成元素拖动后触发
+      // ondragstart - 用户开始拖动元素时触发
+      // ondrag - 元素正在拖动时触发
+      // ondragend - 用户完成元素拖动后触发
 
-            // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
-            // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
-            // ondragover - 当被鼠标拖动的对象在另一对象容器范围内移动时触发此事件
-            // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+      // ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
+      // ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+      // ondragover - 当被鼠标拖动的对象在另一对象容器范围内移动时触发此事件
+      // ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
 
-            // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
+      // 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle'
 
-            let arr = [3, 1, 4, 6, 5, 7, 2];
-            function quickSort(arr) {
-              if (arr.length === 0) {
-                return []; // 返回空数组
-              }
+      let arr = [3, 1, 4, 6, 5, 7, 2];
+      function quickSort(arr) {
+        if (arr.length === 0) {
+          return []; // 返回空数组
+        }
 
-              var cIndex = Math.floor(arr.length / 2);
-              var c = arr.splice(cIndex, 1);
-              var l = [];
-              var r = [];
+        var cIndex = Math.floor(arr.length / 2);
+        var c = arr.splice(cIndex, 1);
+        var l = [];
+        var r = [];
 
-              for (var i = 0; i < arr.length; i++) {
-                if (arr[i] < c) {
-                  l.push(arr[i]);
-                } else {
-                  r.push(arr[i]);
-                }
-              }
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] < c) {
+            l.push(arr[i]);
+          } else {
+            r.push(arr[i]);
+          }
+        }
 
-              return quickSort(l).concat(c, quickSort(r));
-            }
-            // console.log(arr);
+        return quickSort(l).concat(c, quickSort(r));
+      }
+      // console.log(arr);
 
-            // Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
-            // Element.getBoundingClientRect().top：元素上边到视窗上边的距离
-            // Element.getBoundingClientRect().right：元素右边到视窗左边的距离
-            // Element.getBoundingClientRect().bottom：元素下边到视窗上边的距离
-            // Element.getBoundingClientRect().left：元素左边到视窗左边的距离
-            // Element.getBoundingClientRect().width：元素宽度
-            // Element.getBoundingClientRect().height：元素高度
-            // Element.getBoundingClientRect().x：用于left
-            // Element.getBoundingClientRect().y：用于top
+      // Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+      // Element.getBoundingClientRect().top：元素上边到视窗上边的距离
+      // Element.getBoundingClientRect().right：元素右边到视窗左边的距离
+      // Element.getBoundingClientRect().bottom：元素下边到视窗上边的距离
+      // Element.getBoundingClientRect().left：元素左边到视窗左边的距离
+      // Element.getBoundingClientRect().width：元素宽度
+      // Element.getBoundingClientRect().height：元素高度
+      // Element.getBoundingClientRect().x：用于left
+      // Element.getBoundingClientRect().y：用于top
 
-            // 学习别人的博客网站 https://www.crazyming.com/
+      // 学习别人的博客网站 https://www.crazyming.com/
 
-            /*项目生成结构树*/
-            //  sudo npm i tree-node-cli -g
-            // 查看所有指令：
-            // tree --help
-            // 进入项目根目录，我们需要在README.md文件中写入目录，执行：
-            // tree -L 4 -I "node_modules" > README.md
-            // 其中参数-L 是确定要几级目录，-I是排除哪个文件夹下的
-            // 如果生成的结构是乱的，可以用 代码块三点语法 包起来
-            //
+      /*项目生成结构树*/
+      //  sudo npm i tree-node-cli -g
+      // 查看所有指令：
+      // tree --help
+      // 进入项目根目录，我们需要在README.md文件中写入目录，执行：
+      // tree -L 4 -I "node_modules" > README.md
+      // 其中参数-L 是确定要几级目录，-I是排除哪个文件夹下的
+      // 如果生成的结构是乱的，可以用 代码块三点语法 包起来
+      //
 
-            for (let i = 0; i < 5; i++) {
-              setTimeout(function () {
-                // console.log(i);
-              }, 1000);
-            }
+      for (let i = 0; i < 5; i++) {
+        setTimeout(function() {
+          // console.log(i);
+        }, 1000);
+      }
 
-            function view() {
-              let i = 0;
-              (function handle() {
-                if (i++ < 100) {
-                  setTimeout(handle, 1000);
-                  console.log(i);
-                }
-              })();
-            }
+      function view() {
+        let i = 0;
+        (function handle() {
+          if (i++ < 100) {
+            setTimeout(handle, 1000);
+            console.log(i);
+          }
+        })();
+      }
 
-            console.time('runtime');
-            // let count = 0;
-            // let num = 987654321;
-            // function hd1() {
-            //   for (let i = 0; i < 100000000; i++) {
-            //     if (num <= 0) break;
-            //     count += num--;
-            //   }
-            //   if (num > 0) {
-            //     console.log(num);
-            //     setTimeout(hd1);
-            //   }
-            // }
-            // hd1();
-            // console.log('houdunren.com'); //立刻显示出来
-            // const div = document.getElementById('hd');
-            // function handle() {
-            //   let i = 0;
-            //   (function run() {
-            //     console.log(i);
-            //     div.innerHTML = i;
-            //     div.style.width = i + '%';
-            //     if (++i <= 100) setTimeout(run, 10);
-            //   })();
-            // }
-            // // handle()
+      console.time('runtime');
+      // let count = 0;
+      // let num = 987654321;
+      // function hd1() {
+      //   for (let i = 0; i < 100000000; i++) {
+      //     if (num <= 0) break;
+      //     count += num--;
+      //   }
+      //   if (num > 0) {
+      //     console.log(num);
+      //     setTimeout(hd1);
+      //   }
+      // }
+      // hd1();
+      // console.log('houdunren.com'); //立刻显示出来
+      // const div = document.getElementById('hd');
+      // function handle() {
+      //   let i = 0;
+      //   (function run() {
+      //     console.log(i);
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //     if (++i <= 100) setTimeout(run, 10);
+      //   })();
+      // }
+      // // handle()
 
-            // async function load() {
-            //   for (let i = 0; i <= 100; i++) {
-            //     await new Promise((resolve) => {
-            //       setTimeout(() => {
-            //         resolve();
-            //       }, 100);
-            //     });
-            //     div.innerHTML = i;
-            //     div.style.width = i + '%';
-            //   }
-            // }
-            // load();
-            // view();
+      // async function load() {
+      //   for (let i = 0; i <= 100; i++) {
+      //     await new Promise((resolve) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 100);
+      //     });
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //   }
+      // }
+      // load();
+      // view();
 
-            //迭代器
-            let iteratorObj = {
-              name: 'llq',
-              age: 20,
-              desc: 'shuaige',
-              arr: [11, 22, 33, 44],
-              [Symbol.iterator]: function () {
-                let index = 0;
-                return {
-                  next: () => {
-                    if (index < this.arr.length) {
-                      let res = {
-                        value: this.arr[index],
-                        done: false,
-                      };
-                      index++;
-                      return res;
-                    } else {
-                      return {
-                        value: undefined,
-                        done: true,
-                      };
-                    }
-                  },
+      //迭代器
+      let iteratorObj = {
+        name: 'llq',
+        age: 20,
+        desc: 'shuaige',
+        arr: [11, 22, 33, 44],
+        [Symbol.iterator]: function() {
+          let index = 0;
+          return {
+            next: () => {
+              if (index < this.arr.length) {
+                let res = {
+                  value: this.arr[index],
+                  done: false,
                 };
-              },
-            };
-            // for (item of iteratorObj) {
-            //   console.log(item);
-            // }
-
-            // keycode=123  是f12键
-            // 禁止右键菜单
-            document.oncontextmenu = function () {
-              return false;
-            };
-            // 禁止文字选择
-            document.onselectstart = function () {
-              return false;
-            };
-            // 禁止复制
-            document.oncopy = function () {
-              return false;
-            };
-            // 禁止剪切
-            document.oncut = function () {
-              return false;
-            };
-            // 禁止粘贴
-            document.onpaste = function () {
-              return false;
-            };
-
-            function formatTime(time, option) {
-              time = +time * 1000;
-              const d = new Date(time);
-              const now = Date.now();
-
-              const diff = (now - d) / 1000;
-
-              if (diff < 30) {
-                return '刚刚';
-              } else if (diff < 3600) {
-                // less 1 hour
-                return Math.ceil(diff / 60) + '分钟前';
-              } else if (diff < 3600 * 24) {
-                return Math.ceil(diff / 3600) + '小时前';
-              } else if (diff < 3600 * 24 * 2) {
-                return '1天前';
-              }
-              if (option) {
-                return parseTime(time, option);
+                index++;
+                return res;
               } else {
-                return (
-                  d.getMonth() +
-                  1 +
-                  '月' +
-                  d.getDate() +
-                  '日' +
-                  d.getHours() +
-                  '时' +
-                  d.getMinutes() +
-                  '分'
-                );
+                return {
+                  value: undefined,
+                  done: true,
+                };
               }
-            }
+            },
+          };
+        },
+      };
+      // for (item of iteratorObj) {
+      //   console.log(item);
+      // }
 
-            function parseTime(time, cFormat) {
-              if (arguments.length === 0) {
-                return null;
-              }
-              const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
-              let date;
-              if (typeof time === 'object') {
-                date = time;
-              } else {
-                if (('' + time).length === 10) time = parseInt(time) * 1000;
-                date = new Date(time);
-              }
-              const formatObj = {
-                y: date.getFullYear(),
-                m: date.getMonth() + 1,
-                d: date.getDate(),
-                h: date.getHours(),
-                i: date.getMinutes(),
-                s: date.getSeconds(),
-                a: date.getDay(),
-              };
-              const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-                let value = formatObj[key];
-                if (key === 'a') {
-                  return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
-                }
-                if (result.length > 0 && value < 10) {
-                  value = '0' + value;
-                }
-                return value || 0;
-              });
-              return timeStr;
-            }
+      // keycode=123  是f12键
+      // 禁止右键菜单
+      document.oncontextmenu = function() {
+        return false;
+      };
+      // 禁止文字选择
+      document.onselectstart = function() {
+        return false;
+      };
+      // 禁止复制
+      document.oncopy = function() {
+        return false;
+      };
+      // 禁止剪切
+      document.oncut = function() {
+        return false;
+      };
+      // 禁止粘贴
+      document.onpaste = function() {
+        return false;
+      };
 
-            // ['1','2','3'].map(parseInt) =>[1,NaN,NaN]
-            // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数为，有效位，）
-            // parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN
+      function formatTime(time, option) {
+        time = +time * 1000;
+        const d = new Date(time);
+        const now = Date.now();
 
-            //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
-            // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址，栈指向堆内存地址
-            // 2. null == undefined成立/ null===undefined不成立   null,undefined不成立与其他类型比较时都不相等
-            // 3. NaN==NaN不成立 NaN和谁都不相等
-            // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
-            //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
+        const diff = (now - d) / 1000;
 
-            // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
+        if (diff < 30) {
+          return '刚刚';
+        } else if (diff < 3600) {
+          // less 1 hour
+          return Math.ceil(diff / 60) + '分钟前';
+        } else if (diff < 3600 * 24) {
+          return Math.ceil(diff / 3600) + '小时前';
+        } else if (diff < 3600 * 24 * 2) {
+          return '1天前';
+        }
+        if (option) {
+          return parseTime(time, option);
+        } else {
+          return (
+            d.getMonth() +
+            1 +
+            '月' +
+            d.getDate() +
+            '日' +
+            d.getHours() +
+            '时' +
+            d.getMinutes() +
+            '分'
+          );
+        }
+      }
 
-            // let log = console.log.bind(document);
-            // let url = 'https://www.bai du.com?age=20';
-            // let res1 = encodeURI(url);//对空格
-            // let res2 = encodeURIComponent(url); //对 ? = / : 都会
-            // console.log(res1);
-            // console.log(res2);
+      function parseTime(time, cFormat) {
+        if (arguments.length === 0) {
+          return null;
+        }
+        const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+        let date;
+        if (typeof time === 'object') {
+          date = time;
+        } else {
+          if (('' + time).length === 10) time = parseInt(time) * 1000;
+          date = new Date(time);
+        }
+        const formatObj = {
+          y: date.getFullYear(),
+          m: date.getMonth() + 1,
+          d: date.getDate(),
+          h: date.getHours(),
+          i: date.getMinutes(),
+          s: date.getSeconds(),
+          a: date.getDay(),
+        };
+        const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+          let value = formatObj[key];
+          if (key === 'a') {
+            return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
+          }
+          if (result.length > 0 && value < 10) {
+            value = '0' + value;
+          }
+          return value || 0;
+        });
+        return timeStr;
+      }
 
-            // 浏览器
-            //  1先主代码
-            //  2微任务
-            //  3宏任务
-            // 注意：每次执行完一个宏任务 就会立刻去查找执行微任务
+      // ['1','2','3'].map(parseInt) =>[1,NaN,NaN]
+      // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数为，有效位，）
+      // parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN
 
-            // node事件
-            //  1先主代码
-            // 2.  process.nextTick()
-            //3.    Promise     2 3 都是微任务
+      //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
+      // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址，栈指向堆内存地址
+      // 2. null == undefined成立/ null===undefined不成立   null,undefined不成立与其他类型比较时都不相等
+      // 3. NaN==NaN不成立 NaN和谁都不相等
+      // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
+      //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
 
-            // timer 模块0ms
-            // i/o I/O 回调。
-            // check模块    setimmediate()
-            //close callbacks
+      // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
 
-            //监听hash路由的改变
-            window.onhashchange = (e) => {
-              console.log(e.oldURL);
-              console.log(e.newURL);
-              console.log(location.hash);
-            };
-            //监听浏览器前进后退
-            Window.onpopstate = (e) => {
-              console.log(e);
-            };
-            //切换路由
-            // history.pushState()
+      // let log = console.log.bind(document);
+      // let url = 'https://www.bai du.com?age=20';
+      // let res1 = encodeURI(url);//对空格
+      // let res2 = encodeURIComponent(url); //对 ? = / : 都会
+      // console.log(res1);
+      // console.log(res2);
 
-            /*********封装localStorage********/
-            const setLocalStorage = (key, value) => {
-              let data = localStorage.getItem('projectName');
-              if (!data) {
-                data = {};
-              } else {
-                data = JSON.parse(data);
-              }
-              data[key] = value;
-              localStorage.setItem('projectName', JSON.stringify(data));
-            };
-            const getLocalStorage = (key) => {
-              let data = localStorage.getItem('projectName');
-              if (!data) {
-                return {};
-              }
-              data = JSON.parse(data);
-              return data[key] || {};
-            };
-      元素节点1element对应网页的HTML中HTML标签的属性。
-            //
-            // 文本节点3text代表网页中的标签元素。
-            // 元素特性节点2attribute对应网页HTML标签内容。
-            // 文档节点4document表示HTML文档，也称为根节点，指向document对象。
+      // 浏览器
+      //  1先主代码
+      //  2微任务
+      //  3宏任务
+      // 注意：每次执行完一个宏任务 就会立刻去查找执行微任务
+
+      // node事件
+      //  1先主代码
+      // 2.  process.nextTick()
+      //3.    Promise     2 3 都是微任务
+
+      // timer 模块0ms
+      // i/o I/O 回调。
+      // check模块    setimmediate()
+      //close callbacks
+
+      //监听hash路由的改变
+      window.onhashchange = (e) => {
+        console.log(e.oldURL);
+        console.log(e.newURL);
+        console.log(location.hash);
+      };
+      //监听浏览器前进后退
+      Window.onpopstate = (e) => {
+        console.log(e);
+      };
+      //切换路由
+      // history.pushState()
+
+      /*********封装localStorage********/
+      const setLocalStorage = (key, value) => {
+        let data = localStorage.getItem('projectName');
+        if (!data) {
+          data = {};
+        } else {
+          data = JSON.parse(data);
+        }
+        data[key] = value;
+        localStorage.setItem('projectName', JSON.stringify(data));
+      };
+      const getLocalStorage = (key) => {
+        let data = localStorage.getItem('projectName');
+        if (!data) {
+          return {};
+        }
+        data = JSON.parse(data);
+        return data[key] || {};
+      };
+      // 元素节点1element对应网页的HTML中HTML标签的属性。
+      // 文本节点3text代表网页中的标签元素。
+      // 元素特性节点2attribute对应网页HTML标签内容。
+      // 文档节点4document表示HTML文档，也称为根节点，指向document对象。
     </script>
   </body>
 </html>

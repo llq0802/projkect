@@ -15,7 +15,7 @@
     <title>Document</title>
   </head>
 
-  <body>
+  <body draggable="true">
     <style>
       * {
         padding: 0;
@@ -229,6 +229,7 @@
       <article>右侧</article>
     </main>
     <footer>页底</footer>
+
     <div class="content">
       <div>1</div>
       <div style="margin-right: auto">2</div>
@@ -496,7 +497,7 @@
       // console.dir(obj?.age);
       // let resl = Object.assign(obj); //浅复制 合并对象
       // console.log(0 ?? 10);
-      // Symbol undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、 |||对象（Object）fun arr date reg
+      // Symbol undefined、null、布尔值（Boolean）、字符串（String）、数值（Number） bigint、 |||对象（Object）fun arr date reg
       let s1 = Symbol('foo');
       // console.log(typeof s1);
       let [a, b, cc] = [11, 22, 33, 44];
@@ -701,7 +702,7 @@
                     }
                   );
                 } else {
-                  reject(result);
+                  resolve(result);
                 }
               } catch (error) {
                 reject(error);
@@ -961,6 +962,7 @@
       let reg = /\s/;
       str.length;
       str.includes('a'); //查找元素 返回布尔值
+      // arr.includes('a'); //查找元素 返回布尔值
       //第一个值是开始索引 截取长度为两个值之差 第一个取得到 第二个取不到
       // console.log(str1.slice(1, 2));
       // console.log(str.slice(1, -1));
@@ -977,7 +979,6 @@
 
       str.repeat(); //重复字符串
       str.trim(); //去空格
-
       str.toLocaleLowerCase(); //转小写
       str.toLocaleUpperCase(); //转大写
       str.indexOf(); // 根据值返回索引 找不到则返回-1
@@ -1047,15 +1048,22 @@
 
       // console.dir(nm);
 
+      console.log(
+        'yield句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句后面的返回值'
+      );
       // yield句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句后面的返回值。
-      // function* funcc() {
-      //   let a = 2 * (yield 1);
-      //   console.log(a);
-      //   let b = yield 2;
-      // }
-      // let sad = funcc();
-      // console.log(sad.next());
-      // console.log(sad.next(111));
+      function* funcc() {
+        let a = 2 * (yield 1);
+        // console.log(a);
+        console.log(777);
+        let b = yield 2;
+        console.log(999);
+        return 100;
+      }
+      let sad = funcc();
+      console.log(sad.next());
+      console.log(sad.next(111));
+      console.log(sad.next(333));
 
       // async function ee() {
       //   setTimeout(() => {
@@ -1291,7 +1299,6 @@
       //     ),
       //   ].sort((a, b) => a - b)
       // );
-
       console.log('*****************************************************');
 
       const deepUnip = (arr) => {

@@ -255,7 +255,7 @@
       }
       //call
       //  fn.myCall(obj)  =>  obj.fn()
-      Function.prototype.myCall = function (context, ...rest) {
+      Function.prototype.myCall = function(context, ...rest) {
         //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
         const keyFn = Symbol('keyFn');
         context[keyFn] = this;
@@ -268,7 +268,7 @@
       };
 
       //apply
-      Function.prototype.myApply = function (context, args) {
+      Function.prototype.myApply = function(context, args) {
         context.fn = this;
         let res;
         if (!args) {
@@ -281,20 +281,15 @@
       };
 
       // 手写bind函数
-      Function.prototype.myBind = function (context, ...args) {
+      Function.prototype.myBind = function(context, ...args) {
         const thisFn = this; //当前调用的函数
-        return function (...params) {
+        return function(...params) {
           thisFn.apply(context, [...args, ...params]);
         };
       };
-      const bind =
-        (fn, context, ...boundArgs) =>
-        (...args) =>
-          fn.apply(context, [...boundArgs, ...args]);
-      const call =
-        (key, ...args) =>
-        (context) =>
-          context[key](...args);
+      const bind = (fn, context, ...boundArgs) => (...args) =>
+        fn.apply(context, [...boundArgs, ...args]);
+      const call = (key, ...args) => (context) => context[key](...args);
 
       //手写new
       function myNew(fun, ...args) {
@@ -511,7 +506,7 @@
 
       const debounce = (fn, ms = 100) => {
         let timeoutId;
-        return function (...args) {
+        return function(...args) {
           if (timeoutId) clearTimeout(timeoutId);
           timeoutId = setTimeout(() => fn.apply(this, args), ms);
         };
@@ -520,10 +515,10 @@
       //节流函数
       function throttle(fn, wait = 150) {
         let timer = null;
-        return function (...args) {
+        return function(...args) {
           //let context = this;  这儿的this指向DOM调用者   // self 永远指向window
           if (!timer) {
-            timer = setTimeout(function () {
+            timer = setTimeout(function() {
               fn.apply(this, args);
               timer = null;
             }, wait);
@@ -532,7 +527,7 @@
       }
       function throttle1(fn, delay = 100) {
         let lastTime = 0;
-        return function () {
+        return function() {
           let currTime = +new Date();
           if (currTime - lastTime > delay) {
             fn.apply(this, arguments);
@@ -542,7 +537,7 @@
       }
       const throttle2 = (fn, wait) => {
         let inThrottle, lastFn, lastTime;
-        return function () {
+        return function() {
           const context = this,
             args = arguments;
           if (!inThrottle) {
@@ -551,7 +546,7 @@
             inThrottle = true;
           } else {
             clearTimeout(lastFn);
-            lastFn = setTimeout(function () {
+            lastFn = setTimeout(function() {
               if (Date.now() - lastTime >= wait) {
                 fn.apply(context, args);
                 lastTime = Date.now();
@@ -776,7 +771,6 @@
 
       /*
                 *  window.getComputedStyle()
-
                 //element.getBoundingClientRect() 返回一个元素在可视区域的位置，比如：
                 // {
                 //   bottom: 556.21875,
@@ -791,7 +785,6 @@
       /*
        *  vuex（vue-router）原理 插件install方法中
        *  调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，在所有组件的 beforeCreate生命周期注入了设置this.$store这样一个对象。
-       *
        */
     </script>
   </body>
