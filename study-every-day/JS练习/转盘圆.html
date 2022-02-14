@@ -107,14 +107,14 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 5; */
       }
-      /* .text::before {
+      .text::before {
         content: '...';
         position: absolute;
         right: 0;
         bottom: 0;
-        background-image: linear-gradient(to right, red, yellow 80%);
-      } */
-      .text::after {
+        /* background-image: linear-gradient(to right, red, yellow 80%); */
+      }
+      /* .text::after {
         content: '';
         display: inline-block;
         width: 20px;
@@ -123,7 +123,7 @@
         position: absolute;
         right: 0;
         bottom: 0;
-      }
+      } */
       .ga {
         position: absolute;
         width: 300px;
@@ -133,7 +133,7 @@
       }
     </style>
     <div class="ga">个人和搭设</div>
-    <p class="text">
+    <p class="text" draggable="true">
       高大上高大上高大上高大高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上高大上上高大上高大上高大上高大上高大上高大上高大上高大上
     </p>
     <div class="box">
@@ -441,13 +441,32 @@
       const ss = Symbol('s');
       let hjr = { a: 1, [ss]: 22 };
 
-      console.log(Object.getOwnPropertyDescriptor(hjr, 'a'));
-      console.log(Object.getOwnPropertyNames(hjr));
-      console.log(Object.getOwnPropertySymbols(hjr));
+      // console.log(Object.getOwnPropertyDescriptor(hjr, 'a'));
+      // console.log(Object.getOwnPropertyNames(hjr));
+      // console.log(Object.getOwnPropertySymbols(hjr));
 
-      console.log('a'.endsWith('a'));
-      console.log('a'.padStart(5, '*'));
-      console.log('a'.padEnd(5, '*'));
+      // console.log('a'.endsWith('a'));
+      // console.log('a'.padStart(5, '*'));
+      // console.log('a'.padEnd(5, '*'));
+
+      async function fn() {
+        setTimeout(() => {
+          console.log('setTimeout');
+        });
+        await console.log(999);
+        console.log('async');
+      }
+      function test() {
+        new Promise((resolve, reject) => {
+          resolve();
+          fn();
+          console.log('Promise');
+        }).then(() => {
+          console.log('then');
+        });
+        console.log(777);
+      }
+      test();
     </script>
   </body>
 </html>

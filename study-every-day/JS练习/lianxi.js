@@ -517,3 +517,4 @@ function Countdown() {
 // } catch (error) {
 //     console.log(error);
 // } finally {
+// Sting Bigint Number null undefined Symbol  Boolean, Object(包含 Array Function Date RegExp)

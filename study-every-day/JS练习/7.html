@@ -145,12 +145,12 @@
       //   }
       // }
 
-      console.log(String.fromCharCode(97));
-      console.log('ba'.charAt(0));
-      console.log('ba'.substring(0, 1));
-      console.log('ba'.slice(0, 1));
-      console.log('ba'.substr(0, 1));
-      console.log('ba'.charCodeAt(0));
+      // console.log(String.fromCharCode(97));
+      // console.log('ba'.charAt(0));
+      // console.log('ba'.substring(0, 1));
+      // console.log('ba'.slice(0, 1));
+      // console.log('ba'.substr(0, 1));
+      // console.log('ba'.charCodeAt(0));
 
       //----------------------------------------------------------
 
@@ -275,42 +275,31 @@
 
       // let rr = 'key=vals'.match(/^(.+)=(.+)$/); // [原始值，匹配到的值，index]
       // console.log(rr);
-      // // console.log(rr['index']);
+      // //console.log(rr['index']);
       // console.dir(RegExp.$1);
       // console.dir(RegExp.$2);
       // console.dir(RegExp.input);
       // console.dir(RegExp.$_);
 
       console.log('**********');
-      var name = 1;
-
-      function test() {
-        var name = 2;
-
-        console.log(this.name);
-
-        return function inner() {
-          console.log(name);
-        };
-      }
-
-      test();
-
-      test()();
-
-      var b = {
-        name: 3,
-      };
-
-      b.test = test;
-
-      b.test();
-
-      var c = b.test;
-
-      c();
-
-      new test();
+      // var name = 1;
+      // function test() {
+      //   var name = 2;
+      //   console.log(this.name);
+      //   return function inner() {
+      //     console.log(name);
+      //   };
+      // }
+      // test();
+      // test()();
+      // var b = {
+      //   name: 3,
+      // };
+      // b.test = test;
+      // b.test();
+      // var c = b.test;
+      // c();
+      // new test();
 
       class Stack {
         constructor() {
@@ -373,9 +362,9 @@
           }, 5000);
         });
       }
-      promiseFecth().then((res) => {
-        console.log(res); // 我是返回的数据
-      });
+      // promiseFecth().then((res) => {
+      //   console.log(res); // 我是返回的数据
+      // });
 
       const address = [
         {
@@ -421,9 +410,9 @@
         }
         return res;
       }
-      console.log(getNameById(address, 2));
-      console.log(getNameById(address, 111));
-      console.log(getNameById(address, 32));
+      // console.log(getNameById(address, 2));
+      // console.log(getNameById(address, 111));
+      // console.log(getNameById(address, 32));
 
       class Pro {
         status = 'pending';
@@ -438,59 +427,121 @@
         }
         resolve(value) {
           if (this.status === 'pending') {
-            this.status === 'resolve';
-            this.value === value;
+            this.status = 'resolve';
+            this.value = value;
+            this.callbacks.map((item) => {
+              setTimeout(() => {
+                item.onResove && item.onResove();
+              });
+            });
           }
         }
         reject(value) {
           if (this.status === 'pending') {
-            this.status === 'reject';
-            this.value === value;
+            this.status = 'reject';
+            this.value = value;
+            this.callbacks.map((item) => {
+              setTimeout(() => {
+                item.onReject && item.onReject();
+              });
+            });
           }
         }
         then(onResove, onReject) {
-          let proRes = new Pro((resolve, reject) => {
+          const onResoveOrOnReject = (onResoveOrOnReject) => {
+            let result = onResoveOrOnReject(this.value);
+            if (result === proRes) {
+              throw new Error('不能相等');
+            }
+            try {
+              if (result instanceof Pro) {
+                result.then(resolve, reject);
+              } else {
+                resolve(result);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          };
+          const proRes = new Pro((resolve, reject) => {
             if (typeof resolve !== 'function') {
               resolve = (value) => value;
             }
             if (typeof reject !== 'function') {
               resolve = (value) => value;
             }
-
             if (this.status === 'resolve') {
-              let result = onResove(this.value);
-              try {
-                if (result instanceof Pro) {
-                  result.then(resolve, reject);
-                } else {
-                  resolve(result);
-                }
-              } catch (error) {
-                reject(error);
-              }
+              setTimeout(() => {
+                onResoveOrOnReject(onResove);
+              });
             }
             if (this.status === 'reject') {
+              setTimeout(() => {
+                onResoveOrOnReject(onReject);
+              });
             }
             if (this.status === 'pending') {
               this.callbacks.push({
                 onResove: () => {
-                  let result = onResove(this.value);
-                  try {
-                    if (result instanceof Pro) {
-                      result.then(resolve, reject);
-                    } else {
-                      resolve(result);
-                    }
-                  } catch (error) {
-                    reject(error);
-                  }
+                  onResoveOrOnReject(onResove);
                 },
-                onReject: () => {},
+                onReject: () => {
+                  onResoveOrOnReject(onReject);
+                },
               });
             }
           });
-
           return proRes;
+        }
+        catch(onRreject) {
+          return this.then(undefined, onRreject);
+        }
+
+        static resolve(value) {
+          return new Pro((resolve, reject) => {
+            try {
+              if (value instanceof Pro) {
+                value.then(resolve, reject);
+              } else {
+                resolve(value);
+              }
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
+
+        static reject(value) {
+          return new Pro((resolve, reject) => {
+            reject(value);
+          });
+        }
+
+        static race(value) {
+          return new Pro((resolve, reject) => {
+            value.forEach((item) => {
+              item.then(resolve, reject);
+            });
+          });
+        }
+
+        static all(proArr) {
+          let arr = [];
+          return new Pro((resolve, reject) => {
+            proArr.forEach((item, index) => {
+              item.then(
+                (v) => {
+                  arr[index] = v;
+                  if (arr.length === proArr.length) {
+                    resolve(arr);
+                  }
+                },
+                (r) => {
+                  reject(r);
+                }
+              );
+            });
+          });
         }
       }
     </script>
