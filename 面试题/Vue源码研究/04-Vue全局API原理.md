@@ -19,10 +19,10 @@ Vue.use 是用来安装 Vue 插件的
 
 ## Vue.mixin(options) 的作用是什么？
 
-- Vue.mixin 本质上就是调用 mergeOptions()，作用就是将两个选项对象合并为一个新对象
+- Vue.mixin 本质上就是调用 mergeOptions(parent,child)，作用就是将两个选项对象合并为一个新对象
 - 首先对 props、inject、directives 选项进行标准化处理
 - 处理 options 上的 extends 和 mixins，最终将它们合并到 全局配置 上
-- options 配置 child 和 全局配置 parent 进行合并发生选项冲突时，options 配置会覆盖 全局配置
+- options 配置 child 和 全局配置 parent 进行合并发生选项冲突时，options 配置会覆盖 全局配置 子选项会（组件 vm 的配置选项）覆盖父选项（Vue 构造函数的配置）的配置
 
 ## PS：当使用组件配置项 mixins 进行混入配置项时
 
@@ -34,7 +34,7 @@ Vue.use 是用来安装 Vue 插件的
 Vue.component 用于注册全局组件.
 
 - 本质上就是将 当前组件配置 注册到全局配置的 components 选项上（Vue.options.components），
-- 然后各个子组件在生成 vnode 时会使用 Vue.extend 方法中 mergeOptions 将全局的 components 选项合并到每个子组件 components 配置项上。
+- 然后各个子组件在生成 vnode 时会使用 Vue.extend 方法中 mergeOptions 将 Vue 全局的 components 选项合并到每个子组件 components 配置项上。
 - Vue.component(compName) 表示获取 compName 的组件构造函数
 - 若 Comp 是组件配置对象，则使用 Vue.extend 方法得到组件构造函数，否则直接进行下一步
   在全局配置上添加当前组件信息，this.options.components = { compName：CompConstructor, xxx }
