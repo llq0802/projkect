@@ -92,13 +92,10 @@ export function createStore(reducer) {
   // 监听state更新后的回调函数
   function subscribe(callback) {
     callbacks.push(callback);
-
-    return {
-      //取消监听
-      unsubscribe() {
-        const index = callbacks.indexOf(callback);
-        callbacks.splice(index, 1);
-      },
+    //取消监听
+    return function unsubscribe() {
+      const index = callbacks.indexOf(callback);
+      callbacks.splice(index, 1);
     };
   }
   //返回stroe对象
@@ -121,5 +118,15 @@ export function combineReducers(reducers) {
       prv[cur] = reducers[cur](state[cur], action);
       return prv;
     }, {});
+  };
+}
+
+export function combineReducerss(reducers) {
+  return (state = {}, action) => {
+    let res = {};
+    Object.keys(reducers).map((key) => {
+      res[key] = reducers[key](state[key], action);
+    });
+    return res;
   };
 }
