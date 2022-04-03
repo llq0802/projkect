@@ -125,7 +125,6 @@ export default function parse(template) {
     curEle.attr = {};
     // 属性对象的 key 组成的数组
     const propertyArr = Object.keys(rawAttr);
-
     if (propertyArr.includes('v-model')) {
       // 处理 v-model 指令
       processVModel(curEle);

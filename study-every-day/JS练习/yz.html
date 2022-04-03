@@ -229,7 +229,7 @@
       <aside>侧边</aside>
       <article>右侧</article>
     </main>
-    <footer>页底</footer>
+    <footer>页底-record-fields</footer>
 
     <div class="content">
       <div>11</div>
@@ -1111,6 +1111,11 @@
 
       const treeList = [
         {
+          id: '2-1',
+          text: '二级菜单1',
+          parentId: '1',
+        },
+        {
           id: '1',
           text: '一级菜单1',
           parentId: null,
@@ -1125,11 +1130,7 @@
           text: '一级菜单3',
           parentId: null,
         },
-        {
-          id: '2-1',
-          text: '二级菜单1',
-          parentId: '1',
-        },
+
         {
           id: '2-2',
           text: '二级菜单2',
@@ -1184,9 +1185,17 @@
 
       const arrayToTree = (items) => {
         const result = [];
+        const list = [];
         // const itemMap = {}; // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
         const itemMap = new Map(); // 有时候多层遍历循环或者递归的时候， 可以考虑把数组转化成map对象通过id键名找到以前数组的每一项 而不是通过遍历
-        for (const item of items) {
+        items.forEach((item) => {
+          if (item.parentId == null) {
+            list.unshift(item);
+          } else {
+            list.push(item);
+          }
+        });
+        for (const item of list) {
           const id = item.id;
           const pid = item.parentId;
           // if (!itemMap[id]) {

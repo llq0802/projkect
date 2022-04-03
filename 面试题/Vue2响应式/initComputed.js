@@ -37,10 +37,10 @@ export default function initComputed(vm) {
  *
  * 将计算属性代理到 Vue 实例上
  * @param {*} vm Vue 实例
- * @param {*} key computed 的计算属性key
+ * @param {*} key computed 的计算属性key 
  * @param {*} def computed 的计算属性的值
  */
-function defineComputed(vm, key, def) {
+function defineComputed(vm, key, def) { 
   // 属性描述符
   const description = {
     //后续访问会走代理

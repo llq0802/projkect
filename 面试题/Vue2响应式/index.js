@@ -15,7 +15,7 @@ export default function Vue(options) {
   this._init(options);
 }
 
-Vue.prototype._init = function (options) {
+Vue.prototype._init = function(options) {
   // this 是vue实例
   this.$options = options;
   //初始化Data数据
@@ -33,7 +33,7 @@ Vue.prototype._init = function (options) {
   }
 };
 
-Vue.prototype.$mount = function (el) {
+Vue.prototype.$mount = function(el) {
   if (el === document.body || el === document.documentElement) {
     throw new Error('挂载元素不能是body或者html');
   }
