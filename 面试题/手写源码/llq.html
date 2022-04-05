@@ -398,7 +398,11 @@
         let newArray = [];
         while (startIndex < array.length) {
           newArray.push(array.slice(startIndex, (startIndex += subNum)));
-          // newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
+
+          // 1.newArray.push(array.slice(startIndex, startIndex + subNum));
+          // startIndex+=subNum
+
+          // 2.newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
           // (page-1*size),(page*size)
         }
         return newArray;
@@ -915,7 +919,7 @@
         });
         return blob;
       }
-      // .blob流 File文件转换为base64
+      // .blob流 - File文件转换为base64
       //       readAsBinaryString file 将文件读取为二进制码
       // readAsDataURL file 将文件读取为 DataURL
       // readAsText file, [encoding] 将文件读取为文本
@@ -926,6 +930,11 @@
           const base64Url = e.target.result;
         };
       }
+      // blob转File文件
+      let file = new File([blob], filename, filetype);
+      // Blob {size: 306788, type: "image/png"}
+      // var file = new File([blob], filename, {type: contentType, lastModified: Date.now()});
+
       //  把文件或者blob流转成内存地址
       // URL.createObjectURL()
       // URL.revokeObjectURL()
