@@ -67,7 +67,7 @@ export function connect(mapState = (state) => state, mapDispatch = (dispatch) =>
 }
 
 /**
- *
+ *  手写Redux
  * @param {* function} reducer
  * @returns {* object } getStore dispatch subscribe,
  */
@@ -88,7 +88,6 @@ export function createStore(reducer) {
       item();
     });
   }
-
   // 监听state更新后的回调函数
   function subscribe(callback) {
     callbacks.push(callback);

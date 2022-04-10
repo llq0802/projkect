@@ -428,7 +428,6 @@
       map.set('a', 1);
       const set = new Set([11, 22, 33]);
       set.add(55);
-      const fr = new FileReader();
 
       // console.log(fr);
       // const obj1 = Object.fromEntries(map);
@@ -449,24 +448,43 @@
       // console.log('a'.padStart(5, '*'));
       // console.log('a'.padEnd(5, '*'));
 
-      async function fn() {
-        setTimeout(() => {
-          console.log('setTimeout');
-        });
-        await console.log(999);
-        console.log('async');
+      // async function fn() {
+      //   setTimeout(() => {
+      //     console.log('setTimeout');
+      //   });
+      //   await console.log(999);
+      //   console.log('async');
+      // }
+      // function test() {
+      //   new Promise((resolve, reject) => {
+      //     resolve();
+      //     fn();
+      //     console.log('Promise');
+      //   }).then(() => {
+      //     console.log('then');
+      //   });
+      //   console.log(777);
+      // }
+      // test();
+      const fd = new FormData();
+
+      const filelist = [{ lable: 'gg', value: 'jj' }, 22, 33];
+
+      for (let i = 0; i < filelist.length; i++) {
+        const element = filelist[i];
+        fd.append('img', JSON.stringify(element));
       }
-      function test() {
-        new Promise((resolve, reject) => {
-          resolve();
-          fn();
-          console.log('Promise');
-        }).then(() => {
-          console.log('then');
-        });
-        console.log(777);
-      }
-      test();
+
+      fd.append('img1', JSON.stringify({ age: 12 }));
+      fd.append('img2', JSON.stringify([789, 287]));
+      // console.log(fd.getAll());
+      console.log(fd.getAll('img'));
+      console.log(fd.get('img1'));
+      console.log(fd.get('img2'));
+      // let bv = /\.([\S\s]*)$/.exec('ca.dwg');
+      // console.log(bv);
+      // let bvj = /\.dwg$/.test('gs.dwg');
+      // console.log(bvj);
     </script>
   </body>
 </html>
