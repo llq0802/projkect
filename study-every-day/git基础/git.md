@@ -30,6 +30,7 @@ _ git config --global user.email 958614130@qq.com
 ---
 
       *  git clone  克隆远程仓库地址 自动会将仓库分支关联
+
       * bug修复分支名-hotfix  功能需求分支名-feture  主分支-master 开发分支-dev  测试分支-test
 
 ---
@@ -44,6 +45,7 @@ _ git config --global user.email 958614130@qq.com
 -     *  当github上已经有master分支和dev分支
       *  在本地git checkout -b dev 新建并切换到本地dev分支
       *  git pull origin dev 本地分支与远程分支相关联
+
 -     *  当远程没有分支,在本地新建分支并推送到远程
       *  git checkout -b test
       *  git push origin test   这样远程仓库中也就创建了一个test分支
@@ -79,5 +81,27 @@ _ git config --global user.email 958614130@qq.com
 - git 公钥生成方法：
   - ssh-keygen -t rsa -C '你的邮箱' -f ~/.ssh/gitee_id_rsa
   - ssh-keygen -t rsa -C '你的邮箱' -f ~/.ssh/github_id_rsa
+- ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/gitlab-rsa
+
   - 在 Git Bash 中输入 ssh-keygen -t rsa -C "你的邮箱" 或者 ssh-keygen -t ed25519 -C "你的邮箱"
+
   - 查看公钥命令：cat ~/.ssh/id_ed25519.pub 或者直接在 C 盘 user 文件中的.ssh 文件中用记事本打开
+
+- 使用命令 touch ~/.ssh/config，在~/.ssh 文件夹下添加 config 文件，可以看到文件夹下面多了一个 config 文件。
+- 右键使用记事本打开，复制以下信息添加到 config 文件保存，其中 Host 和 HostName 填写 git 服务器的域名，IdentityFile 填写私钥的路径。
+
+```
+# gitee
+Host gitee.com
+HostName gitee.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/gitee_id_rsa
+# github
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/github_id_rsa
+```
+
+$ ssh -T git@gitee.com
+$ ssh -T git@github.com

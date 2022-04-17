@@ -481,8 +481,10 @@
       console.log(fd.getAll('img'));
       console.log(fd.get('img1'));
       console.log(fd.get('img2'));
-      // let bv = /\.([\S\s]*)$/.exec('ca.dwg');
-      // console.log(bv);
+
+      let bv = /\.([\S\s]*)$/.exec('ca.dwg');
+      'gag'.match(/\.(dwg|cad)$/);
+      console.log(bv[1]);
       // let bvj = /\.dwg$/.test('gs.dwg');
       // console.log(bvj);
     </script>
