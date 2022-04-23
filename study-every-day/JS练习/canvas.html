@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvasent</title>
+  </head>
+  <body>
+    <img id="img" src="./aaa.jpg" />
+    <canvas
+      id="can"
+      width="800"
+      height="800"
+      style="border:1px solid #d3d3d3; margin: 50px;"
+    ></canvas>
+    <button id="btn">清除画布</button>
+  </body>
+
+  <script>
+    let flag = false;
+    let beginX, beginY;
+    let canvas = document.getElementById('can');
+    let w = canvas.width;
+    let h = canvas.height;
+    let i = 1;
+
+    let ctx = canvas.getContext('2d');
+
+    // img.onload = function() {
+    //   const img = document.getElementById('img');
+    //   ctx.drawImage(img, 0, 0, img.width, img.height);
+    // };
+    // ctx.beginPath();
+    // ctx.lineCap = 'round';
+    // ctx.lineWidth = 3; // 设置线宽
+    // ctx.strokeStyle = 'red'; // 设置路径颜色
+    // ctx.arc(50, 50, 3, 0, 2 * Math.PI);
+    // ctx.stroke();
+    // ctx.moveTo(50, 50);
+    // canvas.onclick = (e) => {
+    //   i++;
+    //   ctx.arc(e.offsetX, e.offsetY, 3, 0, 2 * Math.PI);
+    //   ctx.lineTo(e.offsetX, e.offsetY);
+    //   ctx.stroke();
+    //   if (i === 4) {
+    //     ctx.closePath();
+    //     i = 1;
+    //   }
+    //   ctx.stroke();
+    // };
+
+    // btn.onclick = function clear() {
+    //   // ctx.clearRect(0, 0, 800, 800);
+    //   // ctx.restore();
+    //   // canvas.width = w;
+    //   // canvas.height = h;
+    //   ctx.fillStyle = '#ffffff';
+    //   ctx.fillRect(0, 0, w, h);
+    // };
+
+    canvas.onmousedown = (e) => {
+      console.log(e.offsetX, e.offsetY);
+      beginX = e.offsetX;
+      beginY = e.offsetY;
+      flag = true;
+    };
+    canvas.onmouseup = (e) => {
+      console.log(e.offsetX, e.offsetY);
+      flag = false;
+      // beginX = 0;
+      // beginY = 0;
+    };
+
+    canvas.onmousemove = (e) => {
+      // console.log(e.offsetX, e.offsetY);
+      if (!flag) return;
+      let stopX = e.offsetX;
+      let stopY = e.offsetY;
+      writing(beginX, beginY, stopX, stopY, ctx);
+      beginX = stopX; // 这一步很关键，需要不断更新起点，否则画出来的是射线簇
+      beginY = stopY;
+    };
+
+    const writing = (beginX, beginY, stopX, stopY, ctx) => {
+      ctx.beginPath(); // 开启一条新路径
+      ctx.globalAlpha = 1; // 设置图片的透明度
+      ctx.lineWidth = 3; // 设置线宽
+      ctx.strokeStyle = 'red'; // 设置路径颜色
+      ctx.moveTo(beginX, beginY); // 从(beginX, beginY)这个坐标点开始画图
+      ctx.lineTo(stopX, stopY); // 定义从(beginX, beginY)到(stopX, stopY)的线条（该方法不会创建线条）
+      ctx.closePath(); // 创建该条路径
+      ctx.stroke(); // 实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。
+    };
+  </script>
+</html>

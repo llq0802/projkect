@@ -487,6 +487,27 @@
       console.log(bv[1]);
       // let bvj = /\.dwg$/.test('gs.dwg');
       // console.log(bvj);
+
+      const arrr = [
+        { id: 1, name: '办公费吧' },
+        { id: 2, name: '遇见' },
+        { id: 3, name: '他' },
+        { id: 4, name: '他他人如果' },
+        { id: 5, name: '发' },
+        { id: 6, name: '色' },
+      ];
+
+      let nu = arrr
+        .map((item) => {
+          if (item.id !== 1) {
+            return {
+              ...item,
+              desc: 789,
+            };
+          }
+        })
+        .filter(Boolean);
+      console.log(nu);
     </script>
   </body>
 </html>
