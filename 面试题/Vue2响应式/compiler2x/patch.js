@@ -233,6 +233,7 @@ function setVmodel(tag, value, vnode, type) {
 /**
  * v-bind 原理
  * @param {*} vnode
+ * @return viod
  */
 function setVbind(vnode) {
   const {

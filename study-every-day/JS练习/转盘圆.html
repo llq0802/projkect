@@ -476,38 +476,38 @@
       }
 
       fd.append('img1', JSON.stringify({ age: 12 }));
-      fd.append('img2', JSON.stringify([789, 287]));
+      fd.append('img2', [789, 287]);
       // console.log(fd.getAll());
       console.log(fd.getAll('img'));
       console.log(fd.get('img1'));
       console.log(fd.get('img2'));
 
-      let bv = /\.([\S\s]*)$/.exec('ca.dwg');
-      'gag'.match(/\.(dwg|cad)$/);
-      console.log(bv[1]);
-      // let bvj = /\.dwg$/.test('gs.dwg');
-      // console.log(bvj);
+      // let bv = /\.([\S\s]*)$/.exec('ca.dwg');
+      // 'gag'.match(/\.(dwg|cad)$/);
+      // console.log(bv[1]);
+      // // let bvj = /\.dwg$/.test('gs.dwg');
+      // // console.log(bvj);
 
-      const arrr = [
-        { id: 1, name: '办公费吧' },
-        { id: 2, name: '遇见' },
-        { id: 3, name: '他' },
-        { id: 4, name: '他他人如果' },
-        { id: 5, name: '发' },
-        { id: 6, name: '色' },
-      ];
+      // const arrr = [
+      //   { id: 1, name: '办公费吧' },
+      //   { id: 2, name: '遇见' },
+      //   { id: 3, name: '他' },
+      //   { id: 4, name: '他他人如果' },
+      //   { id: 5, name: '发' },
+      //   { id: 6, name: '色' },
+      // ];
 
-      let nu = arrr
-        .map((item) => {
-          if (item.id !== 1) {
-            return {
-              ...item,
-              desc: 789,
-            };
-          }
-        })
-        .filter(Boolean);
-      console.log(nu);
+      // let nu = arrr
+      //   .map((item) => {
+      //     if (item.id !== 1) {
+      //       return {
+      //         ...item,
+      //         desc: 789,
+      //       };
+      //     }
+      //   })
+      //   .filter(Boolean);
+      // console.log(nu);
     </script>
   </body>
 </html>
