@@ -87,7 +87,7 @@ _ git config --global user.email 958614130@qq.com
 
   - 查看公钥命令：cat ~/.ssh/id_ed25519.pub 或者直接在 C 盘 user 文件中的.ssh 文件中用记事本打开
 
-- 使用命令 touch ~/.ssh/config，在~/.ssh 文件夹下添加 config 文件，可以看到文件夹下面多了一个 config 文件。
+- 使用命令 touch ~/.ssh/config 在~/.ssh 文件夹下添加 config 文件，可以看到文件夹下面多了一个 config 文件。
 - 右键使用记事本打开，复制以下信息添加到 config 文件保存，其中 Host 和 HostName 填写 git 服务器的域名，IdentityFile 填写私钥的路径。
 
 ```
@@ -101,7 +101,31 @@ Host github.com
 HostName github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/github_id_rsa
+
 ```
 
 $ ssh -T git@gitee.com
 $ ssh -T git@github.com
+
+- config 内容:
+
+# gitee
+
+Host gitee.com
+HostName gitee.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/gitee_id_rsa
+
+# github
+
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/github_id_rsa
+
+# gitlab
+
+Host gitlab.com
+HostName gitlab.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
