@@ -72,6 +72,7 @@ _ git config --global user.email 958614130@qq.com
 
        * 撤销当前的修改：git reset --hard
        * 回退到某一版本但保存自该版本起的修改，可以将 --hard 改为具体的Commit的id如: git reset 1d7f5d89346
+       * 使用 --soft 参数的话会回退到之前的版本，但是保留当前工作区的修改，可以重新提交
        * 回退到某一版本并且放弃所有的修改 如: git reset --hard 1d7f5d89346
        * 如何以当前版本为基础，回退指定个commit：git reset HEAD~X X代表你要回退的版本数量，是数字！！！
        * 如何回退到和远程版本一样：git reset --hard origin/master  origin代表你远程仓库的名字，master代表分支名

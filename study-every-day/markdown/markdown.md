@@ -1,12 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2021-07-27 22:00:46
- * @LastEditTime: 2021-07-27 23:12:16
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \web\JS练习\markdown.md
--->
-
 ### JavaScript
 
 <u>带下划线文本</u>
@@ -18,6 +9,7 @@ _这是倾斜的文字_
 _热风_
 _热风_
 **_这是斜体加粗的文字_**
+_这是倾斜的文字_
 ~~这是加删除线的文字~~
 
 > 这是引用的内容
@@ -27,6 +19,8 @@ _热风_
 > > > 这是引用的内容 #####额额 x
 
 - 列表内容
+
+* 列表内容
   - 列表内容
     - 列表内容
       - 列表内容
