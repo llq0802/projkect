@@ -1,11 +1,14 @@
-/*
- * @Author: your llq
- * @Date: 2021-08-07 15:54:50
- * @LastEditTime: 2021-12-20 09:24:29
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \web\lianxi.ts
+/**
+ *TS内置工具类型
  */
+//  Partial<>  将一个类型的所有属性变为可选的.
+//  Required<> 将给定类型的所有属性变为必填的
+//  Readonly<> 将给定类型的所有属性设为只读，这意味着给定类型的属性不可以被重新赋值。
+//  Pick<> 从给定的类型中选取出指定的键值，然后组成一个新的类型。
+//  Omit<> 是返回去除指定的键值之后返回的新类型
+//  Record<string,any> Record 的作用是生成接口类型，然后我们使用传入的泛型参数分别作为接口类型的属性和值。
+//  null! 非空判断
+
 // let arr: Array<number> = [1];
 // let arr1: string[] = ["a"];
 // let arr3: [string, number, boolean] = ["a", 1, false];
@@ -102,7 +105,7 @@ const params = {
 // };
 // let [a, b] = [1, 2];
 // console.log(a, b, data);
-enum state {
+enum State {
   aa = 1,
   bb = 2,
 }

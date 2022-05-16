@@ -43,7 +43,7 @@ _ git config --global user.email 958614130@qq.com
 ---
 
 -     *  当github上已经有master分支和dev分支
-      *  在本地git checkout -b dev 新建并切换到本地dev分支
+      *  
       *  git pull origin dev 本地分支与远程分支相关联
 
 -     *  当远程没有分支,在本地新建分支并推送到远程
