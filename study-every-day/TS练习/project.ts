@@ -14,7 +14,7 @@
 // let arr3: [string, number, boolean] = ["a", 1, false];
 // let arra: any = ["a", 1, false];
 // //枚举
-// enum flag {
+// enum Flag {
 //   red,
 //   bule,
 // }

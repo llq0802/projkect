@@ -13,7 +13,7 @@
         width: 800px;
         height: 800px;
         padding: 10px;
-        background-color: red;
+        /* background-color: red; */
         display: grid;
         place-content: center;
       }
@@ -28,7 +28,7 @@
     <div class="container">
       <div class="box"></div>
     </div>
-    <script>
+    <script type="module" defer>
       // 重排，回流是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
       // 重绘是指改变页面的样式 比如 background 字体颜色
       // Reflect是ES6为了操作对象而新增的API, Proxy是对对象进行代理操作, Reflect一般情况下都会相互配合使用
@@ -61,7 +61,8 @@
       // console.log(document.cookie);
       // 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:
 
-      // Object.getOwnPropertySymbols();
+      // Object.getOwnPropertySymbols(); //获取对象的Symbols属性
+
       // 封装获取cookie
       function getCookie(cname) {
         let name = cname + '=';
@@ -74,10 +75,10 @@
       } // 匹配汉字
       // console.log(getCookie("username"));
 
-      // for (var i = 0; i < 5; i++) {
+      // for (let i = 0; i < 5; i++) {
       //   setTimeout(function() {
-      //     console.log(i * 2);
-      //   }, 1000 * i);
+      //     console.log(i);
+      //   });
       //   console.log(i);
       // }
 
@@ -94,7 +95,7 @@
       // const date = new Date().getTime();
       // console.dir(date);
       // console.dir(Math);
-      // console.log(Object.prototype.toString.call("a").slice(8, -1));
+      // console.log(Object.prototype.toString.call("a").slice(8, -1)); String Number
 
       //  XSS攻击:跨站脚本攻击)是一种代码注入攻击
       //  反之方式:对字符串进行编码。   encodeURIComponent()
@@ -140,11 +141,14 @@
        */
 
       let hd = 'houdunren2200hdcms998';
-      // console.log(hd.match(/\d/));
-      // console.log(/\d/g.exec(hd));
-      // console.log(hd.match(/\d/g));
 
-      let str = 'hn.com';
+      // console.log(/\d/g.test(hd));
+
+      // console.log(/\w/g.exec(hd));
+      // console.log(hd.match(/\d/));
+      // console.log(hd.match(/\d/g).join(''));
+
+      // let str = 'hn.com';
       // console.log(str.search("om"));
 
       // *	重复零次或更多次
@@ -158,7 +162,7 @@
       //  \d数字0-9 , \w与任意一个英文字母,数字或下划线匹配 \s空格 .点是匹配任意
       // 可以使用 [\s\S]+ 或 [\d\D] .* 来匹配所有字符
 
-      //       []	只匹配其中的一个原子 ()表示一个组
+      //       []	只匹配其中的一个原子 ()表示一个组  // RegExp.$1
       // [^]	只匹配"除了"其中字符的任意一个原子
       // [0-9]	匹配0-9任何一个数字
       // [a-z]	匹配小写a-z任何一个字母
@@ -166,26 +170,27 @@
       //通用的邮箱验证
       const regMail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
-      const proxy = new Proxy(
-        {
-          name: 'll',
-        },
-        {
-          get(obj, property) {},
-          set(obj, property, newValue) {
-            // console.log("2");
-          },
-          // 删除
-          deleteProperty(obj, property) {
-            // console.log("删除");
-          },
-        }
-      );
-      proxy.age = 20;
-      delete proxy.name;
+      // const proxy = new Proxy(
+      //   {
+      //     name: 'll',
+      //   },
+      //   {
+      //     get(obj, property) {},
+      //     set(obj, property, newValue) {
+      //       // console.log("2");
+      //     },
+      //     // 删除
+      //     deleteProperty(obj, property) {
+      //       // console.log("删除");
+      //     },
+      //   }
+      // );
+      // proxy.age = 20;
+      // delete proxy.name;
       // set 会自动吧字符串转成不能重复的伪数组
       // console.log([...new Set("houdunren")].join("")); //houdnre
       // console.log(new Set("houdunren")); //houdnre
+
       // console.log(new Set(["a", "b", "c", "d", "e", "f"]));
 
       // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键,但是WeaMap对键名是弱引用的，键值是正常引用。
@@ -206,20 +211,17 @@
         if (arr.length === 0) {
           return []; // 返回空数组
         }
-
-        var cIndex = Math.floor(arr.length / 2);
-        var c = arr.splice(cIndex, 1);
-        var l = [];
-        var r = [];
-
-        for (var i = 0; i < arr.length; i++) {
+        let cIndex = Math.floor(arr.length / 2);
+        let c = arr.splice(cIndex, 1);
+        let l = [];
+        let r = [];
+        for (let i = 0; i < arr.length; i++) {
           if (arr[i] < c) {
             l.push(arr[i]);
           } else {
             r.push(arr[i]);
           }
         }
-
         return quickSort(l).concat(c, quickSort(r));
       }
       // console.log(arr);
@@ -246,11 +248,11 @@
       // 如果生成的结构是乱的，可以用 代码块三点语法 包起来
       //
 
-      for (let i = 0; i < 5; i++) {
-        setTimeout(function() {
-          // console.log(i);
-        }, 1000);
-      }
+      // for (let i = 0; i < 5; i++) {
+      //   setTimeout(function() {
+      //     // console.log(i);
+      //   }, 1000);
+      // }
 
       function view() {
         let i = 0;
@@ -262,7 +264,6 @@
         })();
       }
 
-      console.time('runtime');
       // let count = 0;
       // let num = 987654321;
       // function hd1() {
@@ -334,28 +335,6 @@
       //   console.log(item);
       // }
 
-      // keycode=123  是f12键
-      // 禁止右键菜单
-      document.oncontextmenu = function() {
-        return false;
-      };
-      // 禁止文字选择
-      document.onselectstart = function() {
-        return false;
-      };
-      // 禁止复制
-      document.oncopy = function() {
-        return false;
-      };
-      // 禁止剪切
-      document.oncut = function() {
-        return false;
-      };
-      // 禁止粘贴
-      document.onpaste = function() {
-        return false;
-      };
-
       function formatTime(time, option) {
         time = +time * 1000;
         const d = new Date(time);
@@ -414,9 +393,31 @@
         return timeStr;
       }
 
+      // keycode=123  是f12键
+      // 禁止右键菜单
+      document.oncontextmenu = function() {
+        return false;
+      };
+      // 禁止文字选择
+      document.onselectstart = function() {
+        return false;
+      };
+      // 禁止复制
+      document.oncopy = function() {
+        return false;
+      };
+      // 禁止剪切
+      document.oncut = function() {
+        return false;
+      };
+      // 禁止粘贴
+      document.onpaste = function() {
+        return false;
+      };
+
       // ['1','2','3'].map(parseInt) =>[1,NaN,NaN]
       // 0.1+0.2=0.3000000000004 他们转化成二进制是无限循环！ IEEE754标准 64位双精度表示（符号位 0正数 1负数，指数为，有效位，）
-      // parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN
+      // Nbumber.parseInt() 接受两个参数，第二个是标识是什么进制的数，必须在（2-36）之间， 0表示10进制 2表示2进制 1会返回NaN   number最大16位
 
       //  == 进行比较时，如果两边数据类型不一样，先转化成相同护具类型。规则如下：
       // 1.{} =={}  两个对象（obj，fun，arr，date，reg）比较时，比较的是堆内存的地址，栈指向堆内存地址
@@ -425,12 +426,12 @@
       // 4.对象与字符串比较时，调用对象原型的toString()方法转成字符串在进行比较
       //5.  剩余情况比较时，都是转成数字进行比较（前提是数据类型不一样）
 
-      // 滚动条到底部的条件即为：scrollTop + clientHeight == scrollHeight
+      // 滚动条到底部的条件即为：scrollTop + clientHeight === scrollHeight
 
       // let log = console.log.bind(document);
       // let url = 'https://www.bai du.com?age=20';
-      // let res1 = encodeURI(url);//对空格
-      // let res2 = encodeURIComponent(url); //对 ? = / : 都会
+      // let res1 = encodeURI(url);//对空格 不会对: 一般是对整个url编码
+      // let res2 = encodeURIComponent(url); //对 ? = / : 都会  一般是对url参数编码
       // console.log(res1);
       // console.log(res2);
 
@@ -489,18 +490,20 @@
       // console.log(Number.parseInt(BigInt(2)));
       // console.table([11, 22, 3]);
 
-      try {
-        console.log('try');
-        console.log(ry);
-      } catch (error) {
-        console.warn(error);
-        // alert(error);
-      } finally {
-        console.log('finally');
-      }
+      // try {
+      //   console.log('try');
+      //   console.log(ry);
+      // } catch (error) {
+      //   // console.warn(error);
+      //   // throw 123;
+      //   throw new Error('error');
+      //   // return 123;
+      // } finally {
+      //   console.log('finally');
+      //   console.log(789789789789797878);
+      // }
 
       function check(obj) {
-        obj = { ...obj };
         obj.aaa = 777;
       }
       let pp = {
@@ -508,7 +511,261 @@
         name: 'llq',
       };
       check(pp);
-      console.log(pp);
+
+      // sort() reverse (): 该方法会改变原来的数组，而不会创建新的数组。
+
+      // console.log(Array.from('123', (item) => item * 2));
+      // console.table(pp);
+      // let arr1 = [1, 4, 2, 9];
+      // console.log([...arr1].sort((a, b) => a - b)); //[9, 2, 4, 1]
+      // console.log(arr1);
+      // const arr2 = ['a', 'b', 'c', '后盾人'];
+
+      // for (const key of arr2.values()) {
+      //   console.log(key);
+      // }
+      // let lessons = [
+      //   { title: '媒体查询响应式布局', category: 'css' },
+      //   { title: 'FLEX 弹性盒模型', category: 'css' },
+      //   { title: 'MYSQL多表查询随意操作', category: 'mysql' },
+      // ];
+      // let cssLessons = lessons.filter((item, index, array) => item.category.toLowerCase() == 'css');
+      // console.log(cssLessons);
+
+      // let asd = {
+      //   age: 20,
+      //   name: 'llq',
+      // };
+      // console.log(asd.hasOwnProperty('age'));
+      // console.log(Object.hasOwn(asd, 'age'));
+
+      let hds = {
+        title: '后盾人',
+        url: 'houdunren.com',
+        teacher: {
+          name: '向军大叔',
+        },
+      };
+      // console.log(JSON.stringify(hds, null, 4));
+
+      // const promise = new Promise((resolve, reject) => {
+      //   resolve('hdcms');
+      // })
+      //   .then((msg) => {
+      //     console.log('resolve');
+      //     throw 999;
+      //   })
+      //   .then((msg) => {
+      //     console.log(msg);
+      //   })
+      //   .catch((err) => {
+      //     console.log(45465156);
+      //   });
+
+      let numArr = [1, 2, 3];
+      numArr.forEach((item) => {
+        item = item * 2;
+      });
+      // console.log(numArr); // 打印结果：[1, 2, 3]
+
+      let objArr = [
+        { name: '云牧', age: 20 },
+        { name: '许嵩', age: 30 },
+      ];
+
+      objArr.forEach((item) => {
+        item = {
+          name: '邓紫棋',
+          age: '29',
+        };
+      });
+      // console.log(JSON.stringify(objArr, null, 4));
+
+      let objArr1 = [
+        { name: '云牧', age: 28 },
+        { name: '许嵩', age: 30 },
+      ];
+
+      // console.time('aaa');
+      // objArr1.forEach(async (item, i) => {
+      //   setTimeout(() => {
+      //     console.log('setTimeout');
+      //   }, 1_000 * i);
+      //   console.log('邓紫棋');
+      // });
+      // console.timeEnd('aaa');
+
+      // console.log(JSON.stringify(objArr1, null, 4));
+      // console.table(objArr1);
+      // console.table([11, 22, 33]);
+      // console.table({
+      //   title: '423',
+      //   cont: '7486456',
+      // });
+      window.onbeforeunload = function(e) {
+        console.log(78978979789789789789);
+        return '真的要离开吗？';
+      };
+
+      document.onvisibilitychange = (e) => {
+        console.log(e.target.visibilityState, e.target.hidden);
+      };
+
+      // const hanoi = (line, a, b, c) => {
+      //   if (line > 0) {
+      //     hanoi(line - 1, a, c, b);
+      //     console.log(`${a} -> ${c}`);
+      //     hanoi(line - 1, b, a, c);
+      //   }
+      // };
+      // hanoi(3, 'a', 'b', 'c')
+      // alert('hello \n world');
+
+      function mySort(count, strs) {
+        const sortArr = [];
+        for (let i = 0; i < count; i++) {
+          let tempArr = strs.split(' '),
+            name = tempArr[0],
+            level = tempArr[1],
+            year = tempArr[2],
+            money = tempArr[3];
+          sortArr.push({ name, level, year, money });
+        }
+        sortArr.sort((a, b) => {
+          let levelA = +a.level,
+            levelB = +b.level,
+            moneyA = +a.money,
+            moneyB = +b.money,
+            yearA = +a.year,
+            yearB = +b.year;
+          if (levelA === levelB) return moneyA - moneyB;
+          if (moneyA === moneyB) return yearB - yearA;
+          return levelB - levelA;
+        });
+        for (let i = 0, len = sortArr.length; i < len; i++) {
+          let { name, level, year, money } = sortArr[i];
+          // money = Number.isInteger(money) ? `${money}.00` : `${money}`;
+          money = +money.toFixed(2);
+          const result = `${name} ${level} ${year} ${money}`;
+          console.log(result);
+        }
+      }
+
+      let jsonStudents = [
+        { name: 'Dawson', totalScore: '197', Chinese: '100', math: '97' },
+        { name: 'HanMeiMei', totalScore: '196', Chinese: '99', math: '97' },
+        { name: 'LiLei', totalScore: '185', Chinese: '88', math: '97' },
+        { name: 'XiaoMing', totalScore: '196', Chinese: '96', math: '100' },
+        { name: 'Jim', totalScore: '196', Chinese: '98', math: '98' },
+        { name: 'Joy', totalScore: '198', Chinese: '99', math: '99' },
+      ];
+
+      jsonStudents.sort(function(a, b) {
+        let value1 = a.totalScore,
+          value2 = b.totalScore;
+        if (value1 === value2) {
+          return b.Chinese - a.Chinese;
+        }
+        return value2 - value1;
+      });
+      // console.log(jsonStudents);
+      // var arryh = ['A', 'cds', 'esadf', 'As'];
+      // arryh.sort();
+      // console.log(arryh);
+
+      // console.log((78912).toFixed(2));
+      let params = [
+        '张三 3 3 3000',
+        '李四 3 4 3000',
+        '王五 3 3 4000',
+        '赵六 4 3 3000',
+        '陆奇 4 4 4000',
+        '闫八 4 4 3980.99',
+      ];
+
+      // 输入样例：
+      // 张三 3 3 3000
+      // 李四 3 4 3000
+      // 王五 3 3 4000
+      // 赵六 4 3 3000
+      // 陆奇 4 4 4000
+      // 闫八 4 4 3980.99
+
+      // 输出样例：
+      // 赵六 4 3 3000.00
+      // 闫八 4 4 3980.99
+      // 陆奇 4 4 4000.00
+      // 李四 3 4 3000.00
+      // 张三 3 3 3000.00
+      // 王五 3 3 4000.00
+
+      //  let params = []
+      //   while(line = readline(),strs=readline()){
+      //     	params.push((strs)
+      //  }
+      const mySorts = (params) => {
+        const arrs = [...params];
+        const sortArr = [];
+        for (let i = 0; i < arrs.length; i++) {
+          let tempArr = arrs[i].split(' '),
+            name = tempArr[0],
+            level = tempArr[1],
+            year = tempArr[2],
+            money = tempArr[3];
+          sortArr.push({ name, level, year, money });
+        }
+        sortArr.sort((a, b) => {
+          let levelA = +a.level,
+            levelB = +b.level,
+            moneyA = +a.money,
+            moneyB = +b.money,
+            yearA = +a.year,
+            yearB = +b.year;
+          if (levelA === levelB) {
+            if (moneyA === moneyB) return yearB - yearA;
+            return moneyA - moneyB;
+          }
+          return levelB - levelA;
+        });
+        for (let i = 0; i < sortArr.length; i++) {
+          let { name, level, year, money } = sortArr[i];
+          money = (money * 1).toFixed(2);
+          const item = `${name} ${level} ${year} ${money}`;
+          console.log(item);
+        }
+      };
+      // mySorts(params);
+
+      const nomaToInt = function(s) {
+        let map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+        let sArr = s.split('').reverse();
+        return sArr.reduce((res, str, index, arr) => {
+          if (index == 0) return map[str];
+          let pre = map[arr[index - 1]];
+          return (res += map[str] >= pre ? map[str] : pre - map[str] - pre);
+        }, 0);
+      };
+
+      const noma2Int = function(s) {
+        const map = {
+          I: 1,
+          V: 5,
+          X: 10,
+          L: 50,
+          C: 100,
+          D: 500,
+          M: 1000,
+        };
+        let res = 0;
+        for (let i = 0; i < s.length; i++) {
+          if (map[s[i]] < map[s[i + 1]]) {
+            res -= map[s[i]];
+          } else {
+            res += map[s[i]];
+          }
+        }
+        return res;
+      };
     </script>
   </body>
 </html>
