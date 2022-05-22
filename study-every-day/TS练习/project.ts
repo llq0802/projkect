@@ -9,6 +9,16 @@
 //  Record<string,any> Record 的作用是生成接口类型，然后我们使用传入的泛型参数分别作为接口类型的属性和值。
 //  null! 非空判断
 
+// 只要 .ts 或 .d.ts 文件中有 import 或 export，那么这个文件中的 declare 就会变成局部变量
+type VDS = string | number;
+interface Name {
+  name: string;
+}
+interface Age {
+  age: number;
+}
+type User = Name & Age;
+
 // let arr: Array<number> = [1];
 // let arr1: string[] = ["a"];
 // let arr3: [string, number, boolean] = ["a", 1, false];
