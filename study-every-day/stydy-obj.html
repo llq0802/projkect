@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Document</title>
   </head>
 
@@ -25,9 +26,11 @@
         user-select: none;
       }
     </style>
-    <div class="container">
+    <h1 class="animate__animated animate__bounceOutRight">An animated element</h1>
+    <div class="container ">
       <div class="box"></div>
     </div>
+    <button class="btn">按钮</button>
     <script type="module" defer>
       // 重排，回流是指改变页面的结构 比如 width left Dom操作 布局操作等 会让浏览器重新排布
       // 重绘是指改变页面的样式 比如 background 字体颜色
@@ -490,19 +493,6 @@
       // console.log(Number.parseInt(BigInt(2)));
       // console.table([11, 22, 3]);
 
-      // try {
-      //   console.log('try');
-      //   console.log(ry);
-      // } catch (error) {
-      //   // console.warn(error);
-      //   // throw 123;
-      //   throw new Error('error');
-      //   // return 123;
-      // } finally {
-      //   console.log('finally');
-      //   console.log(789789789789797878);
-      // }
-
       function check(obj) {
         obj.aaa = 777;
       }
@@ -769,6 +759,35 @@
 
       // alert(+'12' > +'9');
       // confirm();
+
+      // 创建自定义事件
+      // let myEvent = new CustomEvent('pingan', {
+      //   detail: { name: 'wangpingan' },
+      // });
+      // // 添加适当的事件监听器
+      // window.addEventListener('pingan', (e) => {
+      //   alert(`pingan事件触发，是 ${e.detail.name} 触发。`);
+      // });
+
+      // document.getElementById('leo2').addEventListener('click', function() {
+      //   // 派发事件
+      //   window.dispatchEvent(pingan2Event);
+      // });
+      try {
+        console.log('try');
+        console.log(ry);
+      } catch (error) {
+        console.error(error);
+        // throw error;
+        // throw new Error(error);
+      } finally {
+        console.log('finally');
+      }
+
+      document.querySelector('.btn').addEventListener('click', function() {
+        console.log(this);
+        this.classList.add('animate__animated', 'animate__bounceOutRight');
+      });
     </script>
   </body>
 </html>
