@@ -240,7 +240,7 @@
         // console.log(arr);
       };
       // console.log(arr);
-
+      // 冒泡排序
       function bubbleSort(arr) {
         console.time('BubbleSort');
         // 获取数组长度，以确定循环次数。
@@ -264,13 +264,11 @@
         console.timeEnd('BubbleSort');
         // return arr;
       }
-      bubbleSort(arr);
+      // bubbleSort(arr);
       // console.log(arr);
       // console.log(obj);
-
-      let a = 111;
-      let b = 222;
-
+      // let a = 111;
+      // let b = 222;
       // fastSort(a);
       // console.log(a);
       // let tmp = null;
@@ -278,7 +276,6 @@
       // a = b;
       // b = tmp;
       // [b, a] = [a, b];
-
       // a = [b, (b = a)][0];
       // console.log('a' + a, 'b' + b);
 
@@ -362,11 +359,7 @@
          */
         getValue(key, cb) {
           const nTime = Date.now();
-          if (
-            this.#data[key] &&
-            this.#data[key]?.express &&
-            this.#data[key].express < nTime - this.#data[key]?.cTime
-          ) {
+          if (this.#data[key] && this.#data[key]?.express && this.#data[key].express < nTime - this.#data[key]?.cTime) {
             return this.#data[key];
             cb && cb.call(this, this);
           } else {
@@ -436,9 +429,6 @@
       // console.log(Object.entries(obj1));
       // console.log(Object.keys(obj1));
       // console.log(Object.values(obj1));
-      // console.log(obj1);
-      const ss = Symbol('s');
-      let hjr = { a: 1, [ss]: 22 };
 
       // console.log(Object.getOwnPropertyDescriptor(hjr, 'a'));
       // console.log(Object.getOwnPropertyNames(hjr));
@@ -474,13 +464,13 @@
         const element = filelist[i];
         fd.append('img', JSON.stringify(element));
       }
-
       fd.append('img1', JSON.stringify({ age: 12 }));
       fd.append('img2', [789, 287]);
-      // console.log(fd.getAll());
+      fd.append('img3', 7);
       console.log(fd.getAll('img'));
       console.log(fd.get('img1'));
       console.log(fd.get('img2'));
+      console.log(fd.get('img3'));
 
       // let bv = /\.([\S\s]*)$/.exec('ca.dwg');
       // 'gag'.match(/\.(dwg|cad)$/);

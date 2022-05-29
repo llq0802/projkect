@@ -361,3 +361,18 @@ export function dateFormat(date: any, fmt: any) {
       fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
   return fmt;
 }
+//将数组拆分成平均长度的数组
+function group(array, subNum) {
+  let startIndex = 0;
+  let newArray = [];
+  while (startIndex < array.length) {
+    newArray.push(array.slice(startIndex, (startIndex += subNum)));
+
+    // 1.newArray.push(array.slice(startIndex, startIndex + subNum));
+    // startIndex+=subNum
+
+    // 2.newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
+    // (page-1*size),(page*size)
+  }
+  return newArray;
+}

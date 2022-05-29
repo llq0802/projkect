@@ -1013,6 +1013,31 @@
           return p ? p : (p = promiseFn.apply(this, args).finally(() => (p = null)));
         };
       }
+
+      //要排序的数据
+      let data = [
+        { chinese: '蔡司', english: 'Chase' },
+        { chinese: '艾伦', english: 'Allen' },
+        { chinese: '左拉', english: 'Zola' },
+        { chinese: '贝克', english: 'Baker' },
+        { chinese: '伯格', english: 'Berg' },
+        { chinese: '菲奇', english: 'Fitch' },
+        { chinese: '迪安', english: 'Dean' },
+        { chinese: '厄尔', english: 'Earle' },
+        { chinese: '亨利', english: 'Henry' },
+      ];
+
+      //根据汉字首字母排序
+      //使用箭头函数
+      //【注】localeCompare() 是js内置方法
+      // data.sort((a, b) => b.chinese.localeCompare(a.chinese, 'zh')); //z~a 排序
+      let gd = data.sort((a, b) => a.chinese.localeCompare(b.chinese, 'zh')); //a~z 排序
+      // console.log(data);
+
+      //根据英文排序 比较 首字母ASCLL码
+      //// console.log(data[0].english.charCodeAt(0));
+      // data.sort((a, b) => b.english.charCodeAt(0) - a.english.charCodeAt(0)); //z~a 排序
+      // data.sort((a, b) => a.english.charCodeAt(0) - b.english.charCodeAt(0)); //a~z 排序
     </script>
   </body>
 </html>

@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-12-30 10:19:35
- * @LastEditTime: 2022-01-10 13:01:57
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \vue3.0-cli-ts\面试\vue源码研究\nexttick.js
- */
 // 调用upade方法把 watcher 都放到watcher队列里面去（会判重处理） 执行完队列的事件之后再清空队列 主要使用 nextTick方法 来执行 watcher 队列
 /* 控制重复添加cb */
 // 在 nextTick 中，会把接收的回调函数 cb 使用 try catch 进行包裹，目的是方便进行异常捕获，之后会把这个 cb 存入到 全局的 callbacks 数组中
