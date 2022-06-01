@@ -7,6 +7,7 @@
     <title>视频测试</title>
   </head>
   <body>
+    <canvas id="myCanvas" width="1000" height="800" style="border:1px solid #d3d3d3; margin: 50px;"></canvas>
     <!-- <video controls loop>
       <source
         src="http://136.6.187.131:9999/airoom/service-sysmgr/FileController/downloadVideoFile?fileId=e462cd4d23df46e3a2c8b82794cf77e6"
@@ -14,5 +15,161 @@
       />
       您的浏览器不支持 video 标签。
     </video> -->
+
+    <script>
+      const can = document.getElementById('myCanvas');
+      const ctx = can.getContext('2d');
+
+      // ctx.fillStyle = '#000';
+      // ctx.beginPath();
+      // ctx.moveTo(0, 0);
+      // ctx.lineTo(100, 0);
+      // ctx.lineTo(100, 100);
+      // ctx.lineTo(0, 100);
+      // ctx.closePath();
+      // ctx.fill();
+
+      // ctx.beginPath();
+      // ctx.moveTo(50, 0);
+      // ctx.lineTo(150, 0);
+      // ctx.lineTo(150, 150);
+      // ctx.lineTo(0, 150);
+      // ctx.closePath();
+      // ctx.fill();
+
+      // console.log(ctx.isPointInPath(0, 100));
+
+      // can.onmousemove = (e) => {
+      //   // console.log(e.offsetX, e.offsetY);
+      //   console.log(ctx.isPointInPath(e.offsetX, e.offsetY));
+      //   if (ctx.isPointInPath(e.offsetX, e.offsetY)) {
+      //     ctx.fillStyle = 'red';
+      //     ctx.beginPath();
+      //     ctx.moveTo(0, 0);
+      //     ctx.lineTo(100, 0);
+      //     ctx.lineTo(100, 100);
+      //     ctx.lineTo(0, 100);
+      //     ctx.closePath();
+      //     ctx.fill();
+      //   } else {
+      //     ctx.fillStyle = '#000';
+      //     ctx.beginPath();
+      //     ctx.moveTo(0, 0);
+      //     ctx.lineTo(100, 0);
+      //     ctx.lineTo(100, 100);
+      //     ctx.lineTo(0, 100);
+      //     ctx.closePath();
+      //     ctx.fill();
+      //   }
+      // };
+
+      // ctx.rect(50, 50, 10, 10);
+      // ctx.rect(200, 50, 10, 10);
+      // ctx.rect(200, 200, 100, 100);
+      // ctx.stroke();
+
+      // // 封装绘制的图形
+      function draw() {
+        ctx.lineWidth = 1;
+        // ctx.fillStyle = '#000';
+        // ctx.beginPath();
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(0, 200);
+        // ctx.lineTo(200, 200);
+        // ctx.lineTo(200, 0);
+        // ctx.closePath();
+        // ctx.stroke();
+        ctx.fillStyle = 'green';
+        ctx.font = '16px sans-serif';
+        ctx.beginPath();
+        ctx.rect(20, 20, 150, 200);
+        ctx.fillText('围栏1', 40, 40);
+
+        ctx.stroke();
+
+        // ctx.closePath();
+      }
+      function circle() {
+        ctx.lineWidth = 1;
+        // ctx.fillStyle = '#000';
+        ctx.fillStyle = 'green';
+        ctx.font = '16px sans-serif';
+        ctx.beginPath();
+        ctx.rect(50, 50, 150, 200);
+        ctx.fillText('围栏2', 70, 70);
+
+        // ctx.arc(100, 200, 50, 0, Math.PI * 2);
+        // ctx.moveTo(50, 0);
+        // ctx.lineTo(150, 0);
+        // ctx.lineTo(250, 250);
+        // ctx.lineTo(250, 0);
+        // ctx.closePath();
+        ctx.stroke();
+      }
+      // 初始化绘制图形
+      draw();
+      // ctx.fill();
+      // ctx.stroke();
+
+      circle();
+      // ctx.stroke();
+
+      let fns = [circle, draw];
+      // 监听鼠标事件
+      let curValue;
+      can.onmousemove = (e) => {
+        let x = e.offsetX,
+          y = e.offsetY;
+      };
+      // can.onmousemove = function(e) {
+      //   curValue = undefined;
+      //   // 得到鼠标的坐标
+      //   let x = e.offsetX,
+      //     y = e.offsetY;
+      //   ctx.clearRect(0, 0, 800, 800);
+      //   // 遍历绘制图形
+      //   for (let i = 0; i < fns.length; i++) {
+      //     // 每绘制一个图形就判断一次当前鼠标的坐标是否在这个图形上，然后进行自定义操作
+      //     // isPointInStroke
+      //     fns[i]();
+      //     if (ctx.isPointInPath(x, y)) {
+      //       // ctx.fillStyle = 'red';
+      //       ctx.lineWidth = 10;
+      //       // console.log(fns[i]);
+      //       curValue = fns[i];
+      //       // curValue.push(fns[i]);
+      //     } else {
+      //       ctx.lineWidth = 1;
+      //       // curValue = undefined;
+      //     }
+      //     ctx.stroke();
+      //   }
+      // };
+
+      can.onclick = (e) => {
+        curValue = undefined;
+        // 得到鼠标的坐标
+        let x = e.offsetX,
+          y = e.offsetY;
+        ctx.clearRect(0, 0, 800, 800);
+        // 遍历绘制图形
+        for (let i = 0; i < fns.length; i++) {
+          // 每绘制一个图形就判断一次当前鼠标的坐标是否在这个图形上，然后进行自定义操作
+          // isPointInStroke
+          fns[i]();
+          if (ctx.isPointInPath(x, y)) {
+            // ctx.fillStyle = 'red';
+            ctx.lineWidth = 10;
+            // console.log(fns[i]);
+            curValue = fns[i];
+            // curValue.push(fns[i]);
+          } else {
+            ctx.lineWidth = 1;
+            // curValue = undefined;
+          }
+          ctx.stroke();
+        }
+      };
+    </script>
   </body>
 </html>

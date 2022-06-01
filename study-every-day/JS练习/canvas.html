@@ -8,12 +8,7 @@
   </head>
   <body>
     <img id="img" src="./aaa.jpg" />
-    <canvas
-      id="can"
-      width="800"
-      height="800"
-      style="border:1px solid #d3d3d3; margin: 50px;"
-    ></canvas>
+    <canvas id="can" width="800" height="800" style="border:1px solid #d3d3d3; margin: 50px;"></canvas>
     <button id="btn">清除画布</button>
   </body>
 
@@ -24,7 +19,6 @@
     let w = canvas.width;
     let h = canvas.height;
     let i = 1;
-
     let ctx = canvas.getContext('2d');
 
     // img.onload = function() {
@@ -95,47 +89,47 @@
     /*============================*/
 
     //判断是否有交叉点
-    function intersects(seg) {
-      let p = intersection(seg); //获取交叉点位置（字符串形式）
-      p = p.split(',');
-      //根据或得到的交叉点位置计算，*true*有交叉点false没有
-      let Boole =
-        p[0] > Math.min(seg.p1.x, seg.p2.x) &&
-        p[0] < Math.max(seg.p1.x, seg.p2.x) &&
-        p[0] > Math.min(seg.p3.x, seg.p3.x) &&
-        p[0] < Math.max(seg.p4.x, seg.p4.x);
+    // function intersects(seg) {
+    //   let p = intersection(seg); //获取交叉点位置（字符串形式）
+    //   p = p.split(',');
+    //   //根据或得到的交叉点位置计算，*true*有交叉点false没有
+    //   let Boole =
+    //     p[0] > Math.min(seg.p1.x, seg.p2.x) &&
+    //     p[0] < Math.max(seg.p1.x, seg.p2.x) &&
+    //     p[0] > Math.min(seg.p3.x, seg.p3.x) &&
+    //     p[0] < Math.max(seg.p4.x, seg.p4.x);
 
-      console.log(Boole, p);
+    //   console.log(Boole, p);
 
-      if (Boole) {
-        return p; //把有交叉点的坐标值返回
-      }
-    }
+    //   if (Boole) {
+    //     return p; //把有交叉点的坐标值返回
+    //   }
+    // }
     //计算交叉点
-    function intersection(seg) {
-      let x1 = seg.p1.x,
-        y1 = seg.p1.y,
-        x2 = seg.p2.x,
-        y2 = seg.p2.y,
-        x3 = seg.p3.x,
-        y3 = seg.p3.y,
-        x4 = seg.p4.x,
-        y4 = seg.p4.y,
-        nx,
-        ny,
-        d;
-      d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-      console.log('d', d);
-      nx = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4);
-      console.log('nx', nx);
+    // function intersection(seg) {
+    //   let x1 = seg.p1.x,
+    //     y1 = seg.p1.y,
+    //     x2 = seg.p2.x,
+    //     y2 = seg.p2.y,
+    //     x3 = seg.p3.x,
+    //     y3 = seg.p3.y,
+    //     x4 = seg.p4.x,
+    //     y4 = seg.p4.y,
+    //     nx,
+    //     ny,
+    //     d;
+    //   d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+    //   console.log('d', d);
+    //   nx = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4);
+    //   console.log('nx', nx);
 
-      ny = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4);
-      console.log('ny', ny);
+    //   ny = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4);
+    //   console.log('ny', ny);
 
-      let res = Math.round(nx / d) + ',' + Math.round(ny / d);
-      console.log(res);
-      return res;
-    }
+    //   let res = Math.round(nx / d) + ',' + Math.round(ny / d);
+    //   console.log(res);
+    //   return res;
+    // }
 
     // let seg1 = {
     //   p1: { x: 100, y: 100 },
@@ -144,13 +138,12 @@
     //   p4: { x: 700, y: 500 },
     // };
 
-    let seg2 = {
-      p1: { x: 0, y: 0 },
-      p2: { x: 100, y: 0 },
-      p3: { x: 100, y: 100 },
-      p4: { x: 0, y: 100 },
-    };
-
+    // let seg2 = {
+    //   p1: { x: 0, y: 0 },
+    //   p2: { x: 100, y: 0 },
+    //   p3: { x: 100, y: 100 },
+    //   p4: { x: 0, y: 100 },
+    // };
     // intersects(seg);
     // intersection(seg);
     // intersection(seg2);

@@ -4,7 +4,5 @@ console.log(str);
 let obj = {
   name: 'qq',
   age: 20,
+  list: [],
 };
-
-
-

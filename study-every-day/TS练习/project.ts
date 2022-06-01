@@ -19,6 +19,9 @@ interface Age {
 }
 type User = Name & Age;
 
+
+
+
 // let arr: Array<number> = [1];
 // let arr1: string[] = ["a"];
 // let arr3: [string, number, boolean] = ["a", 1, false];

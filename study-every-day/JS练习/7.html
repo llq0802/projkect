@@ -26,8 +26,35 @@
         pointer-events: none;
         cursor: pointer;
       }
+      .wrapper {
+        width: 40%;
+        background: #03f463;
+        background-clip: padding-box;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .inner {
+        width: 100%;
+        background: #39644a;
+        /* height: 200px; */
+        box-sizing: border-box;
+        padding-bottom: 50%;
+        /*元素pading margin 的百分比 是基于父元素的宽度的百分比 
+          css3 translate 是基础本身
+        */
+      }
+      p {
+        box-sizing: border-box;
+      }
     </style>
 
+    <div class="wrapper">
+      <div class="inner">
+        与就可以 与就可以与就可以与就可以 与就可以 与就可以 与就可以 与就可以 与就可以与就可以 与就可以 与就可以
+        与就可以 与就可以 与就可以 与就可以
+      </div>
+      <!-- <p>这是文字</p> -->
+    </div>
     <table cellspacing="0" bgcolor="green" width="500" height="200" border="0" cellpadding="0">
       <caption>
         <h3>课程表</h3>
@@ -317,7 +344,6 @@
       // console.dir(RegExp.input);
       // console.dir(RegExp.$_);
 
-      console.log('**********');
       // var name = 1;
       // function test() {
       //   var name = 2;
@@ -580,6 +606,13 @@
           });
         }
       }
+
+      // var a = { n: 1 };
+      // b = a;
+      // a.x = a = { n: 2 };
+
+      // console.log(a.x);
+      // console.log(b.x);
     </script>
   </body>
 </html>
