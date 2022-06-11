@@ -7,7 +7,12 @@
     <title>视频测试</title>
   </head>
   <body>
-    <canvas id="myCanvas" width="1000" height="800" style="border:1px solid #d3d3d3; margin: 50px;"></canvas>
+    <canvas
+      id="myCanvas"
+      width="1000"
+      height="800"
+      style="border:1px solid #d3d3d3; margin: 50px; background: url('aaa.jpg')"
+    ></canvas>
     <!-- <video controls loop>
       <source
         src="http://136.6.187.131:9999/airoom/service-sysmgr/FileController/downloadVideoFile?fileId=e462cd4d23df46e3a2c8b82794cf77e6"
@@ -17,6 +22,7 @@
     </video> -->
 
     <script>
+      //  isPointInPath方法实际只检测当前点是否处于最后一个Path当中
       const can = document.getElementById('myCanvas');
       const ctx = can.getContext('2d');
 

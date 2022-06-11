@@ -108,6 +108,7 @@
         if (dragging && mode === 'rect') {
           // 只有绘制矩形框时有效果
           showLastHistory(); // 每次绘制先清除上一次
+          // context.clearRect(0, 0, canvas.width, canvas.height);
           updateRect(windowToCanvas(e.clientX, e.clientY, e.which));
         }
       };
