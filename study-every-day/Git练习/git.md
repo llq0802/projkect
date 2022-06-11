@@ -3,6 +3,21 @@
 1. (/是根目录 ./是当前目录! ../是上一层目录!)
 2. （cd 到下一级目录 cd..返回上一级目录）
 
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
+
+npx husky add .husky/pre-commit "npm run pre-commit"
+npx husky add .husky/pre-commit 'npx lint-staged'
+
+// lint-staged.config.js
+const micromatch = require('micromatch')
+
+module.exports = {
+'_': allFiles => {
+const match = micromatch(allFiles, ['_.js', '\*.ts'])
+return `eslint ${match.join(' ')}`
+}
+}
+
 ```
 name:包名
 version:包的版本号，每次发包这个版本号都要改
