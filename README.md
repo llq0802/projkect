@@ -53,3 +53,5 @@ https://flatuicolors.com/
         User.vue
 
 ```
+
+'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'revert', 'perf', 'chore'],
