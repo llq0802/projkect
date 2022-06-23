@@ -613,6 +613,13 @@
 
       // console.log(a.x);
       // console.log(b.x);
+      function name1() {
+        var a = (b = 10);
+        console.log(a, b);
+      }
+      name1();
+      console.log('b', typeof b === 'undefined');
+      console.log('a', typeof a === 'undefined');
     </script>
   </body>
 </html>

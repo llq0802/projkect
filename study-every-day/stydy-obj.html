@@ -17,6 +17,7 @@
         /* background-color: red; */
         display: grid;
         place-content: center;
+        place-items: center;
       }
 
       .box {
@@ -27,7 +28,7 @@
       }
     </style>
     <h1 class="animate__animated animate__bounceOutRight">An animated element</h1>
-    <div class="container ">
+    <div class="container">
       <div class="box"></div>
     </div>
     <button class="btn">按钮</button>
@@ -313,7 +314,7 @@
         age: 20,
         desc: 'shuaige',
         arr: [11, 22, 33, 44],
-        [Symbol.iterator]: function() {
+        [Symbol.iterator]: function () {
           let index = 0;
           return {
             next: () => {
@@ -398,23 +399,23 @@
 
       // keycode=123  是f12键
       // 禁止右键菜单
-      document.oncontextmenu = function() {
+      document.oncontextmenu = function () {
         return false;
       };
       // 禁止文字选择
-      document.onselectstart = function() {
+      document.onselectstart = function () {
         return false;
       };
       // 禁止复制
-      document.oncopy = function() {
+      document.oncopy = function () {
         return false;
       };
       // 禁止剪切
-      document.oncut = function() {
+      document.oncut = function () {
         return false;
       };
       // 禁止粘贴
-      document.onpaste = function() {
+      document.onpaste = function () {
         return false;
       };
 
@@ -650,7 +651,7 @@
         { name: 'Joy', totalScore: '198', Chinese: '99', math: '99' },
       ];
 
-      jsonStudents.sort(function(a, b) {
+      jsonStudents.sort(function (a, b) {
         let value1 = a.totalScore,
           value2 = b.totalScore;
         if (value1 === value2) {
@@ -726,7 +727,7 @@
       };
       // mySorts(params);
 
-      const nomaToInt = function(s) {
+      const nomaToInt = function (s) {
         let map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
         let sArr = s.split('').reverse();
         return sArr.reduce((res, str, index, arr) => {
@@ -736,7 +737,7 @@
         }, 0);
       };
 
-      const noma2Int = function(s) {
+      const noma2Int = function (s) {
         const map = {
           I: 1,
           V: 5,
@@ -784,7 +785,7 @@
         console.log('finally');
       }
 
-      document.querySelector('.btn').addEventListener('click', function() {
+      document.querySelector('.btn').addEventListener('click', function () {
         console.log(this);
         this.classList.add('animate__animated', 'animate__bounceOutRight');
       });

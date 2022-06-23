@@ -136,13 +136,18 @@ export default class SocketService {
   }
 }
 
-SocketServic.Instance.connect();
-const ws = SocketServic.Instance;
+// SocketServic.Instance.connect();
+// const ws = SocketServic.Instance;
 
-ws.send('subscribeAll', {
-  eventName: 'getShipData',
-  resourceId: 1,
-  callback: () => {
-    console.log(777);
-  },
-});
+// ws.send('subscribeAll', {
+//   eventName: 'getShipData',
+//   resourceId: 1,
+//   callback: () => {
+//     console.log(777);
+//   },
+// });
+
+
+const export objs ={
+  age:10
+} 

@@ -1,12 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2021-08-09 10:15:27
- * @LastEditTime: 2021-12-01 21:21:38
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \vue3.0-cli-ts\README.md
--->
-
 ### 好看的颜色网站
 
 https://flatuicolors.com/
@@ -59,7 +50,7 @@ https://flatuicolors.com/
 "lint-staged": {
 "src/**/\*.less": "stylelint --syntax less",
 "src/**/\_.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-"**/\*.{jsx,tsx,ts,md,json}": [
+"\*\*/\*.{jsx,tsx,ts,md,json}": [
 "prettier --write"
 ]
 }
@@ -67,7 +58,7 @@ https://flatuicolors.com/
 "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
 "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
 "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-"lint:prettier": "prettier --check \"src/**/_\" --end-of-line auto",
+"lint:prettier": "prettier --check \"src/\*\*/_\" --end-of-line auto",
 "lint:style": "stylelint --fix \"src/\*\*/_.less\" --syntax less",
 "precommit": "lint-staged",
 "prepare": "husky install",

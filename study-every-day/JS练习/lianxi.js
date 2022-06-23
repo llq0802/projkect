@@ -1,3 +1,5 @@
+// import { objs } from './signalR.js';
+
 // let a = Array.of(1, 1, 2, 23, 3)将一组数转为数组
 // console.log(a.length);
 // let b = [1, 5, 10, 15].find(function (value, index, arr) {
@@ -86,11 +88,11 @@
 
 // Object.is()：判断两个值是否是相同的值。返回布尔值 做if判断
 
-if (Object.is('1', 1)) {
-  console.log('xiangdeng');
-} else {
-  console.log('budeng');
-}
+// if (Object.is('1', 1)) {
+//   console.log('xiangdeng');
+// } else {
+//   console.log('budeng');
+// }
 
 // let num='123'
 // Object.keys()
@@ -298,7 +300,6 @@ function onResize() {
 // call()立即调用 第一个参数改变this指向 第二个参数是参数(字符串)
 // apply()立即调用 第一个参数改变this指向 第二个参数必须是数组[]
 // bind()不会立即调用 只会改变this指向 返回一个新的函数
-set;
 
 // 异步操作=>任务队列
 
@@ -376,10 +377,10 @@ function unique(arr) {
 }
 // console.log(unique([123, 123, [1, 2, 3], [1, '2', 3], [1, 3, 4], [1, 2, 3], { a: 1 }, { a: 1 }, 'hello', null, null]))
 
-Infinity;
-flat(Infinity);
-Number.MAX_VALUE;
-Number.MIN_VALUE;
+// Infinity;
+// flat(Infinity);
+// Number.MAX_VALUE;
+// Number.MIN_VALUE;
 // class User {
 //   static baseUrl = 'WWW'
 //   constructor(...args) {
@@ -518,3 +519,4 @@ function Countdown() {
 //     console.log(error);
 // } finally {
 // Sting Bigint Number null undefined Symbol  Boolean, Object(包含 Array Function Date RegExp)
+console.log('subscribeAll');
