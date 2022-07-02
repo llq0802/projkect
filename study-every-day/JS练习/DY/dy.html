@@ -7,6 +7,11 @@
 
   <body>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       .parallelogram {
         position: relative;
         width: 160px;
@@ -39,12 +44,69 @@
         /* height: 200px; */
         box-sizing: border-box;
         padding-bottom: 50%;
-        /*元素pading margin 的百分比 是基于父元素的宽度的百分比 
-          css3 translate 是基础本身
-        */
+        /*元素pading margin 的百分比 是基于父元素的宽度的百分比
+                css3 translate 是基础本身
+              */
       }
-      p {
-        box-sizing: border-box;
+      a[target='_blank'] {
+        /* 从下到上，从蓝色开始渐变、到高度40%位置是绿色渐变开始、最后以红色结束 */
+        /* background-image: linear-gradient(90deg, blue 10%, green 40%, red 50%); */
+        background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        font-weight: bold;
+        font-size: 35px;
+      }
+      .qiu {
+        width: 50px;
+        height: 50px;
+        border: 10px solid red;
+        position: absolute;
+        /* background-color: red; */
+        border-radius: 50%;
+        /* transition: all 0.3s; */
+        /* transition-timing-function: linear; */
+      }
+      .container {
+        width: 500px;
+        height: 350px;
+        border: 1px solid;
+        margin: 100px auto;
+        overflow: hidden;
+        position: relative;
+      }
+      .item {
+        width: 500px;
+        height: 350px;
+      }
+      .caul {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s;
+      }
+      .caul img {
+        width: 500px;
+        height: 330px;
+      }
+      .dian {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        gap: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .dian span {
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .dian span.active {
+        background-color: rgb(13, 38, 13);
       }
     </style>
 
@@ -53,13 +115,46 @@
         与就可以 与就可以与就可以与就可以 与就可以 与就可以 与就可以 与就可以 与就可以与就可以 与就可以 与就可以
         与就可以 与就可以 与就可以 与就可以
       </div>
-      <!-- <p>这是文字</p> -->
+      <p>这是文字</p>
     </div>
-    <table cellspacing="0" bgcolor="green" width="500" height="200" border="0" cellpadding="0">
+    <a target="_blank">渐变文字</a>
+
+    <div class="qiu"></div>
+
+    <div class="container">
+      <div class="caul">
+        <div class="item item1">
+          123
+          <img src="" alt="" />
+        </div>
+        <div class="item item2">
+          222
+          <img src="" alt="" />
+        </div>
+        <div class="item item3">
+          333
+          <img src="" alt="" />
+        </div>
+        <div class="item item4">
+          444
+          <img src="" alt="" />
+        </div>
+        <div class="item item1">
+          123
+          <img src="" alt="" />
+        </div>
+      </div>
+      <div class="dian">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <!-- <table cellspacing="0" bgcolor="green" width="500" height="200" border="0" cellpadding="0">
       <caption>
         <h3>课程表</h3>
       </caption>
-      <!---表头-------->
       <tr bgcolor="white">
         <th>789</th>
         <th>789</th>
@@ -90,32 +185,66 @@
         <td>123</td>
         <td>123</td>
       </tr>
-    </table>
+    </table> -->
 
     <script>
-      const div = document.getElementById('hd');
-      function handle() {
-        let i = 0;
-        (function run() {
-          console.log(i);
-          div.innerHTML = i;
-          div.style.width = i + '%';
-          if (++i <= 100) setTimeout(run, 10);
-        })();
+      const qiuEl = document.querySelector('.qiu');
+      let x = 0;
+      const run = function () {
+        x += 2;
+        requestAnimationFrame(() => {
+          if (x === 500) x = 0;
+          // qiuEl.style.left = x + 'px';
+          qiuEl.style.transform = 'translateX(' + x + 'px)';
+          run();
+        });
+      };
+      run();
+
+      function moveTo(index) {
+        console.log(' index', index);
+        document.querySelector('.caul').style.transform = 'translateX(-' + index + '00%)';
+        document.querySelector('.dian>span.active').classList.remove('active');
+        document.querySelectorAll('.dian>span')[index].classList.add('active');
       }
+      document.querySelectorAll('.dian>span').forEach((item, index) => {
+        item.onclick = function () {
+          moveTo(index);
+        };
+      });
+
+      function always() {
+        let i = 0;
+        setInterval(() => {
+          if (i >= 4) i = 0;
+          moveTo(i);
+          i++;
+        }, 1000);
+      }
+      // always();
+      // const div = document.getElementById('hd');
+      // function handle() {
+      //   let i = 0;
+      //   (function run() {
+      //     console.log(i);
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //     if (++i <= 100) setTimeout(run, 10);
+      //   })();
+      // }
       // handle();
 
-      async function load() {
-        for (let i = 0; i <= 100; i++) {
-          await new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-            }, 100);
-          });
-          div.innerHTML = i;
-          div.style.width = i + '%';
-        }
-      }
+      // async function load() {
+      //   for (let i = 0; i <= 100; i++) {
+      //     await new Promise((resolve) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 100);
+      //     });
+      //     div.innerHTML = i;
+      //     div.style.width = i + '%';
+      //   }
+      // }
       // load();
       // async function sleep() {
       //   return new Promise(resolve => {
@@ -613,13 +742,13 @@
 
       // console.log(a.x);
       // console.log(b.x);
-      function name1() {
-        var a = (b = 10);
-        console.log(a, b);
-      }
-      name1();
-      console.log('b', typeof b === 'undefined');
-      console.log('a', typeof a === 'undefined');
+      // function name1() {
+      //   var a = (b = 10);
+      //   console.log(a, b);
+      // }
+      // name1();
+      // console.log('b', typeof b === 'undefined');
+      // console.log('a', typeof a === 'undefined');
     </script>
   </body>
 </html>

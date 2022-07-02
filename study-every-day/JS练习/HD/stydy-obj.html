@@ -461,12 +461,33 @@
         console.log(e.newURL);
         console.log(location.hash);
       };
+
       //监听浏览器前进后退
       Window.onpopstate = (e) => {
         console.log(e);
       };
+
+      // const _historyWrap = function (type) {
+      //   const orig = history[type];
+      //   const e = new Event(type);
+      //   return function () {
+      //     const rv = orig.apply(this, arguments);
+      //     e.arguments = arguments;
+      //     window.dispatchEvent(e);
+      //     return rv;
+      //   };
+      // };
+      // history.pushState = _historyWrap('pushState');
+      // history.replaceState = _historyWrap('replaceState');
+
       //切换路由
       // history.pushState()
+      /*   history.pushState()解释向浏览器历史添加了增加一个记录。
+      history.pushState(stateObject, title, url);
+      stateObject：状态
+title：标题（--几乎没有浏览器支持该参数，但是传一个空字符串会比较安全。）
+url：要插入的url 不写的话默认为当前的url */
+      // history.replaceState()
 
       /*********封装localStorage********/
       const setLocalStorage = (key, value) => {
