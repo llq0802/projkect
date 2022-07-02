@@ -221,6 +221,41 @@
           i++;
         }, 1000);
       }
+
+      // let o = { age: 20, items: { uid: 999 } };
+      // function objFn(obj) {
+      //   obj = { value: 777 };
+      //   obj.name = 'test';
+      //   console.log('obj', obj);
+      // }
+      // objFn(o);
+      // console.log('lo', o);
+
+      function parsePath(path) {
+        const segments = path.split('.');
+        console.log(segments);
+        return function (vm) {
+          for (let i = 0; i < segments.length; i++) {
+            if (!vm) return;
+            console.log(vm);
+
+            vm = vm[segments[i]];
+            console.log(vm);
+          }
+          console.log(vm);
+          return vm;
+        };
+      }
+      const ruct = parsePath('a.b.c');
+
+      ruct({
+        a: {
+          b: {
+            c: 789,
+          },
+        },
+      });
+
       // always();
       // const div = document.getElementById('hd');
       // function handle() {

@@ -41,5 +41,3 @@ let data = {
 };
 
 observer(data);
-
-data.age;
