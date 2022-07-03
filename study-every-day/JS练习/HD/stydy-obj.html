@@ -144,12 +144,10 @@
        * @return {*}
        */
 
-      let hd = 'houdunren2200hdcms998';
-
+      // let hd = 'houdunren2200hdcms998';
       // console.log(/\d/g.test(hd));
-
       // console.log(/\w/g.exec(hd));
-      // console.log(hd.match(/\d/));
+      // console.log(hd.match(/\d/g));
       // console.log(hd.match(/\d/g).join(''));
 
       // let str = 'hn.com';
@@ -799,17 +797,18 @@ url：要插入的url 不写的话默认为当前的url */
         console.log('try');
         console.log(ry);
       } catch (error) {
-        console.error(error);
+        console.warn(error);
         // throw error;
         // throw new Error(error);
+        // return error;
       } finally {
         console.log('finally');
       }
-
-      document.querySelector('.btn').addEventListener('click', function () {
-        console.log(this);
-        this.classList.add('animate__animated', 'animate__bounceOutRight');
-      });
+      console.log(7897897);
+      // document.querySelector('.btn').addEventListener('click', function () {
+      //   console.log(this);
+      //   this.classList.add('animate__animated', 'animate__bounceOutRight');
+      // });
     </script>
   </body>
 </html>

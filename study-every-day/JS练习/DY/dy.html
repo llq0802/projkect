@@ -57,12 +57,15 @@
         color: transparent;
         font-weight: bold;
         font-size: 35px;
+        display: flex;
+        justify-content: center;
       }
       .qiu {
         width: 50px;
         height: 50px;
+        margin: 20px;
         border: 10px solid red;
-        position: absolute;
+        /* position: absolute; */
         /* background-color: red; */
         border-radius: 50%;
         /* transition: all 0.3s; */
@@ -108,6 +111,18 @@
       .dian span.active {
         background-color: rgb(13, 38, 13);
       }
+      .right,
+      .left {
+        position: absolute;
+        background: red;
+        top: 50%;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+      }
+      .right {
+        right: 0;
+      }
     </style>
 
     <div class="wrapper">
@@ -117,10 +132,10 @@
       </div>
       <p>这是文字</p>
     </div>
-    <a target="_blank">渐变文字</a>
 
     <div class="qiu"></div>
 
+    <a target="_blank">原生JS无限轮播图</a>
     <div class="container">
       <div class="caul">
         <div class="item item1">
@@ -139,10 +154,6 @@
           444
           <img src="" alt="" />
         </div>
-        <div class="item item1">
-          123
-          <img src="" alt="" />
-        </div>
       </div>
       <div class="dian">
         <span class="active"></span>
@@ -150,7 +161,34 @@
         <span></span>
         <span></span>
       </div>
+      <span class="left">left</span>
+      <span class="right">right</span>
     </div>
+
+    <style>
+      .flex {
+        display: flex;
+        width: 100%;
+        height: 500px;
+      }
+      .flex-item {
+        flex: 1;
+      }
+      .flex-item-active {
+        flex: 5;
+      }
+      .flex-item-active2 {
+        flex: 2;
+      }
+    </style>
+    <div class="flex">
+      <div class="flex-item flex-item-active">78978978</div>
+      <div class="flex-item flex-item-active2">54654</div>
+      <div class="flex-item">21</div>
+      <div class="flex-item">312</div>
+      <div class="flex-item">312</div>
+    </div>
+
     <!-- <table cellspacing="0" bgcolor="green" width="500" height="200" border="0" cellpadding="0">
       <caption>
         <h3>课程表</h3>
@@ -188,6 +226,7 @@
     </table> -->
 
     <script>
+      let canIndex = 0;
       const qiuEl = document.querySelector('.qiu');
       let x = 0;
       const run = function () {
@@ -202,10 +241,11 @@
       run();
 
       function moveTo(index) {
-        console.log(' index', index);
+        document.querySelector('.caul').style.transition = '0.5s';
         document.querySelector('.caul').style.transform = 'translateX(-' + index + '00%)';
-        document.querySelector('.dian>span.active').classList.remove('active');
-        document.querySelectorAll('.dian>span')[index].classList.add('active');
+        document.querySelector('.dian>span.active')?.classList.remove('active');
+        document.querySelectorAll('.dian>span')[index]?.classList.add('active');
+        canIndex = index;
       }
       document.querySelectorAll('.dian>span').forEach((item, index) => {
         item.onclick = function () {
@@ -222,6 +262,43 @@
         }, 1000);
       }
 
+      function canulInitiate() {
+        const cauls = document.querySelector('.caul');
+        // console.dir(cauls.getBoundingClientRect());
+        // console.log(document.importNode(document.querySelector('.caul').firstElementChild, true));
+        // console.dir(cauls.lastElementChild.cloneNode(true));
+        const firstEl = document.importNode(cauls.firstElementChild, true);
+        const lastEl = cauls.lastElementChild.cloneNode(true);
+        cauls.append(firstEl);
+        const newF = cauls.insertBefore(lastEl, cauls.firstElementChild);
+        newF.style.cssText = 'position: absolute;transform: translateX(-100%);';
+      }
+      canulInitiate();
+
+      document.querySelector('.left').onclick = function () {
+        console.log('left');
+        if (canIndex === 0) {
+          document.querySelector('.caul').style.transform =
+            'translateX(-' + document.querySelectorAll('.dian>span').length + '00%)';
+          document.querySelector('.caul').style.transition = 'none';
+          document.querySelector('.caul').clientHeight;
+          moveTo(document.querySelectorAll('.dian>span').length - 1);
+          return;
+        }
+        moveTo(canIndex - 1);
+      };
+      document.querySelector('.right').onclick = function () {
+        console.log('right');
+        if (canIndex === document.querySelectorAll('.dian>span').length - 1) {
+          document.querySelector('.caul').style.transform = 'translateX(100%)';
+          document.querySelector('.caul').style.transition = 'none';
+          document.querySelector('.caul').clientHeight;
+          moveTo(0);
+          return;
+        }
+        moveTo(canIndex + 1);
+      };
+
       // let o = { age: 20, items: { uid: 999 } };
       // function objFn(obj) {
       //   obj = { value: 777 };
@@ -231,30 +308,36 @@
       // objFn(o);
       // console.log('lo', o);
 
-      function parsePath(path) {
-        const segments = path.split('.');
-        console.log(segments);
-        return function (vm) {
-          for (let i = 0; i < segments.length; i++) {
-            if (!vm) return;
-            console.log(vm);
+      // function parsePath(path) {
+      //   const segments = path.split('.');
+      //   console.log(segments);
+      //   return function (vm) {
+      //     for (let i = 0; i < segments.length; i++) {
+      //       if (!vm) return;
+      //       console.log(vm);
 
-            vm = vm[segments[i]];
-            console.log(vm);
-          }
-          console.log(vm);
-          return vm;
-        };
-      }
-      const ruct = parsePath('a.b.c');
+      //       vm = vm[segments[i]];
+      //       console.log(vm);
+      //     }
+      //     console.log(vm);
+      //     return vm;
+      //   };
+      // }
+      // const ruct = parsePath('a.b.c');
 
-      ruct({
-        a: {
-          b: {
-            c: 789,
-          },
-        },
-      });
+      // ruct({
+      //   a: {
+      //     b: {
+      //       c: 789,
+      //     },
+      //   },
+      // });
+
+      // let vm = 'agas.gs.com';
+      // let vmArr = vm.split('.');
+
+      // console.log('vmArr', vmArr[vmArr.length - 1]);
+      // console.log(vm.slice(-3));
 
       // always();
       // const div = document.getElementById('hd');
