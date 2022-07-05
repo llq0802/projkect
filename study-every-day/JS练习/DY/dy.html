@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>DY练习</title>
+    <script type="text/javascript" type="module" defer></script>
   </head>
 
   <body>
@@ -11,6 +12,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        /* writing-mode: vertical-lr; */
       }
       .parallelogram {
         position: relative;
@@ -78,6 +80,7 @@
         margin: 100px auto;
         overflow: hidden;
         position: relative;
+        box-sizing: content-box;
       }
       .item {
         width: 500px;
@@ -135,25 +138,38 @@
 
     <div class="qiu"></div>
 
-    <a target="_blank">原生JS无限轮播图</a>
+    <a target="_blank">无缝轮播</a>
     <div class="container">
       <div class="caul">
         <div class="item item1">
           123
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt=""
+          />
         </div>
         <div class="item item2">
           222
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt=""
+          />
         </div>
         <div class="item item3">
           333
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80"
+            alt=""
+          />
         </div>
         <div class="item item4">
           444
-          <img src="" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
+            alt=""
+          />
         </div>
+        <!-- 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' -->
       </div>
       <div class="dian">
         <span class="active"></span>
@@ -161,8 +177,8 @@
         <span></span>
         <span></span>
       </div>
-      <span class="left">left</span>
-      <span class="right">right</span>
+      <span class="left">&lt;</span>
+      <span class="right">&gt;</span>
     </div>
 
     <style>
@@ -230,9 +246,9 @@
       const qiuEl = document.querySelector('.qiu');
       let x = 0;
       const run = function () {
-        x += 2;
+        x += 1;
         requestAnimationFrame(() => {
-          if (x === 500) x = 0;
+          if (x === 1000) x = 0;
           // qiuEl.style.left = x + 'px';
           qiuEl.style.transform = 'translateX(' + x + 'px)';
           run();
@@ -254,12 +270,16 @@
       });
 
       function always() {
-        let i = 0;
         setInterval(() => {
-          if (i >= 4) i = 0;
-          moveTo(i);
-          i++;
-        }, 1000);
+          if (canIndex === document.querySelectorAll('.dian>span').length - 1) {
+            document.querySelector('.caul').style.transform = 'translateX(100%)';
+            document.querySelector('.caul').style.transition = 'none';
+            document.querySelector('.caul').clientHeight;
+            moveTo(0);
+          } else {
+            moveTo(canIndex + 1);
+          }
+        }, 3000);
       }
 
       function canulInitiate() {
@@ -298,6 +318,7 @@
         }
         moveTo(canIndex + 1);
       };
+      always();
 
       // let o = { age: 20, items: { uid: 999 } };
       // function objFn(obj) {
@@ -339,7 +360,6 @@
       // console.log('vmArr', vmArr[vmArr.length - 1]);
       // console.log(vm.slice(-3));
 
-      // always();
       // const div = document.getElementById('hd');
       // function handle() {
       //   let i = 0;
@@ -680,28 +700,12 @@
           id: 1,
           name: '北京市',
           children: [
-            {
-              id: 11,
-              name: '海淀区',
-              children: [
-                {
-                  id: 111,
-                  name: '中关村',
-                },
-              ],
-            },
-            {
-              id: 12,
-              name: '朝阳区',
-            },
+            { id: 11, name: '海淀区', children: [{ id: 111, name: '中关村' }] },
+            { id: 12, name: '朝阳区' },
           ],
         },
-        {
-          id: 2,
-          name: '河北省',
-        },
+        { id: 2, name: '河北省' },
       ];
-      // 请实现该函数
       // 输入：getNameById(address, 2)，输出："河北省"
       // 输入：getNameById(address, 111)，输出："中关村"
       // 输入：getNameById(address, 32)，输出："" （未查找到，输出空字符串）
@@ -719,6 +723,7 @@
         }
         return res;
       }
+
       // console.log(getNameById(address, 2));
       // console.log(getNameById(address, 111));
       // console.log(getNameById(address, 32));
