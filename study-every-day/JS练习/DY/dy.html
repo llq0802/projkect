@@ -242,6 +242,30 @@
     </table> -->
 
     <script>
+      let stss = '10000000000';
+      const newStss = stss.replace(/(?=\B(\d{3})+$)/g, ','); //把金额以三位分割
+      console.log('newStss', newStss);
+
+      function group2(array, subNum) {
+        console.log(array);
+        let newArray = [];
+        for (let i = 0; i < array.length; i++) {
+          // newArray.push(array.slice(i, (i += subNum)));
+          newArray.push(array.slice(i, i + subNum));
+          // i += subNum - 1;
+          i = i + subNum - 1;
+          // newArray.push(array.slice(i * subNum, (i + 1) * subNum));
+        }
+        return newArray;
+        // return newArray.filter((item) => item.length);
+      }
+      console.log(group2([1, 2, 3, 45, 7, 8, 9, 75, 5, 4], 3));
+      // for (let index = '100'.length - 1; index >= 0; index--) {
+      //   console.log(index);
+      // }
+      // for (let index = 0, len = array.length; index < len; index++) {
+      //   const element = array[index];
+      // }
       let canIndex = 0;
       const qiuEl = document.querySelector('.qiu');
       let x = 0;

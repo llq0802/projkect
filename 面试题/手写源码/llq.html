@@ -308,7 +308,7 @@
       }
       //call
       //  fn.myCall(obj)  =>  obj.fn()
-      Function.prototype.myCall = function(context, ...rest) {
+      Function.prototype.myCall = function (context, ...rest) {
         //this 是调用的函数     函数基于__proto__ 找到  Function.prototype
         const keyFn = Symbol('keyFn');
         context[keyFn] = this;
@@ -321,7 +321,7 @@
       };
 
       //apply
-      Function.prototype.myApply = function(context, args) {
+      Function.prototype.myApply = function (context, args) {
         context.fn = this;
         let res;
         if (!args) {
@@ -334,14 +334,20 @@
       };
 
       // 手写bind函数
-      Function.prototype.myBind = function(context, ...args) {
+      Function.prototype.myBind = function (context, ...args) {
         const thisFn = this; //当前调用的函数
-        return function(...params) {
+        return function (...params) {
           thisFn.apply(context, [...args, ...params]);
         };
       };
-      const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...boundArgs, ...args]);
-      const call = (key, ...args) => (context) => context[key](...args);
+      const bind =
+        (fn, context, ...boundArgs) =>
+        (...args) =>
+          fn.apply(context, [...boundArgs, ...args]);
+      const call =
+        (key, ...args) =>
+        (context) =>
+          context[key](...args);
 
       //手写new
       function myNew(fun, ...args) {
@@ -391,21 +397,34 @@
         return false;
       };
 
-      //将数组拆分成平均长度的数组
+      //1 将数组拆分成平均长度的数组
       function group(array, subNum) {
         let startIndex = 0;
         let newArray = [];
         while (startIndex < array.length) {
           newArray.push(array.slice(startIndex, (startIndex += subNum)));
-
           // 1.newArray.push(array.slice(startIndex, startIndex + subNum));
           // startIndex+=subNum
-
           // 2.newArray.push(array.slice(startIndex*subNum, (startIndex +1)*subNum));
           // (page-1*size),(page*size)
         }
         return newArray;
       }
+      //2 将数组拆分成平均长度的数组
+      function group2(array, subNum) {
+        console.log(array);
+        let newArray = [];
+        for (let i = 0; i < array.length; i++) {
+          // newArray.push(array.slice(i, (i += subNum)));
+          newArray.push(array.slice(i, i + subNum));
+          // i += subNum - 1;
+          i = i + subNum - 1;
+          // newArray.push(array.slice(i * subNum, (i + 1) * subNum));
+        }
+        return newArray;
+        // return newArray.filter((item) => item.length);
+      }
+      // console.log(group2([1, 2, 3, 45, 7, 8, 9, 75, 5, 4], 3));
 
       // 深度过滤数组重复值
       const uniqueDeep = (arr) => {
@@ -563,7 +582,7 @@
 
       const debounce = (fn, ms = 200) => {
         let timeoutId;
-        return function(...args) {
+        return function (...args) {
           if (timeoutId) clearTimeout(timeoutId);
           timeoutId = setTimeout(() => fn.apply(this, args), ms);
         };
@@ -573,14 +592,14 @@
       function throttle(fn, wait = 150, isFirst = true) {
         let timer = null;
         let flag = true;
-        return function(...args) {
+        return function (...args) {
           //let context = this;  这儿的this指向DOM调用者   // self 永远指向window
           if (flag && isFirst) {
             flag = false;
             fn.apply(this, args);
           } else {
             if (!timer) {
-              timer = setTimeout(function() {
+              timer = setTimeout(function () {
                 fn.apply(this, args);
                 timer = null;
               }, wait);
@@ -590,7 +609,7 @@
       }
       function throttle1(fn, delay = 100) {
         let lastTime = 0;
-        return function() {
+        return function () {
           let currTime = +new Date();
           if (currTime - lastTime > delay) {
             fn.apply(this, arguments);
@@ -600,7 +619,7 @@
       }
       const throttle2 = (fn, wait) => {
         let inThrottle, lastFn, lastTime;
-        return function() {
+        return function () {
           const context = this,
             args = arguments;
           if (!inThrottle) {
@@ -609,7 +628,7 @@
             inThrottle = true;
           } else {
             clearTimeout(lastFn);
-            lastFn = setTimeout(function() {
+            lastFn = setTimeout(function () {
               if (Date.now() - lastTime >= wait) {
                 fn.apply(context, args);
                 lastTime = Date.now();
@@ -855,10 +874,7 @@
        */
       function dataURItoBlob(dataURI) {
         var byteString = window.atob(dataURI.split(',')[1]);
-        var mimeString = dataURI
-          .split(',')[0]
-          .split(':')[1]
-          .split(';')[0];
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
         var ab = new ArrayBuffer(byteString.length);
         var ia = new Uint8Array(ab);
         for (var i = 0; i < byteString.length; i++) {
@@ -904,10 +920,7 @@
         else {
           byteString = unescape(base64Data.split(',')[1]);
         }
-        var mimeString = base64Data
-          .split(',')[0]
-          .split(':')[1]
-          .split(';')[0]; //mime类型 -- image/png
+        var mimeString = base64Data.split(',')[0].split(':')[1].split(';')[0]; //mime类型 -- image/png
 
         // var arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
         // var ia = new Uint8Array(arrayBuffer);//创建视图
@@ -927,7 +940,7 @@
       function blobToDataURI(blobOrFile) {
         var reader = new FileReader();
         reader.readAsDataURL(blobOrFile);
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const base64Url = e.target.result;
         };
       }
@@ -947,11 +960,11 @@
       //       将file转化成blob
       // 利用URL.createObjectURL()
       let $img1 = document.getElementById('img');
-      file.onchange = function(e) {
+      file.onchange = function (e) {
         let file = e.target.files[0];
         let fileUrl = window.URL.createObjectURL(file);
         $img1.src = fileUrl;
-        img.onload = function() {
+        img.onload = function () {
           // 手动回收
           URL.revokeObjectURL(fileUrl);
         };
@@ -960,12 +973,12 @@
       // 将file转化为DataURL
       利用FileReader.readAsDataURL();
       let $img = document.getElementById('img');
-      file.onchange = function(e) {
+      file.onchange = function (e) {
         console.log(e.target.files);
         let file = e.target.files[0];
         const fr = new FileReader(file);
         fr.readAsDataURL(file);
-        fr.onload = function() {
+        fr.onload = function () {
           $img.src = this.result;
         };
       };
@@ -975,12 +988,12 @@
       // canvas.toDataURL('image/jpeg')
       // canvas转为blob对象
       // 将canvas输出为Blob对象，这样就可以像File对象一样操作它了
-      canvas.toBlob(function(blobObj) {
+      canvas.toBlob(function (blobObj) {
         console.log(blobObj); //blobObj就是blob对象（类文件）
       });
       // Blob对象显示图片
       // 同上,如果拿到blob对象，亦可以使用URL.createObjectURL()来进行转换
-      canvas.toBlob(function(blobObj) {
+      canvas.toBlob(function (blobObj) {
         console.log(blobObj); //blobObj就是blob对象（类文件）
         let imgSrc = window.URL.createObjectURL(blobObj);
         document.getElementById('img').src = imgSrc;
@@ -998,7 +1011,7 @@
       // 防止网络请求多次(使用promise实现)
       function firstPromise(returnPromiseFn) {
         let promiseInstance = null;
-        return function(...args) {
+        return function (...args) {
           if (promiseInstance) {
             return promiseInstance;
           } else {
@@ -1009,7 +1022,7 @@
       // 防止网络请求多次
       function onceRequest(promiseFn) {
         let p = null;
-        return function(...args) {
+        return function (...args) {
           return p ? p : (p = promiseFn.apply(this, args).finally(() => (p = null)));
         };
       }
