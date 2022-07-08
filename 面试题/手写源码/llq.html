@@ -867,7 +867,7 @@
        *  调用了一下applyMixin方法，现在的版本其实就是调用了Vue.mixin，在所有组件的 beforeCreate生命周期注入了设置this.$store这样一个对象。
        */
 
-      /**   base64 转 二进制文件
+      /**   base64 转 二进制文件(blob)
        * dataURL to blob, ref to https://gist.github.com/fupslot/5015897
        * @param dataURI
        * @returns {Blob}
@@ -896,7 +896,8 @@
           u8arr[n] = bstr.charCodeAt(n);
         }
         // 转blob // return new Blob([u8arr], {type: mime})
-        const filename = Date.parse(new Date()) + '.jpg'; // 转file
+        const filename = Date.parse(new Date()) + '.jpg';
+        // 转file
         return new File([u8arr], filename, { type: mime });
       }
       //将base64转换为文件
@@ -954,8 +955,8 @@
       // URL.revokeObjectURL()
 
       // js中内置的base64编码和解码。
-      // let encodedData = window.btoa('Hello, world'); // 编码
-      // let decodedData = window.atob(encodedData); // 解码
+      // let encodedData = window.btoa('Hello, world'); // 编码 en
+      // let decodedData = window.atob(encodedData); // 解码  de
 
       //       将file转化成blob
       // 利用URL.createObjectURL()
