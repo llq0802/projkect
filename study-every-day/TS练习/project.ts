@@ -19,9 +19,6 @@ interface Age {
 }
 type User = Name & Age;
 
-
-
-
 // let arr: Array<number> = [1];
 // let arr1: string[] = ["a"];
 // let arr3: [string, number, boolean] = ["a", 1, false];
@@ -88,14 +85,14 @@ interface fn {
 //   // return 1;
 // };
 const ee: fn = () => {
-  return 'g';
+  return "g";
 };
 
 // console.log(tt(1, 1));
 // console.log(ee(1, 1));
 
 const printName = (fullName: fullName): void => {
-  console.log(fullName.firstName + '----' + fullName.secondName + fullName.age);
+  console.log(fullName.firstName + "----" + fullName.secondName + fullName.age);
 };
 const printName1 = (fullName: {
   [key: string]: any;
@@ -104,11 +101,11 @@ const printName1 = (fullName: {
   age: number;
   info?: any;
 }): void => {
-  console.log(fullName.firstName + '----' + fullName.secondName + fullName.age);
+  console.log(fullName.firstName + "----" + fullName.secondName + fullName.age);
 };
 
 const params = {
-  firstName: 'llq',
+  firstName: "llq",
   age: 20,
 };
 // printName1(params);

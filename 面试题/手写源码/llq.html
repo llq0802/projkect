@@ -744,7 +744,8 @@
         }
         return result;
       };
-
+      // let stss = '10000000000';
+      // const newStss = stss.replace(/(?=\B(\d{3})+$)/g, ','); //把金额以三位分割
       // 深度解析obj的路径
       const parsePath = (path, obj) => {
         let tempArr = path.split('.');
@@ -873,11 +874,11 @@
        * @returns {Blob}
        */
       function dataURItoBlob(dataURI) {
-        var byteString = window.atob(dataURI.split(',')[1]);
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        var ab = new ArrayBuffer(byteString.length);
-        var ia = new Uint8Array(ab);
-        for (var i = 0; i < byteString.length; i++) {
+        let byteString = window.atob(dataURI.split(',')[1]);
+        let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        let ab = new ArrayBuffer(byteString.length);
+        let ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
           ia[i] = byteString.charCodeAt(i);
         }
         return new Blob([ab], { type: mimeString });
@@ -902,7 +903,7 @@
       }
       //将base64转换为文件
       function dataURLtoFile(dataurl, filename) {
-        var arr = dataurl.split(','),
+        let arr = dataurl.split(','),
           mime = arr[0].match(/:(.*?);/)[1],
           bstr = window.atob(arr[1]),
           n = bstr.length,
@@ -915,21 +916,21 @@
       // base64 转 二进制文件Blob
       function dataURI64toBlob(base64Data) {
         //console.log(base64Data);//data:image/png;base64,
-        var byteString;
+        let byteString;
         if (base64Data.split(',')[0].indexOf('base64') >= 0) byteString = window.atob(base64Data.split(',')[1]);
         //base64 解码
         else {
           byteString = unescape(base64Data.split(',')[1]);
         }
-        var mimeString = base64Data.split(',')[0].split(':')[1].split(';')[0]; //mime类型 -- image/png
+        let mimeString = base64Data.split(',')[0].split(':')[1].split(';')[0]; //mime类型 -- image/png
 
-        // var arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
-        // var ia = new Uint8Array(arrayBuffer);//创建视图
-        var ia = new Uint8Array(byteString.length); //创建视图
-        for (var i = 0; i < byteString.length; i++) {
+        // let arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
+        // let ia = new Uint8Array(arrayBuffer);//创建视图
+        let ia = new Uint8Array(byteString.length); //创建视图
+        for (let i = 0; i < byteString.length; i++) {
           ia[i] = byteString.charCodeAt(i);
         }
-        var blob = new Blob([ia], {
+        let blob = new Blob([ia], {
           type: mimeString,
         });
         return blob;
@@ -939,7 +940,7 @@
       // readAsDataURL file 将文件读取为 DataURL
       // readAsText file, [encoding] 将文件读取为文本
       function blobToDataURI(blobOrFile) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.readAsDataURL(blobOrFile);
         reader.onload = function (e) {
           const base64Url = e.target.result;
@@ -948,7 +949,7 @@
       // blob转File文件
       let file = new File([blob], filename, filetype);
       // Blob {size: 306788, type: "image/png"}
-      // var file = new File([blob], filename, {type: contentType, lastModified: Date.now()});
+      // let file = new File([blob], filename, {type: contentType, lastModified: Date.now()});
 
       //  把文件或者blob流转成内存地址
       // URL.createObjectURL()
