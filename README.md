@@ -45,9 +45,8 @@ https://flatuicolors.com/
 
 ```
 
-'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'revert', 'perf', 'chore'],
-
 ```
+'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'revert', 'perf', 'chore'],
 
 "lint-staged": {
 "src/**/\*.less": "stylelint --syntax less",
@@ -56,7 +55,7 @@ https://flatuicolors.com/
 "prettier --write"
 ]
 }
-```
+
 
 "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
 "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
@@ -67,3 +66,4 @@ https://flatuicolors.com/
 "prepare": "husky install",
 "postinstall": "husky install",
 "prettier": "prettier -c --write \"src/\*_/_\""
+```
