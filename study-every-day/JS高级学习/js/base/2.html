@@ -1,0 +1,63 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-31 21:39:34
+ * @LastEditTime: 2021-07-07 20:58:56
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS高级学习\js\base\2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>后盾人</title>
+</head>
+
+<body>
+  <script>
+    // var web = "houdunren";
+    // var web;
+    // web = "houdunren";
+    // console.log(web);
+
+    // var $ = "hdcms";
+    // console.log($);
+    // console.log(web);
+    // var web = "hdcms",
+    //   name = "后盾人",
+    //   url = "houdunren.com";
+    // console.log(url);
+    // var web = (url = name = "hdcms");
+    // console.log(web);
+    // console.log(url);
+    // console.log(name);
+    // console.log(window.name);
+    [[[1, 2],]]
+    let arr = [
+      { id: 1, name: 'a' },
+      { id: 2, name: 'b' },
+      { id: 3, name: 'c' },
+      { id: 4, name: 'd' },
+      { id: 5, name: 'e' },
+      { id: 6, name: 'f' }
+    ];
+
+    const a = arr.slice(0, 3);
+    const b = arr.slice(4);
+    arr = []
+    arr.push(...a, ...b)
+    console.log(a, b);
+    console.log(arr);
+
+
+    // arr.forEach((item, index) => {
+    //   console.log(item);
+    // })
+
+  </script>
+</body>
+
+</html>

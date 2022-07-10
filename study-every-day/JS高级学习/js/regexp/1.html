@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>houdunren.com</title>
+</head>
+
+<body></body>
+<script>
+  //replace substring substr slice
+  let reg = /\[|\]/g
+  let arr = [1, 2, 3]
+  let d = /\[[\s\S]*\]/
+  console.log(typeof arr[0]);
+  arr = JSON.stringify(arr)
+console.log(  d.test(arr));
+// Math.round()
+
+  arr = arr.replace(reg, '')
+  // arr = '\'' + arr + '\'' 
+  console.log(typeof arr[0]);
+  //  console.log( isNaN('N'));
+  let a = ['1', '2', '3']
+  // for (let i = 0; i < a.length; i++) a[i] = typeof a[i] == 'number' ? a[i] : +a[i];
+  // console.log(a);
+  // console.log(a.map(Number));
+  let div = /<div>[\s\S]*<\/div>/
+    let phone = "98765432101";
+console.log("*".repeat(3)+phone.slice(2, -2) + "*".repeat(3));
+
+let han = '李t岚yfvev清清'
+console.log(/^\p{sc=Han}+$/gu.test(han));
+console.log(han.match(/[^\w]+/g)  );
+console.log(han.match(/\p{sc=Han}+/gu));
+console.log(han.match(/.+/g)  );
+</script>
+
+
+</html>

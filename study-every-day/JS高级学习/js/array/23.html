@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>后盾人</title>
+</head>
+
+<body>
+  <input type="text" name="title" />
+  <span></span>
+</body>
+<script>
+
+  function kmUnit(m) {
+    var v;
+    if (typeof +m === 'number' && !isNaN(m)) {
+      v = toFixed((m / 1000), 2) + ' km'
+      return v;
+    }
+  }
+  var km = kmUnit('125.5');
+  console.log(km);
+
+
+  function toFixed(val, num = 0) {
+    if (num == 0) {
+      return val
+    } else {
+      val = val.toString().split('.')
+      if (val.length == 1) {
+        let hou = '', res
+        for (let i = 0; i < num; i++) (hou += '0')
+        res = '.' + hou
+        return (val[0] + res)
+      } else {
+        let hou = '.' + val[1].substr(0, num)
+        return (val[0] + hou)
+      }
+    }
+  }
+  console.log(parseFloat(toFixed(113.255, 2)));
+
+sbustr()
+subging()
+charAr()
+starsW
+    // let arr = ['a','v','t','bh']
+    // let a =arr.some((item,index) => {
+    //   return arr.includes('b')
+    // })
+    // console.log(a);
+
+    // let keywords = ["php", "js"];
+    // let title = document.querySelector('[name="title"]');
+    // title.addEventListener("keyup", function() {
+    //   const res = keywords.some(keyword => {
+    //     return this.value.indexOf(keyword) != -1;
+    //   });
+    //   document.querySelector("span").innerHTML = res
+    //     ? ""
+    //     : "必须包含" + keywords.join(",") + "关键词";
+    // });
+    // const user = [
+    //   { name: "李四", js: 89 },
+    //   { name: "张三", js: 99 },
+    //   { name: "马六", js: 65 }
+    // ];
+    // const res = user.every(function(item) {
+    //   return item.js >= 60;
+    // });
+    // console.log(res ? "全部同学都及格" : "有同学没有及格");
+    // let arr = ["hdcms", "houdunren"];
+    // let status = arr.every(function(value, index, arr) {
+    //   console.log(value);
+    //   return false;
+    // });
+    // console.log(status);
+    // let arr = ["hdcms", "houdunren"];
+    // let res = arr.some(function(value, index, arr) {
+    //   console.log(value);
+    //   return false;
+    // });
+    // console.log(res);
+</script>
+
+</html>

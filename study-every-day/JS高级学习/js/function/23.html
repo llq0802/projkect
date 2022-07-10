@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>后盾人</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 3em;
+    padding: 30px;
+    /* transition: 2s ease ; */
+    transition: 2s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #34495e;
+    color: #34495e;
+  }
+
+  h1 {
+    padding: 30px;
+    font-size: 30px;
+    transition: 1s
+  }
+</style>
+
+<body>
+  <h1>houdunren.com</h1>
+  houdunren.com
+</body>
+<script>
+// '' null undefined 0 NaN  为假
+ 
+    Number.MAX_VALUE
+-Infinity
+if([]){
+  console.log(1111);
+}
+  if ({}) {
+    console.log(2222);
+  }
+
+
+  console.log(!![]);
+  console.log(!!{});
+  console.log(!!null);
+  console.log(!!0);
+  console.log(!!'');
+  
+  // function Color(elem) {
+  //   this.elem = elem;
+  //   this.colors = ["#1abc9c", "#f1c40f", "#9b59b6", "#f39c12"];
+  //   this.run = function () {
+  //     setInterval(
+  //       function () {
+  //         let i = Math.floor(Math.random() * this.colors.length);
+  //         this.elem.style.backgroundColor = this.colors[i];
+  //       }.bind(this),
+  //       1000
+  //     );
+  //   };
+  // }
+
+  // let h1 = new Color(document.querySelector("h1"));
+  // h1.run();
+
+  function countArrayELem(array, elem) {
+    // return elem + '出现了：'+array.reduce((total, cur) => (total += cur == elem ? 1 : 0), 0);
+    return `${elem}出现了${array.reduce((total, cur) => total = cur === elem ? total + 1 : 0, 0)}次`
+  }
+
+  let numbers = [1, 2, 3, 1, 5];
+  console.log(countArrayELem(numbers, 0));
+  // function countArrayELem(array, elem) {
+  //     return array.reduce((total, cur) => (total += cur == elem ? 1 : 0), 0);
+  //   }
+
+  //   let numbers = [1, 2, 3, 1, 5];
+  //   console.log(countArrayELem(numbers, 1)); //2
+
+
+  class random {
+    constructor(el) {
+      this.el = el;
+      this.color = ["#1abc9c", "#f1c40f", "#9b59b6", "#f39c12"];
+    }
+    run() {
+      setInterval(() => {
+        let i = Math.floor(Math.random() * this.color.length)
+        this.el.style.backgroundColor = this.color[i];
+      }, 1000)
+    }
+  }
+  let h1 = new random(document.querySelector("h1"));
+  h1.run();
+  let obj = new random(document.body);
+  obj.run();
+  // body = document.body
+  // html = document.documentElement
+  // console.log(document.documentElement);
+  // console.log(document.body);
+</script>
+
+</html>

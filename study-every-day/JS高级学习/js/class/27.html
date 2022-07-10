@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>后盾人</title>
+</head>
+
+<body></body>
+<script>
+// let a =[12,1]
+// let b =[121,11]
+// let c =[...a,...b]
+// console.log(c);
+
+  //mixin
+  let Tool = {
+    max(key) {
+      return this.data.sort((a, b) => b[key] - a[key])[0];
+    }
+  };
+  let Arr = {
+    count(key) {
+      return this.data.reduce((t, c) => t + c[key], 0);
+    }
+  };
+
+  class Lesson {
+
+    constructor(lessons) {
+      this.lessons = lessons;
+    }
+    get data() {
+      return this.lessons;
+    }
+
+  }
+  Arr=Object.assign(Arr,Lesson.prototype, {age: 12})
+  // let a = { ...Lesson.prototype, age: 12 }
+
+console.log(Arr);
+console.dir(Lesson.prototype);
+
+
+
+
+
+
+  const data = [
+    { name: "js", price: 100, click: 188 },
+    { name: "mysql", price: 212, click: 34 },
+    { name: "vue.js", price: 98, click: 89 }
+  ];
+
+  // 在类中的原型或者构造函数的原型与其他对象合并的时候 一定是Object.assign() 并且构造函数的原型放在参数的第一个！！！
+  
+  // Lesson.prototype = Object.assign(Lesson.prototype, Tool, Arr);
+  // Lesson.prototype = { ...Lesson.prototype,...Tool,...Arr };
+  // console.log(Lesson.prototype);
+  // console.dir(Lesson);
+//   let hd = new Lesson(data);
+//   console.log(hd.count("price"));
+// </script>
+
+</html>

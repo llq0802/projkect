@@ -1,0 +1,49 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-31 21:39:34
+ * @LastEditTime: 2021-07-01 20:25:37
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS高级学习\js\base\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>后盾人</title>
+
+</head>
+
+<body>
+
+  <input type="button" value="1">
+  <input type="button" value="2">
+  <input type="button" value="3">
+  <input type="button" value="4">
+  <input type="button" value="5">
+
+  <script>
+    const btn = document.querySelectorAll('input');
+    [...btn].map((item, index) => {
+      item.addEventListener('click', () => {
+        item.value = '选中'
+      })
+    })
+
+    const arr = ['a', 'b', 'c', 'd', 'e', 'f']
+    console.log(arr.splice(2, 0, 3));
+    console.log(arr);
+
+    console.log(Object.prototype.toString.call('a').slice(8, -1));
+    console.log('1' - '');
+    console.log(+'1');
+    console.log('1' / 1);
+    console.log('1' * 1);
+    console.log('1' * 1);
+  </script>
+</body>
+
+</html>

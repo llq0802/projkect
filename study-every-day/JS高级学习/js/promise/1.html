@@ -1,0 +1,87 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-31 21:39:34
+ * @LastEditTime: 2021-06-27 22:19:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS高级学习\js\promise\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>后盾人</title>
+</head>
+<a href="https://www.hdcms.com/HDCMS-201905072207.zip">下载HDCMS</a>
+<a href="tel:99999999999">联系客服</a>
+原价 <del>200元</del> 现价 <ins>100元</ins>
+<s>A 太阳是方的</s> <br>
+m<sup>2</sup>
+<progress value="60" max="100">完成60%</progress>
+<script>
+
+  // 利用for循环，配合事件循环制作倒时效果
+  function Countdown() {
+    async function fn(i) {
+      await new Promise(resolve => {
+        setTimeout(() => {
+          resolve()
+          console.log(i)
+        }, 1000)
+      })
+    }
+    (async function () {
+      for (let i = 6; i > -1; i--) await fn(i)
+    })()
+  }
+  // Countdown()
+
+  // 利用定时器制作倒时效果
+  function daojishi() {
+    let time = 6;
+    let intervalId = setInterval(() => {
+      console.log(time);
+      time--;
+      time == -1 && clearInterval(intervalId)
+    }, 1000)
+  }
+  // daojishi()
+
+  // new Promise(resolve => {
+  //   for (let i = 6; i > -1; i--) {
+  //     console.log(i);
+  //     resolve(i)
+  //   }
+  // }).then((i) => {
+  //   return new Promise(resolve => {
+  //     setTimeout(() => {
+  //       console.log(i);
+  //       resolve(i)
+  //     }, 1000)
+  //   })
+  // }).then((i) => {
+  //   console.log(i);
+  // })
+  // console.log(3);
+
+
+
+  // for (var i = 0; i < 10; i++) {
+  //   (function (i) {
+  //     //var backup = i;//定义个backup也可以暂存i值
+  //     setTimeout(function () {
+  //       console.log(i);//输出0-9
+  //     }, 1000);
+  //   })(i);
+  // }
+
+  for (var i = 0; i < 1000000; i++) {
+    setTimeout(function () {
+      console.log(i);
+    }, 900);
+  }
+</script>
+</body>
+
+</html>

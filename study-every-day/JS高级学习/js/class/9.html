@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>后盾人</title>
+</head>
+
+<body></body>
+<script>
+  const data = [
+    { name: "js", price: 100 },
+    { name: "mysql", price: 212 },
+    { name: "vue.js", price: 98 }
+  ];
+  class Lesson {
+    constructor(data) {
+      this.model = data;
+    }
+    get price() {
+      return this.model.price;
+    }
+    get name() {
+      return this.model.name;
+    }
+    static totalPrice(data){
+      data.reduce((t,c)=>t+c.price,0)
+    }
+   
+    //生成对个对象实例
+    static createBatch(data) {
+      return data.map(item => new this(item));
+    }
+    static maxPrice(data) {
+      return data.sort((a, b) => b.price - a.price)[0]
+    }
+  }
+
+
+  let lessons = Lesson.createBatch(data);
+
+  console.log(Lesson.maxPrice(lessons));
+  console.log(Lesson.totalPrice(lessons));
+  // console.log(Lesson.totalPrice(lessons));
+
+  const filterNonUnique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
+
+
+  let a = arr => arr.filter((val, idx) =>arr.indexOf(val) === idx);
+
+
+
+
+</script>
+
+</html>

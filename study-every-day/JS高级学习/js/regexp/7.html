@@ -1,0 +1,50 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-31 21:39:34
+ * @LastEditTime: 2021-07-18 19:59:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS高级学习\js\regexp\7.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>后盾人</title>
+</head>
+
+<body></body>
+<script>
+  let price = 12.23;
+  // . 除换行外任何字符 .普通点
+  // d   \d 数字 0~9
+  console.log(/\d+\.\d+/.test(price));
+  console.log("\d" == "d");
+  console.log("\\d+\\.\\d+");
+  let reg = new RegExp("\\d+\\.\\d+");
+  console.log(reg.test(price));
+  let url = "https://www.houdunren.com";
+  console.log(/https?:\/\/\w+\.\w+\.\w+/.test(url));
+  // ? 1 0
+  // + >=1
+  // * >=0
+
+  // '' NaN undefined null 0
+
+  let formData = new formData()
+  let map = new Map([['price', 1], ['j', 15]]);
+  let set = new Set([11, 1]);
+
+  // localStorage的值类型限定为string类型
+  formData.append("key1", "value1");
+  formData.set('hd', 'gs')
+  formData.get("key1");
+  formData.getAll("key2");
+  formData.delete("key")
+  formData.size()
+  formData.has("key")
+  formData.clear();
+</script>
+
+</html>
