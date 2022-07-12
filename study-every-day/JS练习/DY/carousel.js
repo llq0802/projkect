@@ -1,4 +1,3 @@
-let canIndex = 0;
 const qiuEl = document.querySelector(".qiu");
 let x = 0;
 const run = function () {
@@ -12,6 +11,11 @@ const run = function () {
 };
 run();
 
+/**
+ * 原生走马灯
+ */
+
+let canIndex = 0;
 function moveTo(index) {
   document.querySelector(".caul").style.transition = "0.5s";
   document.querySelector(".caul").style.transform =
@@ -39,18 +43,6 @@ function always() {
   }, 3000);
 }
 
-function canulInitiate() {
-  const cauls = document.querySelector(".caul");
-  // console.dir(cauls.getBoundingClientRect());
-  // console.log(document.importNode(document.querySelector('.caul').firstElementChild, true));
-  // console.dir(cauls.lastElementChild.cloneNode(true));
-  const firstEl = document.importNode(cauls.firstElementChild, true);
-  const lastEl = cauls.lastElementChild.cloneNode(true);
-  cauls.append(firstEl);
-  const newF = cauls.insertBefore(lastEl, cauls.firstElementChild);
-  newF.style.cssText = "position: absolute;transform: translateX(-100%);";
-}
-canulInitiate();
 document.querySelector(".left").onclick = function () {
   console.log("left");
   if (canIndex === 0) {
@@ -75,3 +67,19 @@ document.querySelector(".right").onclick = function () {
   moveTo(canIndex + 1);
 };
 always();
+
+/**
+ * 初始化
+ */
+function canulInitiate() {
+  const cauls = document.querySelector(".caul");
+  // console.dir(cauls.getBoundingClientRect());
+  // console.log(document.importNode(document.querySelector('.caul').firstElementChild, true));
+  // console.dir(cauls.lastElementChild.cloneNode(true));
+  const firstEl = document.importNode(cauls.firstElementChild, true);
+  const lastEl = cauls.lastElementChild.cloneNode(true);
+  cauls.appendChild(firstEl);
+  const newF = cauls.insertBefore(lastEl, cauls.firstElementChild);
+  newF.style.cssText = "position: absolute;transform: translateX(-100%);";
+}
+canulInitiate();

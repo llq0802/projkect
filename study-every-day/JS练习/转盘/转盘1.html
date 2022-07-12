@@ -302,9 +302,14 @@
 
       // console.log(gd);
 
+      //       1、isNaN(val)
+      // 通过Number()强制类型转换 将val转成number类型，再判断是否为NaN
+      //       2、Number.isNaN(val)
+      // Es6 新加的严格判断是否val===NaN
+
       const debounce = (fn, ms = 200) => {
         let timeoutId;
-        return function(...args) {
+        return function (...args) {
           console.log(args);
           if (timeoutId) clearTimeout(timeoutId);
           timeoutId = setTimeout(() => fn.apply(this, args), ms);

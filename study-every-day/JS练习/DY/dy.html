@@ -251,6 +251,14 @@
       const newStss = stss.replace(/(?=\B(\d{3})+$)/g, ','); //把金额以三位分割
       log('newStss', newStss);
 
+      //获取地址栏参数
+      function getUrlSearch(name) {
+        const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        const result = window.location.search.substr(1).match(reg);
+        if (result) return unescape(r[2]);
+        return null;
+      }
+
       function group2(array, subNum) {
         console.log(array);
         let newArray = [];
