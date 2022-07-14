@@ -1,140 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Title</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Title</title>
-</head>
-
-<body>
-  <style>
-    @media screen and(min-width: 800px)and(max-width: 1200xp) {
-      body {
-        font-size: 14px;
-        font-weight: bold;
-        font-style: normal;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        text-decoration: none;
-        list-style: none;
+  <body>
+    <style>
+      @media screen and(min-width: 800px) and(max-width: 1200xp) {
+        body {
+          font-size: 14px;
+          font-weight: bold;
+          font-style: normal;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          text-decoration: none;
+          list-style: none;
+        }
       }
-    }
 
-    @keyframes identifier {
-      0% {}
+      @keyframes identifier {
+        0% {
+        }
 
-      25% {}
+        25% {
+        }
 
-      50% {}
+        50% {
+        }
 
-      100% {}
-    }
+        100% {
+        }
+      }
 
-    body {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    .container {
-      width: cale(100%-100px);
-      height: 100vh;
-      animation: identifier 5 ease;
-      background: red url('') no-repeat 0 0 fixed;
-      background-size: cover;
-      position: relative;
-      /* position: sticky; 粘性定位 */
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: center;
-      align-content: space-between;
-      align-items: center;
-      width: 400px;
-      height: 400px;
-      box-shadow: 0 0 2px 1px rgba(0, 0, 0, .8);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      overflow-y: scroll;
+      .container {
+        width: cale(100%-100px);
+        height: 100vh;
+        animation: identifier 5 ease;
+        background: red url('') no-repeat 0 0 fixed;
+        background-size: cover;
+        position: relative;
+        /* position: sticky; 粘性定位 */
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-content: space-between;
+        align-items: center;
+        width: 400px;
+        height: 400px;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.8);
+        filter: grayscale(1);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
-      padding: 0 0 0 0;
-      margin: 0 0 0;
-      border: 0 0;
-      border-radius: 50%;
+        overflow-y: scroll;
 
-      letter-spacing: 1px;
-      text-indent: 1px;
-      transition: all 1s;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
+        padding: 0 0 0 0;
+        margin: 0 0 0;
+        border: 0 0;
+        border-radius: 50%;
 
-    }
+        letter-spacing: 1px;
+        text-indent: 1px;
+        transition: all 1s;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
 
-    .item {
-      flex: 1;
-      order: 1;
-      align-self: start;
-      border: 1px solid mediumvioletred;
-      width: 40px;
-      height: 80px;
-      background: #d43e2e;
-    }
+      .item {
+        flex: 1;
+        order: 1;
+        align-self: start;
+        border: 1px solid mediumvioletred;
+        width: 40px;
+        height: 80px;
+        background: #d43e2e;
+      }
 
-    .item2,
-    .item3 {
-      margin-top: 10px;
-    }
+      .item2,
+      .item3 {
+        margin-top: 10px;
+      }
 
-    .shade::after {
-      content: '';
-      margin: 50px auto;
-      background: linear-gradient(to top left, red, blue);
-      filter: blur();
-      filter: grayscale();
-      /* vertical-align: middle; 图片与问题垂直居中 */
-      /* position: fixed;固定定位 绝对定位不占位置 */
+      .shade::after {
+        content: '';
+        margin: 50px auto;
+        background: linear-gradient(to top left, red, blue);
+        filter: blur();
+        filter: grayscale();
+        /* vertical-align: middle; 图片与问题垂直居中 */
+        /* position: fixed;固定定位 绝对定位不占位置 filter transfrom*/
 
-      width: 100px;
-      height: 100px;
-    }
+        width: 100px;
+        height: 100px;
+      }
 
-    .shade:hover menu {
-      visibility: hidden;
-      
-      display: none;
-    }
+      .shade:hover menu {
+        visibility: hidden;
 
-    .hot:first-child {
-      width: 0;
-      height: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-      border-top: 100px solid red;
-    }
+        display: none;
+      }
 
+      .hot:first-child {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 100px solid red;
+      }
 
       /* pading 可以撑大盒子 */
 
-    a :nth-child(2n) i{
-      display: block;
-      width: 100px;
-      height: 40px;
-      line-height: 40px;
-      background-color: blue;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-      /* filter: blur();模糊度 */
-      /* filter: grayscale();灰度  */
-      background: linear-gradient(to right bottom red blue)
-    }
-  </style>
+      a :nth-child(2n) i {
+        display: block;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        background-color: blue;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        /* filter: blur();模糊度 */
+        /* filter: grayscale();灰度  */
+        background: linear-gradient(to right bottom red blue);
+      }
+    </style>
 
-  <a href=https://www.baidu.com/>去百度 </a> <div class="container">
-    <div class="item item1">1</div>
-    <div class="item item2">2</div>
-
+    <a href="https://www.baidu.com" download>去百度 </a>
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
     </div>
 
     <div class="shade">
@@ -151,9 +154,9 @@
     <div class=""></div>
 
     <script>
-      let arr = ['11', 22, '33', 44, 55,false,'',null]
-      let a = arr.filter(Boolean).map(Number)
-          // console.log(a);
+      let arr = ['11', 22, '33', 44, 55, false, '', null];
+      let a = arr.filter(Boolean).map(Number);
+      // console.log(a);
 
       //本地存储值能是字符串
       // localStorage.setItem('token','abv')
@@ -162,7 +165,7 @@
       // localStorage.clear()
       // JSON.parse()  JSON对象转字符串
       // JSON.stringify()字符串转JSON对象
-      
+
       // switch (key) {
       //   case value:
 
@@ -185,12 +188,12 @@
 
       //模块化  module.exports    require('')  图片一般用require('') module
 
-      // export{}   ,  import{} from ''    export default xx     import xx from '' 
-        // 在函数中停止for循环可以用break或者return
+      // export{}   ,  import{} from ''    export default xx     import xx from ''
+      // 在函数中停止for循环可以用break或者return
       //循环中break表示终止循环 continue表示跳过此项循环继续下次循环  for循环中没得return
-      //在函数中if语句中 return 和return false 表示终止 通常在表单提交的时候 或者返回一个值  
+      //在函数中if语句中 return 和return false 表示终止 通常在表单提交的时候 或者返回一个值
       //函数中的return表示该函数返回一个值,给调用者使用,当有返回多个值时,用对象的形式返回
-      //只有for- for in -for of wile才能终止循环 
+      //只有for- for in -for of wile才能终止循环
       //在forEach、map、filter中break和continue不能正常执行，return仅仅跳出当前循环，不会跳出整个函数。
       /*
         let arr = [1, 2, 3, 4, 5]
@@ -372,187 +375,173 @@
         charAt
         console.log(arr.indexOf(1))//indexOf根据值返回满足条件的索引 没找到就返回-1*/
 
-       
-        
+      // Object.prototype.toString.call().slice(8,-1)==='String' 判断是不是字符串[string string]
+      // Object.prototype.toString.call().slice(8,-1)==='Number' 判断是不是数字
+      // Object.prototype.toString.call().slice(8,-1)==='Object' 判断是不是对象
+      // Object.prototype.toString.call().slice(8,-1)==='Array' 判断是不是数组
+      // Object.prototype.toString().call().slice(8,-1)==='null'
 
-    // Object.prototype.toString.call().slice(8,-1)==='string' 判断是不是字符串[string string]
-    // Object.prototype.toString.call().slice(8,-1)==='number' 判断是不是数字
-    // Object.prototype.toString.call().slice(8,-1)==='object' 判断是不是对象
-    // Object.prototype.toString.call().slice(8,-1)==='array' 判断是不是数组
-        // Object.prototype.toString().call().slice(8,-1)==='null'
-     
-    //  console.log(   Object.prototype.toString.call('啊').slice(8,-1));
-        let arrH = [2, 4, 6, 8, 10, 12];
+      //  console.log(   Object.prototype.toString.call('啊').slice(8,-1));
+      let arrH = [2, 4, 6, 8, 10, 12];
 
       function isArr(arr, val) {
         if (arr.indexOf(val) >= 0) {
           console.log('yes');
-          return true
+          return true;
         } else {
           console.log('no');
-          return false
+          return false;
         }
       }
       // isArr(arrH, 10)
 
-      let arrC = [13, 14, 15]
+      let arrC = [13, 14, 15];
       let arrA = ['1', '2', '3', 'a', 'b', 'c'];
-        //截取 不会改变原数组
-        
-       
-            //console.log(arrH.slice(0, 2));两值之差  arr str 
-            //console.log(str.substr(0, 1));长度 str
-            //console.log(str.substring(0, 1));两值之差 str
+      //截取 不会改变原数组
 
-        // splice()//会改变原数组
-        // 第一个值为开始索引
-        // 第二个值为0是 表示删除所有
-        // 第二个值为0是 后面跟元素 表示插入几个值
-        // 第二个值不为0 是后面跟元素 表示替换几个值
+      //console.log(arrH.slice(0, 2));两值之差  arr str
+      //console.log(str.substr(0, 1));长度 str
+      //console.log(str.substring(0, 1));两值之差 str
 
-            //console.log(str.charAt(1));//根据下标返值 str[1]
-            //console.log(arrA.join());
-            //console.log(arrA.join(','));
-            //console.log(...arrA);
-            //console.log(isNaN(1));
-            //.log(Array.isArray(arrA));
-            //console.log(arrH.slice(0, 3));
-            //console.log(arrH.concat(arrC));
-            //console.log([...arrH, ...arrC]);
-            //console.log(arrH.push(...arrC));
-            //console.log(arrH);
-            // async function f() {
-            //     return 'hello world';
-            //   }
-            //   f().then(v => console.log(v))
+      // splice()//会改变原数组
+      // 第一个值为开始索引
+      // 第二个值为0是 表示删除所有
+      // 第二个值为0是 后面跟元素 表示插入几个值
+      // 第二个值不为0 是后面跟元素 表示替换几个值
 
-            //   let myArr = [3, 3, 4, 5, 6, 3, 7, 4];
-            //   let a1 = myArr.filter((value, index) => myArr.indexOf(value) === index) //数组去重
-            //   console.log(a1);
+      //console.log(str.charAt(1));//根据下标返值 str[1]
+      //console.log(arrA.join());
+      //console.log(arrA.join(','));
+      //console.log(...arrA);
+      //console.log(isNaN(1));
+      //.log(Array.isArray(arrA));
+      //console.log(arrH.slice(0, 3));
+      //console.log(arrH.concat(arrC));
+      //console.log([...arrH, ...arrC]);
+      //console.log(arrH.push(...arrC));
+      //console.log(arrH);
+      // async function f() {
+      //     return 'hello world';
+      //   }
+      //   f().then(v => console.log(v))
 
+      //   let myArr = [3, 3, 4, 5, 6, 3, 7, 4];
+      //   let a1 = myArr.filter((value, index) => myArr.indexOf(value) === index) //数组去重
+      //   console.log(a1);
 
+      // var oDay = new Date();
 
+      //console.log(oDay);
+      // console.log(oDay.getYear());; //当前年份
+      // console.log(oDay.getFullYear());; //完整的年月日（xx年，xx月，xx日）
+      // console.log(oDay.getMonth());; //当前的月份(0-11,0代表1月)         // 获取当前的月份是oDay.getMonth()+1;   <br>oDay.getDate(); //当前的日(1-31)
+      // console.log(oDay.getDay());; //当前的星期X(0-6,0代表星期天)
+      // console.log(oDay.getDate());当前日
 
-            // var oDay = new Date();
+      //arr[oDay.getDay()]
+      const oDay = new Date();
+      // console.log(oDay.getTime());; //当前的时间(从1970.1.1开始的毫秒数)
+      // console.log(oDay.getHours());; //当前的小时数(0-23)
+      // console.log(oDay.getMinutes());; //当前的分钟数(0-59)
+      // console.log(oDay.getSeconds());; //当前的秒数(0-59)
+      // console.log(oDay.getMilliseconds());; //当前的毫秒数(0-999)
+      //  console.log(oDay.toLocaleDateString());; //当前的日期
+      var oTime = oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
+      //  console.log(oTime);
+      //  console.log(oDay.toLocaleString()) //当前时间
 
-            //console.log(oDay);
-            // console.log(oDay.getYear());; //当前年份
-            // console.log(oDay.getFullYear());; //完整的年月日（xx年，xx月，xx日）
-            // console.log(oDay.getMonth());; //当前的月份(0-11,0代表1月)         // 获取当前的月份是oDay.getMonth()+1;   <br>oDay.getDate(); //当前的日(1-31)
-            // console.log(oDay.getDay());; //当前的星期X(0-6,0代表星期天)
-            // console.log(oDay.getDate());当前日
+      //防抖debounce代码：(用于搜索 监听图片load加载)
+      // function debounce(fn, delay = 150) {
+      //   let timeout = null; // 创建一个标记用来存放定时器的返回值
+      //   return function (...args) {
+      //     // 每当用户输入的时候把前一个 setTimeout clear 掉
+      //     if (timeout) clearTimeout(timeout);
+      //     // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
+      //     timeout = setTimeout(() => {
+      //       fn.apply(this, arg);
+      //     }, delay);
+      //   };
+      // }
 
-            //arr[oDay.getDay()]
-              const oDay=new Date()
-            // console.log(oDay.getTime());; //当前的时间(从1970.1.1开始的毫秒数)
-            // console.log(oDay.getHours());; //当前的小时数(0-23)
-            // console.log(oDay.getMinutes());; //当前的分钟数(0-59)
-            // console.log(oDay.getSeconds());; //当前的秒数(0-59)
-            // console.log(oDay.getMilliseconds());; //当前的毫秒数(0-999)
-            //  console.log(oDay.toLocaleDateString());; //当前的日期
-             var oTime=oDay.toLocaleTimeString(); //当前的时间  <br>oDay.toLocaleString( ); //日期与时间
-            //  console.log(oTime);
-            //  console.log(oDay.toLocaleString()) //当前时间
+      //节流方案一(用在表单提交)
+      // function throttle(fn, delay = 150) {
+      //   let canRun = true; // 通过闭包保存一个标记
+      //   return function (...arg) {
+      //     // 在函数开头判断标记是否为true，不为true则return
+      //     if (!canRun) return;
+      //     // 立即设置为false
+      //     canRun = false;
+      //     // 将外部传入的函数的执行放在setTimeout中
+      //     setTimeout(() => {
+      //       // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
+      //       // 当定时器没有执行的时候标记永远是false，在开头被return掉
+      //       fn.apply(this, arg);
+      //       canRun = true;
+      //     }, delay);
+      //   };
+      // }
 
+      // 定时器节流方案二
+      // function throttle(fn, wait = 150) {
+      //   var timer = null;
+      //   return function (...args) {
+      //     //var context = this;
+      //     //var args = arguments;
+      //     if (!timer) {
+      //       timer = setTimeout(function () {
+      //         fn.apply(this, args);
+      //         // timer = null;
+      //         clearTimeout(timer)
+      //       }, wait)
+      //     }
+      //   }
+      // }
 
+      // 深拷贝拷贝对象封装函数 (递归)
+      // function deepCopy(newobj, oldobj) {
+      //   for (var k in oldobj) {
+      //     // 判断我们的属性值属于那种数据类型
+      //     // 1. 获取属性值  oldobj[k]
+      //     var item = oldobj[k];
+      //     // 2. 判断这个值是否是数组
+      //     if (item instanceof Array) {
+      //       newobj[k] = [];
+      //       deepCopy(newobj[k], item)
+      //     } else if (item instanceof Object) {
+      //       // 3. 判断这个值是否是对象
+      //       newobj[k] = {};
+      //       deepCopy(newobj[k], item)
+      //     } else {
+      //       // 4. 属于简单数据类型
+      //       newobj[k] = item;
+      //     }
+      //   }
+      // }
 
+      //时间格式化  先将时间鹾转入new Date()中然后再格式化
+      //  export function formatDate(date, fmt) {
+      //     if (/(y+)/.test(fmt)) {
+      //       fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+      //     }
+      //     let o = {
+      //       'M+': date.getMonth() + 1,
+      //       'd+': date.getDate(),
+      //       'h+': date.getHours(),
+      //       'm+': date.getMinutes(),
+      //       's+': date.getSeconds()
+      //     };
+      //     for (let k in o) {
+      //       if (new RegExp(`(${k})`).test(fmt)) {
+      //         let str = o[k] + '';
+      //         fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+      //       }
+      //     }
+      //     return fmt;
+      //   };
 
-            //防抖debounce代码：(用于搜索 监听图片load加载)
-            // function debounce(fn, delay = 150) {
-            //   let timeout = null; // 创建一个标记用来存放定时器的返回值
-            //   return function (...args) {
-            //     // 每当用户输入的时候把前一个 setTimeout clear 掉
-            //     if (timeout) clearTimeout(timeout);
-            //     // 然后又创建一个新的 setTimeout, 这样就能保证interval 间隔内如果时间持续触发，就不会执行 fn 函数
-            //     timeout = setTimeout(() => {
-            //       fn.apply(this, arg);
-            //     }, delay);
-            //   };
-            // }
-        
-            //节流方案一(用在表单提交)
-            // function throttle(fn, delay = 150) {
-            //   let canRun = true; // 通过闭包保存一个标记
-            //   return function (...arg) {
-            //     // 在函数开头判断标记是否为true，不为true则return
-            //     if (!canRun) return;
-            //     // 立即设置为false
-            //     canRun = false;
-            //     // 将外部传入的函数的执行放在setTimeout中
-            //     setTimeout(() => {
-            //       // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
-            //       // 当定时器没有执行的时候标记永远是false，在开头被return掉
-            //       fn.apply(this, arg);
-            //       canRun = true;
-            //     }, delay);
-            //   };
-            // }
-
-
-              // 定时器节流方案二
-              // function throttle(fn, wait = 150) {
-              //   var timer = null;
-              //   return function (...args) {
-              //     //var context = this;
-              //     //var args = arguments;
-              //     if (!timer) {
-              //       timer = setTimeout(function () {
-              //         fn.apply(this, args);
-              //         // timer = null;
-              //         clearTimeout(timer)
-              //       }, wait)
-              //     }
-              //   }
-              // }
-
-              // 深拷贝拷贝对象封装函数 (递归)
-              // function deepCopy(newobj, oldobj) {
-              //   for (var k in oldobj) {
-              //     // 判断我们的属性值属于那种数据类型
-              //     // 1. 获取属性值  oldobj[k]
-              //     var item = oldobj[k];
-              //     // 2. 判断这个值是否是数组
-              //     if (item instanceof Array) {
-              //       newobj[k] = [];
-              //       deepCopy(newobj[k], item)
-              //     } else if (item instanceof Object) {
-              //       // 3. 判断这个值是否是对象
-              //       newobj[k] = {};
-              //       deepCopy(newobj[k], item)
-              //     } else {
-              //       // 4. 属于简单数据类型
-              //       newobj[k] = item;
-              //     }
-              //   }
-              // }
-
-              
-              //时间格式化  先将时间鹾转入new Date()中然后再格式化
-            //  export function formatDate(date, fmt) {
-            //     if (/(y+)/.test(fmt)) {
-            //       fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-            //     }
-            //     let o = {
-            //       'M+': date.getMonth() + 1,
-            //       'd+': date.getDate(),
-            //       'h+': date.getHours(),
-            //       'm+': date.getMinutes(),
-            //       's+': date.getSeconds()
-            //     };
-            //     for (let k in o) {
-            //       if (new RegExp(`(${k})`).test(fmt)) {
-            //         let str = o[k] + '';
-            //         fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
-            //       }
-            //     }
-            //     return fmt;
-            //   };
-
-            //   function padLeftZero(str) {
-            //     return ('00' + str).substr(str.length);
-            //   };
-             
+      //   function padLeftZero(str) {
+      //     return ('00' + str).substr(str.length);
+      //   };
     </script>
-</body>
-
+  </body>
 </html>

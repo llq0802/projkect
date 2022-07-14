@@ -14,12 +14,12 @@
     <button message="hdcms">hdcms</button>
   </body>
   <script>
-    let btns = document.querySelectorAll("button");
-    btns.forEach(function(item) {
-      item.addEventListener("click", function() {
+    let btns = document.querySelectorAll('button');
+    btns.forEach(function (item) {
+      item.addEventListener('click', function () {
         let left = 1;
-        setInterval(function() {
-          item.style.left = left++ + "px";
+        setInterval(function () {
+          item.style.left = left++ + 'px';
         }, 100);
       });
     });

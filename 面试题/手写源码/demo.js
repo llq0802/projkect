@@ -1,18 +1,18 @@
-Function.prototype.myCall = function(context, ...args) {
+Function.prototype.myCall = function (context, ...args) {
   context.fn = this;
   let result = context.fn(...args);
   delete context.fn;
   return result;
 };
-Function.prototype.myApply = function(context, arg) {
+Function.prototype.myApply = function (context, arg) {
   context.fn = this;
   let result = arg ? context.fn(...arg) : context.fn();
   delete context.fn;
   return result;
 };
-Function.prototype.myBind = function(context, ...args) {
+Function.prototype.myBind = function (context, ...args) {
   const fn = this;
-  return function(...params) {
+  return function (...params) {
     let result = fn().apply(context, [...args, ...params]);
     return result;
   };
@@ -37,7 +37,7 @@ function myInstanceof2(obj, Fn) {
 }
 function debounce(fn, wait = 0) {
   let timer = null;
-  return function(...args) {
+  return function (...args) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       fn.apply(this, args);
@@ -46,7 +46,7 @@ function debounce(fn, wait = 0) {
 }
 function throttle(fn, wait = 0) {
   let timer = null;
-  return function(...args) {
+  return function (...args) {
     if (!timer) {
       timer = setTimeout(() => {
         fn.apply(this, args);
@@ -58,7 +58,7 @@ function throttle(fn, wait = 0) {
 function deepCopy(obj) {
   let result = Array.isArray(obj) ? [] : {};
   for (key of Object.keys(obj)) {
-    result[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
+    result[key] = typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
   }
   return result;
 }
@@ -170,10 +170,10 @@ function treeToList(list) {
  * @param {*} value
  */
 export const setStorage = (key, value) => {
-  let data = localStorage.getItem('usv');
+  let data = localStorage.getItem("usv");
   data = !data ? {} : JSON.parse(data);
   data[key] = value;
-  localStorage.setItem('usv', JSON.stringify(data));
+  localStorage.setItem("usv", JSON.stringify(data));
 };
 /**
  * 获取本地存储
@@ -181,7 +181,7 @@ export const setStorage = (key, value) => {
  * @returns
  */
 export const getStorage = (key) => {
-  let data = localStorage.getItem('usv');
+  let data = localStorage.getItem("usv");
   if (!data) return null;
   data = JSON.parse(data);
   return data[key] || null;
@@ -193,10 +193,10 @@ export const getStorage = (key) => {
  */
 export const delStorage = (key) => {
   if (!key) {
-    localStorage.removeItem('usv');
+    localStorage.removeItem("usv");
     return;
   }
-  let data = JSON.parse(localStorage.getItem('usv'));
+  let data = JSON.parse(localStorage.getItem("usv"));
   data[key] && delete data[key];
 };
 //数组中的累加合
@@ -208,7 +208,7 @@ function arrayMax(array) {
 }
 
 class Pro {
-  status = 'pending';
+  status = "pending";
   value = null;
   callbacks = [];
   constructor(executor) {
@@ -219,8 +219,8 @@ class Pro {
     }
   }
   resolve(value) {
-    if (this.status === 'pending') {
-      this.status = 'resolve';
+    if (this.status === "pending") {
+      this.status = "resolve";
       this.value = value;
       this.callbacks.map((item) => {
         setTimeout(() => {
@@ -230,8 +230,8 @@ class Pro {
     }
   }
   reject(value) {
-    if (this.status === 'pending') {
-      this.status = 'reject';
+    if (this.status === "pending") {
+      this.status = "reject";
       this.value = value;
       this.callbacks.map((item) => {
         setTimeout(() => {
@@ -244,7 +244,7 @@ class Pro {
     const onResoveOrOnReject = (onResoveOrOnReject) => {
       let result = onResoveOrOnReject(this.value);
       if (result === proRes) {
-        throw new Error('不能相等与上一个Pro的值');
+        throw new Error("不能相等与上一个Pro的值");
       }
       try {
         if (result instanceof Pro) {
@@ -257,23 +257,23 @@ class Pro {
       }
     };
     const proRes = new Pro((resolve, reject) => {
-      if (typeof resolve !== 'function') {
+      if (typeof resolve !== "function") {
         resolve = (value) => value;
       }
-      if (typeof reject !== 'function') {
+      if (typeof reject !== "function") {
         resolve = (value) => value;
       }
-      if (this.status === 'resolve') {
+      if (this.status === "resolve") {
         setTimeout(() => {
           onResoveOrOnReject(onResove);
         });
       }
-      if (this.status === 'reject') {
+      if (this.status === "reject") {
         setTimeout(() => {
           onResoveOrOnReject(onReject);
         });
       }
-      if (this.status === 'pending') {
+      if (this.status === "pending") {
         this.callbacks.push({
           onResove: () => {
             onResoveOrOnReject(onResove);
@@ -346,19 +346,26 @@ class Pro {
 export function dateFormat(date: any, fmt: any) {
   //author: yin
   const o: any = {
-    'M+': new Date(date).getMonth() + 1, //月份
-    'd+': new Date(date).getDate(), //日
-    'h+': new Date(date).getHours(), //小时
-    'm+': new Date(date).getMinutes(), //分
-    's+': new Date(date).getSeconds(), //秒
-    'q+': Math.floor((new Date(date).getMonth() + 3) / 3), //季度
+    "M+": new Date(date).getMonth() + 1, //月份
+    "d+": new Date(date).getDate(), //日
+    "h+": new Date(date).getHours(), //小时
+    "m+": new Date(date).getMinutes(), //分
+    "s+": new Date(date).getSeconds(), //秒
+    "q+": Math.floor((new Date(date).getMonth() + 3) / 3), //季度
     S: new Date(date).getMilliseconds(), //毫秒
   };
-  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (new Date(date).getFullYear() + '').substr(4 - RegExp.$1.length));
+  if (/(y+)/.test(fmt))
+    fmt = fmt.replace(
+      RegExp.$1,
+      (new Date(date).getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
   // eslint-disable-next-line no-restricted-syntax
   for (const k in o)
-    if (new RegExp('(' + k + ')').test(fmt))
-      fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
+    if (new RegExp("(" + k + ")").test(fmt))
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)
+      );
   return fmt;
 }
 //将数组拆分成平均长度的数组
